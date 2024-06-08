@@ -7,10 +7,10 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        "name": "Cafelab Store",
+        "name": "Cafelab",
         "short_name": "Cafelab",
         "description": "CafeLab PWA ",
-        "start_url": "/",
+        "start_url": "index.html",
         "scope": "/",
         "display": "standalone",
         "background_color": "#fdfdfd",
