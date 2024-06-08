@@ -36,6 +36,7 @@ export function ShoppingCartProvider({children}) {
     function getItemQuantity(id) {
         return cartItems.find(item => item.id === id)?.quantity || 0
     }
+
     function emptyCart(justCart) {
         if (justCart) {
             setCartItems([]);

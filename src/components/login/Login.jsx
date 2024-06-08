@@ -5,6 +5,7 @@ import {useAuth} from "../context/AuthContext.jsx";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";
+import {delay} from "framer-motion";
 
 const MyTextInput = ({label, ...props}) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -46,13 +47,14 @@ const LoginForm = () => {
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(true);
                 signin(values).then(res => {
-                    navigate("/orders")
+                    //navigate("/orders")
                     console.log("Successfully logged in");
                 }).catch(err => {
+                    console.log(err);
                     errorNotification(
                         err.code,
-                        err.response.data.message
-                    )
+                        "Usuario e senha não encontrados ou email pendente de ativação",
+                    );
                 }).finally(() => {
                     setSubmitting(false);
                 })

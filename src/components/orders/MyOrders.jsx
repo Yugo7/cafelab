@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {Card, CardHeader, Heading, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr} from "@chakra-ui/react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import {CardTitle} from "react-bootstrap";
-import {getOrders, getRegularOrdersWithProducts} from "../../services/orderService.jsx";
+import OrderService from "../../services/orderService.jsx";
 import {getProductsById} from "../../services/productsService.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 
@@ -19,8 +19,9 @@ const Orders = () => {
                 //navigate("/");
             } else {
                 try {
-                    const data = await getRegularOrdersWithProducts(customer);
+                    const data = await OrderService.getOrders();
                     setOrders(data);
+                    console.log(data)
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
@@ -42,7 +43,6 @@ const Orders = () => {
 
     return (
         <SidebarWithHeader>
-
             {orders.map((order, index) => (
                 <Card key={index} m={4}>
                     <CardHeader>

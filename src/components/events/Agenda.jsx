@@ -2,7 +2,7 @@ import SidebarWithHeader from "../shared/SideBar.jsx";
 import {Spinner, Stack, Text, useBreakpointValue, Wrap, WrapItem} from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import CardWithImage from "./EventCard.jsx";
-import {getNextEvents, getPastEvents} from '../../services/eventService.js';
+import eventService from '../../services/eventService.js';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import PastEventCard from "./PastEventCard.jsx";
@@ -46,9 +46,9 @@ const Agenda = () => {
         setLoading(true);
         try {
             await delay(1000);
-            const data = await getNextEvents(Date.now());
+            const data = await eventService.getNextEvents(Date.now());
             setEvents(data);
-            const pastData = await getPastEvents(Date.now());
+            const pastData = await eventService.getPastEvents(Date.now());
             setPastEvents(pastData);
         } catch (error) {
             setError(error.message);

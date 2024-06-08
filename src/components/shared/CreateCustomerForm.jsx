@@ -2,10 +2,11 @@ import {Form, Formik, useField} from 'formik';
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Select, Stack} from "@chakra-ui/react";
 import {saveCustomer} from "../../services/client.js";
-import {successNotification, errorNotification} from "../../services/notification.js";
+import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import * as PropTypes from "prop-types";
+import StripeService from "../../services/stripeService.jsx";
 
 const MyTextInput = ({label, ...props}) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -75,35 +76,27 @@ const CreateCustomerForm = ({ onSuccess }) => {
                     email: Yup.string()
                         .email('Must be 20 characters or less')
                         .required('Required'),
-                    age: Yup.number()
-                        .min(16, 'Must be at least 16 years of age')
-                        .max(100, 'Must be less than 100 years of age')
-                        .required(),
                     password: Yup.string()
                         .min(6, 'Must be 4 characters or more')
                         .required('Required'),
-                    gender: Yup.string()
-                        .oneOf(
-                            ['MALE', 'FEMALE'],
-                            'Invalid gender'
-                        )
-                        .required('Required'),
                 })}
-                onSubmit={(customer, {setSubmitting}) => {
+                onSubmit={async (customer, {setSubmitting}) => {
                     setSubmitting(true);
-                    saveCustomer(customer)
+                    console.log(customer);
+                    const stripeData = await StripeService.createCustomer(customer.email, customer.name)
+                    saveCustomer(customer, stripeData)
                         .then(res => {
                             console.log(res);
                             setIsSignupSuccessOpen(true);
                         }).catch(err => {
-                            console.log(err);
-                            errorNotification(
-                                err.code,
-                                err.response.data.message
-                            )
+                        console.log(err);
+                        errorNotification(
+                            err.code,
+                            err.response.data.message
+                        )
                     }).finally(() => {
-                         setSubmitting(false);
-                         navigate("/");
+                        setSubmitting(false);
+                        navigate("/");
                     })
                 }}
             >
@@ -125,24 +118,11 @@ const CreateCustomerForm = ({ onSuccess }) => {
                             />
 
                             <MyTextInput
-                                label="Age"
-                                name="age"
-                                type="number"
-                                placeholder="20"
-                            />
-
-                            <MyTextInput
                                 label="Password"
                                 name="password"
                                 type="password"
                                 placeholder={"pick a secure password"}
                             />
-
-                            <MySelect label="Gender" name="gender">
-                                <option value="">Select gender</option>
-                                <option value="MALE">Male</option>
-                                <option value="FEMALE">Female</option>
-                            </MySelect>
 
                             <Button disabled={!isValid || isSubmitting} type="submit">Submit</Button>
                         </Stack>

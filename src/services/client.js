@@ -10,6 +10,7 @@ export const signin = async (usernameAndPassword) => {
             email: usernameAndPassword.username,
             password: usernameAndPassword.password,
         })
+
         //await axios.post(
         //    `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`,
         //    usernameAndPassword
@@ -47,7 +48,7 @@ export const getCustomers = async () => {
     }
 }*/
 
-export const saveCustomer = async (customer) => {
+export const saveCustomer = async (customer, stripeData) => {
     console.log("save customer: " + customer)
     try {
         const { data, error } = await supabase.auth.signUp({
@@ -58,6 +59,7 @@ export const saveCustomer = async (customer) => {
                     name: customer.name,
                     age: customer.age,
                     gender: customer.gender,
+                    stripeId: stripeData.id
                 },
             },
         });

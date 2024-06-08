@@ -1,20 +1,18 @@
-import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
+import axios from "axios";
 
-const supabase = SupabaseClientUtil.supabaseClient
+const BASE_URL = 'https://cafelab-api.vercel.app/';
+
 
 export const getProducts = async () => {
     try {
         // Try to get data from cache
         const cachedData = localStorage.getItem('products');
         const cachedTime = localStorage.getItem('productsTime');
-
         if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
             return JSON.parse(cachedData);
         } else {
-            const { data } = await supabase
-                .from('products')
-                .select()
-                .order('secao', { ascending: false });
+            console.log('qwe');
+            const {data} = await axios.get(`${BASE_URL}products/`);
             localStorage.setItem('products', JSON.stringify(data));
             localStorage.setItem('productsTime', new Date().getTime());
 
@@ -32,9 +30,7 @@ export const Sections = Object.freeze({
 
 export const getProductsBySection = async (section) => {
     try {
-        console.log(section);
         const products = await getProducts();
-        console.log(products);
         return section ? products.filter(product => product.secao === section) : products;
     } catch (e) {
         throw e;

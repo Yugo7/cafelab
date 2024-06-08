@@ -1,11 +1,12 @@
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
-import {AddressElement, CardElement, Elements, LinkAuthenticationElement, useElements, useStripe,} from "@stripe/react-stripe-js"
+import {AddressElement, CardElement, Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe,} from "@stripe/react-stripe-js"
 import {loadStripe} from "@stripe/stripe-js"
 import {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
-import {CardText, CardTitle,} from "react-bootstrap";
+import {CardText, CardTitle, Image,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
-import {CartItem} from "../cart/CartItem.jsx";
+import {useAuth} from "../context/AuthContext.jsx";
+import StripeService, {createPaymentMethod, createStripeSubscription, updateStripeCustomerAddress} from "../../services/stripeService.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -21,75 +22,98 @@ export function CheckoutFormSubscricao({clientSecret}) {
         amount: priceInCents,
         currency: 'eur',
         paymentMethodCreation: 'manual',
-        // Fully customizable with appearance API.
-        appearance: {/*...*/},
     };
-
-    console.log(subscription)
 
     return (
         <Stack className="max-w-5xl w-full mx-auto space-y-8">
             <Stack direction={['column', 'row']} justify="center" align="center" spacing="12px" m={4}>
-
                 <Stack m={6} maxHeight={"50%"} gap={3}>
-                    <Text className=" fw-bold fs-5" align={"center"} mb={4}>
-                        Seu pedido
-                    </Text>
-                    {cartItems.map(item => (
-                        <CartItem key={item.id} {...item} />
-                    ))}
-                    <Text className="ms-auto fw-bold fs-5">
-                        Total{" "}
-                        {formatCurrency(
-                            total
-                        )}
-                    </Text>
+                    <Stack width={"100%"}>
+                        <Text className="cafelab" fontWeight={"medium"} fontSize={"lg"} align={"center"} mb={4}>
+                            SUA SUBSCRIÇÃO
+                        </Text>
+                        <Stack gap={2} className="d-flex align-items-center">
+                            <Text className="cafelab" fontWeight={"medium"} fontSize={"2xl"} align={"center"} mb={4}>
+                                {subscription[0].nome.toUpperCase()}
+                            </Text>
+                            <Image
+                                src={subscription[0].imagem}
+                                style={{width: "175px", height: "275px", objectFit: "cover"}}
+                            />
+                                <Text className="ms-auto fw-bold fs-5">
+                                    {formatCurrency(
+                                        subscription[0].preco
+                                    )} /mês
+                                </Text>
+                        </Stack>
+                        <Text className="ms-auto fw-bold fs-5">
+                            Total{" "}
+                            {formatCurrency(
+                                total
+                            )}
+                        </Text>
+                    </Stack>
                 </Stack>
-                    <Elements stripe={stripePromise} options={options}>
-                        <Form total={priceInCents}/>
-                    </Elements>
+                <Elements stripe={stripePromise} options={options}>
+                    <Form priceInCents={priceInCents}/>
+                </Elements>
             </Stack>
         </Stack>
     )
 }
 
-function Form(total) {
+function Form({priceInCents}) {
     const stripe = useStripe();
     const elements = useElements();
     const [email, setEmail] = useState('');
+    const [shippingInfo, setShippingInfo] = useState('');
     const [address, setAddress] = useState('');
-
+    const {customer} = useAuth();
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const handleEmailChange = (event) => {
+        setEmail(event.value.email);
+    };
+
+    const handleAddressChange = (event) => {
+        if (event.value && event.value.name) {
+            setShippingInfo(event.value);
+        }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(email)
         if (!stripe || !elements) {
             return;
         }
 
+        const stripeCustomer = customer.stripeId ? customer.stripeId : await StripeService.createCustomer(email, shippingInfo.name).then(data => data.id);
+        await updateStripeCustomerAddress(stripeCustomer, shippingInfo);
+
+        console.log("stripeCustomer: " + stripeCustomer);
         const cardElement = elements.getElement(CardElement);
 
-        const { error, paymentMethod} = await stripe.createPaymentMethod({
-            type: 'card',
-            card: cardElement,
-            billing_details: {
-                email: email,
-                address: {
-                    line1: address
-                }
-            }
-        });
+        console.log("cardElement: ", cardElement);
+        const {paymentMethod, error} = await createPaymentMethod(cardElement, email, stripeCustomer);
 
-        console.log(error)
-        if (error.type === "card_error" || error.type === "validation_error") {
+        console.log("paymentMethod: ", paymentMethod);
+        if (error) {
+            console.log("Error creating payment method: ", error);
             setErrorMessage(error.message);
-        } else {
-            console.log(error.message);
-            setErrorMessage("An unexpected error occured.");
+            return;
         }
+
+        const priceId = "price_1PB4tGRqqMn2mwDSTS2p1BJq";
+        const subscription = await createStripeSubscription(stripeCustomer, priceId);
+
+        if (subscription.error) {
+            console.log("Error creating subscription: ", subscription.error);
+            setErrorMessage(subscription.error.message);
+            return;
+        }
+
+        console.log(subscription);
     };
 
     return (
@@ -104,12 +128,12 @@ function Form(total) {
                     )}
                 </CardHeader>
                 <CardBody>
-                    <AddressElement options={{mode: 'shipping'}}/>
+                    <AddressElement options={{mode: 'shipping'}} onChange={handleAddressChange}/>
                     <Stack mt={6}></Stack>
-                    <CardElement/>
+                    <CardElement options={{hidePostalCode: true}} />
                     <div className="mt-4">
                         <LinkAuthenticationElement
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={handleEmailChange}
                         />
                     </div>
                 </CardBody>
@@ -123,7 +147,7 @@ function Form(total) {
                         {
                             isLoading
                                 ? "Purchasing..."
-                                : `Purchase - ${formatCurrency(total)}`}
+                                : `Purchase - ${formatCurrency(priceInCents/100)}`}
                     </Button>
                 </CardFooter>
             </Card>

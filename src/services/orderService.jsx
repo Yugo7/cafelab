@@ -2,30 +2,38 @@ import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
 import {getProductsById} from "./productsService.jsx";
 
 const supabase = SupabaseClientUtil.supabaseClient
+import axios from 'axios';
 
-export const getOrders = async () => {
+const BASE_URL = 'https://cafelab-api.vercel.app/';
 
-    console.log("Fetching orders...")
-    // Todo: implement put cache on orders table
-    const {data} = await supabase
-        .from('order')
-        .select();
+const OrderService = {
+    getOrders: async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}orders/`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching all events:', error);
+            throw error;
+        }
+    },
 
-    return data;
+    addOrder: async (orderData) => {
+        try {
+            const response = await axios.post(`${BASE_URL}orders`, {
+                user_id: orderData.user_id, // This will be converted to JSON
+                products: orderData.items, // This will be converted to JSON
+                total: orderData.total,
+                payment_status: orderData.paymentStatus,
+                user_stripe_id: orderData.user_stripe_id
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error creating event:', error);
+            throw error;
+        }
+    },
 }
 
-export const addOrder = async (order) => {
-    console.log(order)
-    const {data} = await supabase
-        .from("order")
-        .insert({
-            user: order.user, // This will be converted to JSON
-            products: order.items, // This will be converted to JSON
-            total: order.total,
-            payment_status: order.paymentStatus
-        })
-    return data;
-}
 
 export const getRegularOrdersWithProducts = async (customer) => {
     console.log(customer)
@@ -47,3 +55,5 @@ export const getRegularOrdersWithProducts = async (customer) => {
 
     return ordersWithProductDetails.filter(order => order !== null);
 }
+
+export default OrderService;

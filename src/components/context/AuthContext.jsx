@@ -14,7 +14,9 @@ const AuthProvider = ({children}) => {
             token = jwtDecode(token);
             setCustomer({
                 username: token.email,
-                roles: token.scopes
+                role: token.scopes,
+                id: token.sub,
+                stripeId: token.user_metadata.stripeId
             })
             console.log(customer);
         }
@@ -39,7 +41,9 @@ const AuthProvider = ({children}) => {
 
                 setCustomer({
                     username: decodedToken.email,
-                    roles: decodedToken.roles
+                    role: decodedToken.scopes,
+                    id: decodedToken.sub,
+                    stripeId: decodedToken.user_metadata.stripeId
                 })
                 resolve(res);
             }).catch(err => {
@@ -54,6 +58,19 @@ const AuthProvider = ({children}) => {
     }
 
     const isCustomerAuthenticated = () => {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            return false;
+        }
+        const {exp: expiration} = jwtDecode(token);
+        if (Date.now() > expiration * 1000) {
+            logOut()
+            return false;
+        }
+        return true;
+    }
+
+    const getUserId = () => {
         const token = localStorage.getItem("access_token");
         if (!token) {
             return false;

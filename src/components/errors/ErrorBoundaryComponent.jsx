@@ -1,6 +1,6 @@
 import {Card, CardBody, CardFooter, CardHeader, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import Lottie from "react-lottie";
-import animationData from "../../../public/assets/animations/alert.json";
+import animationData from "../../animations/alert.json";
 import React from "react";
 import {Button} from "react-bootstrap";
 import SidebarWithHeader from "../shared/SideBar.jsx";

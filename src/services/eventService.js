@@ -1,9 +1,14 @@
 import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
 import {getProducts} from "./productsService.jsx";
+import EventService from "./EventService.tsx";
 
 const supabase = SupabaseClientUtil.supabaseClient
 
-export const getEvents = async () => {
+const getEvents = async () => {
+    return EventService.getAllEvents();
+}
+
+/* const getEvents2 = async () => {
     try {
         const cachedData = localStorage.getItem('events');
         const cachedTime = localStorage.getItem('eventsTime');
@@ -11,9 +16,7 @@ export const getEvents = async () => {
         if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
             return JSON.parse(cachedData);
         } else {
-            const {data} = await supabase
-                .from('events')
-                .select();
+            const {data} = EventService.getAllEvents();
 
             localStorage.setItem('events', JSON.stringify(data));
             localStorage.setItem('eventsTime', new Date().getTime());
@@ -23,9 +26,9 @@ export const getEvents = async () => {
     } catch (e) {
         throw e;
     }
-}
+}*/
 
-export const getNextEvents = async (filterDate) => {
+ const getNextEvents = async (filterDate) => {
     try {
         const events = await getEvents();
         return filterDate ? events.filter(event => new Date(event.date) >= Date.now()) : events;
@@ -34,7 +37,7 @@ export const getNextEvents = async (filterDate) => {
     }
 }
 
-export const getPastEvents = async (filterDate) => {
+ const getPastEvents = async (filterDate) => {
     try {
         const events = await getEvents();
         console.log(events)
@@ -44,3 +47,12 @@ export const getPastEvents = async (filterDate) => {
         throw e;
     }
 }
+
+const eventService = {
+    getEvents,
+    getNextEvents,
+    getPastEvents,
+    // Add other functions here...
+};
+
+export default eventService;

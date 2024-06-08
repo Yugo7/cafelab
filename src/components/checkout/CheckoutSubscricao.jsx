@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Stripe from 'stripe';
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
-import {addOrder} from "../../services/orderService.jsx";
 import {CheckoutFormSubscricao} from "./CheckoutFormSubscricao.jsx";
 import {CardElement, useElements} from "@stripe/react-stripe-js";
 

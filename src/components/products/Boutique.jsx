@@ -32,7 +32,6 @@ export default function Boutique() {
 
     return (
         <SidebarWithHeader>
-
             <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                 <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
                     BOUTIQUE CAFELAB

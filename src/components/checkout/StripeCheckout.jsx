@@ -1,5 +1,5 @@
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
-import {Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe,} from "@stripe/react-stripe-js"
+import {AddressElement, Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe,} from "@stripe/react-stripe-js"
 import {loadStripe} from "@stripe/stripe-js"
 import {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
@@ -102,6 +102,7 @@ function Form({clientSecret, priceInCents}) {
                     <CardTitle>Checkout</CardTitle>
                 </CardHeader>
                 <CardBody>
+                    <AddressElement options={{mode: 'shipping'}}/>
                     <PaymentElement/>
                     <div className="mt-4">
                         <LinkAuthenticationElement

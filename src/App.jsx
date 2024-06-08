@@ -4,7 +4,7 @@ import {createStandaloneToast} from "@chakra-ui/toast";
 import Login from "./components/login/Login.jsx";
 import Signup from "./components/signup/Signup.jsx";
 import Agenda from "./components/events/Agenda.jsx";
-import Menu from "./Menu.jsx";
+import Menu from "./components/menu/Menu.jsx";
 import Subscricao from "./components/subscricao/Subscricao.jsx";
 import {ShoppingCart} from "./components/cart/ShoppingCart.jsx";
 import Contacts from "./Contacts.jsx";
@@ -26,7 +26,13 @@ import AuthProvider from "./components/context/AuthContext.jsx";
 import ProtectedRoute from "./components/shared/ProtectedRoute.jsx";
 import Orders from "./components/orders/MyOrders.jsx";
 import {SubscriptionProvider} from "./components/context/SubscriptionContext.jsx";
+import {Elements} from "@stripe/react-stripe-js";
+import {loadStripe} from "@stripe/stripe-js";
+import InstallPrompt from "./components/utilities/InstallPrompt.jsx";
 
+const stripePromise = loadStripe(
+    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+)
 
 const {ToastContainer} = createStandaloneToast();
 
@@ -124,16 +130,19 @@ function App() {
         <ChakraProvider>
             <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}>
                 <BrowserRouter>
+                    <InstallPrompt />
                     <AuthProvider>
-                        <ShoppingCartProvider>
-                            <SubscriptionProvider>
-                                <Routes>
-                                    {router.routes.map((route, index) => (
-                                        <Route key={index} path={route.path} element={route.element}/>
-                                    ))}
-                                </Routes>
-                            </SubscriptionProvider>
-                        </ShoppingCartProvider>
+                        <Elements stripe={stripePromise}>
+                            <ShoppingCartProvider>
+                                <SubscriptionProvider>
+                                    <Routes>
+                                        {router.routes.map((route, index) => (
+                                            <Route key={index} path={route.path} element={route.element}/>
+                                        ))}
+                                    </Routes>
+                                </SubscriptionProvider>
+                            </ShoppingCartProvider>
+                        </Elements>
                     </AuthProvider>
                     <ToastContainer/>
                 </BrowserRouter>

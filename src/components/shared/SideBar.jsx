@@ -83,39 +83,26 @@ const SidebarContent = ({onClose}) => {
                         </NavItem>
                     ))}
                 </Flex>
-                <Flex direction="column" alignItems="center" mx="8">
+                <Flex direction="column" justifyContent="center" margin={"auto"} mx="8">
                     {customer ?
                         <HStack
-                            onClick={() => navigate('/login')}>
-                            <Avatar
-                                size={'sm'}
-                                src={
-                                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                                }
-                            />
-                            <VStack
-                                display={{base: 'none', md: 'flex'}}
-                                alignItems="flex-start"
-                                spacing="1px"
-                                ml="2">
-                            </VStack>
-                            <Box display={{base: 'none', md: 'flex'}}>
+                            onClick={() => navigate('/')}>
+                            <Text>Logout</Text>
                                 <IconButton
                                     icon={<FaSignOutAlt/>}
                                     onClick={logOut} aria-label={"logout"}>
                                     Sign out
                                 </IconButton>
-                            </Box>
                         </HStack>
                         :
-                        <Stack direction={"horizontal"} width={"100%"} alignSelf={"center"} >
+                        <Stack direction={"horizontal"} alignSelf={"center"} mb={8}
+                               onClick={() => navigate('/login')}>
                             Login
                             <IconButton
                                 size="lg"
                                 variant="ghost"
                                 aria-label="log in"
                                 icon={<FaSignInAlt/>}
-                                onClick={() => navigate('/login')}
                             />
                         </Stack>
                     }
