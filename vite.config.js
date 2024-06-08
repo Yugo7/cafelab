@@ -27,22 +27,17 @@ const pwaOptions = {
 
     icons: [
       {
-        src: 'assets/icons/144.png', // path to your 144px icon
+        src: 'assets/icons/144 20.56.00.png', // path to your 144px icon
         sizes: '144x144',
         type: 'image/png',
       },
       {
-        src: 'assets/icons/196.png', // <== don't add slash, for testing
-        sizes: '196x196',
-        type: 'image/png',
-      },
-      {
-        src: '/assets/icons/512.png', // <== don't remove slash, for testing
+        src: '/assets/icons/512 20.56.00.png', // <== don't remove slash, for testing
         sizes: '512x512',
         type: 'image/png',
       },
       {
-        src: 'assets/icons/512.png', // <== don't add slash, for testing
+        src: 'assets/icons/512 20.56.00.png', // <== don't add slash, for testing
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable',
