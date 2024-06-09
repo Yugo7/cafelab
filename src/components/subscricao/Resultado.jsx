@@ -1,9 +1,38 @@
 import {Card, CardBody, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import {useSubscription} from "../context/SubscriptionContext.jsx";
+import {useEffect} from "react";
 
 const Resultado = ({exp, sabor, uso}) => {
 
-    const fontSize = useBreakpointValue({base: "6xl", md: "52px"});
-    const fontSize2 = useBreakpointValue({base: "3xl", md: "32px"});
+    const {
+        addCoffee,
+        emptyBox
+    } = useSubscription();
+
+    useEffect(() => {
+        console.log(exp, sabor, uso)
+        emptyBox();
+        addCoffee("Lab 01")
+        if (exp in [0, 1] && sabor === 0 && uso in [0, 1]) {
+            addCoffee("Brasil")
+            addCoffee("Nicarágua")
+        } else if((sabor === 0 && uso === 2) || (sabor === 1 && uso in [0, 1])){
+            addCoffee("Angola")
+            addCoffee("Etiópia")
+        } else if(sabor === 1 && uso === 2){
+            addCoffee("Angola")
+            addCoffee("Tanazânia")
+        } else if(sabor === 2 && uso in [0, 1]){
+            addCoffee("Colômbia")
+            addCoffee("Nicarágua")
+        } else if(sabor === 2 && uso === 2){
+            addCoffee("Colômbia")
+            addCoffee("Vietnam")
+        } else {
+            addCoffee("Nicarágua")
+            addCoffee("Etiópia")
+        }
+    }, []);
 
     return (
         <Stack>

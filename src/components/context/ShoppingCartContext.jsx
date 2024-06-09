@@ -46,6 +46,10 @@ export function ShoppingCartProvider({children}) {
         }
     }
 
+    function emptySubscription() {
+        setSubscription([])
+    }
+
     function increaseCartQuantity(id) {
         setCartItems(currItems => {
             if (currItems.find(item => item.id === id) == null) {
@@ -63,6 +67,7 @@ export function ShoppingCartProvider({children}) {
     }
 
     function addSubscription(incoming) {
+        emptySubscription()
         setSubscription(currItems => {
             const existingItem = currItems.find(item => item.id === incoming.id);
 

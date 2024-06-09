@@ -17,15 +17,15 @@ import {
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {quizData} from "./questions.jsx";
+import {useSubscription} from "../context/SubscriptionContext.jsx";
 import Resultado from "./Resultado.jsx";
 
 function ModalQuiz() {
 
     const {isOpen, onOpen, onClose} = useDisclosure();
-
     const navigate = useNavigate();
-
     const modalSize = useBreakpointValue({base: "full", md: "90vw"});
+    const {createEuMeExpresso, emptyBox, addCoffee} = useSubscription()
 
     useEffect(() => {
         onOpen();
@@ -51,6 +51,19 @@ function ModalQuiz() {
             setActiveQuestion(0)
             setShowResult(true)
         }
+    }
+
+    const finishSubscription = () => {
+        emptyBox()
+        if(results[1] === 0){
+            if (results[2]  in [0, 1]) {
+                addCoffee("Nicarágua")
+            } else {
+
+            }
+        }
+        createEuMeExpresso(results[3] === 0 ? "beans" : results[2] === 2 ? "expresso" : "frenchpress")
+        navigate('/checkout-subscricao')
     }
 
     const onAnswerSelected = (answer, index) => {
@@ -132,7 +145,7 @@ function ModalQuiz() {
                         <Button mr={3} onClick={onClose}>
                             Prefiro escolher...
                         </Button>
-                        <Button colorScheme='blue' onClick={() => navigate('/subscricao/fenocafelab')}>
+                        <Button colorScheme='blue' onClick={() => finishSubscription()}>
                             Vamos lá!
                         </Button>
                     </ModalFooter>

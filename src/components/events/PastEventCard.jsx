@@ -21,7 +21,7 @@ export default function PastEventCard({id, date, name, description, local, image
                 <Image
                     h={'250px'}
                     w={'full'}
-                    src={imagePromotion}
+                    src={imageFinish}
                     objectFit={'cover'}
                 />
 

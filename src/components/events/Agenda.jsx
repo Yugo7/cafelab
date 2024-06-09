@@ -83,45 +83,46 @@ const Agenda = () => {
             </SidebarWithHeader>
         )
     }
+    console.log(events)
 
-    if (events.length <= 0) {
-        return (
-            <SidebarWithHeader>
-                <Stack h={"60vh"} align="center" m={6} spacing={4}>
-                    <Text mt={5}>No events available</Text>
-                </Stack>
-            </SidebarWithHeader>
-        )
-    }
+
     console.log(pastEvents)
     return (
         <SidebarWithHeader>
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
-                    <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
+                    <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
                         PRÓXIMOS EVENTOS
                     </Text>
                 </Stack>
+                { events.length <= 0 ? (
+                    <Stack h={"10vh"} align="center" m={6} spacing={4}>
+                        <Text fontSize={"xl"} mt={5}>FIQUE LIGADO PARA SABER SOBRE OS NOSSOS PRÓXIMOS EVENTOS!</Text>
+                    </Stack>
+                ) : (
+                    <Stack alignSelf={"center"} w={"90vw"}>
+                        <Wrap justify={"center"}>
+                            {events.map((event, index) => (
+                                <WrapItem key={index}>
+                                    <CardWithImage
+                                        {...event}
+                                        imageNumber={index}
+                                    />
+                                </WrapItem>
+                            ))}
+                        </Wrap>
+                    </Stack>
+                )}
                 <Stack alignSelf={"center"} w={"90vw"}>
-                    <Wrap justify={"center"}>
-                        {events.map((event, index) => (
-                            <WrapItem key={index}>
-                                <CardWithImage
-                                    {...event}
-                                    imageNumber={index}
-                                />
-                            </WrapItem>
-                        ))}
-                    </Wrap>
                     <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
-                        <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
+                        <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
                             EVENTOS PASSADOS
                         </Text>
                     </Stack>
                     <Carousel responsive={responsive}>
 
                         {pastEvents.map((event, index) => (
-                            <Stack key={index} >
+                            <Stack key={index}>
                                 <PastEventCard
                                     {...event}
                                     imageNumber={index}

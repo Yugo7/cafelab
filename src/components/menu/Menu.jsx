@@ -2,8 +2,6 @@ import SidebarWithHeader from "../shared/SideBar.jsx";
 import {Button, Image, Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import {getMenuItems, Sections} from "../../services/MenuService.jsx";
-import ProductList from "../products/ProductList.jsx";
-import OurPicks from "../products/OurPicks.jsx";
 import MenuList from "./MenuList.jsx";
 
 const Menu = () => {
@@ -54,11 +52,13 @@ const Menu = () => {
                     </Stack>
                 </Stack>
 
+                <Stack>
                 {isLoading ? (
                     <Spinner/>
                 ) : (
                     <MenuList menuItems={filteredMenuItems}/>
                 )}
+                </Stack>
             </Stack>
         </SidebarWithHeader>
     );

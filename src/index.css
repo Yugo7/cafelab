@@ -4,12 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,349;1,349&family=Hind:wght@300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100;200;300;400;500;600;700;800&display=swap');
 
-@font-face {
-    font-family: "OliveAntique";
-    src: local("Antique-Olive-Compact-Regular"),
-    url("/fonts/Antique-Olive-Compact-Regular.ttf") format("truetype");
-}
-
 .font-headline {
     font-family: "Roboto Condensed", sans-serif;
     font-weight: bold;
@@ -84,6 +78,9 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+.no-transition .carousel-item {
+    transition: none !important;
+}
 
 .agenda-header {
     justify-content: center;

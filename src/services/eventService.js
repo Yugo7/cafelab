@@ -40,9 +40,9 @@ const getEvents = async () => {
  const getPastEvents = async (filterDate) => {
     try {
         const events = await getEvents();
-        console.log(events)
-        console.log(new Date(events[2].date) < new Date(filterDate))
-        return filterDate ? events.filter(event => new Date(event.date) < Date.now()).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 10) : events;
+        const filterAndOrdered = filterDate ? events.filter(event => new Date(event.date) < Date.now()).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 10) : events;
+        console.log(filterAndOrdered)
+        return filterAndOrdered;
     } catch (e) {
         throw e;
     }

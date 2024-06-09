@@ -18,7 +18,6 @@ export function SubscriptionProvider({children}) {
     const toast = useToast();
 
     function getCoffeeQuantity(name) {
-        console.log(coffee)
         return coffee.find(item => item.name === name)?.quantity || 0
     }
 
@@ -28,6 +27,7 @@ export function SubscriptionProvider({children}) {
     )
 
     function emptyBox() {
+        console.log("empty box")
         setCoffee([]);
     }
 
@@ -76,10 +76,23 @@ export function SubscriptionProvider({children}) {
         const subscricao = {
             id: 999,
             nome: "Fé no Cafelab",
-            preco: 19.99,
+            preco: 25,
             imagem: "assets/bundle.png",
             descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
             variante: variante
+        };
+        addSubscription(subscricao)
+    }
+
+    function createEuMeExpresso(variante){
+        const subscricao = {
+            id: 998,
+            nome: "Eu me expresso",
+            preco: 27.9,
+            imagem: "assets/bundle.png",
+            descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
+            variante: variante,
+            coffee: coffee
         };
         addSubscription(subscricao)
     }
@@ -92,7 +105,8 @@ export function SubscriptionProvider({children}) {
                 removeCoffee,
                 boxQuantity,
                 emptyBox,
-                createFeNoCafelab
+                createFeNoCafelab,
+                createEuMeExpresso
             }}
         >
             {children}

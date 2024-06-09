@@ -1,8 +1,8 @@
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
-import {AddressElement, CardElement, Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe,} from "@stripe/react-stripe-js"
+import {AddressElement, CardElement, Elements, LinkAuthenticationElement, useElements, useStripe,} from "@stripe/react-stripe-js"
 import {loadStripe} from "@stripe/stripe-js"
 import {useState} from "react"
-import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
+import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import {CardText, CardTitle, Image,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
@@ -23,11 +23,12 @@ export function CheckoutFormSubscricao({clientSecret}) {
         currency: 'eur',
         paymentMethodCreation: 'manual',
     };
+    const sectWidth = useBreakpointValue({base: "100%", md: "50%"});
 
     return (
         <Stack className="max-w-5xl w-full mx-auto space-y-8">
             <Stack direction={['column', 'row']} justify="center" align="center" spacing="12px" m={4}>
-                <Stack m={6} maxHeight={"50%"} gap={3}>
+                <Stack direction={['column', 'row']} m={6} width={"100%"} maxW={sectWidth} gap={3} justifyContent={"end"} >
                     <Stack width={"100%"}>
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"lg"} align={"center"} mb={4}>
                             SUA SUBSCRIÇÃO
@@ -40,23 +41,29 @@ export function CheckoutFormSubscricao({clientSecret}) {
                                 src={subscription[0].imagem}
                                 style={{width: "175px", height: "275px", objectFit: "cover"}}
                             />
-                                <Text className="ms-auto fw-bold fs-5">
+                            <Stack pt={6} className="d-flex align-items-left">
+                                {subscription[0].coffee ? subscription[0].coffee.map((coffee, index) => (
+                                    <Stack direction={"row"}>
+                                        <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"} align={"left"}>
+                                            - {coffee.name.toUpperCase()} x {coffee.quantity}
+                                        </Text>
+                                    </Stack>
+                                )) : null}
+
+                                <Text className="ms-auto fw-bold" fontSize={"2xl"}>
                                     {formatCurrency(
                                         subscription[0].preco
                                     )} /mês
                                 </Text>
+                            </Stack>
                         </Stack>
-                        <Text className="ms-auto fw-bold fs-5">
-                            Total{" "}
-                            {formatCurrency(
-                                total
-                            )}
-                        </Text>
                     </Stack>
                 </Stack>
-                <Elements stripe={stripePromise} options={options}>
-                    <Form priceInCents={priceInCents}/>
-                </Elements>
+                <Stack m={4} width={"100%"} maxW={sectWidth} alignItems={"center"}>
+                    <Elements stripe={stripePromise} options={options}>
+                        <Form priceInCents={priceInCents}/>
+                    </Elements>
+                </Stack>
             </Stack>
         </Stack>
     )
@@ -130,7 +137,7 @@ function Form({priceInCents}) {
                 <CardBody>
                     <AddressElement options={{mode: 'shipping'}} onChange={handleAddressChange}/>
                     <Stack mt={6}></Stack>
-                    <CardElement options={{hidePostalCode: true}} />
+                    <CardElement options={{hidePostalCode: true}}/>
                     <div className="mt-4">
                         <LinkAuthenticationElement
                             onChange={handleEmailChange}
@@ -147,7 +154,7 @@ function Form({priceInCents}) {
                         {
                             isLoading
                                 ? "Purchasing..."
-                                : `Purchase - ${formatCurrency(priceInCents/100)}`}
+                                : `Purchase - ${formatCurrency(priceInCents / 100)}`}
                     </Button>
                 </CardFooter>
             </Card>

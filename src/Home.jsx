@@ -10,7 +10,7 @@ const Home = () => {
     const boxPadding = useBreakpointValue({base: "5px", md: "10px"});
     const fontSize = useBreakpointValue({base: "6xl", md: "100px"});
     const fontSizeMenu = useBreakpointValue({base: "6xl", md: "62px"});
-    const fontHl = useBreakpointValue({base: "6xl", md: "102px"});
+    const fontHl = useBreakpointValue({base: "5xl", md: "6xl"});
     const fontHl2 = useBreakpointValue({base: "xl", md: "3xl"});
     const fontHl3 = useBreakpointValue({base: "lg", md: "4xl"});
     const sectWidth = useBreakpointValue({base: "100%", md: "50%"});
@@ -136,7 +136,7 @@ const Home = () => {
                        backgroundColor="cornsilk" spacing={stackSpacing} minH={"800px"} direction={["column", "column"]} justify="space-between" position="relative">
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({base: 6, md: 8})}>
                         <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>
-                            <Text className="cafelab text-center" color="#FFFFFF" fontSize={"6xl"}>CALENDÁRIO CULTURAL</Text>
+                            <Text className="cafelab text-center" color="#FFFFFF" fontSize={fontHl}>CALENDÁRIO CULTURAL</Text>
                         </Box>
                         <Stack justify="flex-end" align="center" width={useBreakpointValue({base:"90%", md: "100%"})} mt={8} position={useBreakpointValue({base:"absolute", md:""})} bottom={useBreakpointValue({base:"2", md:""})}>
                             <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>

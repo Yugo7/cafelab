@@ -17,7 +17,7 @@ import {
 
 import {useNavigate} from 'react-router-dom';
 
-import {FiCalendar, FiHome, FiMail, FiMenu, FiPackage} from 'react-icons/fi';
+import {FiCalendar, FiCoffee, FiHome, FiMail, FiMenu, FiPackage} from 'react-icons/fi';
 
 import {MdCoffee} from 'react-icons/md';
 import Footer from "./Footer.jsx";
@@ -26,11 +26,14 @@ import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {Stack} from "react-bootstrap";
 import {FaA} from "react-icons/fa6";
 import {useAuth} from "../context/AuthContext.jsx";
+import {CiCoffeeBean} from "react-icons/ci";
+import {TbCoffee, TbPaperBag} from "react-icons/tb";
 
 const LinkItems = [
     {name: 'Home', route: '/', icon: FiHome},
     {name: 'Subscrição', route: '/subscricao', icon: FiPackage},
-    {name: 'Boutique', route: '/boutique', icon: MdCoffee},
+    {name: 'Boutique', route: '/boutique', icon: TbPaperBag},
+    {name: 'Menu Primavera', route: '/menu', icon: FiCoffee},
     {name: 'Agenda', route: '/agenda', icon: FiCalendar},
     {name: 'Política de retorno', route: '/reembolso', icon: FaA},
 ];

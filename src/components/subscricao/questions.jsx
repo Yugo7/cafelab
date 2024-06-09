@@ -1,6 +1,6 @@
 export const quizData = {
     topic: 'Subscrição de Café',
-    totalQuestions: 3,
+    totalQuestions: 4,
     questions: [
         {
             question: 'Qual sua experiência com café?',
@@ -15,6 +15,11 @@ export const quizData = {
         {
             question: 'Qual a maneira de preparo que costuma usar?',
             choices: ['French press, italiana', 'V60, coador', 'Expresso'],
+            type: 'MCQs'
+        },
+        {
+            question: 'Como quer seu café?',
+            choices: ['Já possuo um moedor, pode mandá-los em grãos', 'Ainda não tenho moedor, prefiro moído'],
             type: 'MCQs'
         }
     ],

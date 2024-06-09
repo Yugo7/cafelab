@@ -14,12 +14,12 @@ const MenuList = ({menuItems}) => {
     }
 
     return (
-        <Wrap justify={"center"} spacing={"30px"} m={5}>
+        <Wrap justify={"center"} spacing={"30px"}>
             {
                 menuItems.map((product) => {
                         return (
                             <WrapItem>
-                                <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
+                                <Card width='100%' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
                                     <CardBody>
                                         <Stack mt='6' spacing='8'>
                                             <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product.name.toUpperCase()}</Text>

@@ -14,7 +14,7 @@ export const fetchMenuItems = async () => {
         description: `Description for item ${i + 1}`,
         price: (Math.random() * 10).toFixed(2),
         category: "Beverages",
-        imageUrl: `http://example.com/item${i + 1}.jpg`,
+        imageUrl: `https://www.folgerscoffee.com/folgers/recipes/_Hero%20Images/Detail%20Pages/5598/image-thumb__5598__schema_image/MochaIced-hero.58f3878d.jpg`,
         section: Math.random() > 0.5 ? Sections.FRIO : Sections.QUENTE // randomly assign true or false
     }));
 

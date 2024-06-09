@@ -24,7 +24,7 @@ import {FaHandshake} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import ProductsCarousel from "../products/ProductsCarousel.jsx";
 import React from "react";
-import {SubscriptionProvider, useSubscription} from "../context/SubscriptionContext.jsx";
+import {useSubscription} from "../context/SubscriptionContext.jsx";
 import ModalQuiz from "./ModalQuiz.jsx";
 
 const Subscricao = () => {
@@ -200,7 +200,6 @@ const Subscricao = () => {
                                                 <ModalCloseButton/>
                                                 <ModalBody overflowY="auto">
                                                     <ProductsCarousel/>
-
                                                 </ModalBody>
                                                 <ModalFooter>
                                                     <Button onClick={onClose}>Fechar</Button>

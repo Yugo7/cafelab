@@ -20,9 +20,7 @@ export default function ProductCarouselItem({id, nome, descricao, origem, varied
     const {
         getCoffeeQuantity,
         addCoffee,
-        removeCoffee,
-        boxQuantity,
-        emptyBox
+        removeCoffee
     } = useSubscription();
 
     const [coffeeQuantity, setCoffeeQuantity] = useState(getCoffeeQuantity(nome));
