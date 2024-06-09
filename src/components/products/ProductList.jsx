@@ -4,10 +4,13 @@ import {ButtonGroup} from "react-bootstrap";
 import {MdAddShoppingCart} from "react-icons/md";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
+import {useNavigate} from "react-router-dom";
 
 const ProductList = ({ products }) => {
     const fontHl3 = useBreakpointValue({base: "lg", md: "2xl"});
     const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
+
+    const navigate = useNavigate();
 
     if (products.length <= 0) {
         return (
@@ -63,7 +66,7 @@ const ProductList = ({ products }) => {
                                                     </Button>
                                                 )
                                             }
-                                            <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} >
+                                            <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => navigate('/checkout')}>
                                                 Buy now
                                             </Button>
                                         </ButtonGroup>
