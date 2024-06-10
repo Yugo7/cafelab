@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://cafelab-api.vercel.app/';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const EventService = {
   getAllEvents: async () => {
@@ -13,7 +13,7 @@ const EventService = {
     }
   },
 
-  getEventById: async (eventId: string) => {
+  getEventById: async (eventId) => {
     try {
       const response = await axios.get(`${BASE_URL}/events/${eventId}`);
       return response.data;
@@ -38,7 +38,7 @@ const EventService = {
     }
   },
 
-  updateEvent: async ( eventData) => {
+  updateEvent: async (eventData) => {
     try {
       const response = await axios.put(`${BASE_URL}/events`, {
         event_id: eventData.id,

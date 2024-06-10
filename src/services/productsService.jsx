@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://cafelab-api.vercel.app/';
-
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const getProducts = async () => {
     try {

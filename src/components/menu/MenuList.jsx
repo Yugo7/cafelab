@@ -20,14 +20,14 @@ const MenuList = ({menuItems}) => {
                         return (
                             <WrapItem>
                                 <Card width='100%' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
-                                    <CardBody>
+                                    <CardBody w={"xs"}>
                                         <Stack mt='6' spacing='8'>
                                             <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product.name.toUpperCase()}</Text>
                                             <Box
                                                 align='center'
                                             >
                                                 <Image
-                                                    src={product.imageUrl}
+                                                    src={product.imgUrl}
                                                     //TODO add alt text
                                                     alt="Description"
                                                     borderRadius='lg'

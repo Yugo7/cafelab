@@ -85,7 +85,7 @@ const Carousel = () => {
                 </Stack>
                 <Stack direction={"row"} my={4}>
                     <Text className={"cafelab"} fontWeight={"bold"} fontSize={"xl"}>
-                        SUA SUBSCRIÇÃO: {boxQuantity}/3
+                        ESCOLHA SEUS CAFÉS: {boxQuantity}/3
                     </Text>
                     {boxQuantity === 3 ? (
                         <Stack px={4}>

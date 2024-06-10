@@ -19,16 +19,16 @@ import {useRef} from 'react'
 import {customerProfilePictureUrl, deleteCustomer} from "../../services/client.js";
 import {errorNotification, successNotification} from "../../services/notification.js";
 import {FiCalendar, FiPackage} from "react-icons/fi";
+import {useTranslation} from "react-i18next";
 
 export default function CardWithImage({id, date, name, description, local, imageFinish, imagePromotion}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const cancelRef = useRef()
 
+    const { t } = useTranslation();
     return (
         <Center py={6}>
             <Box
-                minW={'300px'}
-                w={'full'}
+                width={'300px'}
                 m={2}
                 bg={useColorModeValue('white', 'gray.800')}
                 boxShadow={'lg'}
@@ -67,7 +67,7 @@ export default function CardWithImage({id, date, name, description, local, image
                             onClick={onOpen}
                             leftIcon={<FiCalendar/>}
                         >
-                            Add to calendar
+                            {t("addtocalendar")}
                         </Button>
                         // TODO: Implement google calendar integration
                     </Stack>

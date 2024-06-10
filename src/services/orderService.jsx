@@ -1,10 +1,9 @@
 import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
 import {getProductsById} from "./productsService.jsx";
 
-const supabase = SupabaseClientUtil.supabaseClient
 import axios from 'axios';
 
-const BASE_URL = 'https://cafelab-api.vercel.app/';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const OrderService = {
     getOrders: async () => {
@@ -20,8 +19,8 @@ const OrderService = {
     addOrder: async (orderData) => {
         try {
             const response = await axios.post(`${BASE_URL}orders`, {
-                user_id: orderData.user_id, // This will be converted to JSON
-                products: orderData.items, // This will be converted to JSON
+                user_id: orderData.user_id,
+                products: orderData.items,
                 total: orderData.total,
                 payment_status: orderData.paymentStatus,
                 user_stripe_id: orderData.user_stripe_id

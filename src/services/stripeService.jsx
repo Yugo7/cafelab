@@ -3,7 +3,8 @@ import axios from "axios";
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
-//const BASE_URL = 'https://cafelab-api.vercel.app/sp/';
+
+//const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const BASE_URL = 'http://localhost:3000/sp/';
 
 const StripeService = {

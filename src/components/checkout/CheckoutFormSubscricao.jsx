@@ -7,6 +7,7 @@ import {CardText, CardTitle, Image,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
 import StripeService, {createPaymentMethod, createStripeSubscription, updateStripeCustomerAddress} from "../../services/stripeService.jsx";
+import {useNavigate} from "react-router-dom";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -28,7 +29,7 @@ export function CheckoutFormSubscricao({clientSecret}) {
     return (
         <Stack className="max-w-5xl w-full mx-auto space-y-8">
             <Stack direction={['column', 'row']} justify="center" align="center" spacing="12px" m={4}>
-                <Stack direction={['column', 'row']} m={6} width={"100%"} maxW={sectWidth} gap={3} justifyContent={"end"} >
+                <Stack direction={['column', 'row']} m={6} width={"100%"} maxW={sectWidth} gap={3} justifyContent={"end"}>
                     <Stack width={"100%"}>
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"lg"} align={"center"} mb={4}>
                             SUA SUBSCRIÇÃO
@@ -55,6 +56,21 @@ export function CheckoutFormSubscricao({clientSecret}) {
                                         subscription[0].preco
                                     )} /mês
                                 </Text>
+                                <Stack w={"md"} pt={6} className="d-flex align-items-left">
+                                    <Text fontSize={"xs"}>
+                                        - Subscreva até o dia 25 do mês, para receber os grãos torrados no último forno à lenha de Portugal. Entregas a partir do
+                                        dia
+                                        02 do mês seguinte;
+                                        <br/>
+                                        - Subscrições após o dia 25 de cada mês recebem a subscrição no mês subsequente;
+                                        <br/>
+                                        - Renovação automática – para que o Cafelab sempre esteja presente na sua casa;
+                                        <br/>
+                                        - Cancelamento gratuito após 3 meses;
+                                        <br/>
+                                        - Envio grátis.
+                                    </Text>
+                                </Stack>
                             </Stack>
                         </Stack>
                     </Stack>
@@ -94,6 +110,8 @@ function Form({priceInCents}) {
         if (!stripe || !elements) {
             return;
         }
+        const navigate = useNavigate();
+        navigate("/success")
 
         const stripeCustomer = customer.stripeId ? customer.stripeId : await StripeService.createCustomer(email, shippingInfo.name).then(data => data.id);
         await updateStripeCustomerAddress(stripeCustomer, shippingInfo);

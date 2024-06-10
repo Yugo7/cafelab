@@ -1,26 +1,25 @@
-import {getProducts} from "./productsService.jsx";
-import {useEffect} from "react";
+import axios from "axios";
 
-export const fetchMenuItems = async () => {
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const cachedMenuItems = localStorage.getItem('menuItems');
-    if (cachedMenuItems) {
-        return JSON.parse(cachedMenuItems);
+const fetchMenuItems = async () => {
+    try {
+        // Try to get data from cache
+        /*const cachedData = localStorage.getItem('products');
+        const cachedTime = localStorage.getItem('productsTime');
+        if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
+            return JSON.parse(cachedData);
+        } else {
+            console.log('qwe');*/
+            const {data} = await axios.get(`${BASE_URL}menu/`);
+          /*  localStorage.setItem('products', JSON.stringify(data));
+            localStorage.setItem('productsTime', new Date().getTime());
+*/
+            return data;
+
+    } catch (e) {
+        throw e;
     }
-    console.log('Fetching menu items from server...');
-    const menuItems = Array.from({ length: 14 }, (_, i) => ({
-        id: i + 1,
-        name: `Item ${i + 1}`,
-        description: `Description for item ${i + 1}`,
-        price: (Math.random() * 10).toFixed(2),
-        category: "Beverages",
-        imageUrl: `https://www.folgerscoffee.com/folgers/recipes/_Hero%20Images/Detail%20Pages/5598/image-thumb__5598__schema_image/MochaIced-hero.58f3878d.jpg`,
-        section: Math.random() > 0.5 ? Sections.FRIO : Sections.QUENTE // randomly assign true or false
-    }));
-
-    localStorage.setItem('menuItems', JSON.stringify(menuItems));
-
-    return menuItems;
 }
 
 export const Sections = Object.freeze({

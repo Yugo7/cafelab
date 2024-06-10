@@ -1,33 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    AbsoluteCenter, Avatar,
+    AbsoluteCenter,
+    Avatar,
     Box,
     CloseButton,
     Drawer,
     DrawerContent,
-    Flex, HStack,
+    Flex,
+    HStack,
     Icon,
     IconButton,
     Image,
-    Link, Spacer,
-    Text,
+    Link, Select,
+    Spacer,
+    Text, useBreakpointValue,
     useColorModeValue,
-    useDisclosure, VStack
+    useDisclosure
 } from '@chakra-ui/react';
 
 import {useNavigate} from 'react-router-dom';
 
-import {FiCalendar, FiCoffee, FiHome, FiMail, FiMenu, FiPackage} from 'react-icons/fi';
-
-import {MdCoffee} from 'react-icons/md';
+import {FiCalendar, FiCoffee, FiHome, FiMenu, FiPackage} from 'react-icons/fi';
 import Footer from "./Footer.jsx";
 import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {Stack} from "react-bootstrap";
 import {FaA} from "react-icons/fa6";
 import {useAuth} from "../context/AuthContext.jsx";
-import {CiCoffeeBean} from "react-icons/ci";
-import {TbCoffee, TbPaperBag} from "react-icons/tb";
+import {TbPaperBag} from "react-icons/tb";
+import {useTranslation} from "react-i18next";
 
 const LinkItems = [
     {name: 'Home', route: '/', icon: FiHome},
@@ -66,6 +67,7 @@ export default function SidebarWithHeader({children}) {
 const SidebarContent = ({onClose}) => {
     const navigate = useNavigate();
     const {customer, logOut} = useAuth();
+
     return (
         <>
             <Flex h="100%" flexDirection="column" justifyContent="space-between">
@@ -77,7 +79,7 @@ const SidebarContent = ({onClose}) => {
                         alt='Cafelab'
                         onClick={() => navigate('/')}
                     />
-                    <Text className={"cafelab"} mb={10} mt={4} fontSize="3xl">
+                    <Text className={"cafelab"} mb={4} mt={2} fontSize="3xl">
                         CAFELAB
                     </Text>
                     {LinkItems.map((link) => (
@@ -86,16 +88,28 @@ const SidebarContent = ({onClose}) => {
                         </NavItem>
                     ))}
                 </Flex>
-                <Flex direction="column" justifyContent="center" margin={"auto"} mx="8">
+                <Flex direction="column" justifyContent="end" margin={"auto"} mx="8">
+
                     {customer ?
-                        <HStack
-                            onClick={() => navigate('/')}>
-                            <Text>Logout</Text>
+                        <HStack width="100%">
+                            <HStack onClick={() => navigate('/orders')} >
+                                <Avatar
+                                    size={'sm'}
+                                    src={
+                                        'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                                    }
+                                />
+                                <Text>{customer.name}</Text>
+                            </HStack>
+                            <Spacer/> {/* Add Spacer here */}
+                            <HStack onClick={logOut} >
+                                <Text>Sign out</Text>
                                 <IconButton
                                     icon={<FaSignOutAlt/>}
-                                    onClick={logOut} aria-label={"logout"}>
+                                    aria-label={"logout"}>
                                     Sign out
                                 </IconButton>
+                            </HStack>
                         </HStack>
                         :
                         <Stack direction={"horizontal"} alignSelf={"center"} mb={8}
@@ -149,55 +163,75 @@ const MobileNav = ({onOpen, ...rest}) => {
     const navigate = useNavigate();
     const {cartQuantity, openCart} = useShoppingCart()
 
-    return (
-        <Flex
-            height="20"
-            alignItems="center"
-            bg={useColorModeValue('white', 'gray.900')}
-            borderBottomWidth="1px"
-            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-            justifyContent={{base: 'space-between', md: 'space-between'}}
-            {...rest}>
+    const { i18n } = useTranslation();
+    const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
 
-            <IconButton
-                ml={{base: 4, md: 60}}
-                onClick={onOpen}
-                variant="ghost"
-                aria-label="open menu"
-                icon={<FiMenu/>}
-            />
-            <AbsoluteCenter axis='horizontal'>
-                <Image
-                    height={"16"}
-                    margin='auto'
-                    src='assets/logo.png'
-                    alt='CafeLab'
-                    onClick={() => navigate('/')}
+    const handleChange = (event) => {
+        const newLanguage = event.target.value;
+        setSelectedValue(newLanguage);
+        i18n.changeLanguage(newLanguage);
+        localStorage.setItem('language', newLanguage);
+    };
+
+    const {customer, logOut} = useAuth();
+    return (
+        <>
+            <Flex
+                height="20"
+                alignItems="center"
+                bg={useColorModeValue('white', 'gray.900')}
+                borderBottomWidth="1px"
+                borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+                justifyContent={{base: 'space-between', md: 'space-between'}}
+                {...rest}>
+
+                <IconButton
+                    ml={{base: 4, md: 60}}
+                    onClick={onOpen}
+                    variant="ghost"
+                    aria-label="open menu"
+                    icon={<FiMenu/>}
                 />
-            </AbsoluteCenter>
-            <IconButton
-                mr={{base: 4, md: 60}}
-                size="lg"
-                variant="ghost"
-                aria-label="log in"
-                icon={<FaShoppingCart/>}
-                onClick={openCart}
-            >
-                <Stack
-                    className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-                    style={{
-                        color: "white",
-                        width: "1.5rem",
-                        height: "1.5rem",
-                        position: "absolute",
-                        bottom: 0,
-                        right: 0,
-                        transform: "translate(25%, 25%)",
-                    }}
-                >
-                    {cartQuantity}
-                </Stack>
-            </IconButton>
-        </Flex>
+                <AbsoluteCenter axis='horizontal'>
+                    <Image
+                        height={"16"}
+                        margin='auto'
+                        src='assets/logo.png'
+                        alt='CafeLab'
+                        onClick={() => navigate('/')}
+                    />
+                </AbsoluteCenter>
+
+                <Flex justifyContent="flex-end" alignItems="center" mr={{base: 4, md: 60}}>
+                    <Select w={useBreakpointValue({base: "70px", md: "100px"})} value={selectedValue} onChange={handleChange}>
+                        <option value='en'>{useBreakpointValue({base: "🇺🇸", md: "🇺🇸 EN"})}</option>
+                        <option value='pt'>{useBreakpointValue({base: "🇵🇹", md: "🇵🇹 PT"})}</option>
+                    </Select>
+                    <IconButton
+                        ml={2} // Add some margin to the left of the cart icon
+                        size="lg"
+                        variant="ghost"
+                        aria-label="log in"
+                        icon={<FaShoppingCart/>}
+                        onClick={openCart}
+                    >
+                        <Stack
+                            className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                            style={{
+                                color: "white",
+                                width: "1.5rem",
+                                height: "1.5rem",
+                                position: "absolute",
+                                bottom: 0,
+                                right: 0,
+                                transform: "translate(25%, 25%)",
+                            }}
+                        >
+                            {cartQuantity}
+                        </Stack>
+                    </IconButton>
+                </Flex>
+            </Flex>
+        </>
     );
 };

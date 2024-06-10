@@ -3,7 +3,7 @@ import {Box, Button, Flex, Stack, Text, useBreakpointValue} from "@chakra-ui/rea
 import {FiBook, FiCalendar, FiPackage, FiShoppingBag} from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
 import {FaMapMarkerAlt} from "react-icons/fa";
-
+import {useTranslation} from "react-i18next";
 
 const Home = () => {
     const stackSpacing = useBreakpointValue({base: "20px", md: "30px"});
@@ -23,6 +23,7 @@ const Home = () => {
 
     const navigate = useNavigate();
 
+    const { t } = useTranslation();
     return (
 
         <SidebarWithHeader>
@@ -30,10 +31,12 @@ const Home = () => {
                 <Stack paddingY="10px" align="center" maxWidth="100%" spacing="30px">
                     <Stack justify="flex-start" align="center" spacing={stackSpacing} width="100%" maxWidth="100%">
                         <Stack justify="flex-start" align="center" spacing="-20px">
-                            <Text className="cafelab" fontSize={fontSize} color="#000000">
+                            <Text className="cafelab" fontSize={fontSize}  color="#000000">
                                 CAFELAB
                             </Text>
-
+                            <Text className="cafelab" fontSize={fontSize}  color="#000000">
+                                {t("welcome")} {/* Use the translation hook here */}
+                            </Text>
                             <Text fontFamily="Roboto" fontWeight="regular" fontSize={fontHl2} letterSpacing="tighter" color="#FFFFFF"
                                   textAlign="center" mx={4}>
                                 <Box as="span" color="#000000">
@@ -58,7 +61,7 @@ const Home = () => {
                                 SUBSCRIÇÃO</Button>
                             <Button leftIcon={<FiShoppingBag/>} onClick={() => navigate('/boutique')} size='lg' height='48px' width='200px' border='2px'
                                     variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                BOUTIQUE
+                                LOJA
                             </Button>
                         </Stack>
                     </Stack>

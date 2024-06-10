@@ -29,6 +29,8 @@ import {SubscriptionProvider} from "./components/context/SubscriptionContext.jsx
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 import InstallPrompt from "./components/utilities/InstallPrompt.jsx";
+import {I18nextProvider} from "react-i18next";
+import i18n from "./lang/i18n";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -127,6 +129,7 @@ const router = createBrowserRouter([
 
 function App() {
     return (
+        <I18nextProvider i18n={i18n}>
         <ChakraProvider>
             <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}>
                 <BrowserRouter>
@@ -148,6 +151,7 @@ function App() {
                 </BrowserRouter>
             </ErrorBoundary>
         </ChakraProvider>
+        </I18nextProvider>
     )
 }
 
