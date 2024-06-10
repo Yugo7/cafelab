@@ -1,6 +1,3 @@
-import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
-import {getProductsById} from "./productsService.jsx";
-
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -31,28 +28,6 @@ const OrderService = {
             throw error;
         }
     },
-}
-
-
-export const getRegularOrdersWithProducts = async (customer) => {
-    console.log(customer)
-    const {data} = await supabase
-        .from('order')
-        .select()
-        .filter('products', 'neq', null);
-    const orders = data
-    const ordersWithProductDetails = await Promise.all(orders.map(async order => {
-        if (!Array.isArray(order.products) || order.products.length <= 0) {
-            return null;
-        }
-        const products = await Promise.all(order.products.map(async product => {
-            const productDetails = await getProductsById(product.id);
-            return {...productDetails[0], quantity: product.quantity};
-        }));
-        return {...order, products};
-    }));
-
-    return ordersWithProductDetails.filter(order => order !== null);
 }
 
 export default OrderService;
