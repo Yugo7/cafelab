@@ -1,7 +1,7 @@
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import {Stack, Text} from "@chakra-ui/react";
 
-const Refunds = () => {
+const Consent = () => {
 
     return (
 
@@ -57,4 +57,4 @@ const Refunds = () => {
     );
 }
 
-export default Refunds;
+export default Consent;

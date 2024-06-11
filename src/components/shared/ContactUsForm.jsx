@@ -1,8 +1,7 @@
-import {Form, Formik, useField} from "formik";
+import {ErrorMessage, Field, Form, Formik, useField} from "formik";
 import * as Yup from "yup";
-import {Alert, AlertIcon, Box, Button, FormLabel, Input, Stack, Textarea} from "@chakra-ui/react";
+import {Alert, AlertIcon, Box, Button, FormLabel, HStack, Input, Stack, Text, Textarea, useToast} from "@chakra-ui/react";
 import axios from 'axios';
-import { useToast } from "@chakra-ui/react";
 
 //const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const BASE_URL = 'http://localhost:3000/';
@@ -42,7 +41,7 @@ const ContactUsForm = ({onSuccess}) => {
             <p><strong>Seus dados&nbsp;</strong></p>
             <Formik
                 initialValues={{
-                    name: '', email: '', phone: '', description: ''
+                    name: '', email: '', phone: '', description: '', consent: false
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
@@ -61,6 +60,7 @@ const ContactUsForm = ({onSuccess}) => {
                         .min(20, 'Must be 40 characters or more')
                         .max(1500, 'Must be 1500 characters or less')
                         .required('Required'),
+                    consent: Yup.bool().oneOf([true], 'Consent is required'),
                 })}
                 onSubmit={(values, {setSubmitting}) => {
                     axios.post(`${BASE_URL}contacts/`, values)
@@ -123,6 +123,22 @@ const ContactUsForm = ({onSuccess}) => {
                                     type="text"
                                     placeholder={"Escreva sua dúvida aqui"}
                                 />
+                            </Stack>
+                            <Stack>
+                                <Box>
+                                    <HStack>
+                                        <Field type="checkbox" name="consent"/><Text fontSize={"xs"}>Eu concordo em compartilhar meus dados para ser
+                                        contactado</Text>
+                                    </HStack>
+                                    <ErrorMessage name="consent">
+                                        {errorMessage => (
+                                            <Alert status="error" mt={2}>
+                                                <AlertIcon/>
+                                                {errorMessage}
+                                            </Alert>
+                                        )}
+                                    </ErrorMessage>
+                                </Box>
                             </Stack>
                             <Button mt={6} disabled={!isValid || isSubmitting} type="submit">Submit</Button>
                         </Form>

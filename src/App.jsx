@@ -32,6 +32,7 @@ import InstallPrompt from "./components/utilities/InstallPrompt.jsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./lang/i18n";
 import Service from "./Service.jsx";
+import ConsentBanner from "./components/shared/ConsentBanner.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -153,6 +154,7 @@ function App() {
                         </Elements>
                     </AuthProvider>
                     <ToastContainer/>
+                    <ConsentBanner />
                 </BrowserRouter>
             </ErrorBoundary>
         </ChakraProvider>
