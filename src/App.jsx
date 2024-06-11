@@ -31,6 +31,7 @@ import {loadStripe} from "@stripe/stripe-js";
 import InstallPrompt from "./components/utilities/InstallPrompt.jsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./lang/i18n";
+import Service from "./Service.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
     {
         path: "/sobre",
         element: <AboutUs/>
+    },
+    {
+        path: "/servico",
+        element: <Service/>
     },
     {
         path: "/reembolso",

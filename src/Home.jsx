@@ -34,9 +34,6 @@ const Home = () => {
                             <Text className="cafelab" fontSize={fontSize}  color="#000000">
                                 CAFELAB
                             </Text>
-                            <Text className="cafelab" fontSize={fontSize}  color="#000000">
-                                {t("welcome")} {/* Use the translation hook here */}
-                            </Text>
                             <Text fontFamily="Roboto" fontWeight="regular" fontSize={fontHl2} letterSpacing="tighter" color="#FFFFFF"
                                   textAlign="center" mx={4}>
                                 <Box as="span" color="#000000">
@@ -87,7 +84,7 @@ const Home = () => {
                                     </Stack>
                                     <Stack justify="center" align="center" width={"80%"} spacing={stackSpacing}>
                                         <Box mx={4} backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} align="center" padding={boxPadding}>
-                                            <Text className={"cafelab"} lineHeight="1.48" fontWeight="regular" fontSize={fontHl2} letterSpacing="-0.02em"
+                                            <Text className={"cafelab-inner"} lineHeight="1.48" fontWeight="regular" fontSize={fontHl2} letterSpacing="-0.02em"
                                                   color="#FFFFFF"
                                                   alignSelf="stretch" textAlign="center" mx={4}>
                                                 <Box as="span" color="#FFFFFF">
@@ -97,7 +94,7 @@ const Home = () => {
                                         </Box>
                                         <Stack direction={['column', 'row']} justify="center" align="center" spacing={stackSpacing} mt={"20px"} mx={4}>
                                             <Box backgroundColor="rgba(0, 0, 0,0.7)" mx={2} padding={boxPadding} align="center">
-                                                <Text className={"cafelab"} fontSize={"2xl"} letterSpacing="-0.004em" color="#FFFFFF" mx={2}>
+                                                <Text className={"cafelab-inner"} fontSize={"2xl"} letterSpacing="-0.004em" color="#FFFFFF" mx={2}>
                                                     PET & WORK FRIENDLY
                                                 </Text>
                                             </Box>
@@ -119,7 +116,7 @@ const Home = () => {
                                     <Text className="cafelab text-center" fontWeight={"bold"} color="#FFFFFF" fontSize={fontHl3}>MENU PRIMAVERA</Text>
                                 </Box>
                                 <Box backgroundColor="rgba(0, 0, 0,0.7)" mt={"25%"} padding={boxPadding}>
-                                    <Text className="cafelab text-center" color="#FFFFFF" fontSize={"xl"}>DRINKS REFRESCANTES PARA A PRIMAVERA</Text>
+                                    <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={"xl"}>DRINKS REFRESCANTES PARA A PRIMAVERA</Text>
                                 </Box>
                                 <Stack direction={"column"} justify="flex-end" align="center" style={{marginTop: 'auto'}}>
                                     <Button leftIcon={<FiBook/>} onClick={() => navigate('/menu')} size='lg' height='48px' width='200px' border='2px'
@@ -139,11 +136,11 @@ const Home = () => {
                        backgroundColor="cornsilk" spacing={stackSpacing} minH={"800px"} direction={["column", "column"]} justify="space-between" position="relative">
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({base: 6, md: 8})}>
                         <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>
-                            <Text className="cafelab text-center" color="#FFFFFF" fontSize={fontHl}>CALENDÁRIO CULTURAL</Text>
+                            <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={fontHl}>CALENDÁRIO CULTURAL</Text>
                         </Box>
                         <Stack justify="flex-end" align="center" width={useBreakpointValue({base:"90%", md: "100%"})} mt={8} position={useBreakpointValue({base:"absolute", md:""})} bottom={useBreakpointValue({base:"2", md:""})}>
                             <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>
-                                <Text className="cafelab text-center"  color="#FFFFFF" fontSize={"3xl"}>Descubra nossos projetos e eventos</Text>
+                                <Text className="cafelab-inner text-center"  color="#FFFFFF" fontSize={"3xl"}>DESCUBRA NOSSOS PROJETOS E EVENTOS</Text>
                             </Box>
                             <Button leftIcon={<FiCalendar/>} onClick={() => navigate('/agenda')} size='lg' height='48px' width='200px' border='2px'
                                     variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>

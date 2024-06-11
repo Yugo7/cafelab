@@ -15,16 +15,23 @@ import {
     useColorModeValue, useDisclosure,
 } from '@chakra-ui/react';
 
-import {useRef} from 'react'
-import {customerProfilePictureUrl, deleteCustomer} from "../../services/client.js";
-import {errorNotification, successNotification} from "../../services/notification.js";
-import {FiCalendar, FiPackage} from "react-icons/fi";
+import {FiCalendar} from "react-icons/fi";
 import {useTranslation} from "react-i18next";
+import AddToCalendarButton from "./Calendar.jsx";
 
 export default function CardWithImage({id, date, name, description, local, imageFinish, imagePromotion}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const { t } = useTranslation();
+
+    const event = {
+        title: name,
+        description: description,
+        start: date + ' 16:00:00 +0000',
+        duration: [2, 'hour'],
+        location: local
+    };
+
     return (
         <Center py={6}>
             <Box
@@ -52,24 +59,8 @@ export default function CardWithImage({id, date, name, description, local, image
                     </Stack>
                 </Box>
                 <Stack direction={'row'} justify={'center'} spacing={6} p={4}>
-                    <Stack>
-                        <Button
-                            bg={'facebook.600'}
-                            color={'white'}
-                            rounded={'lg'}
-                            _hover={{
-                                transform: 'translateY(-2px)',
-                                boxShadow: 'lg'
-                            }}
-                            _focus={{
-                                bg: 'green.500'
-                            }}
-                            onClick={onOpen}
-                            leftIcon={<FiCalendar/>}
-                        >
-                            {t("addtocalendar")}
-                        </Button>
-                        // TODO: Implement google calendar integration
+                    <Stack overflow={"visible"}>
+                        <AddToCalendarButton event={event}></AddToCalendarButton>
                     </Stack>
                 </Stack>
             </Box>

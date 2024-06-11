@@ -20,6 +20,7 @@
     "axios": "^1.2.2",
     "axios-cache-interceptor": "^1.5.1",
     "bootstrap": "^5.3.3",
+    "calendar-link": "^2.6.0",
     "formik": "^2.2.9",
     "framer-motion": "^8.2.4",
     "i18next": "^23.11.5",

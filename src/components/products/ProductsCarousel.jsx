@@ -87,14 +87,14 @@ const Carousel = () => {
                     <Text className={"cafelab"} fontWeight={"bold"} fontSize={"xl"}>
                         ESCOLHA SEUS CAFÉS: {boxQuantity}/3
                     </Text>
-                    {boxQuantity === 3 ? (
+                    { boxQuantity === 3 ? (
                         <Stack px={4}>
                             <Button leftIcon={<FaCheck/>} onClick={() => euMeExpresso()} size='sm' border='2px'
                                     variant='outline' colorScheme='#FEEBC8'>
                                 Pronto
                             </Button>
                         </Stack>
-                    ) : ""}
+                    ) : "" }
                 </Stack>
             </Stack>
             <Stack id="cafeCarousel" className="carousel no-transition" data-ride="carousel">

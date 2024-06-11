@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
     AbsoluteCenter,
     Avatar,
+    Badge,
     Box,
     CloseButton,
     Drawer,
@@ -11,9 +12,11 @@ import {
     Icon,
     IconButton,
     Image,
-    Link, Select,
+    Link,
+    Select,
     Spacer,
-    Text, useBreakpointValue,
+    Text,
+    useBreakpointValue,
     useColorModeValue,
     useDisclosure
 } from '@chakra-ui/react';
@@ -36,7 +39,6 @@ const LinkItems = [
     {name: 'Boutique', route: '/boutique', icon: TbPaperBag},
     {name: 'Menu Primavera', route: '/menu', icon: FiCoffee},
     {name: 'Agenda', route: '/agenda', icon: FiCalendar},
-    {name: 'Política de retorno', route: '/reembolso', icon: FaA},
 ];
 
 export default function SidebarWithHeader({children}) {
@@ -71,7 +73,7 @@ const SidebarContent = ({onClose}) => {
     return (
         <>
             <Flex h="100%" flexDirection="column" justifyContent="space-between">
-                <Flex direction="column" alignItems="center" mx="8">
+                <Flex direction="column" alignItems="center" mx={6}>
                     <CloseButton my={8} onClick={onClose}/>
                     <Image
                         maxHeight={"70px"}
@@ -79,7 +81,7 @@ const SidebarContent = ({onClose}) => {
                         alt='Cafelab'
                         onClick={() => navigate('/')}
                     />
-                    <Text className={"cafelab"} mb={4} mt={2} fontSize="3xl">
+                    <Text className={"cafelab"} mb={4} fontSize="3xl">
                         CAFELAB
                     </Text>
                     {LinkItems.map((link) => (
@@ -92,7 +94,7 @@ const SidebarContent = ({onClose}) => {
 
                     {customer ?
                         <HStack width="100%">
-                            <HStack onClick={() => navigate('/orders')} >
+                            <HStack onClick={() => navigate('/orders')}>
                                 <Avatar
                                     size={'sm'}
                                     src={
@@ -102,7 +104,7 @@ const SidebarContent = ({onClose}) => {
                                 <Text>{customer.name}</Text>
                             </HStack>
                             <Spacer/> {/* Add Spacer here */}
-                            <HStack onClick={logOut} >
+                            <HStack onClick={logOut}>
                                 <Text>Sign out</Text>
                                 <IconButton
                                     icon={<FaSignOutAlt/>}
@@ -163,7 +165,7 @@ const MobileNav = ({onOpen, ...rest}) => {
     const navigate = useNavigate();
     const {cartQuantity, openCart} = useShoppingCart()
 
-    const { i18n } = useTranslation();
+    const {i18n} = useTranslation();
     const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
 
     const handleChange = (event) => {
@@ -174,6 +176,7 @@ const MobileNav = ({onOpen, ...rest}) => {
     };
 
     const {customer, logOut} = useAuth();
+
     return (
         <>
             <Flex
@@ -184,7 +187,6 @@ const MobileNav = ({onOpen, ...rest}) => {
                 borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
                 justifyContent={{base: 'space-between', md: 'space-between'}}
                 {...rest}>
-
                 <IconButton
                     ml={{base: 4, md: 60}}
                     onClick={onOpen}
@@ -201,35 +203,24 @@ const MobileNav = ({onOpen, ...rest}) => {
                         onClick={() => navigate('/')}
                     />
                 </AbsoluteCenter>
-
                 <Flex justifyContent="flex-end" alignItems="center" mr={{base: 4, md: 60}}>
                     <Select w={useBreakpointValue({base: "70px", md: "100px"})} value={selectedValue} onChange={handleChange}>
                         <option value='en'>{useBreakpointValue({base: "🇺🇸", md: "🇺🇸 EN"})}</option>
                         <option value='pt'>{useBreakpointValue({base: "🇵🇹", md: "🇵🇹 PT"})}</option>
                     </Select>
                     <IconButton
-                        ml={2} // Add some margin to the left of the cart icon
                         size="lg"
                         variant="ghost"
-                        aria-label="log in"
+                        aria-label="shopping cart"
                         icon={<FaShoppingCart/>}
                         onClick={openCart}
                     >
-                        <Stack
-                            className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-                            style={{
-                                color: "white",
-                                width: "1.5rem",
-                                height: "1.5rem",
-                                position: "absolute",
-                                bottom: 0,
-                                right: 0,
-                                transform: "translate(25%, 25%)",
-                            }}
-                        >
-                            {cartQuantity}
-                        </Stack>
                     </IconButton>
+                    <Badge ml={-3}
+                    bgColor={"red.400"}
+                    color={"white"}>
+                        {cartQuantity}
+                    </Badge>
                 </Flex>
             </Flex>
         </>

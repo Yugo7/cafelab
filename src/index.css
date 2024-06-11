@@ -30,6 +30,12 @@
     font-style: normal;
 }
 
+.cafelab-inner {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
 .footer {
     margin-top: auto;
     height: 300px;
@@ -57,7 +63,7 @@
     position: absolute;
     top: 0;
     right: 10%;
-    padding: 30px;
+    padding: 20px;
     background-color: #000000;
     color: #fff;
     border-radius: 10px;
@@ -73,7 +79,7 @@
     background-color: #000000;
     color: #fff;
     border-radius: 20px;
-    font-size: 33px;
+    font-size: 25px;
     transform: rotate(335deg);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
