@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Stripe from 'stripe';
 import {CheckoutForm} from './StripeCheckout.jsx';
@@ -12,7 +12,6 @@ import {
     AlertDialogContent,
     AlertDialogFooter,
     AlertDialogOverlay,
-    Stack,
     useDisclosure
 } from "@chakra-ui/react";
 import Lottie from "react-lottie";
@@ -68,6 +67,7 @@ export default function Checkout() {
                 total: total,
                 paymentStatus: "PENDING"
             }
+
             if(customer){
                 const stripeData = customer.stripeId ? customer.stripeId : await StripeService.createCustomer(customer.email, customer.name).then(data => data.id);
 

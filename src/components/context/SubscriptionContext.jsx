@@ -77,13 +77,13 @@ export function SubscriptionProvider({children}) {
     function getPaymentIdFeNoCafe(payment) {
         switch (String(payment)) {
             case '1':
-                return 'price_1PQfp6RqqMn2mwDSzXkcq7mJ';
+                return 'price_1PQvvfRqqMn2mwDShzjWZ2EP';
             case '3':
-                return 'price_1PQfl6RqqMn2mwDSTjIF3N73';
+                return 'price_1PQvvfRqqMn2mwDSQk5ZYvDR';
             case '6':
-                return 'price_1PQflcRqqMn2mwDS38lgmo0P';
+                return 'price_1PQvvfRqqMn2mwDSlKvhcRUk';
             case '12':
-                return 'price_1PQfoJRqqMn2mwDSatuNouMx';
+                return 'price_1PQvvfRqqMn2mwDSesyRRSsy';
             default:
                 return '';
         }
@@ -92,13 +92,13 @@ export function SubscriptionProvider({children}) {
     function getPaymentIdMeExpresso(payment) {
         switch (String(payment)) {
             case '1':
-                return 'price_1PB4tGRqqMn2mwDSTS2p1BJq';
+                return 'price_1PQvviRqqMn2mwDSrE6vTFIN';
             case '3':
-                return 'price_1PQosqRqqMn2mwDSEKkjwX2u';
+                return 'price_1PQvviRqqMn2mwDSzMGz3VWA';
             case '6':
-                return 'price_1PQosqRqqMn2mwDSl0kY7ubq';
+                return 'price_1PQvviRqqMn2mwDScIHMoEu9';
             case '12':
-                return 'price_1PQosqRqqMn2mwDSs83mGCvm';
+                return 'price_1PQvviRqqMn2mwDSENdguZUy';
             default:
                 return '';
         }

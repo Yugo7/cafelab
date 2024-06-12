@@ -9,7 +9,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const StripeService = {
     createCustomer: async (email, name) => {
         try {
-            const response = await axios.post(`${BASE_URL}create-customer`, {
+            const response = await axios.post(`${BASE_URL}sp/create-customer`, {
                 email: email,
                 name: name
             });
@@ -21,7 +21,7 @@ const StripeService = {
     },
     updateStripeCustomerAddress: async (customerId, shippingInfo) => {
         try {
-            const response = await axios.post(`${BASE_URL}update-customer-address`, {
+            const response = await axios.post(`${BASE_URL}sp/update-customer-address`, {
                 customerId: customerId,
                 shippingInfo: shippingInfo
             });
@@ -34,7 +34,7 @@ const StripeService = {
 
     createStripeSubscription: async (stripeCustomer, priceId) => {
         try {
-            const response = await axios.post(`${BASE_URL}create-subscription`, {
+            const response = await axios.post(`${BASE_URL}sp/create-subscription`, {
                 stripeCustomer: stripeCustomer,
                 priceId: priceId
             });
@@ -47,7 +47,7 @@ const StripeService = {
 
     createPaymentMethod: async (card, email) => {
         try {
-            const response = await axios.post(`${BASE_URL}create-payment-method`, {
+            const response = await axios.post(`${BASE_URL}sp/create-payment-method`, {
                 card: card.getValue,
                 email: email
             });

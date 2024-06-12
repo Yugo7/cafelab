@@ -137,6 +137,7 @@ function CardFeNoCafe() {
                                 </Stack>
                                 <Stack my={4}>
                                     <Select width={"sm"} value={payment} onChange={handleChangePayment}>
+                                        <option value='1'>Pagamentos mensais</option>
                                         <option value='3'>Pagamentos trimestrais</option>
                                         <option value='6'>Pagamentos semestrais</option>
                                         <option value='12'>Pagamentos anuais</option>
