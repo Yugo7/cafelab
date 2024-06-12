@@ -28,7 +28,6 @@ import Footer from "./Footer.jsx";
 import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {Stack} from "react-bootstrap";
-import {FaA} from "react-icons/fa6";
 import {useAuth} from "../context/AuthContext.jsx";
 import {TbPaperBag} from "react-icons/tb";
 import {useTranslation} from "react-i18next";
@@ -174,9 +173,6 @@ const MobileNav = ({onOpen, ...rest}) => {
         i18n.changeLanguage(newLanguage);
         localStorage.setItem('language', newLanguage);
     };
-
-    const {customer, logOut} = useAuth();
-
     return (
         <>
             <Flex

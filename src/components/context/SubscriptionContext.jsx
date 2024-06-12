@@ -1,7 +1,7 @@
 import {createContext, useContext} from "react"
 import {useLocalStorage} from "../hooks/useLocalStorage"
 import {useToast} from "@chakra-ui/react";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "./ShoppingCartContext.jsx";
 
 const SubscriptionContext = createContext({})
 
@@ -14,7 +14,7 @@ export function SubscriptionProvider({children}) {
         "coffee",
         []
     )
-    const {addSubscription, emptyCart} = useShoppingCart();
+    const {addSubscription} = useShoppingCart();
     const toast = useToast();
 
     function getCoffeeQuantity(name) {
@@ -72,14 +72,35 @@ export function SubscriptionProvider({children}) {
         });
     }
 
-    function createFeNoCafelab(variante){
+    function getPaymentId(payment) {
+        switch (String(payment)) {
+            case '1':
+                return 'price_1PQfp6RqqMn2mwDSzXkcq7mJ';
+            case '3':
+                return 'price_1PQfl6RqqMn2mwDSTjIF3N73';
+            case '6':
+                return 'price_1PQflcRqqMn2mwDS38lgmo0P';
+            case '12':
+                return 'price_1PQfoJRqqMn2mwDSatuNouMx';
+            default:
+                return '';
+        }
+    }
+
+    function createFeNoCafelab(variety, payment){
+
+        console.log("payment: " + payment)
+        const pId = getPaymentId(payment);
+
         const subscricao = {
             id: 999,
+            priceId: pId,
             nome: "Fé no Cafelab",
-            preco: 25,
-            imagem: "assets/bundle.png",
+            preco: 27.90 * payment,
+            periodo: payment,
+            imagem: "assets/subscricao_fenocafe.jpg",
             descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
-            variante: variante
+            variante: variety
         };
         addSubscription(subscricao)
     }

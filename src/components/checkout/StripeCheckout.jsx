@@ -3,7 +3,7 @@ import {AddressElement, Elements, LinkAuthenticationElement, PaymentElement, use
 import {loadStripe} from "@stripe/stripe-js"
 import {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
-import {CardText, CardTitle,} from "react-bootstrap";
+import {CardTitle,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {CartItem} from "../cart/CartItem.jsx";
 import {errorNotification} from "../../services/notification.js";
@@ -42,6 +42,7 @@ export function CheckoutForm({clientSecret}) {
                     </Text>
                 </Stack>
                 { stripePromise && clientSecret && (
+
                 <Elements options={{clientSecret}} stripe={stripePromise}>
                     <Form clientSecret={clientSecret} priceInCents={Math.round(total * 100)}/>
                 </Elements>
@@ -51,13 +52,12 @@ export function CheckoutForm({clientSecret}) {
     )
 }
 
-function Form({clientSecret, priceInCents}) {
+function Form({priceInCents}) {
     const stripe = useStripe()
     const elements = useElements()
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [email, setEmail] = useState("email")
-
     async function handleSubmit(e) {
         console.log("handleSubmit")
         e.preventDefault()

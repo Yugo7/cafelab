@@ -3,7 +3,6 @@ import axios from "axios";
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
-
 //const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const BASE_URL = 'http://localhost:3000/sp/';
 
@@ -46,18 +45,33 @@ const StripeService = {
         }
     },
 
-    createPaymentMethod: async (card, email, customerId) => {
+    createPaymentMethod: async (card, email) => {
         try {
             const response = await axios.post(`${BASE_URL}create-payment-method`, {
-                card: card,
-                email: email,
-                customerId: customerId
+                card: card.getValue,
+                email: email
             });
             return response.data;
         } catch (error) {
             console.error('Error creating payment method:', error);
             throw error;
         }
+    },
+
+    createCheckoutSession: async (priceId) => {
+        console.log("Creating checkout session");
+        try {
+            const response = await axios.post(`${BASE_URL}create-checkout-session`, {
+                priceId: priceId
+            });
+            console.log("Checkout session created: ", response.data.session.url);
+            window.location.href =  response.data.session.url;
+            return response.data;
+        } catch (error) {
+            console.error('Error creating checkout session:', error);
+            throw error;
+        }
+
     }
 }
 
@@ -92,30 +106,18 @@ export const createStripeSubscription = async (stripeCustomer, priceId, cardElem
     return subscription;
 }
 
-export const createPaymentMethod = async (cardElement, email, customerId) => {
+export const createPaymentMethod = async (cardElement, email) => {
 
     const { error, paymentMethod } = await stripe.paymentMethods.create({
         type: 'card',
         card: cardElement,
         billing_details: {
             email: email,
-            // add more billing details if necessary
         },
     });
 
     if (error) {
         console.log("Error creating payment method: ", error);
-        return null;
-    }
-
-    console.log("paymentMethod: ", paymentMethod);
-    const {attachError, attachedPaymentMethod} = await stripe.paymentMethods.attach(paymentMethod.id, {
-        customer: customerId,
-    })
-    console.log("attachedPaymentMethod: ", attachedPaymentMethod);
-
-    if (attachError) {
-        console.log("Error attaching payment method: ", attachError);
         return null;
     }
 

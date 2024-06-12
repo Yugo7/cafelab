@@ -9,7 +9,6 @@ import Subscricao from "./components/subscricao/Subscricao.jsx";
 import {ShoppingCart} from "./components/cart/ShoppingCart.jsx";
 import Contacts from "./Contacts.jsx";
 import Boutique from "./components/products/Boutique.jsx";
-import FeNoCafeLab from "./components/subscricao/FeNoCafeLab.jsx";
 import Checkout from "./components/checkout/Checkout.jsx";
 import React from "react";
 import Home from "./Home.jsx";
@@ -76,10 +75,6 @@ const router = createBrowserRouter([
     {
         path: "/boutique",
         element: <Boutique/>
-    },
-    {
-        path: "/subscricao/fenocafelab",
-        element: <FeNoCafeLab/>
     },
     {
         path: "/checkout",

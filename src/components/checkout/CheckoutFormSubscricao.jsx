@@ -6,8 +6,7 @@ import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text, useBreakpoi
 import {CardText, CardTitle, Image,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
-import StripeService, {createPaymentMethod, createStripeSubscription, updateStripeCustomerAddress} from "../../services/stripeService.jsx";
-import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -56,21 +55,7 @@ export function CheckoutFormSubscricao({clientSecret}) {
                                         subscription[0].preco
                                     )} /mês
                                 </Text>
-                                <Stack w={"md"} pt={6} className="d-flex align-items-left">
-                                    <Text fontSize={"xs"}>
-                                        - Subscreva até o dia 25 do mês, para receber os grãos torrados no último forno à lenha de Portugal. Entregas a partir do
-                                        dia
-                                        02 do mês seguinte;
-                                        <br/>
-                                        - Subscrições após o dia 25 de cada mês recebem a subscrição no mês subsequente;
-                                        <br/>
-                                        - Renovação automática – para que o Cafelab sempre esteja presente na sua casa;
-                                        <br/>
-                                        - Cancelamento gratuito após 3 meses;
-                                        <br/>
-                                        - Envio grátis.
-                                    </Text>
-                                </Stack>
+
                             </Stack>
                         </Stack>
                     </Stack>
@@ -103,43 +88,39 @@ function Form({priceInCents}) {
             setShippingInfo(event.value);
         }
     };
+    const BASE_URL = 'http://localhost:3000/sp/';
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    async function handleSubmit(e) {
+        e.preventDefault();
 
-        if (!stripe || !elements) {
-            return;
-        }
-        const navigate = useNavigate();
-        navigate("/success")
-
-        const stripeCustomer = customer.stripeId ? customer.stripeId : await StripeService.createCustomer(email, shippingInfo.name).then(data => data.id);
-        await updateStripeCustomerAddress(stripeCustomer, shippingInfo);
-
-        console.log("stripeCustomer: " + stripeCustomer);
         const cardElement = elements.getElement(CardElement);
 
-        console.log("cardElement: ", cardElement);
-        const {paymentMethod, error} = await createPaymentMethod(cardElement, email, stripeCustomer);
-
-        console.log("paymentMethod: ", paymentMethod);
-        if (error) {
-            console.log("Error creating payment method: ", error);
-            setErrorMessage(error.message);
-            return;
+        const cardDetails = {
+            number: cardElement.cardNumber,
+            exp_month: cardElement.cardExpiryMonth,
+            exp_year: cardElement.cardExpiryYear,
+            cvc: cardElement.cardCvc,
         }
 
-        const priceId = "price_1PB4tGRqqMn2mwDSTS2p1BJq";
-        const subscription = await createStripeSubscription(stripeCustomer, priceId);
+        try {
+            const response = await axios.post(`${BASE_URL}create-subscription`, {
+                email: email,
+                card: cardDetails,
+            });
 
-        if (subscription.error) {
-            console.log("Error creating subscription: ", subscription.error);
-            setErrorMessage(subscription.error.message);
-            return;
+            const data = response.data;
+
+            if (data.error) {
+                console.log("Error creating subscription: ", data.error);
+                setErrorMessage(data.error.message);
+                return;
+            }
+
+            console.log("Subscription created: ", data.subscription);
+        } catch (error) {
+            console.log("Error: ", error);
         }
-
-        console.log(subscription);
-    };
+    }
 
     return (
         <form onSubmit={handleSubmit}>
