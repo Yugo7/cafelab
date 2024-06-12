@@ -3,8 +3,8 @@ import * as Yup from "yup";
 import {Alert, AlertIcon, Box, Button, FormLabel, HStack, Input, Stack, Text, Textarea, useToast} from "@chakra-ui/react";
 import axios from 'axios';
 
-//const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//const BASE_URL = 'http://localhost:3000/';
 
 const MyTextInput = ({label, ...props}) => {
     const [field, meta] = useField(props);

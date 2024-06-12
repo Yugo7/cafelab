@@ -168,7 +168,7 @@ function CardFeNoCafe() {
                                 </Stack>
                             </ModalBody>
                             <ModalFooter>
-                                <Button mr={2} onClick={() => finishSubscription()}>Ir para o checkout</Button>
+                                <Button colorScheme='blue' mr={2} onClick={() => finishSubscription()}>Ir para o checkout</Button>
                                 <Button onClick={onClose}>Fechar</Button>
                             </ModalFooter>
                         </ModalContent>
