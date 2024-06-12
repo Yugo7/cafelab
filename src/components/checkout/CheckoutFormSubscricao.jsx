@@ -12,9 +12,9 @@ const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
 )
 
-export function CheckoutFormSubscricao({clientSecret}) {
+export function CheckoutFormSubscricao() {
 
-    const {cartItems, subscription, products, emptyCart} = useShoppingCart()
+    const {subscription} = useShoppingCart()
     const total = subscription.reduce((total, item) => total + item.preco, 0);
     const priceInCents = Math.round(total * 100);
     const options = {
@@ -42,7 +42,7 @@ export function CheckoutFormSubscricao({clientSecret}) {
                                 style={{width: "175px", height: "275px", objectFit: "cover"}}
                             />
                             <Stack pt={6} className="d-flex align-items-left">
-                                {subscription[0].coffee ? subscription[0].coffee.map((coffee, index) => (
+                                {subscription[0].coffee ? subscription[0].coffee.map((coffee) => (
                                     <Stack direction={"row"}>
                                         <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"} align={"left"}>
                                             - {coffee.name.toUpperCase()} x {coffee.quantity}

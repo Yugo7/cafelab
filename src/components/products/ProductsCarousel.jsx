@@ -1,25 +1,14 @@
 import React, {useEffect, useState} from "react"
-import {Button, Select, Spinner, Stack, Text, useBreakpointValue, useToast} from "@chakra-ui/react";
+import {Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import ProductCarouselItem from "./ProductCarouselItem.jsx";
 import {getProductsBySection} from "../../services/productsService.jsx";
-import {useSubscription} from "../context/SubscriptionContext.jsx";
-import {FaCheck} from "react-icons/fa";
-import {useNavigate} from "react-router-dom";
 
-const Carousel = () => {
+const EuMeExpressoModal = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setIsLoading] = useState(false);
     const [err, setError] = useState("");
     const padding = useBreakpointValue({base: "0", md: "10%"});
-    const {boxQuantity, createEuMeExpresso} = useSubscription();
-    const navigate = useNavigate();
-    const [selectedValue, setSelectedValue] = useState('');
-    const toast = useToast();
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -29,25 +18,10 @@ const Carousel = () => {
                 setIsLoading(false);
             })
             .catch(error => {
-                console.error(error);
+                setError(error);
                 setIsLoading(false);
             });
     }, []);
-
-    function euMeExpresso() {
-        if (selectedValue === '') {
-            toast({
-                title: 'Erro',
-                description: "Falta especificar como quer seu café.",
-                status: 'warning',
-                duration: 2000,
-                isClosable: true,
-            })
-        } else {
-            createEuMeExpresso(selectedValue);
-            navigate('/checkout-subscricao');
-        }
-    }
 
     if (loading) {
         return (
@@ -75,28 +49,6 @@ const Carousel = () => {
 
     return (
         <Stack alignItems={"center"}>
-            <Stack>
-                <Stack my={4}>
-                    <Select placeholder='Como quer seu café?' value={selectedValue} onChange={handleChange}>
-                        <option value='beans'>Grãos</option>
-                        <option value='expresso'>Moído para expresso</option>
-                        <option value='frenchpress'>Moído para prensa francesa/ italiana</option>
-                    </Select>
-                </Stack>
-                <Stack direction={"row"} my={4}>
-                    <Text className={"cafelab"} fontWeight={"bold"} fontSize={"xl"}>
-                        ESCOLHA SEUS CAFÉS: {boxQuantity}/3
-                    </Text>
-                    { boxQuantity === 3 ? (
-                        <Stack px={4}>
-                            <Button leftIcon={<FaCheck/>} onClick={() => euMeExpresso()} size='sm' border='2px'
-                                    variant='outline' colorScheme='#FEEBC8'>
-                                Pronto
-                            </Button>
-                        </Stack>
-                    ) : "" }
-                </Stack>
-            </Stack>
             <Stack id="cafeCarousel" className="carousel no-transition" data-ride="carousel">
                 <Stack maxHeight={"100%"} className="carousel-inner" px={padding}>
                     {products.map((product, index) => (
@@ -121,4 +73,4 @@ const Carousel = () => {
     )
 }
 
-export default Carousel;
+export default EuMeExpressoModal;

@@ -2,6 +2,8 @@ import {createContext, useContext} from "react"
 import {useLocalStorage} from "../hooks/useLocalStorage"
 import {useToast} from "@chakra-ui/react";
 import {useShoppingCart} from "./ShoppingCartContext.jsx";
+import StripeService from "../../services/stripeService.jsx";
+import orderService from "../../services/orderService.jsx";
 
 const SubscriptionContext = createContext({})
 
@@ -72,7 +74,7 @@ export function SubscriptionProvider({children}) {
         });
     }
 
-    function getPaymentId(payment) {
+    function getPaymentIdFeNoCafe(payment) {
         switch (String(payment)) {
             case '1':
                 return 'price_1PQfp6RqqMn2mwDSzXkcq7mJ';
@@ -87,10 +89,25 @@ export function SubscriptionProvider({children}) {
         }
     }
 
+    function getPaymentIdMeExpresso(payment) {
+        switch (String(payment)) {
+            case '1':
+                return 'price_1PB4tGRqqMn2mwDSTS2p1BJq';
+            case '3':
+                return 'price_1PQosqRqqMn2mwDSEKkjwX2u';
+            case '6':
+                return 'price_1PQosqRqqMn2mwDSl0kY7ubq';
+            case '12':
+                return 'price_1PQosqRqqMn2mwDSs83mGCvm';
+            default:
+                return '';
+        }
+    }
+
     function createFeNoCafelab(variety, payment){
 
         console.log("payment: " + payment)
-        const pId = getPaymentId(payment);
+        const pId = getPaymentIdFeNoCafe(payment);
 
         const subscricao = {
             id: 999,
@@ -102,20 +119,26 @@ export function SubscriptionProvider({children}) {
             descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
             variante: variety
         };
-        addSubscription(subscricao)
+        StripeService.createCheckoutSession(subscricao)
     }
 
-    function createEuMeExpresso(variante){
+    function createEuMeExpresso(variante, payment){
+
+        const pId = getPaymentIdMeExpresso(payment);
         const subscricao = {
             id: 998,
+            priceId: pId,
             nome: "Eu me expresso",
-            preco: 27.9,
-            imagem: "assets/bundle.png",
+            preco: 25 * payment,
+                periodo: payment,
+            imagem: "assets/subscricao_fenocafe.jpg",
             descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
             variante: variante,
             coffee: coffee
         };
         addSubscription(subscricao)
+        orderService.addOrder(subscricao)
+        StripeService.createCheckoutSession(subscricao)
     }
 
     return (

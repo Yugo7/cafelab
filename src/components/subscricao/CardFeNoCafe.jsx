@@ -21,9 +21,7 @@ import {
 } from "@chakra-ui/react";
 import {FaHandshake} from "react-icons/fa";
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
-import StripeService from "../../services/stripeService.jsx";
 
 function CardFeNoCafe() {
 
@@ -33,7 +31,6 @@ function CardFeNoCafe() {
     const toast = useToast();
     const {createFeNoCafelab} = useSubscription();
 
-    const navigate = useNavigate();
     const handleChangeVariety = (event) => {
         setVariety(event.target.value);
     };
@@ -52,13 +49,7 @@ function CardFeNoCafe() {
             })
         } else {
             createFeNoCafelab(variety, payment);
-            navigate('/checkout-subscricao');
         }
-    }
-
-    function teste() {
-        console.log('teste');
-        StripeService.createCheckoutSession('price_1PQfp6RqqMn2mwDSzXkcq7mJ')
     }
 
     function getPaymentText() {
@@ -77,10 +68,10 @@ function CardFeNoCafe() {
     }
 
     return (
-        <Card height="100%"
+        <Card
               maxW='2xl'
               bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}
-              mx={4}>
+              >
             <CardHeader align={"center"}>
                 <Box my={8}>
                 </Box>
@@ -94,11 +85,11 @@ function CardFeNoCafe() {
                 <Box my={5}>
                 </Box>
                 <Stack>
-                    <Text align="center" fontSize={"md"} fontWeight={"semibold"} mb={6}>
+                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
                         3 embalagens de 175g em grãos ou moídas<br/> de acordo com a sua indicação de consumo.
                     </Text>
                 </Stack>
-                <Text align="center">
+                <Text fontSize={"lg"} align="center">
                     Para os que nos conhecem, e amam uma surpresa.
                     Quem já pediu, sabe que uma indicação do nosso especialista nunca falha!
                     Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista.
@@ -145,7 +136,7 @@ function CardFeNoCafe() {
 
                                 </Stack>
                                 <Stack my={4}>
-                                    <Select value={payment} onChange={handleChangePayment}>
+                                    <Select width={"sm"} value={payment} onChange={handleChangePayment}>
                                         <option value='3'>Pagamentos trimestrais</option>
                                         <option value='6'>Pagamentos semestrais</option>
                                         <option value='12'>Pagamentos anuais</option>
@@ -154,8 +145,8 @@ function CardFeNoCafe() {
                                 <Text className="ms-auto fw-bold" fontSize={"2xl"}>
                                     {getPaymentText()}
                                 </Text>
-                                <Text className="ms-auto fw-bold" fontSize={"2xl"}>
-                                    (€27.90 /mês)
+                                <Text className="ms-auto " fontSize={"2xl"}>
+                                    Apenas €27.90 por mês
                                 </Text>
                                 <Stack pt={6} pb={6} className=" cafelab d-flex align-items-left">
                                     <Text fontSize={"md"}>
@@ -175,10 +166,9 @@ function CardFeNoCafe() {
                                         - Envio grátis.
                                     </Text>
                                 </Stack>
-                                    <Button onClick={() => teste()}>Checkout</Button>
                             </ModalBody>
                             <ModalFooter>
-                                <Button mr={2} colorScheme={"blue"} onClick={() => finishSubscription()}>Vamos lá!</Button>
+                                <Button mr={2} onClick={() => finishSubscription()}>Ir para o checkout</Button>
                                 <Button onClick={onClose}>Fechar</Button>
                             </ModalFooter>
                         </ModalContent>

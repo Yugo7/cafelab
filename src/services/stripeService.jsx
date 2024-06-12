@@ -58,13 +58,11 @@ const StripeService = {
         }
     },
 
-    createCheckoutSession: async (priceId) => {
-        console.log("Creating checkout session");
+    createCheckoutSession: async (subscription) => {
         try {
             const response = await axios.post(`${BASE_URL}create-checkout-session`, {
-                priceId: priceId
+                subscription: subscription
             });
-            console.log("Checkout session created: ", response.data.session.url);
             window.location.href =  response.data.session.url;
             return response.data;
         } catch (error) {
@@ -76,50 +74,3 @@ const StripeService = {
 }
 
 export default StripeService;
-
-export const updateStripeCustomerAddress = async (customerId, shippingInfo) => {
-    const customer = await stripe.customers.update(customerId, {
-        address: {
-            line1: shippingInfo.address.line1,
-            city: shippingInfo.address.city,
-            postal_code: shippingInfo.address.postal_code,
-            country: shippingInfo.address.country,
-        },
-    });
-
-    console.log("Updated customer: ", customer);
-    return customer;
-}
-
-export const createStripeSubscription = async (stripeCustomer, priceId, cardElement) => {
-
-    const subscription = await stripe.subscriptions.create({
-        customer: stripeCustomer,
-        items: [{price: priceId}],
-        payment_settings: {
-            payment_method_types: ['card'],
-            save_default_payment_method: 'on_subscription',
-        },
-    });
-
-    console.log("subscription: " );
-    return subscription;
-}
-
-export const createPaymentMethod = async (cardElement, email) => {
-
-    const { error, paymentMethod } = await stripe.paymentMethods.create({
-        type: 'card',
-        card: cardElement,
-        billing_details: {
-            email: email,
-        },
-    });
-
-    if (error) {
-        console.log("Error creating payment method: ", error);
-        return null;
-    }
-
-    return paymentMethod;
-}

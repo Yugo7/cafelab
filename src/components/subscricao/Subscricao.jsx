@@ -12,13 +12,11 @@ import CardMeExpresso from "./CardMeExpresso.jsx";
 const Subscricao = () => {
 
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
-    const stackSpacing = useBreakpointValue({base: "20px", md: "40px"});
-    const sectWidth = useBreakpointValue({base: "100%", md: "50%"});
 
     return (
         <SidebarWithHeader>
             <Stack backgroundColor={"whiteAlpha.50"}>
-                <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
+                <Stack justify="flex-start" align="center" my={6} mx={4} >
                     <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
                         SUBSCRIÇÃO CAFELAB
                     </Text>
@@ -68,13 +66,9 @@ const Subscricao = () => {
                 </Stack>
                 */
                 }
-                <Stack direction={["column", 'row']} spacing="6" align="center" justify="space-between">
-                    <Stack spacing={stackSpacing} alignItems={"center"} width={sectWidth} mb={8}>
-                        <CardFeNoCafe/>
-                    </Stack>
-                    <Stack width={sectWidth} alignItems={"center"} pb={8}>
-                        <CardMeExpresso/>
-                    </Stack>
+                <Stack direction={["column", 'row']} p={2} align="center" justify={"space-around"}>
+                     <CardFeNoCafe/>
+                    <CardMeExpresso/>
                 </Stack>
                 <ModalQuiz/>
             </Stack>
