@@ -60,7 +60,7 @@ const StripeService = {
 
     createCheckoutSession: async (subscription) => {
         try {
-            const response = await axios.post(`${BASE_URL}create-checkout-session`, {
+            const response = await axios.post(`${BASE_URL}sp/create-checkout-session`, {
                 subscription: subscription
             });
             window.location.href =  response.data.session.url;
