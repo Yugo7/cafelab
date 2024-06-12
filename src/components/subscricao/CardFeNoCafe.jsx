@@ -20,7 +20,7 @@ import {
     useDisclosure, useToast
 } from "@chakra-ui/react";
 import {FaHandshake} from "react-icons/fa";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
@@ -40,9 +40,6 @@ function CardFeNoCafe() {
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
     };
-    useEffect(() => {
-        onOpen();
-    }, [onOpen]);
 
     function finishSubscription() {
         if (variety === '') {
