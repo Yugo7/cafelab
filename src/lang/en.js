@@ -6,6 +6,7 @@ export default {
     firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS.",
     petWorkFriendly: "PET & WORK FRIENDLY",
     newLabel: "NEW!",
+    newsLabel: "NEWS!",
     springMenu: "SPRING MENU",
     refreshingDrinks: "REFRESHING DRINKS FOR SPRING",
     menuButton: "MENU",

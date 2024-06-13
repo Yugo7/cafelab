@@ -8,6 +8,7 @@ export default {
     firstCoffeeShop: "A PRIMEIRA LOJA DE CAFÉ DE ESPECIALIDADE DE OEIRAS.",
     petWorkFriendly: "PET & WORK FRIENDLY",
     newLabel: "NOVO!",
+    newsLabel: "NOVIDADE!",
     springMenu: "MENU PRIMAVERA",
     refreshingDrinks: "DRINKS REFRESCANTES PARA A PRIMAVERA",
     menuButton: "MENU",
