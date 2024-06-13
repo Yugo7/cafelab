@@ -2,11 +2,12 @@ import {Box, Button, Center, Heading, Image, Stack, Tag, Text, Link, useColorMod
 
 import {useRef} from 'react'
 import {FiInstagram} from "react-icons/fi";
+import {useTranslation} from "react-i18next";
 
 export default function PastEventCard({id, date, name, description, local, imageFinish, imagePromotion, instagramUrl}) {
     const {isOpen, onOpen, onClose} = useDisclosure()
     const cancelRef = useRef()
-
+    const { t } = useTranslation();
     console.log(id, date, name, description, local, imageFinish, imagePromotion, instagramUrl)
     return (
         <Center py={6}>
@@ -52,7 +53,7 @@ export default function PastEventCard({id, date, name, description, local, image
                                 onClick={onOpen}
                                 leftIcon={<FiInstagram/>}
                             >
-                                Veja como foi
+                                {t('agenda.takeALook')}
                             </Button>
                         </Link>
                     </Stack>

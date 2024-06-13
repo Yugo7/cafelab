@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { google, ics, office365, outlook, yahoo } from "calendar-link";
 import { Button, Select } from '@chakra-ui/react';
 import { FiCalendar } from "react-icons/fi";
+import {useTranslation} from "react-i18next";
 
 const AddToCalendarButton = ({event}) => {
     const buttonRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedCalendar, setSelectedCalendar] = useState('google');
 
+    const { t } = useTranslation();
     const calendarUrls = {
         google: google(event),
         outlook: outlook(event),
@@ -57,7 +59,7 @@ const AddToCalendarButton = ({event}) => {
                 leftIcon={<FiCalendar />}
                 onClick={handleAddToCalendar}
             >
-                Add to calendar
+                {t('agenda.addtocalendar')}
             </Button>
         </>
     )

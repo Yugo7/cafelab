@@ -6,9 +6,11 @@ import eventService from '../../services/eventService.js';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import PastEventCard from "./PastEventCard.jsx";
+import {useTranslation} from "react-i18next";
 
 const Agenda = () => {
 
+    const { t } = useTranslation();
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
 
     const [events, setEvents] = useState([]);
@@ -92,12 +94,12 @@ const Agenda = () => {
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                     <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                        PRÓXIMOS EVENTOS
+                        {t('agenda.title')}
                     </Text>
                 </Stack>
                 { events.length <= 0 ? (
                     <Stack h={"10vh"} align="center" m={6} spacing={4}>
-                        <Text fontSize={"xl"} mt={5}>FIQUE LIGADO PARA SABER SOBRE OS NOSSOS PRÓXIMOS EVENTOS!</Text>
+                        <Text fontSize={"xl"} mt={5}>{t('agenda.noUpcomingEvents')}</Text>
                     </Stack>
                 ) : (
                     <Stack alignSelf={"center"} w={"90vw"}>
@@ -116,7 +118,7 @@ const Agenda = () => {
                 <Stack alignSelf={"center"} w={"90vw"}>
                     <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                         <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                            EVENTOS PASSADOS
+                            {t('agenda.pastEventsTitle')}
                         </Text>
                     </Stack>
                     <Carousel responsive={responsive}>

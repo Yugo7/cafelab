@@ -7,10 +7,12 @@ import {CardTitle} from "react-bootstrap";
 import OrderService from "../../services/orderService.jsx";
 import {getProductsById} from "../../services/productsService.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
+import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 
 const Orders = () => {
     const {customer,} = useAuth();
     const navigate = useNavigate();
+    const { products } = useShoppingCart();
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
@@ -19,8 +21,12 @@ const Orders = () => {
                 //navigate("/");
             } else {
                 try {
-                    const data = await OrderService.getOrders();
-                    setOrders(data);
+                    const data = await OrderService.getOrdersByUserId(customer.id);
+                    console.log(data)
+                    const filteredData = data.filter(order =>
+                        Array.isArray(order.products) && order.products.every(product => product.id < 900)
+                    );
+                    setOrders(filteredData);
                     console.log(data)
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
@@ -59,13 +65,16 @@ const Orders = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {order.products.map((product, productIndex) => (
-                                    <Tr key={productIndex}>
-                                        <Td>{product.nome}</Td>
-                                        <Td>{product.quantity}</Td>
-                                        <Td isNumeric>{formatCurrency(product.preco)}</Td>
-                                    </Tr>
-                                ))}
+                                {order.products.map((product, productIndex) => {
+                                    const productInfo = products.find(i => i.id === product.id);
+                                    return (
+                                        <Tr key={productIndex}>
+                                            <Td>{productInfo ? productInfo.nome : 'Product not found'}</Td>
+                                            <Td>{product.quantity}</Td>
+                                            <Td isNumeric>{productInfo ? formatCurrency(productInfo.preco) : 'N/A'}</Td>
+                                        </Tr>
+                                    )
+                                })}
                             </Tbody>
                         </Table>
                     </TableContainer>

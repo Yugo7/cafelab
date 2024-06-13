@@ -17,11 +17,13 @@ import {
     Select,
     Stack,
     Text,
-    useDisclosure, useToast
+    useDisclosure,
+    useToast
 } from "@chakra-ui/react";
 import {FaHandshake} from "react-icons/fa";
 import React, {useState} from "react";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
+import {useTranslation} from "react-i18next";
 
 function CardFeNoCafe() {
 
@@ -30,6 +32,7 @@ function CardFeNoCafe() {
     const [payment, setPayment] = useState('3');
     const toast = useToast();
     const {createFeNoCafelab} = useSubscription();
+    const {t} = useTranslation();
 
     const handleChangeVariety = (event) => {
         setVariety(event.target.value);
@@ -69,15 +72,15 @@ function CardFeNoCafe() {
 
     return (
         <Card
-              maxW='2xl'
-              bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}
-              >
+            maxW='2xl'
+            bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}
+        >
             <CardHeader align={"center"}>
                 <Box my={8}>
                 </Box>
                 <Stack justify="flex-start" align="center" fontSize={"3xl"} spacing="0px">
                     <Text className="font-headline" textAlign={"center"}>
-                        FÉ NO CAFELAB
+                        {t('fenocafe.name')}
                     </Text>
                 </Stack>
             </CardHeader>
@@ -86,15 +89,11 @@ function CardFeNoCafe() {
                 </Box>
                 <Stack>
                     <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
-                        3 embalagens de 175g em grãos ou moídas<br/> de acordo com a sua indicação de consumo.
+                        {t('fenocafe.coffeeDescription')}
                     </Text>
                 </Stack>
-                <Text fontSize={"lg"} align="center">
-                    Para os que nos conhecem, e amam uma surpresa.
-                    Quem já pediu, sabe que uma indicação do nosso especialista nunca falha!
-                    Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista.
-                    <br/>
-                    E ainda tenha acesso aos nossos cafés exclusivos da assinatura.
+                <Text fontSize={"md"} align="center">
+                    {t('fenocafe.coffeeDetails')}
                 </Text>
             </CardBody>
 
@@ -112,7 +111,7 @@ function CardFeNoCafe() {
                     <Button leftIcon={<FaHandshake/>} onClick={onOpen} size='lg' height='48px' width='200px'
                             border='2px'
                             variant='outline' colorScheme='#FEEBC8'>
-                        Confio
+                        {t('fenocafe.trust')}
                     </Button>
                     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}
                            motionPreset='slideInBottom' size={"full"}>
@@ -122,10 +121,10 @@ function CardFeNoCafe() {
                             <ModalCloseButton/>
                             <ModalBody overflowY="auto">
                                 <Stack my={4}>
-                                    <Select placeholder='Como quer seu café?' value={variety} onChange={handleChangeVariety}>
-                                        <option value='beans'>Grãos</option>
-                                        <option value='expresso'>Moído para expresso</option>
-                                        <option value='frenchpress'>Moído para prensa francesa/ italiana</option>
+                                    <Select placeholder={t('subscription.howYouWantYourCoffee')} value={variety} onChange={handleChangeVariety}>
+                                        <option value='beans'>{t('subscription.beans')}</option>
+                                        <option value='expresso'>{t('subscription.espresso')}</option>
+                                        <option value='frenchpress'>{t('subscription.frenchPress')}</option>
                                     </Select>
                                 </Stack>
                                 <Stack alignItems={"center"}>
@@ -133,44 +132,39 @@ function CardFeNoCafe() {
                                         src='assets/subscricao_fenocafe.jpg'
                                         maxH={"50vh"}
                                     />
-
                                 </Stack>
                                 <Stack my={4}>
                                     <Select width={"sm"} value={payment} onChange={handleChangePayment}>
-                                        <option value='1'>Pagamentos mensais</option>
-                                        <option value='3'>Pagamentos trimestrais</option>
-                                        <option value='6'>Pagamentos semestrais</option>
-                                        <option value='12'>Pagamentos anuais</option>
+                                        <option value='3'>{t('fenocafe.quarterlyPayments')}</option>
+                                        <option value='6'>{t('fenocafe.semiannualPayments')}</option>
+                                        <option value='12'>{t('fenocafe.annualPayments')}</option>
                                     </Select>
                                 </Stack>
                                 <Text className="ms-auto fw-bold" fontSize={"2xl"}>
                                     {getPaymentText()}
                                 </Text>
                                 <Text className="ms-auto " fontSize={"2xl"}>
-                                    Apenas €27.90 por mês
+                                    {t('fenocafe.pricePerMonth')}
                                 </Text>
                                 <Stack pt={6} pb={6} className=" cafelab d-flex align-items-left">
                                     <Text fontSize={"md"}>
-                                        Regras:
+                                        {t('subscription.rules.name')}:
                                         <br/>
-                                        - Subscreva até o dia 25 do mês, para receber os grãos torrados no último forno à lenha de Portugal. Entregas a partir
-                                        do
-                                        dia
-                                        02 do mês seguinte;
+                                        - {t('subscription.rules.subscribeBy25')}:
                                         <br/>
-                                        - Subscrições após o dia 25 de cada mês recebem a subscrição no mês subsequente;
+                                        - {t('subscription.rules.subscriptionsAfter25')}:
                                         <br/>
-                                        - Renovação automática – para que o Cafelab sempre esteja presente na sua casa;
+                                        - {t('subscription.rules.automaticRenewal')}:
                                         <br/>
-                                        - Cancelamento gratuito após 3 meses;
+                                        - {t('subscription.rules.freeCancellation')}:
                                         <br/>
-                                        - Envio grátis.
+                                        - {t('subscription.rules.freeShipping')}:
                                     </Text>
                                 </Stack>
                             </ModalBody>
                             <ModalFooter>
-                                <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>Ir para o checkout</Button>
-                                <Button onClick={onClose}>Fechar</Button>
+                                <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>{t('fenocafe.checkout')}</Button>
+                                <Button onClick={onClose}>{t('fenocafe.close')}</Button>
                             </ModalFooter>
                         </ModalContent>
                     </Modal>

@@ -12,8 +12,10 @@ const AuthProvider = ({children}) => {
         let token = localStorage.getItem("access_token");
         if (token) {
             token = jwtDecode(token);
+            console.log(token);
             setCustomer({
                 username: token.email,
+                name: token.user_metadata.name,
                 role: token.scopes,
                 id: token.sub,
                 stripeId: token.user_metadata.stripeId

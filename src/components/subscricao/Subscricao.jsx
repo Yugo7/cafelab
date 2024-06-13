@@ -8,9 +8,10 @@ import React from "react";
 import ModalQuiz from "./ModalQuiz.jsx";
 import CardFeNoCafe from "./CardFeNoCafe.jsx";
 import CardMeExpresso from "./CardMeExpresso.jsx";
+import {useTranslation} from "react-i18next";
 
 const Subscricao = () => {
-
+    const { t } = useTranslation();
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
 
     return (
@@ -18,7 +19,7 @@ const Subscricao = () => {
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} >
                     <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                        SUBSCRIÇÃO CAFELAB
+                        {t('subscription.subscriptionTitle')}
                     </Text>
                 </Stack>
 

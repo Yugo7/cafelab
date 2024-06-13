@@ -5,12 +5,9 @@ import {useAuth} from "../context/AuthContext.jsx";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";
-import {delay} from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 const MyTextInput = ({label, ...props}) => {
-    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-    // which we can spread on <input>. We can use field meta to show an error
-    // message if the field is invalid and it has been touched (i.e. visited)
     const [field, meta] = useField(props);
     return (
         <Box>
@@ -29,6 +26,7 @@ const MyTextInput = ({label, ...props}) => {
 const LoginForm = () => {
     const {signin} = useAuth();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <Formik
@@ -47,7 +45,6 @@ const LoginForm = () => {
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(true);
                 signin(values).then(res => {
-                    //navigate("/orders")
                     console.log("Successfully logged in");
                 }).catch(err => {
                     console.log(err);
@@ -64,22 +61,22 @@ const LoginForm = () => {
                 <Form>
                     <Stack mt={15} spacing={15}>
                         <MyTextInput
-                            label={"Email"}
+                            label={t('login.emailLabel')}
                             name={"username"}
                             type={"email"}
-                            placeholder={"your@email.com"}
+                            placeholder={t('login.emailPlaceholder')}
                         />
                         <MyTextInput
-                            label={"Password"}
+                            label={t('login.passwordLabel')}
                             name={"password"}
                             type={"password"}
-                            placeholder={"Type your password"}
+                            placeholder={t('login.passwordPlaceholder')}
                         />
 
                         <Button
                             type={"submit"}
                             disabled={!isValid || isSubmitting}>
-                            Login
+                            {t('login.loginButton')}
                         </Button>
                     </Stack>
                 </Form>
@@ -93,6 +90,7 @@ const Login = () => {
 
     const {customer} = useAuth();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (customer) {
@@ -120,30 +118,9 @@ const Login = () => {
                     <Heading fontSize={'2xl'} mb={15}>Sign in to your account</Heading>
                     <LoginForm/>
                     <Link color={"blue.500"} href={"/signup"}>
-                        Dont have an account? Signup now.
+                        {t('login.noAccountText')}
                     </Link>
                 </Stack>
-            </Flex>
-            <Flex
-                flex={1}
-                p={10}
-                flexDirection={"column"}
-                alignItems={"center"}
-                justifyContent={"center"}
-                //TODO: Change the gradient to something usable
-                bgGradient={{sm: 'linear(to-r, blue.600, purple.600)'}}
-            >
-                <Text fontSize={"6xl"} color={'white'} fontWeight={"bold"} mb={5}>
-                    <Link target={"_blank"} href={"url"}>
-                        Lets have a coffee
-                    </Link>
-                </Text>
-                <Image
-                    alt={'Login Image'}
-                    objectFit={'scale-down'}
-                    src={"https://picsum.photos/500/600"
-                    }
-                />
             </Flex>
         </Stack>
     );

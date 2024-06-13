@@ -3,6 +3,7 @@ import {Button, Image, Spinner, Stack, Text, useBreakpointValue} from "@chakra-u
 import React, {useEffect, useState} from "react";
 import {getMenuItems, Sections} from "../../services/MenuService.jsx";
 import MenuList from "./MenuList.jsx";
+import { useTranslation } from 'react-i18next';
 
 const Menu = () => {
 
@@ -11,6 +12,7 @@ const Menu = () => {
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
     const [section, setSection] = useState();
     const [filteredMenuItems, setFilteredMenuItems] = useState([]);
+    const { t } = useTranslation();
 
     useEffect( () => {
         setIsLoading(true);
@@ -30,7 +32,7 @@ const Menu = () => {
         <SidebarWithHeader>
             <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                 <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
-                    MENU PRIMAVERA CAFELAB
+                    {t('menu.title')}
                 </Text>
             </Stack>
             <Stack backgroundColor={"whiteAlpha.50"}  m={8}>
@@ -41,13 +43,13 @@ const Menu = () => {
                             setSection(prevSection => prevSection === Sections.QUENTE ? null : Sections.QUENTE);
                             event.currentTarget.blur();
                         }}>
-                            Bebidas quentes
+                            {t('menu.hotDrinks')}
                         </Button>
                         <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={(event) => {
                             setSection(prevSection => prevSection === Sections.FRIO ? null : Sections.FRIO);
                             event.currentTarget.blur();
                         }}>
-                            Bebidas frias
+                            {t('menu.coldDrinks')}
                         </Button>
                     </Stack>
                 </Stack>

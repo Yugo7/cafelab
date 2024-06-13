@@ -1,19 +1,20 @@
-import {Box, Link, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
-import {FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube} from "react-icons/fa";
-import {FaA} from "react-icons/fa6";
+import {Box, Link, Stack, useBreakpointValue} from "@chakra-ui/react";
+import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
     const paddingValue = useBreakpointValue({ base: "30px", md: "300px" });
+    const { t } = useTranslation();
 
     return (
         <Box className={"footer"} py="6" alignItems={"center"}>
             <Stack direction={['column', 'row']} spacing="4" align="center" justify="space-between">
                 <Stack direction="column" spacing="1">
-                    <Link href="/sobre">Sobre nós</Link>
-                    <Link href="https://maps.app.goo.gl/XVfFfdvZ1USq2XjZ7">Localização</Link>
-                    <Link href="/contacto">Contacte-nos</Link>
-                    <Link href="/servico">Termos de serviço</Link>
-                    <Link href="/reembolso">Politica de reembolso</Link>
+                    <Link href="/sobre">{t('footer.aboutUs')}</Link>
+                    <Link href="https://maps.app.goo.gl/XVfFfdvZ1USq2XjZ7">{t('footer.location')}</Link>
+                    <Link href="/contacto">{t('footer.contactUs')}</Link>
+                    <Link href="/servico">{t('footer.termsOfService')}</Link>
+                    <Link href="/reembolso">{t('footer.refundPolicy')}</Link>
                 </Stack>
 
                 <Stack direction="row" pl={paddingValue} spacing="4">

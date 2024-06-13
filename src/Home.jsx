@@ -15,17 +15,11 @@ const Home = () => {
     const fontHl3 = useBreakpointValue({base: "lg", md: "4xl"});
     const sectWidth = useBreakpointValue({base: "100%", md: "50%"});
     const calendarioSectWidth = useBreakpointValue({base: "90%", md: "35%"});
-    const sectionHeight = useBreakpointValue({base: "720px", md: "700px"});
-    const sectionPadding = useBreakpointValue({base: "150px", md: "200px"});
-    const stickerPadding = useBreakpointValue({base: "20px 20px 20px 20px", md: "30px 30px 30px 30px"});
-    const displayValue = useBreakpointValue({base: "none", md: "grid"});
-    const gridValue = useBreakpointValue({base: "repeat(1, 1fr)", md: "repeat(2, 1fr)"});
 
     const navigate = useNavigate();
 
     const { t } = useTranslation();
     return (
-
         <SidebarWithHeader>
             <Stack>
                 <Stack paddingY="10px" align="center" maxWidth="100%" spacing="30px">
@@ -37,7 +31,7 @@ const Home = () => {
                             <Text fontFamily="Roboto" fontWeight="regular" fontSize={fontHl2} letterSpacing="tighter" color="#FFFFFF"
                                   textAlign="center" mx={4}>
                                 <Box as="span" color="#000000">
-                                    Uma nova loja! O seu novo café!
+                                    {t('home.headlineText')}
                                 </Box>
                             </Text>
                         </Stack>
@@ -55,10 +49,10 @@ const Home = () => {
 
                             <Button leftIcon={<FiPackage/>} onClick={() => navigate('/subscricao')} size='lg' height='48px' width='200px' border='2px'
                                     variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                SUBSCRIÇÃO</Button>
+                                {t('home.subscriptionButton')}</Button>
                             <Button leftIcon={<FiShoppingBag/>} onClick={() => navigate('/boutique')} size='lg' height='48px' width='200px' border='2px'
                                     variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                LOJA
+                                {t('home.storeButton')}
                             </Button>
                         </Stack>
                     </Stack>
@@ -68,7 +62,7 @@ const Home = () => {
                         <Text className={"cafelab"} mt={useBreakpointValue({base: 0, md: 8})} fontWeight="normal" align="center" fontSize={fontSize}
                               lineHeight={"80%"} letterSpacing="-0.08em"
                               color="#000000">
-                            VISITE NOSSO ESPAÇO
+                            {t('home.visit')}
                         </Text>
                         <Stack className={"mainPanels"} mx={4} align="center" backgroundSize={"cover"}  bgPosition={"75% 25%"}
                                backgroundColor="cornsilk" backgroundImage="url('assets/IMG_8054.JPG')">
@@ -77,7 +71,7 @@ const Home = () => {
                                     <Button leftIcon={<FaMapMarkerAlt/>} onClick={() => window.open("https://maps.app.goo.gl/XVfFfdvZ1USq2XjZ7", "_blank")}
                                             size='lg' height='48px' width='200px' border='2px'
                                             variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                        ABRA NO MAPS
+                                        {t('home.openOnMaps')}
                                     </Button>
 
                                     <Stack justify="center" align="center" spacing={stackSpacing} my={4} width="60%" height="50%">
@@ -88,14 +82,14 @@ const Home = () => {
                                                   color="#FFFFFF"
                                                   alignSelf="stretch" textAlign="center" mx={4}>
                                                 <Box as="span" color="#FFFFFF">
-                                                    A PRIMEIRA LOJA DE CAFÉ DE<br/>ESPECIALIDADE DE OEIRAS.
+                                                    {t('home.firstCoffeeShop')}
                                                 </Box>
                                             </Text>
                                         </Box>
                                         <Stack direction={['column', 'row']} justify="center" align="center" spacing={stackSpacing} mt={"20px"} mx={4}>
                                             <Box backgroundColor="rgba(0, 0, 0,0.7)" mx={2} padding={boxPadding} align="center">
                                                 <Text className={"cafelab-inner"} fontSize={"2xl"} letterSpacing="-0.004em" color="#FFFFFF" mx={2}>
-                                                    PET & WORK FRIENDLY
+                                                    {t('home.petWorkFriendly')}
                                                 </Text>
                                             </Box>
                                         </Stack>
@@ -109,19 +103,19 @@ const Home = () => {
                         <Stack className={"mainPanels main-panel"} p={4} backgroundSize={"cover"} height={"800px"}
                                backgroundColor="cornsilk" backgroundImage="url('assets/menu.jpg')" spacing={stackSpacing}>
                             <div className="sticker p-3">
-                                NOVO!
+                                {t('home.newLabel')}
                             </div>
                             <Stack justify="flex-end" w="100%" h={"100%"} paddingBottom={"30px"}>
                                 <Box backgroundColor="rgba(0, 0, 0,0.7)" mx={"5%"} padding={boxPadding}>
-                                    <Text className="cafelab text-center" fontWeight={"bold"} color="#FFFFFF" fontSize={fontHl3}>MENU PRIMAVERA</Text>
+                                    <Text className="cafelab text-center" fontWeight={"bold"} color="#FFFFFF" fontSize={fontHl3}>{t('home.springMenu')}</Text>
                                 </Box>
                                 <Box backgroundColor="rgba(0, 0, 0,0.7)" mt={"25%"} padding={boxPadding}>
-                                    <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={"xl"}>DRINKS REFRESCANTES PARA A PRIMAVERA</Text>
+                                    <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={"xl"}>{t('home.refreshingDrinks')}</Text>
                                 </Box>
                                 <Stack direction={"column"} justify="flex-end" align="center" style={{marginTop: 'auto'}}>
                                     <Button leftIcon={<FiBook/>} onClick={() => navigate('/menu')} size='lg' height='48px' width='200px' border='2px'
                                             variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                        MENU
+                                        {t('home.menuButton')}
                                     </Button>
                                 </Stack>
                             </Stack>
@@ -136,15 +130,15 @@ const Home = () => {
                        backgroundColor="cornsilk" spacing={stackSpacing} minH={"800px"} direction={["column", "column"]} justify="space-between" position="relative">
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({base: 6, md: 8})}>
                         <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>
-                            <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={fontHl}>CALENDÁRIO CULTURAL</Text>
+                            <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={fontHl}>{t('home.culturalCalendar')}</Text>
                         </Box>
                         <Stack justify="flex-end" align="center" width={useBreakpointValue({base:"90%", md: "100%"})} mt={8} position={useBreakpointValue({base:"absolute", md:""})} bottom={useBreakpointValue({base:"2", md:""})}>
                             <Box backgroundColor="rgba(0, 0, 0,0.7)" width={"100%"} padding={boxPadding}>
-                                <Text className="cafelab-inner text-center"  color="#FFFFFF" fontSize={"3xl"}>DESCUBRA NOSSOS PROJETOS E EVENTOS</Text>
+                                <Text className="cafelab-inner text-center"  color="#FFFFFF" fontSize={"3xl"}>{t('home.discoverProjects')}</Text>
                             </Box>
                             <Button leftIcon={<FiCalendar/>} onClick={() => navigate('/agenda')} size='lg' height='48px' width='200px' border='2px'
                                     variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                AGENDA
+                                {t('home.agendaButton')}
                             </Button>
                         </Stack>
                     </Stack>

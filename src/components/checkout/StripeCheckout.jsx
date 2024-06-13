@@ -7,13 +7,14 @@ import {CardTitle,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {CartItem} from "../cart/CartItem.jsx";
 import {errorNotification} from "../../services/notification.js";
+import {useTranslation} from "react-i18next";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
 )
 
 export function CheckoutForm({clientSecret}) {
-
+    const { t } = useTranslation();
     const {cartItems, products} = useShoppingCart()
     const total = cartItems.reduce((total, cartItem) => {
         const item = products.find(i => i.id === cartItem.id)
@@ -26,13 +27,13 @@ export function CheckoutForm({clientSecret}) {
 
                 <Stack m={6} maxHeight={"50%"} gap={3}>
                     <Text className=" fw-bold fs-5" align={"center"} mb={4}>
-                        Seu pedido
+                        {t('stripeCheckout.yourOrder')}
                     </Text>
                     {cartItems.map(item => (
                         <CartItem key={item.id} {...item} />
                     ))}
                     <Text className="ms-auto fw-bold fs-5">
-                        Total{" "}
+                        {t('stripeCheckout.total')}{" "}
                         {formatCurrency(
                             cartItems.reduce((total, cartItem) => {
                                 const item = products.find(i => i.id === cartItem.id)
@@ -43,10 +44,10 @@ export function CheckoutForm({clientSecret}) {
                 </Stack>
                 { stripePromise && clientSecret && (
 
-                <Elements options={{clientSecret}} stripe={stripePromise}>
-                    <Form clientSecret={clientSecret} priceInCents={Math.round(total * 100)}/>
-                </Elements>
-                    )}
+                    <Elements options={{clientSecret}} stripe={stripePromise}>
+                        <Form clientSecret={clientSecret} priceInCents={Math.round(total * 100)}/>
+                    </Elements>
+                )}
             </Stack>
         </Stack>
     )
@@ -58,6 +59,8 @@ function Form({priceInCents}) {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [email, setEmail] = useState("email")
+    const { t } = useTranslation();
+
     async function handleSubmit(e) {
         console.log("handleSubmit")
         e.preventDefault()
@@ -99,7 +102,7 @@ function Form({priceInCents}) {
         <form onSubmit={handleSubmit}>
             <Card>
                 <CardHeader>
-                    <CardTitle>Checkout</CardTitle>
+                    <CardTitle>{t('stripeCheckout.checkout')}</CardTitle>
                 </CardHeader>
                 <CardBody>
                     <AddressElement options={{mode: 'shipping'}}/>
@@ -119,8 +122,9 @@ function Form({priceInCents}) {
                     >
                         {
                             isLoading
-                                ? "Purchasing..."
-                                : `Purchase - ${formatCurrency(priceInCents / 100)}`}
+                                ? t('stripeCheckout.purchasing')
+                                : `${t('stripeCheckout.purchase')} - ${formatCurrency(priceInCents / 100)}`
+                        }
                     </Button>
                 </CardFooter>
             </Card>

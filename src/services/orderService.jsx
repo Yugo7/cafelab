@@ -12,6 +12,17 @@ const OrderService = {
             throw error;
         }
     },
+    getOrdersByUserId: async (userId) => {
+        try {
+            console.log('userId:', userId);
+            const response = await axios.get(`${BASE_URL}orders/${userId}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching all events:', error);
+            throw error;
+        }
+    },
+
 
     addOrder: async (orderData) => {
         try {

@@ -17,14 +17,16 @@ import {
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {quizData} from "./questions.jsx";
+import {quizDataEn} from "./questions-en.js";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
 import Resultado from "./Resultado.jsx";
+import {useTranslation} from "react-i18next";
+import i18n from "../../lang/i18n.js";
 
 function ModalQuiz() {
 
     const {isOpen, onOpen, onClose} = useDisclosure();
     const navigate = useNavigate();
-    const modalSize = useBreakpointValue({base: "full", md: "90vw"});
     const {createEuMeExpresso, emptyBox, addCoffee} = useSubscription()
 
     useEffect(() => {
@@ -39,7 +41,7 @@ function ModalQuiz() {
     const [results, setResults] = useState([]) // New state variable for results
 
 
-    const {questions} = quizData
+    const {questions} = i18n.language === 'en'? quizDataEn : quizData
     const {question, choices, correctAnswer} = questions[activeQuestion]
 
     const onClickNext = () => {
@@ -55,7 +57,7 @@ function ModalQuiz() {
 
     const finishSubscription = () => {
         emptyBox()
-        if(results[1] === 0){
+        if(results[1] !== undefined && results[1] === 0){
             if (results[2]  in [0, 1]) {
                 addCoffee("Nicarágua")
             } else {
@@ -72,7 +74,7 @@ function ModalQuiz() {
     }
 
     const addLeadingZero = (number) => (number > 9 ? number : `0${number}`)
-
+    const { t } = useTranslation();
 
     return (
         <Modal isCentered closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} size={"2xl"}>
@@ -84,21 +86,21 @@ function ModalQuiz() {
             {firstSlide ? (
                 <ModalContent>
                     <ModalHeader>
-                        <Box as='span'>Novo por aqui?</Box>
+                        <Box as='span'>{t('modalQuiz.newHere')}</Box>
                     </ModalHeader>
                     <ModalBody>
                         <Stack>
                             <Box as='span'>
-                            Para te ajudar temos um quiz para descobrir o melhor café para você! O que acha?
+                                {t('modalQuiz.helpQuiz')}
                         </Box>
                         </Stack>
                     </ModalBody>
                     <ModalFooter>
                         <Button mr={3} onClick={onClose}>
-                            Agora não...
+                            {t('modalQuiz.notNow')}
                         </Button>
                         <Button colorScheme='blue' onClick={() => setFirstSlide(false)}>
-                            Vamos lá!
+                            {t('modalQuiz.letsGo')}
                         </Button>
                     </ModalFooter>
                 </ModalContent>
@@ -125,14 +127,14 @@ function ModalQuiz() {
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
-                            {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+                            {activeQuestion === questions.length - 1 ? t('modalQuiz.finish') : t('modalQuiz.next')}
                         </Button>
                     </ModalFooter>
                 </ModalContent>
             ) : (
                 <ModalContent>
                     <ModalHeader>
-                        <Box as='span' className="active-question-no">RESULTADO</Box>
+                        <Box as='span' className="active-question-no">{t('modalQuiz.result')}</Box>
                     </ModalHeader>
                     <ModalBody>
                         <Resultado
@@ -143,10 +145,10 @@ function ModalQuiz() {
                     </ModalBody>
                     <ModalFooter>
                         <Button mr={3} onClick={onClose}>
-                            Prefiro escolher...
+                            {t('modalQuiz.ratherChoose')}
                         </Button>
                         <Button colorScheme='blue' onClick={() => finishSubscription()}>
-                            Vamos lá!
+                            {t('modalQuiz.letsGo')}
                         </Button>
                     </ModalFooter>
                 </ModalContent>

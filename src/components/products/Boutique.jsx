@@ -6,6 +6,7 @@ import ProductList from "./ProductList.jsx";
 import {getProductsBySection, Sections} from "../../services/productsService.jsx";
 import {FiPackage, FiShoppingBag} from "react-icons/fi";
 import * as url from "url";
+import { useTranslation } from 'react-i18next';
 
 export default function Boutique() {
 
@@ -16,6 +17,7 @@ export default function Boutique() {
     const [section, setSection] = useState();
     const spacingTitle = useBreakpointValue({base: "70px", md: "100px"});
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
+    const { t } = useTranslation();
 
     useEffect(() => {
         setIsLoading(true);
@@ -34,11 +36,11 @@ export default function Boutique() {
         <SidebarWithHeader>
             <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                 <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
-                    BOUTIQUE CAFELAB
+                    {t('boutique.title')}
                 </Text>
                 <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize} letterSpacing="tighter" color="black"
                       textAlign="center" mx={4}>
-                    Além dos cafés especiais e acessórios, trazemos agora uma coleção exclusiva de Ecobags, Aventais, Chávenas e muito mais!
+                    {t('boutique.description')}
                 </Text>
             </Stack>
 
@@ -49,16 +51,6 @@ export default function Boutique() {
                     src='assets/capa_boutique.jpeg'
                     alt='Chakra UI'
                 />
-                {/*<Stack align={"center"} maxWidth="100%" mb={10} ml={useBreakpointValue({md: 20})}>*/}
-                {/*    <Stack alignSelf="stretch" direction={['column', 'row']}  justify="center" align="center" spacing="12px" >*/}
-                {/*        <Text className="font-headline" align="center" fontWeight="extrabold"*/}
-                {/*              fontSize={fontTitleSize} letterSpacing="-0.08em"*/}
-                {/*              style={{ WebkitTextStroke: "3px white" }}*/}
-                {/*              color="#000000">*/}
-                {/*            CAFELAB BOUTIQUE*/}
-                {/*        </Text>*/}
-                {/*    </Stack>*/}
-                {/*</Stack>*/}
             </Stack>
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
@@ -68,13 +60,13 @@ export default function Boutique() {
                             setSection(prevSection => prevSection === Sections.CAFE ? null : Sections.CAFE);
                             event.currentTarget.blur();
                         }}>
-                            Café
+                            {t('boutique.coffeeButton')}
                         </Button>
                         <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={(event) => {
                             setSection(prevSection => prevSection === Sections.BOUTIQUE ? null : Sections.BOUTIQUE);
                             event.currentTarget.blur();
                         }}>
-                            Boutique
+                            {t('boutique.boutiqueButton')}
                         </Button>
                     </Stack>
                 </Stack>

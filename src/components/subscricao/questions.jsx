@@ -1,4 +1,6 @@
+
 export const quizData = {
+
     topic: 'Subscrição de Café',
     totalQuestions: 4,
     questions: [

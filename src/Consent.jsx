@@ -1,5 +1,6 @@
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import {Box, Stack, Text} from "@chakra-ui/react";
+import {Trans, useTranslation} from "react-i18next";
 
 const text = `
 Cafelab Política de privacidade
@@ -16,7 +17,7 @@ Quando você visita o Site, coletamos automaticamente determinadas informações
 
 - “Arquivos de log” rastreiam ações que ocorrem no Site e coletam dados, incluindo seu endereço IP, tipo de navegador, provedor de serviços de Internet, páginas de referência/saída e registros de data/hora.
 - “Beacons da web”, “tags” e “pixels” são arquivos eletrônicos usados para registrar informações sobre como você navega no Site.
-    [[INSIRA DESCRIÇÕES DE OUTROS TIPOS DE TECNOLOGIAS DE RASTREAMENTO UTILIZADAS]]
+
 Além disso, quando você faz uma compra ou tenta fazer uma compra no Site, nós coletamos algumas informações suas, incluindo seu nome, endereço de faturamento, endereço de entrega, informações de pagamento (incluindo números de cartão de crédito [[INSERIR QUALQUER OUTRO TIPO DE PAGAMENTO ACEITO]]), endereço de e-mail e número de telefone.  Nós chamamos essas informações de “Informações do pedido”.
 
 Quando falamos sobre “Informações pessoais” nesta Política de privacidade, estamos falando sobre Informações do dispositivo e Informações do pedido.
@@ -48,22 +49,20 @@ Para saber mais sobre nossas práticas de privacidade, caso tenha dúvidas ou se
 
     Av. Moçambique 14 A, Oeiras, PT-11, 2780-027, Portugal
 `
-
 const Consent = () => {
+    const { t } = useTranslation();
 
     return (
-
         <SidebarWithHeader>
             <Stack m={4} justify="flex-start" align="center" spacing="24px">
-                <Text className="headline mt-5" fontSize={"3xl"}>Termo de Consentimento de Uso de Dados</Text>
+                <Text className="headline mt-5" fontSize={"3xl"}>{t('consent.title')}</Text>
             </Stack>
             <Stack minHeight={"60vh"} justify={"center"} m={4}  pb={8}  align="center" spacing="24px">
                 <Box width='80%' as="pre" className={"cafelab-inner"} style={{ whiteSpace: "pre-wrap" }}>
-                    {text}
+                    <Trans>{t('consent.content')}</Trans>
                 </Box>
             </Stack>
         </SidebarWithHeader>
     );
 }
-
 export default Consent;
