@@ -59,7 +59,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/menu",
-        element: <Menu/>
+        element:  <ProtectedRoute><Menu/> </ProtectedRoute>
     },
     {
         path: "/subscricao",

@@ -113,7 +113,7 @@ const Home = () => {
                                     <Text className="cafelab-inner text-center" color="#FFFFFF" fontSize={"xl"}>{t('home.refreshingDrinks')}</Text>
                                 </Box>
                                 <Stack direction={"column"} justify="flex-end" align="center" style={{marginTop: 'auto'}}>
-                                    <Button leftIcon={<FiBook/>} onClick={() => navigate('/menu')} size='lg' height='48px' width='200px' border='2px'
+                                    <Button hidden={true} leftIcon={<FiBook/>} onClick={() => navigate('/menu')} size='lg' height='48px' width='200px' border='2px'
                                             variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
                                         {t('home.menuButton')}
                                     </Button>
