@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Button, Card, CardBody, CardFooter, Divider, Image, Spinner, Stack, Text, useBreakpointValue, Wrap, WrapItem} from "@chakra-ui/react";
 import {ButtonGroup} from "react-bootstrap";
 import {MdAddShoppingCart} from "react-icons/md";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 import {useNavigate} from "react-router-dom";
+import ProductModal from "./ProductDetailsModal.jsx";
 
 const ProductList = ({ products }) => {
     const fontHl3 = useBreakpointValue({base: "lg", md: "2xl"});
     const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState(null);
+    const handleCardClick = (product) => {
+        setCurrentProduct(product);
+        setIsModalOpen(true);
+    };
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
     const navigate = useNavigate();
 
     if (products.length <= 0) {
@@ -18,6 +28,8 @@ const ProductList = ({ products }) => {
         )
     }
 
+
+
     return (
         <Wrap justify={"center"} spacing={"30px"} m={5}>
             {
@@ -25,7 +37,7 @@ const ProductList = ({ products }) => {
                     const quantityInCart = getItemQuantity(product.id);
                         return (
                             <WrapItem>
-                                <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
+                                <Card onClick={() => handleCardClick(product)} width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
                                     <CardBody>
                                         <Stack mt='6' spacing='8'>
                                             <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product.nome.toUpperCase()}</Text>
@@ -72,6 +84,9 @@ const ProductList = ({ products }) => {
                                         </ButtonGroup>
                                     </CardFooter>
                                 </Card>
+                                {currentProduct && (
+                                    <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={currentProduct} />
+                                )}
                             </WrapItem>
                         )
                     }

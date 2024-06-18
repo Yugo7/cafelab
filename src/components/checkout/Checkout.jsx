@@ -20,6 +20,7 @@ import {useAuth} from "../context/AuthContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
+const shipping = 5;
 
 export default function Checkout() {
     const [clientSecret, setClientSecret] = useState(null);
@@ -57,10 +58,13 @@ export default function Checkout() {
 
     useEffect( () => {
         async function createPaymentIntent() {
-            let total = cartItems.reduce((total, cartItem) => {
+
+            let cartTotal = cartItems.reduce((total, cartItem) => {
                 const item = products.find(i => i.id === cartItem.id)
                 return total + (item?.preco || 0) * cartItem.quantity
             }, 0);
+
+            let total = cartTotal + shipping;
 
             const order = {
                 items: cartItems,

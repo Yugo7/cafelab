@@ -1,7 +1,7 @@
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 import {AddressElement, Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe,} from "@stripe/react-stripe-js"
 import {loadStripe} from "@stripe/stripe-js"
-import {useState} from "react"
+import React, {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
 import {CardTitle,} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
@@ -19,7 +19,7 @@ export function CheckoutForm({clientSecret}) {
     const total = cartItems.reduce((total, cartItem) => {
         const item = products.find(i => i.id === cartItem.id)
         return total + (item?.preco || 0) * cartItem.quantity
-    }, 0)
+    }, 0) + 5
 
     return (
         <Stack className="max-w-5xl w-full mx-auto space-y-8">
@@ -32,17 +32,16 @@ export function CheckoutForm({clientSecret}) {
                     {cartItems.map(item => (
                         <CartItem key={item.id} {...item} />
                     ))}
+                    <Text className="ms-auto fs-10">
+                        {t('shoppingCart.shipping')}{" "}
+                        {formatCurrency(5)}
+                    </Text>
                     <Text className="ms-auto fw-bold fs-5">
                         {t('stripeCheckout.total')}{" "}
-                        {formatCurrency(
-                            cartItems.reduce((total, cartItem) => {
-                                const item = products.find(i => i.id === cartItem.id)
-                                return total + (item?.preco || 0) * cartItem.quantity
-                            }, 0)
-                        )}
+                        {formatCurrency(total)}
                     </Text>
                 </Stack>
-                { stripePromise && clientSecret && (
+                {stripePromise && clientSecret && (
 
                     <Elements options={{clientSecret}} stripe={stripePromise}>
                         <Form clientSecret={clientSecret} priceInCents={Math.round(total * 100)}/>

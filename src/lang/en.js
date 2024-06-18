@@ -105,7 +105,8 @@ export default {
     title: "Cart",
     total: "Total",
     emptyCart: "Empty Cart",
-    checkout: "Checkout"
+    checkout: "Checkout",
+    shipping: "Shipping",
   },
   stripeCheckout: {
     yourOrder: "Your Order",

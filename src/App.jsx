@@ -33,6 +33,7 @@ import i18n from "./lang/i18n";
 import Service from "./Service.jsx";
 import ConsentBanner from "./components/shared/ConsentBanner.jsx";
 import Consent from "./Consent.jsx";
+import {Analytics} from "@vercel/analytics/react"
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/menu",
-        element:  <ProtectedRoute><Menu/> </ProtectedRoute>
+        element: <ProtectedRoute><Menu/> </ProtectedRoute>
     },
     {
         path: "/subscricao",
@@ -131,30 +132,33 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <I18nextProvider i18n={i18n}>
-        <ChakraProvider>
-            <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}>
-                <BrowserRouter>
-                    <InstallPrompt />
-                    <AuthProvider>
-                        <Elements stripe={stripePromise}>
-                            <ShoppingCartProvider>
-                                <SubscriptionProvider>
-                                    <Routes>
-                                        {router.routes.map((route, index) => (
-                                            <Route key={index} path={route.path} element={route.element}/>
-                                        ))}
-                                    </Routes>
-                                </SubscriptionProvider>
-                            </ShoppingCartProvider>
-                        </Elements>
-                    </AuthProvider>
-                    <ToastContainer/>
-                    <ConsentBanner />
-                </BrowserRouter>
-            </ErrorBoundary>
-        </ChakraProvider>
-        </I18nextProvider>
+        <>
+            <I18nextProvider i18n={i18n}>
+                <ChakraProvider>
+                    <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}>
+                        <BrowserRouter>
+                            <InstallPrompt/>
+                            <AuthProvider>
+                                <Elements stripe={stripePromise}>
+                                    <ShoppingCartProvider>
+                                        <SubscriptionProvider>
+                                            <Routes>
+                                                {router.routes.map((route, index) => (
+                                                    <Route key={index} path={route.path} element={route.element}/>
+                                                ))}
+                                            </Routes>
+                                        </SubscriptionProvider>
+                                    </ShoppingCartProvider>
+                                </Elements>
+                            </AuthProvider>
+                            <ToastContainer/>
+                            <ConsentBanner/>
+                        </BrowserRouter>
+                    </ErrorBoundary>
+                </ChakraProvider>
+            </I18nextProvider>
+            <Analytics/>
+        </>
     )
 }
 

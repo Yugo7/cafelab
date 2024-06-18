@@ -14,7 +14,6 @@ import {
     useDisclosure
 } from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {quizData} from "./questions.jsx";
 import {quizDataEn} from "./questions-en.js";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
