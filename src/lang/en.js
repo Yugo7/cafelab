@@ -1,4 +1,13 @@
 export default {
+  sideBar: {
+    home: "Home",
+    subscription: "Subscription",
+    boutique: "Boutique",
+    menu: "Spring Menu",
+    agenda: "Schedule",
+    login: "Login",
+    signOut: "Sign out",
+  },
   home: {
     headlineText: "A new store! Your new coffee!",
     welcome: "Welcome to our website!",

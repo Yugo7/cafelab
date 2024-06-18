@@ -106,7 +106,7 @@ const router = createBrowserRouter([
         element: <ErrorPage/>
     },
     {
-        path: "/contactos",
+        path: "/contacto",
         element: <Contacts/>
     },
     {

@@ -20,9 +20,7 @@ import {customerProfilePictureUrl, deleteCustomer} from "../../services/client.j
 import {errorNotification, successNotification} from "../../services/notification.js";
 import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
 
-export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
-    const randomUserGender = gender === "MALE" ? "men" : "women";
-
+export default function CardWithImage({id, name, email, age, gender, fetchCustomers}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = useRef()
 
@@ -111,7 +109,6 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                                         </Button>
                                         <Button colorScheme='red' onClick={() => {
                                             deleteCustomer(id).then(res => {
-                                                console.log(res)
                                                 successNotification(
                                                     'Customer deleted',
                                                     `${name} was successfully deleted`
@@ -119,7 +116,6 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                                                 fetchCustomers();
 
                                             }).catch(err => {
-                                                console.log(err);
                                                 errorNotification(
                                                     err.code,
                                                     err.response.data.message

@@ -29,13 +29,11 @@ export function SubscriptionProvider({children}) {
     )
 
     function emptyBox() {
-        console.log("empty box")
         setCoffee([]);
     }
 
     function addCoffee(name) {
         if (boxQuantity >= 3) {
-            console.log("teste")
             toast({
                 title: 'Limie máximo.',
                 description: "Já há 3 cafés na sua seleção.",
@@ -105,8 +103,6 @@ export function SubscriptionProvider({children}) {
     }
 
     function createFeNoCafelab(variety, payment){
-
-        console.log("payment: " + payment)
         const pId = getPaymentIdFeNoCafe(payment);
 
         const subscricao = {
@@ -119,11 +115,11 @@ export function SubscriptionProvider({children}) {
             descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
             variante: variety
         };
+
         StripeService.createCheckoutSession(subscricao)
     }
 
     function createEuMeExpresso(variante, payment){
-
         const pId = getPaymentIdMeExpresso(payment);
         const subscricao = {
             id: 998,

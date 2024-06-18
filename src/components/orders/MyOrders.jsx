@@ -3,9 +3,7 @@ import {useAuth} from "../context/AuthContext.jsx";
 import {useNavigate} from "react-router-dom";
 import {Card, CardHeader, Heading, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr} from "@chakra-ui/react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
-import {CardTitle} from "react-bootstrap";
 import OrderService from "../../services/orderService.jsx";
-import {getProductsById} from "../../services/productsService.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 
@@ -22,12 +20,10 @@ const Orders = () => {
             } else {
                 try {
                     const data = await OrderService.getOrdersByUserId(customer.id);
-                    console.log(data)
                     const filteredData = data.filter(order =>
                         Array.isArray(order.products) && order.products.every(product => product.id < 900)
                     );
                     setOrders(filteredData);
-                    console.log(data)
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }

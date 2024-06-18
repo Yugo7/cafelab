@@ -4,17 +4,11 @@ import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
 const supabase = SupabaseClientUtil.supabaseClient
 
 export const signin = async (usernameAndPassword) => {
-    console.log(usernameAndPassword)
     try {
         return await supabase.auth.signInWithPassword({
             email: usernameAndPassword.username,
             password: usernameAndPassword.password,
         })
-
-        //await axios.post(
-        //    `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`,
-        //    usernameAndPassword
-        //)
     } catch (e) {
         throw e;
     }
@@ -36,17 +30,6 @@ export const getCustomers = async () => {
         throw e;
     }
 }
-
-/*export const saveCustomer = async (customer) => {
-    try {
-        return await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers`,
-            customer
-        )
-    } catch (e) {
-        throw e;
-    }
-}*/
 
 export const saveCustomer = async (customer, stripeData) => {
     console.log("save customer: " + customer)
@@ -92,17 +75,6 @@ export const deleteCustomer = async (id) => {
         throw e;
     }
 }
-
-/*export const signin = async (usernameAndPassword) => {
-    try {
-        return await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`,
-            usernameAndPassword
-        )
-    } catch (e) {
-        throw e;
-    }
-}*/
 
 export const uploadCustomerProfilePicture = async (id, formData) => {
     try {

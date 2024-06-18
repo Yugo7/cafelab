@@ -14,7 +14,6 @@ const OrderService = {
     },
     getOrdersByUserId: async (userId) => {
         try {
-            console.log('userId:', userId);
             const response = await axios.get(`${BASE_URL}orders/${userId}`);
             return response.data;
         } catch (error) {

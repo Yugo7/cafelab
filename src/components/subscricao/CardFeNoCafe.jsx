@@ -28,15 +28,16 @@ import {useTranslation} from "react-i18next";
 function CardFeNoCafe() {
 
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const [variety, setVariety] = useState('');
-    const [payment, setPayment] = useState('3');
     const toast = useToast();
     const {createFeNoCafelab} = useSubscription();
     const {t} = useTranslation();
 
+    const [variety, setVariety] = useState('');
     const handleChangeVariety = (event) => {
         setVariety(event.target.value);
     };
+
+    const [payment, setPayment] = useState('3');
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
     };

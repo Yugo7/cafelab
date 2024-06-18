@@ -95,14 +95,12 @@ const UpdateCustomerForm = ({fetchCustomers, initialValues, customerId}) => {
                     setSubmitting(true);
                     updateCustomer(customerId, updatedCustomer)
                         .then(res => {
-                            console.log(res);
                             successNotification(
                                 "Customer updated",
                                 `${updatedCustomer.name} was successfully updated`
                             )
                             fetchCustomers();
                         }).catch(err => {
-                        console.log(err);
                         errorNotification(
                             err.code,
                             err.response.data.message

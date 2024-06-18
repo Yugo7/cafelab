@@ -85,10 +85,6 @@ const Agenda = () => {
             </SidebarWithHeader>
         )
     }
-    console.log(events)
-
-
-    console.log(pastEvents)
     return (
         <SidebarWithHeader>
             <Stack backgroundColor={"whiteAlpha.50"}>

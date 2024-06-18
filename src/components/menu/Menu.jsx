@@ -1,5 +1,5 @@
 import SidebarWithHeader from "../shared/SideBar.jsx";
-import {Button, Image, Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import {Button, Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React, {useEffect, useState} from "react";
 import {getMenuItems, Sections} from "../../services/MenuService.jsx";
 import MenuList from "./MenuList.jsx";
@@ -23,7 +23,6 @@ const Menu = () => {
                 setIsLoading(false);
             })
             .catch(error => {
-                console.error(error);
                 setIsLoading(false);
             });
     }, [section]);

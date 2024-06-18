@@ -9,7 +9,6 @@ const Home = () => {
     const stackSpacing = useBreakpointValue({base: "20px", md: "30px"});
     const boxPadding = useBreakpointValue({base: "5px", md: "10px"});
     const fontSize = useBreakpointValue({base: "6xl", md: "100px"});
-    const fontSizeMenu = useBreakpointValue({base: "6xl", md: "62px"});
     const fontHl = useBreakpointValue({base: "5xl", md: "6xl"});
     const fontHl2 = useBreakpointValue({base: "xl", md: "3xl"});
     const fontHl3 = useBreakpointValue({base: "lg", md: "4xl"});
@@ -43,7 +42,7 @@ const Home = () => {
                     <Stack align={"center"} spacing={stackSpacing} width="759px" maxWidth="100%" mb={10}>
 
                         <div className="sticker-home">
-                            NOVIDADE!
+                            {t('home.newsLabel')}
                         </div>
                         <Stack alignSelf="stretch" direction={['column', 'row']} justify="center" align="center" spacing="12px">
 

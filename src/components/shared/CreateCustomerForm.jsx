@@ -27,22 +27,6 @@ const MyTextInput = ({label, ...props}) => {
     );
 };
 
-const MySelect = ({label, ...props}) => {
-    const [field, meta] = useField(props);
-    return (
-        <Box>
-            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
-            <Select {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <Alert className="error" status={"error"} mt={2}>
-                    <AlertIcon/>
-                    {meta.error}
-                </Alert>
-            ) : null}
-        </Box>
-    );
-};
-
 function SignupSuccess(props) {
     return null;
 }
@@ -82,14 +66,11 @@ const CreateCustomerForm = ({ onSuccess }) => {
                 })}
                 onSubmit={async (customer, {setSubmitting}) => {
                     setSubmitting(true);
-                    console.log(customer);
                     const stripeData = await StripeService.createCustomer(customer.email, customer.name)
                     saveCustomer(customer, stripeData)
                         .then(res => {
-                            console.log(res);
                             setIsSignupSuccessOpen(true);
                         }).catch(err => {
-                        console.log(err);
                         errorNotification(
                             err.code,
                             err.response.data.message

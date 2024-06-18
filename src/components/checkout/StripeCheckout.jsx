@@ -62,7 +62,6 @@ function Form({priceInCents}) {
     const { t } = useTranslation();
 
     async function handleSubmit(e) {
-        console.log("handleSubmit")
         e.preventDefault()
 
         if (stripe == null || elements == null || email == null) return

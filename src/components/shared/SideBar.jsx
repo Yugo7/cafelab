@@ -32,13 +32,7 @@ import {useAuth} from "../context/AuthContext.jsx";
 import {TbPaperBag} from "react-icons/tb";
 import {useTranslation} from "react-i18next";
 
-const LinkItems = [
-    {name: 'Home', route: '/', icon: FiHome},
-    {name: 'Subscrição', route: '/subscricao', icon: FiPackage},
-    {name: 'Boutique', route: '/boutique', icon: TbPaperBag},
-    {name: 'Menu Primavera', route: '/menu', icon: FiCoffee},
-    {name: 'Agenda', route: '/agenda', icon: FiCalendar},
-];
+
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -68,6 +62,15 @@ export default function SidebarWithHeader({children}) {
 const SidebarContent = ({onClose}) => {
     const navigate = useNavigate();
     const {customer, logOut} = useAuth();
+    const {t} = useTranslation();
+
+    const LinkItems = [
+        {name: t('sideBar.home'), route: '/', icon: FiHome},
+        {name: t('sideBar.subscription'), route: '/subscricao', icon: FiPackage},
+        {name: t('sideBar.boutique'), route: '/boutique', icon: TbPaperBag},
+        {name: t('sideBar.menu'), route: '/menu', icon: FiCoffee},
+        {name: t('sideBar.agenda'), route: '/agenda', icon: FiCalendar},
+    ];
 
     return (
         <>
@@ -102,18 +105,19 @@ const SidebarContent = ({onClose}) => {
                             </HStack>
                             <Spacer/> {/* Add Spacer here */}
                             <HStack onClick={logOut}>
-                                <Text>Sign out</Text>
+                                <Text>
+                                    {t('sideBar.signOut')}</Text>
                                 <IconButton
                                     icon={<FaSignOutAlt/>}
                                     aria-label={"logout"}>
-                                    Sign out
+                                    alt={"logout"}
                                 </IconButton>
                             </HStack>
                         </HStack>
                         :
                         <Stack direction={"horizontal"} alignSelf={"center"} mb={8}
                                onClick={() => navigate('/login')}>
-                            Login
+                            {t('sideBar.login')}
                             <IconButton
                                 size="lg"
                                 variant="ghost"

@@ -66,7 +66,6 @@ const ContactUsForm = ({onSuccess}) => {
                     axios.post(`${BASE_URL}contacts/`, values)
                         .then(response => {
                             // Handle success
-                            console.log(response);
                             setSubmitting(false);
                             if (onSuccess) {
                                 onSuccess();
@@ -80,16 +79,11 @@ const ContactUsForm = ({onSuccess}) => {
                             });
                         })
                         .catch(error => {
-                            // Handle error
-                            console.error(error);
                             setSubmitting(false);
                         });
                 }}
             >
                 {({isValid, isSubmitting, errors}) => {
-                    console.log('isValid:', isValid);
-                    console.log('isSubmitting:', isSubmitting);
-                    console.log('errors:', errors);
                     return (
                         <Form>
                             <Stack isInline={true} mb={4}>

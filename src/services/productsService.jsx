@@ -10,7 +10,6 @@ export const getProducts = async () => {
         if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
             return JSON.parse(cachedData);
         } else {
-            console.log('qwe');
             const {data} = await axios.get(`${BASE_URL}products/`);
             localStorage.setItem('products', JSON.stringify(data));
             localStorage.setItem('productsTime', new Date().getTime());

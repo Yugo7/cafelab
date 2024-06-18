@@ -4,11 +4,9 @@ import {useRef} from 'react'
 import {FiInstagram} from "react-icons/fi";
 import {useTranslation} from "react-i18next";
 
-export default function PastEventCard({id, date, name, description, local, imageFinish, imagePromotion, instagramUrl}) {
-    const {isOpen, onOpen, onClose} = useDisclosure()
-    const cancelRef = useRef()
+export default function PastEventCard({date, name, description, local, imageFinish, instagramUrl}) {
+    const {onOpen} = useDisclosure()
     const { t } = useTranslation();
-    console.log(id, date, name, description, local, imageFinish, imagePromotion, instagramUrl)
     return (
         <Center py={6}>
             <Box

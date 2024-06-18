@@ -4,18 +4,14 @@ import OurPicks from "./OurPicks.jsx";
 import {Button, Image, Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import ProductList from "./ProductList.jsx";
 import {getProductsBySection, Sections} from "../../services/productsService.jsx";
-import {FiPackage, FiShoppingBag} from "react-icons/fi";
-import * as url from "url";
 import { useTranslation } from 'react-i18next';
 
 export default function Boutique() {
 
-    const fontTitleSize = useBreakpointValue({base: "60px", md: "62px"});
     const fontHeadlineSize = useBreakpointValue({base: "lg", md: "2xl"});
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState([]);
     const [section, setSection] = useState();
-    const spacingTitle = useBreakpointValue({base: "70px", md: "100px"});
     const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
     const { t } = useTranslation();
 

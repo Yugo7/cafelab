@@ -79,7 +79,6 @@ export function ShoppingCartProvider({children}) {
                 return currItems;
             }
         })
-        console.log(subscription);
     }
 
     function decreaseCartQuantity(id) {

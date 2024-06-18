@@ -1,6 +1,13 @@
-import {useTranslation} from "react-i18next";
-
 export default {
+  sideBar: {
+    home: "Início",
+    subscription: "Subscrição",
+    boutique: "Boutique",
+    menu: "Menu Primavera",
+    agenda: "Agenda",
+    login: "Entrar",
+    signOut: "Sair",
+  },
   home: {
     headlineText: "Uma nova loja! O seu novo café!",
     welcome: "Bem-vindo ao nosso site!",

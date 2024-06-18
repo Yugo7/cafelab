@@ -111,12 +111,9 @@ function Form({priceInCents}) {
             const data = response.data;
 
             if (data.error) {
-                console.log("Error creating subscription: ", data.error);
                 setErrorMessage(data.error.message);
                 return;
             }
-
-            console.log("Subscription created: ", data.subscription);
         } catch (error) {
             console.log("Error: ", error);
         }

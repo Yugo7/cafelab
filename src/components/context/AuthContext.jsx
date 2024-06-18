@@ -12,7 +12,6 @@ const AuthProvider = ({children}) => {
         let token = localStorage.getItem("access_token");
         if (token) {
             token = jwtDecode(token);
-            console.log(token);
             setCustomer({
                 username: token.email,
                 name: token.user_metadata.name,
@@ -20,7 +19,6 @@ const AuthProvider = ({children}) => {
                 id: token.sub,
                 stripeId: token.user_metadata.stripeId
             })
-            console.log(customer);
         }
     }
     useEffect(() => {
@@ -39,7 +37,6 @@ const AuthProvider = ({children}) => {
                 localStorage.setItem("access_token", jwtToken);
 
                 const decodedToken = jwtDecode(jwtToken);
-                console.log(decodedToken);
 
                 setCustomer({
                     username: decodedToken.email,

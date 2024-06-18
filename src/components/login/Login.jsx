@@ -25,7 +25,6 @@ const MyTextInput = ({label, ...props}) => {
 
 const LoginForm = () => {
     const {signin} = useAuth();
-    const navigate = useNavigate();
     const { t } = useTranslation();
 
     return (
@@ -47,7 +46,6 @@ const LoginForm = () => {
                 signin(values).then(res => {
                     console.log("Successfully logged in");
                 }).catch(err => {
-                    console.log(err);
                     errorNotification(
                         err.code,
                         "Usuario e senha não encontrados ou email pendente de ativação",
