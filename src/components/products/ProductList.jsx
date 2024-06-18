@@ -41,7 +41,7 @@ const ProductList = ({ products }) => {
                                                     maxHeight={"350px"}
                                                 />
                                             </Box>
-                                            <Text maxHeight={"100px"} overflow="hidden" textOverflow="ellipsis">
+                                            <Text maxHeight={"100px"} overflow="auto" >
                                                 {product.descricao}
                                             </Text>
                                             <Text color='black' fontSize='2xl' alignSelf={"right"}>

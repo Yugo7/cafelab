@@ -30,7 +30,7 @@ const Contacts = () => {
                 <Stack className="grid" mb={6}>
                     <HStack spacing={8}>
                         <VStack textAlign={"center"}>
-                            <Text className="headline mt-5" fontSize={"xl"}>WhatsApp</Text>
+                            <Text className="headline mt-5" fontSize={"xl"}>Telefone</Text>
                             <Text>(+351) 214 420 636</Text>
                         </VStack>
                         <VStack textAlign={"center"}>
