@@ -16,11 +16,16 @@ const InstallPrompt = () => {
 
     useEffect(() => {
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
+            const pwaPromptShownTime = localStorage.getItem('pwaPromptShownTime');
+            const currentTime = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000;
+
+            if (pwaPromptShownTime && currentTime - pwaPromptShownTime < oneDay) {
+                return;
+            }
+
             e.preventDefault();
-            // Stash the event so it can be triggered later.
             setDeferredPrompt(e);
-            // Show the install prompt
             onOpen();
         });
 
@@ -41,13 +46,18 @@ const InstallPrompt = () => {
             setDeferredPrompt(null);
             onClose();
         }
+    }
+
+    const handleClose = () => {
+        localStorage.setItem('pwaPromptShownTime', new Date().getTime());
+        onClose();
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={handleClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Instale nossa PWA</ModalHeader>
+                <ModalHeader>Instale nossa aplicação</ModalHeader>
                 <ModalBody>
                     Para uma melhor experiência, instale nossa aplicação no seu dispositivo.
                 </ModalBody>
