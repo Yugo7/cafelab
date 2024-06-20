@@ -2,65 +2,68 @@ import {ErrorMessage, Field, Form, Formik, useField} from "formik";
 import * as Yup from "yup";
 import {Alert, AlertIcon, Box, Button, FormLabel, HStack, Input, Stack, Text, Textarea, useToast} from "@chakra-ui/react";
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-//const BASE_URL = 'http://localhost:3000/';
 
 const MyTextInput = ({label, ...props}) => {
     const [field, meta] = useField(props);
+    const { t } = useTranslation();
     return (
         <Box>
-            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
+            <FormLabel htmlFor={props.id || props.name}>{t(label)}</FormLabel>
             <Input className="text-input" {...field} {...props} />
             {meta.touched && meta.error ? (
                 <Alert className="error" status={"error"} mt={2}>
                     <AlertIcon/>
-                    {meta.error}
+                    {t(meta.error)}
                 </Alert>) : null}
         </Box>);
 };
 
 const MyTextarea = ({label, ...props}) => {
     const [field, meta] = useField(props);
+    const { t } = useTranslation();
     return (
         <Box>
-            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
+            <FormLabel htmlFor={props.id || props.name}>{t(label)}</FormLabel>
             <Textarea className="text-input" {...field} {...props} />
             {meta.touched && meta.error ? (
                 <Alert className="error" status={"error"} mt={2}>
                     <AlertIcon/>
-                    {meta.error}
+                    {t(meta.error)}
                 </Alert>) : null}
         </Box>);
 };
 
 const ContactUsForm = ({onSuccess}) => {
     const toast = useToast();
+    const { t } = useTranslation();
     return (
         <>
-            <p><strong>Seus dados&nbsp;</strong></p>
+            <p><strong>{t('contactForm.yourData')}</strong></p>
             <Formik
                 initialValues={{
                     name: '', email: '', phone: '', description: '', consent: false
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(70, 'Must be 70 characters or less')
-                        .required('Required'),
+                        .max(70, 'contactForm.nameMax')
+                        .required('contactForm.required'),
                     email: Yup.string()
-                        .email('Must be a valid email')
-                        .required(),
+                        .email('contactForm.emailError')
+                        .required('contactForm.required'),
                     phone: Yup.string()
                         .matches(
                             /^\d{9}$/,
-                            'Phone number must be exactly 9 digits'
+                            'contactForm.phoneError'
                         )
-                        .required('Phone number is required'),
+                        .required('contactForm.required'),
                     description: Yup.string()
-                        .min(20, 'Must be 40 characters or more')
-                        .max(1500, 'Must be 1500 characters or less')
-                        .required('Required'),
-                    consent: Yup.bool().oneOf([true], 'Consent is required'),
+                        .min(20, 'contactForm.descriptionMin')
+                        .max(1500, 'contactForm.descriptionMax')
+                        .required('contactForm.required'),
+                    consent: Yup.bool().oneOf([true], 'contactForm.consentRequired'),
                 })}
                 onSubmit={(values, {setSubmitting}) => {
                     axios.post(`${BASE_URL}contacts/`, values)
@@ -71,8 +74,8 @@ const ContactUsForm = ({onSuccess}) => {
                                 onSuccess();
                             }
                             toast({
-                                title: "Sucesso!",
-                                description: "Recebemos seu contacto, responderemos assim que possível.",
+                                title: t('contactForm.successTitle'),
+                                description: t('contactForm.successDescription'),
                                 status: "success",
                                 duration: 9000,
                                 isClosable: true,
@@ -88,53 +91,52 @@ const ContactUsForm = ({onSuccess}) => {
                         <Form>
                             <Stack isInline={true} mb={4}>
                                 <MyTextInput
-                                    label="Nome"
+                                    label="contactForm.nameLabel"
                                     name="name"
                                     type="text"
-                                    placeholder="Nome"
+                                    placeholder={t('contactForm.namePlaceholder')}
                                 />
 
                                 <MyTextInput
-                                    label="Email"
+                                    label="contactForm.emailLabel"
                                     name="email"
                                     type="email"
-                                    placeholder="email@exemplo.com"
+                                    placeholder={t('contactForm.emailPlaceholder')}
                                 />
                             </Stack>
 
                             <Stack mb={4}>
                                 <MyTextInput
-                                    label="Telemovel"
+                                    label="contactForm.phoneLabel"
                                     name="phone"
                                     type="text"
-                                    placeholder="Seu telemóvel"
+                                    placeholder={t('contactForm.phonePlaceholder')}
                                 />
                             </Stack>
                             <Stack>
                                 <MyTextarea
-                                    label="Descrição"
+                                    label="contactForm.descriptionLabel"
                                     name="description"
                                     type="text"
-                                    placeholder={"Escreva sua dúvida aqui"}
+                                    placeholder={t('contactForm.descriptionPlaceholder')}
                                 />
                             </Stack>
                             <Stack>
                                 <Box>
                                     <HStack>
-                                        <Field type="checkbox" name="consent"/><Text fontSize={"xs"}>Eu concordo em compartilhar meus dados para ser
-                                        contactado</Text>
+                                        <Field type="checkbox" name="consent"/><Text fontSize={"xs"}>{t('contactForm.consentText')}</Text>
                                     </HStack>
                                     <ErrorMessage name="consent">
                                         {errorMessage => (
                                             <Alert status="error" mt={2}>
                                                 <AlertIcon/>
-                                                {errorMessage}
+                                                {t(errorMessage)}
                                             </Alert>
                                         )}
                                     </ErrorMessage>
                                 </Box>
                             </Stack>
-                            <Button mt={6} disabled={!isValid || isSubmitting} type="submit">Submit</Button>
+                            <Button mt={6} disabled={!isValid || isSubmitting} type="submit">{t('contactForm.submitButton')}</Button>
                         </Form>
                     );
                 }}

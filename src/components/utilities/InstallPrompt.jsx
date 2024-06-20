@@ -9,10 +9,12 @@ import {
     Button,
     useDisclosure,
 } from '@chakra-ui/react';
+import {useTranslation} from "react-i18next";
 
 const InstallPrompt = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [deferredPrompt, setDeferredPrompt] = useState(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         window.addEventListener('beforeinstallprompt', (e) => {
@@ -57,15 +59,15 @@ const InstallPrompt = () => {
         <Modal isOpen={isOpen} onClose={handleClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Instale nossa aplicação</ModalHeader>
+                <ModalHeader>{t('installPrompt.title')}</ModalHeader>
                 <ModalBody>
-                    Para uma melhor experiência, instale nossa aplicação no seu dispositivo.
+                    {t('installPrompt.body')}
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3} onClick={handleInstallClick}>
-                        Instalar
+                        {t('installPrompt.installButton')}
                     </Button>
-                    <Button variant="ghost" onClick={onClose}>Fechar</Button>
+                    <Button variant="ghost" onClick={handleClose}>{t('installPrompt.closeButton')}</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

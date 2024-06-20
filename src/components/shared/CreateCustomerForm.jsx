@@ -1,12 +1,13 @@
 import {Form, Formik, useField} from 'formik';
 import * as Yup from 'yup';
-import {Alert, AlertIcon, Box, Button, FormLabel, Input, Select, Stack} from "@chakra-ui/react";
+import {Alert, AlertIcon, Box, Button, FormLabel, Input, Stack, Text} from "@chakra-ui/react";
 import {saveCustomer} from "../../services/client.js";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import * as PropTypes from "prop-types";
 import StripeService from "../../services/stripeService.jsx";
+import {useTranslation} from "react-i18next";
 
 const MyTextInput = ({label, ...props}) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -36,9 +37,10 @@ SignupSuccess.propTypes = {
     isOpen: PropTypes.bool
 };
 // And now we can use these
-const CreateCustomerForm = ({ onSuccess }) => {
+const CreateCustomerForm = ({onSuccess}) => {
     const navigate = useNavigate();
     const [isSignupSuccessOpen, setIsSignupSuccessOpen] = useState(false);
+    const { t } = useTranslation();
 
     const handleSignupSuccessClose = () => {
         setIsSignupSuccessOpen(false);
@@ -50,19 +52,24 @@ const CreateCustomerForm = ({ onSuccess }) => {
                     name: '',
                     email: '',
                     age: '',
-                    gender: '',
-                    password: ''
+                    password: '',
+                    address: '',
+                    zipCode: ''
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(15, 'Must be 15 characters or less')
-                        .required('Required'),
+                        .max(15, t('signup.validation.nameMax'))
+                        .required(t('signup.validation.required')),
                     email: Yup.string()
-                        .email('Must be 20 characters or less')
-                        .required('Required'),
+                        .email(t('signup.validation.emailError'))
+                        .required(t('signup.validation.required')),
                     password: Yup.string()
-                        .min(6, 'Must be 4 characters or more')
-                        .required('Required'),
+                        .min(6, t('signup.validation.passwordMin'))
+                        .required(t('signup.validation.required')),
+                    address: Yup.string()
+                        .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s\d,]+$/, t('signup.validation.invalidAddress')),
+                    zipCode: Yup.string()
+                        .matches(/^\d{4}-\d{3}$/, t('signup.validation.invalidZipCode')),
                 })}
                 onSubmit={async (customer, {setSubmitting}) => {
                     setSubmitting(true);
@@ -85,32 +92,47 @@ const CreateCustomerForm = ({ onSuccess }) => {
                     <Form>
                         <Stack spacing={"24px"}>
                             <MyTextInput
-                                label="Name"
+                                label={t('signup.nameLabel')}
                                 name="name"
                                 type="text"
-                                placeholder="Jane"
+                                placeholder={t('signup.namePlaceholder')}
                             />
-
                             <MyTextInput
-                                label="Email Address"
+                                label={t('signup.emailLabel')}
                                 name="email"
                                 type="email"
-                                placeholder="jane@formik.com"
+                                placeholder={t('signup.emailPlaceholder')}
                             />
-
                             <MyTextInput
-                                label="Password"
+                                label={t('signup.passwordLabel')}
                                 name="password"
                                 type="password"
-                                placeholder={"pick a secure password"}
+                                placeholder={t('signup.passwordPlaceholder')}
                             />
-
-                            <Button disabled={!isValid || isSubmitting} type="submit">Submit</Button>
+                            <Box>
+                                <MyTextInput
+                                    label={t('signup.addressLabel')}
+                                    name="address"
+                                    type="text"
+                                    placeholder={t('signup.addressPlaceholder')}
+                                />
+                                <Text fontSize="sm" color="gray.500">{t('signup.optional')}</Text>
+                            </Box>
+                            <Box>
+                                <MyTextInput
+                                    label={t('signup.zipCodeLabel')}
+                                    name="zipCode"
+                                    type="text"
+                                    placeholder={t('signup.zipCodePlaceholder')}
+                                />
+                                <Text fontSize="sm" color="gray.500">{t('signup.optional')}</Text>
+                            </Box>
+                            <Button disabled={!isValid || isSubmitting} type="submit">{t('signup.submitButton')}</Button>
                         </Stack>
                     </Form>
                 )}
             </Formik>
-            <SignupSuccess isOpen={isSignupSuccessOpen} onClose={handleSignupSuccessClose} />
+            <SignupSuccess isOpen={isSignupSuccessOpen} onClose={handleSignupSuccessClose}/>
         </>
     );
 };

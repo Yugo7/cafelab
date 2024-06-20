@@ -106,14 +106,14 @@ const Login = () => {
                             borderRadius='full'
                             boxSize='100px'
                             src='assets/logo.png'
-                            alt='CAfeLab'
+                            alt='CafeLab'
                             onClick={() => navigate('/')}
                         />
                         <Text className={"cafelab"}  fontSize="3xl">
                             CAFELAB
                         </Text>
                     </Stack>
-                    <Heading fontSize={'2xl'} mb={15}>Sign in to your account</Heading>
+                    <Heading fontSize={'2xl'} mb={15}>{t('login.signInToYourAccount')}</Heading>
                     <LoginForm/>
                     <Link color={"blue.500"} href={"/signup"}>
                         {t('login.noAccountText')}
