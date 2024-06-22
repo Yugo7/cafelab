@@ -72,69 +72,25 @@ export function SubscriptionProvider({children}) {
         });
     }
 
-    function getPaymentIdFeNoCafe(payment) {
-        switch (String(payment)) {
-            case '1':
-                return 'price_1PQvvfRqqMn2mwDShzjWZ2EP';
-            case '3':
-                return 'price_1PQvvfRqqMn2mwDSQk5ZYvDR';
-            case '6':
-                return 'price_1PQvvfRqqMn2mwDSlKvhcRUk';
-            case '12':
-                return 'price_1PQvvfRqqMn2mwDSesyRRSsy';
-            default:
-                return '';
-        }
-    }
-
-    function getPaymentIdMeExpresso(payment) {
-        switch (String(payment)) {
-            case '1':
-                return 'price_1PQvviRqqMn2mwDSrE6vTFIN';
-            case '3':
-                return 'price_1PQvviRqqMn2mwDSzMGz3VWA';
-            case '6':
-                return 'price_1PQvviRqqMn2mwDScIHMoEu9';
-            case '12':
-                return 'price_1PQvviRqqMn2mwDSENdguZUy';
-            default:
-                return '';
-        }
-    }
-
     function createFeNoCafelab(variety, payment){
-        const pId = getPaymentIdFeNoCafe(payment);
-
         const subscricao = {
-            id: 999,
-            priceId: pId,
-            nome: "Fé no Cafelab",
-            preco: 27.90 * payment,
-            periodo: payment,
-            imagem: "assets/subscricao_fenocafe.jpg",
-            descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
-            variante: variety
+            id: 980 + parseInt(payment),
+            payment: payment,
+            variety: variety
         };
 
-        StripeService.createCheckoutSession(subscricao)
+        StripeService.createSubscriptionCheckoutSession(subscricao)
     }
 
-    function createEuMeExpresso(variante, payment){
-        const pId = getPaymentIdMeExpresso(payment);
+    function createEuMeExpresso(variety, payment){
         const subscricao = {
-            id: 998,
-            priceId: pId,
-            nome: "Eu me expresso",
-            preco: 25 * payment,
-                periodo: payment,
-            imagem: "assets/subscricao_fenocafe.jpg",
-            descricao: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
-            variante: variante,
+            id: 960 + parseInt(payment),
+            payment: payment,
+            variety: variety,
             coffee: coffee
         };
         addSubscription(subscricao)
-        orderService.addOrder(subscricao)
-        StripeService.createCheckoutSession(subscricao)
+        StripeService.createSubscriptionCheckoutSession(subscricao)
     }
 
     return (

@@ -96,12 +96,12 @@ const SidebarContent = ({onClose}) => {
 
                     {customer ?
                         <HStack width="100%">
-                            <HStack onClick={() => navigate('/orders')}>
+                            <HStack overflow={"hidden"} onClick={() => navigate('/profile')}>
                                 <Avatar
                                     name={customer.name}
                                     size={'sm'}
                                 />
-                                <Text>{customer.name}</Text>
+                                <Text >{customer.name}</Text>
                             </HStack>
                             <Spacer/> {/* Add Spacer here */}
                             <HStack onClick={logOut}>

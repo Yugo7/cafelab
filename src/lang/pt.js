@@ -132,7 +132,8 @@ export default {
     title: "Carrinho",
     total: "Total",
     emptyCart: "Esvaziar Carrinho",
-    checkout: "Finalizar Compra"
+    checkout: "Finalizar Compra",
+    shipping: "Frete",
   },
   stripeCheckout: {
     yourOrder: "Seu Pedido",
@@ -173,6 +174,10 @@ export default {
     message: "Usamos cookies para melhorar sua experiência. Ao continuar a visitar este site, você concorda com o uso de cookies.",
     linkText: "Abrir termos aqui",
     buttonText: "Concordar e Fechar"
+  },
+  consent: {
+    title: "Termo de Consentimento para Uso de Dados",
+    content: "Esta Política de Privacidade descreve como suas informações pessoais são coletadas, usadas e compartilhadas quando você visita ou faz uma compra em www.cafelab.pt (o \"Site\").<br /><br />INFORMAÇÕES PESSOAIS QUE COLETAMOS<br /><br />Quando você visita o Site, coletamos automaticamente certas informações sobre seu dispositivo, incluindo informações sobre seu navegador, endereço IP, fuso horário e alguns dos cookies que estão instalados em seu dispositivo. Além disso, à medida que você navega no Site, coletamos informações sobre as páginas individuais ou produtos que você visualiza, quais sites ou termos de pesquisa o referenciaram ao Site e informações sobre como você interage com o Site. Referimo-nos a essas informações coletadas automaticamente como “Informações do Dispositivo”.<br /><br />Coletamos Informações do Dispositivo usando as seguintes tecnologias:<br /><br />COOKIES<br /><br />- “Arquivos de log” rastreiam ações que ocorrem no Site e coletam dados, incluindo seu endereço IP, tipo de navegador, provedor de serviços de Internet, páginas de referência/saída e carimbos de data/hora.<br />- “Web beacons”, “tags” e “pixels” são arquivos eletrônicos usados para registrar informações sobre como você navega no Site.<br />Além disso, quando você faz uma compra ou tenta fazer uma compra através do Site, coletamos certas informações suas, incluindo seu nome, endereço de cobrança, endereço de entrega, informações de pagamento (incluindo números de cartão de crédito e dados relacionados a suítes de integração de pagamento como stripe), endereço de e-mail e número de telefone. Referimo-nos a essas informações como “Informações do Pedido”.<br /><br />Quando falamos sobre “Informações Pessoais” nesta Política de Privacidade, estamos falando tanto sobre Informações do Dispositivo quanto sobre Informações do Pedido."
   },
   installPrompt: {
     title: "Instale nossa aplicação",

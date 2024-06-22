@@ -136,6 +136,7 @@ function CardFeNoCafe() {
                                 </Stack>
                                 <Stack my={4}>
                                     <Select width={"sm"} value={payment} onChange={handleChangePayment}>
+                                        <option value='1'>"test"</option>
                                         <option value='3'>{t('fenocafe.quarterlyPayments')}</option>
                                         <option value='6'>{t('fenocafe.semiannualPayments')}</option>
                                         <option value='12'>{t('fenocafe.annualPayments')}</option>

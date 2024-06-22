@@ -39,7 +39,7 @@ export function CheckoutFormSubscricao() {
                             </Text>
                             <Image
                                 src={subscription[0].imagem}
-                                style={{width: "175px", height: "275px", objectFit: "cover"}}
+                                style={{width: "120px", objectFit: "cover"}}
                             />
                             <Stack pt={6} className="d-flex align-items-left">
                                 {subscription[0].coffee ? subscription[0].coffee.map((coffee) => (

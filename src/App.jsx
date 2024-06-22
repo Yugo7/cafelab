@@ -23,7 +23,7 @@ import Refunds from "./Refunds.jsx";
 import {ChakraProvider} from "@chakra-ui/react";
 import AuthProvider from "./components/context/AuthContext.jsx";
 import ProtectedRoute from "./components/shared/ProtectedRoute.jsx";
-import Orders from "./components/orders/MyOrders.jsx";
+import Orders from "./components/user/MyOrders.jsx";
 import {SubscriptionProvider} from "./components/context/SubscriptionContext.jsx";
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
@@ -34,6 +34,7 @@ import Service from "./Service.jsx";
 import ConsentBanner from "./components/shared/ConsentBanner.jsx";
 import Consent from "./Consent.jsx";
 import {Analytics} from "@vercel/analytics/react"
+import ProfilePage from "./components/user/Dashboard.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
         element: <ShoppingCart/>
     },
     {
-        path: "/consent",
+        path: "/privacidade",
         element: <Consent/>
     },
     {
@@ -126,6 +127,12 @@ const router = createBrowserRouter([
         path: "/orders",
         element: (
             <ProtectedRoute><Orders/></ProtectedRoute>
+        )
+    },
+    {
+        path: "/profile",
+        element: (
+            <ProtectedRoute><ProfilePage/></ProtectedRoute>
         )
     },
 ])

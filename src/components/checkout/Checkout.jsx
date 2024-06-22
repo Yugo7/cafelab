@@ -57,54 +57,11 @@ export default function Checkout() {
     }
 
     useEffect( () => {
-        async function createPaymentIntent() {
-
-            let cartTotal = cartItems.reduce((total, cartItem) => {
-                const item = products.find(i => i.id === cartItem.id)
-                return total + (item?.preco || 0) * cartItem.quantity
-            }, 0);
-
-            let total = cartTotal + shipping;
-
-            const order = {
-                items: cartItems,
-                total: total,
-                paymentStatus: "PENDING"
-            }
-
-            if(customer){
-                const stripeData = customer.stripeId ? customer.stripeId : await StripeService.createCustomer(customer.email, customer.name).then(data => data.id);
-
-                order.user_id = customer.id;
-                order.user_stripe_id = stripeData;
-            }
-
-            if (total === 0) return;
-            const dbOrder = OrderService.addOrder(order);
-
-            try {
-                const paymentIntent =
-                    await stripe.paymentIntents.create({
-                        amount: Math.round(total * 100),
-                        currency: 'EUR',
-                        metadata: {order: "Normal purchase, order id: " + dbOrder.id}
-                    });
-
-                if (paymentIntent.client_secret == null) {
-                    throw Error('Stripe failed to create payment intent');
-                }
-
-                setClientSecret(paymentIntent.client_secret);
-            } catch (error) {
-                showBoundary('Stripe failed to create payment intent: ' + error);
-            }
-        }
-
-        try {
-            createPaymentIntent();
-        } catch (error) {
-            showBoundary(error);
-        }
+        const cart = {
+            user: customer,
+            items: cartItems,
+        };
+        StripeService.createCheckoutSession(cart);
 
     }, [cartItems, products]);
 

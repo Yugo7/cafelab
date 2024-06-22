@@ -1,5 +1,4 @@
 export const quizDataEn = {
-
     topic: "Coffee Subscription",
     totalQuestions: 4,
     questions: [

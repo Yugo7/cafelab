@@ -14,13 +14,14 @@ const AuthProvider = ({children}) => {
             token = jwtDecode(token);
             setCustomer({
                 username: token.email,
-                name: token.user_metadata.name,
+                name: token.user_metadata.name ? token.user_metadata.name : token.email,
                 role: token.scopes,
                 id: token.sub,
                 stripeId: token.user_metadata.stripeId
             })
         }
     }
+
     useEffect(() => {
         const token = localStorage.getItem("access_token");
         if (token) {
@@ -40,11 +41,13 @@ const AuthProvider = ({children}) => {
 
                 setCustomer({
                     username: decodedToken.email,
+                    name: decodedToken.user_metadata.name ? decodedToken.user_metadata.name : decodedToken.email,
                     role: decodedToken.scopes,
                     id: decodedToken.sub,
                     stripeId: decodedToken.user_metadata.stripeId
                 })
                 resolve(res);
+
             }).catch(err => {
                 reject(err);
             })
