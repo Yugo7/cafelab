@@ -15,7 +15,7 @@ const OurPicks = () => {
                 <Card
                     backgroundColor={"#FFFFFF"}>
                     <Image
-                        src="assets/brasil.jpg"
+                        src="assets/tanzania.png"
                         fluid
                         className="w-100"
                     />
