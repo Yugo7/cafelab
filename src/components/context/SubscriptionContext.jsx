@@ -1,9 +1,7 @@
 import {createContext, useContext} from "react"
 import {useLocalStorage} from "../hooks/useLocalStorage"
 import {useToast} from "@chakra-ui/react";
-import {useShoppingCart} from "./ShoppingCartContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
-import orderService from "../../services/orderService.jsx";
 
 const SubscriptionContext = createContext({})
 
@@ -16,7 +14,6 @@ export function SubscriptionProvider({children}) {
         "coffee",
         []
     )
-    const {addSubscription} = useShoppingCart();
     const toast = useToast();
 
     function getCoffeeQuantity(name) {
@@ -28,7 +25,8 @@ export function SubscriptionProvider({children}) {
         0
     )
 
-    function emptyBox() {
+    function emptyCoffee() {
+        console.log("emptyBox")
         setCoffee([]);
     }
 
@@ -89,7 +87,6 @@ export function SubscriptionProvider({children}) {
             variety: variety,
             coffee: coffee
         };
-        addSubscription(subscricao)
         StripeService.createSubscriptionCheckoutSession(subscricao)
     }
 
@@ -100,7 +97,7 @@ export function SubscriptionProvider({children}) {
                 addCoffee,
                 removeCoffee,
                 boxQuantity,
-                emptyBox,
+                emptyCoffee,
                 createFeNoCafelab,
                 createEuMeExpresso
             }}

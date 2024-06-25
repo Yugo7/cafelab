@@ -23,10 +23,16 @@ import i18n from "../../lang/i18n.js";
 
 function ModalQuiz() {
 
-    const {isOpen, onOpen, onClose} = useDisclosure();
-    const {createEuMeExpresso, emptyBox, addCoffee} = useSubscription()
+    const { isOpen, onOpen, onClose: baseOnClose } = useDisclosure();
+    const {createEuMeExpresso, emptyCoffee} = useSubscription()
+
+    const onClose = () => {
+        emptyCoffee();
+        baseOnClose();
+    };
 
     useEffect(() => {
+        emptyCoffee()
         onOpen();
     }, [onOpen]);
 
@@ -55,34 +61,11 @@ function ModalQuiz() {
             setShowResult(true)
         }
     }
-
-    const finishSubscription = () => {
-        emptyBox()
-        addCoffee("LAB 01")
-        if (results[1] in [0, 2] && results[2] in [0, 1]) {
-            addCoffee("Nicarágua")
-        }
-        if ((results[1] === 0 && results[2] === 2) || (results[1] === 1 && results[2] in [0, 1]) || (results[0] === 2 && results[1] === 0 && results[2] in [0, 1])) {
-            addCoffee("Etiópia")
-        }
-        if ((results[1] === 1) || (results[1] === 0 && results[2] === 2)) {
-            addCoffee("Angola")
-        }
-        if ((results[1] === 1 && results[2] === 2)) {
-            addCoffee("Tanzania")
-        }
-        if (results[1] === 2 && results[2] === 2) {
-            addCoffee("Vietnam")
-        }
-        if (results[2] === 2) {
-            addCoffee("Colombia")
-        }
-        if (results[0] in [0, 1] && results[1] === 0 && results[2] in [0, 1]) {
-            addCoffee("Brasil")
-        }
-        createEuMeExpresso(results[3] === 0 ? "beans" : results[2] === 2 ? "expresso" : "frenchpress", payment)
+    
+    function finishSubscription() {
+        createEuMeExpresso(results[3] === 0 ? "beans" : results[3] === 2 ? "expresso" : "frenchpress", payment)
     }
-
+    
     function getPaymentText() {
         switch (payment) {
             case '1':
@@ -170,9 +153,9 @@ function ModalQuiz() {
                         <Stack  direction={['column', 'row']}>
                             <Stack m={4}>
                                 <Resultado
-                                    exp={results[0]} // Pass the selected answer index
-                                    sabor={results[1]} // Pass the selected answer index
-                                    uso={results[2]}  // Pass the selected answer index
+                                    exp={results[0]}
+                                    sabor={results[1]}
+                                    uso={results[2]}
                                 />
                             </Stack>
                             <Stack mx={4} align={"end"}>
