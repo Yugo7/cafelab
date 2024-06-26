@@ -57,8 +57,8 @@ export default {
   },
   fenocafe: {
     name: "FÉ NO CAFELAB",
-    coffeeDescription: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
-    coffeeDetails: "Para os que nos conhecem, e amam uma surpresa. Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista. E ainda tenha acesso aos nossos cafés exclusivos da assinatura.",
+    coffeeDescription: "3 embalagens de 175g escolhidas pelo nosso especialista<br />Tenha acesso ao nosso café exclusivo da subscrição!",
+    coffeeDetails: "Para os que nos conhecem, e amam uma surpresa. Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista. E ainda tenha acesso aos nossos cafés exclusivos da assinatura.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     trust: "Confio",
 
     monthlyPayments: "Pagamentos mensais",
@@ -72,8 +72,8 @@ export default {
   },
   meexpresso: {
     name: "DEPOIS DO CAFELAB, EU ME EXPRESSO",
-    coffeeDescription: "3 embalagens de 175g em grãos ou moídas de acordo com a sua indicação de consumo.",
-    coffeeDetails: "Para os nossos clientes decididos, ou menos aventureiros. Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.",
+    coffeeDescription: "3 embalagens de 175g à sua escolha dentre nossa gama.",
+    coffeeDetails: "Para os nossos clientes decididos, ou menos aventureiros. Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     ratherChoose: "Já sei meu CafeLab",
     yourSubscription: "SUA SUBSCRIÇÃO",
     coffeeSelection: "Selecção de café",

@@ -14,7 +14,7 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
-    Select,
+    Select, Spacer,
     Stack,
     Text,
     useDisclosure,
@@ -23,7 +23,8 @@ import {
 import {FaHandshake} from "react-icons/fa";
 import React, {useState} from "react";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
+import {Space} from "lucide-react";
 
 function CardFeNoCafe() {
 
@@ -83,6 +84,10 @@ function CardFeNoCafe() {
                     <Text className="font-headline" textAlign={"center"}>
                         {t('fenocafe.name')}
                     </Text>
+                    <Spacer></Spacer>
+                    <Text className="font-headline" textAlign={"center"}>
+                        €27.90
+                    </Text>
                 </Stack>
             </CardHeader>
             <CardBody mx={4}>
@@ -90,11 +95,11 @@ function CardFeNoCafe() {
                 </Box>
                 <Stack>
                     <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
-                        {t('fenocafe.coffeeDescription')}
+                        <Trans>{t('fenocafe.coffeeDescription')}</Trans>
                     </Text>
                 </Stack>
                 <Text fontSize={"md"} align="center">
-                    {t('fenocafe.coffeeDetails')}
+                    <Trans>{t('fenocafe.coffeeDetails')}</Trans>
                 </Text>
             </CardBody>
 

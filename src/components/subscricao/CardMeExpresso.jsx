@@ -16,7 +16,7 @@ import {
     ModalContent,
     ModalHeader,
     ModalOverlay,
-    Select,
+    Select, Spacer,
     Stack,
     Text,
     useDisclosure,
@@ -26,7 +26,7 @@ import {FaCheck, FaHandshake} from "react-icons/fa";
 import ProductsCarousel from "../products/ProductsCarousel.jsx";
 import React, {useState} from "react";
 import {useSubscription} from "../context/SubscriptionContext.jsx";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 
 
 const CardMeExpresso = () => {
@@ -99,16 +99,20 @@ const CardMeExpresso = () => {
                     <Text className="font-headline">
                         {t('meexpresso.name')}
                     </Text>
+                    <Spacer></Spacer>
+                    <Text className="font-headline" textAlign={"center"}>
+                        €25.00
+                    </Text>
                 </Stack>
             </CardHeader>
             <CardBody mx={8}>
                 <Stack>
                     <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
-                        {t('meexpresso.coffeeDescription')}
+                        <Trans>{t('meexpresso.coffeeDescription')}</Trans>
                     </Text>
                 </Stack>
                 <Text fontSize={"lg"} align="center">
-                    {t('meexpresso.coffeeDetails')}
+                    <Trans>{t('meexpresso.coffeeDetails')}</Trans>
                 </Text>
             </CardBody>
 

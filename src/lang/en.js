@@ -57,8 +57,8 @@ export default {
   },
   fenocafe: {
     name: "IN CAFELAB WE TRUST",
-    coffeeDescription: "3 packages of 175g in beans or ground according to your consumption indication.",
-    coffeeDetails: "For those who know us, and love a surprise. Whoever has ordered, knows that a recommendation from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive subscription coffees.",
+    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
+    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
     trust: "I trust",
 
     monthlyPayments: "Monthly payments",
@@ -85,8 +85,8 @@ export default {
   meexpresso: {
     name: "AFTER CAFELAB," +
         " I EXPRESSO MYSELF",
-    coffeeDescription: "3 packages of 175g in beans or ground according to your consumption indication.",
-    coffeeDetails: "For our determined or less adventurous customers. Choose and set up your own subscription with the coffees you already love. Select three of our special coffees and receive the best of Cafelab in your home every month.",
+    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
+    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
     ratherChoose: "I wanna choose my CafeLab",
     payment: "How do you prefer to pay?",
     coffeeSelection: "Coffee selection",
