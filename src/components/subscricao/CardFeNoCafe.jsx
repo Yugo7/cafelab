@@ -76,6 +76,7 @@ function CardFeNoCafe() {
         <Card
             maxW='2xl'
             bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}
+            height={"100%"}
         >
             <CardHeader align={"center"}>
                 <Box my={8}>
@@ -123,7 +124,7 @@ function CardFeNoCafe() {
                            motionPreset='slideInBottom' size={"full"}>
                         <ModalOverlay/>
                         <ModalContent>
-                            <ModalHeader>Fé no CafeLab</ModalHeader>
+                            <ModalHeader>{t('fenocafe.name')}</ModalHeader>
                             <ModalCloseButton/>
                             <ModalBody overflowY="auto">
                                 <Stack my={4}>
@@ -142,9 +143,9 @@ function CardFeNoCafe() {
                                 <Stack my={4}>
                                     <Select width={"sm"} value={payment} onChange={handleChangePayment}>
                                         <option value='1'>"test"</option>
-                                        <option value='3'>{t('fenocafe.quarterlyPayments')}</option>
-                                        <option value='6'>{t('fenocafe.semiannualPayments')}</option>
-                                        <option value='12'>{t('fenocafe.annualPayments')}</option>
+                                        <option value='3'>{t('subscription.quarterlyPayments')}</option>
+                                        <option value='6'>{t('subscription.semiannualPayments')}</option>
+                                        <option value='12'>{t('subscription.annualPayments')}</option>
                                     </Select>
                                 </Stack>
                                 <Text className="ms-auto fw-bold" fontSize={"2xl"}>
@@ -155,23 +156,23 @@ function CardFeNoCafe() {
                                 </Text>
                                 <Stack pt={6} pb={6} className=" cafelab d-flex align-items-left">
                                     <Text fontSize={"md"}>
-                                        {t('subscription.rules.name')}:
+                                        {t('subscription.rules.name')}
                                         <br/>
-                                        - {t('subscription.rules.subscribeBy25')}:
+                                        - {t('subscription.rules.subscribeBy25')}
                                         <br/>
-                                        - {t('subscription.rules.subscriptionsAfter25')}:
+                                        - {t('subscription.rules.subscriptionsAfter25')}
                                         <br/>
-                                        - {t('subscription.rules.automaticRenewal')}:
+                                        - {t('subscription.rules.automaticRenewal')}
                                         <br/>
-                                        - {t('subscription.rules.freeCancellation')}:
+                                        - {t('subscription.rules.freeCancellation')}
                                         <br/>
-                                        - {t('subscription.rules.freeShipping')}:
+                                        - {t('subscription.rules.freeShipping')}
                                     </Text>
                                 </Stack>
                             </ModalBody>
                             <ModalFooter>
-                                <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>{t('fenocafe.checkout')}</Button>
-                                <Button onClick={onClose}>{t('fenocafe.close')}</Button>
+                                <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>{t('subscription.checkout')}</Button>
+                                <Button onClick={onClose}>{t('subscription.close')}</Button>
                             </ModalFooter>
                         </ModalContent>
                     </Modal>

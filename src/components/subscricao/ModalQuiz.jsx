@@ -160,12 +160,12 @@ function ModalQuiz() {
                             </Stack>
                             <Stack mx={4} align={"end"}>
                                 <Text className="ms-auto fw-bold" fontSize={"md"}>
-                                    Como vai ser a frequencia da subscrição?
+                                    {t('subscription.frequency')}
                                 </Text>
                                 <Select width={"sm"} value={payment} onChange={handleChangePayment}>
-                                    <option value='3'>{t('meexpresso.quarterlyPayments')}</option>
-                                    <option value='6'>{t('meexpresso.semiannualPayments')}</option>
-                                    <option value='12'>{t('meexpresso.annualPayments')}</option>
+                                    <option value='3'>{t('subscription.quarterlyPayments')}</option>
+                                    <option value='6'>{t('subscription.semiannualPayments')}</option>
+                                    <option value='12'>{t('subscription.annualPayments')}</option>
                                 </Select>
                                 <Text className="ms-auto fw-bold" fontSize={"2xl"}>
                                     {getPaymentText()}

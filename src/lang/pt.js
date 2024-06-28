@@ -44,6 +44,19 @@ export default {
     beans: "Grãos",
     espresso: "Moído para expresso",
     frenchPress: "Moído para prensa francesa/ italiana",
+
+    frequency: "Qual vai ser a frequencia dos pagamentos da subscrição?",
+
+    payment: "Pagamento",
+    monthlyPayments: "Pagamentos mensais",
+    quarterlyPayments: "Pagamentos trimestrais",
+    semiannualPayments: "Pagamentos semestrais",
+    annualPayments: "Pagamentos anuais",
+
+    pricePerMonth: "Apenas €27.90 por mês",
+    checkout: "Ir para o checkout",
+    close: "Fechar",
+    done: "done"
   },
   modalQuiz: {
     newHere: "Novo por aqui?",
@@ -61,14 +74,6 @@ export default {
     coffeeDetails: "Para os que nos conhecem, e amam uma surpresa. Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista. E ainda tenha acesso aos nossos cafés exclusivos da assinatura.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     trust: "Confio",
 
-    monthlyPayments: "Pagamentos mensais",
-    quarterlyPayments: "Pagamentos trimestrais",
-    semiannualPayments: "Pagamentos semestrais",
-    annualPayments: "Pagamentos anuais",
-
-    pricePerMonth: "Apenas €27.90 por mês",
-    checkout: "Ir para o checkout",
-    close: "Fechar"
   },
   meexpresso: {
     name: "DEPOIS DO CAFELAB, EU ME EXPRESSO",
@@ -78,17 +83,6 @@ export default {
     yourSubscription: "SUA SUBSCRIÇÃO",
     coffeeSelection: "Selecção de café",
     selectYourCoffee: "ESCOLHA SEUS CAFÉS",
-
-    payment: "Forma de pagamento",
-    monthlyPayments: "Pagamentos mensais",
-    quarterlyPayments: "Pagamentos trimestrais",
-    semiannualPayments: "Pagamentos semestrais",
-    annualPayments: "Pagamentos anuais",
-    pricePerMonth: "Apenas €25.00 por mês",
-
-    done: "PRONTO",
-    checkout: "Ir para o checkout",
-    close: "Fechar"
   },
   results: {
     explorer: {

@@ -159,7 +159,7 @@ const CardMeExpresso = () => {
                                                     <Stack px={4}>
                                                         <Button leftIcon={<FaCheck/>} onClick={() => handleNextClick()} size='sm' border='2px'
                                                                 variant='outline' colorScheme='#FEEBC8' disabled={boxQuantity !== 3}>
-                                                            {t('meexpresso.done')}
+                                                            {t('subscription.done')}
                                                         </Button>
                                                     </Stack>
                                                 </Stack>
@@ -171,15 +171,15 @@ const CardMeExpresso = () => {
                                     <AccordionItem>
                                         <AccordionButton>
                                             <Box flex="1" textAlign="left">
-                                                {t('meexpresso.payment')}
+                                                {t('subscription.payment')}
                                             </Box>
                                         </AccordionButton>
                                         <AccordionPanel>
                                             <Stack my={4}>
                                                 <Select value={payment} width={"sm"} onChange={handleChangePayment}>
-                                                    <option value='3'>{t('meexpresso.quarterlyPayments')}</option>
-                                                    <option value='6'>{t('meexpresso.semiannualPayments')}</option>
-                                                    <option value='12'>{t('meexpresso.annualPayments')}</option>
+                                                    <option value='3'>{t('subscription.quarterlyPayments')}</option>
+                                                    <option value='6'>{t('subscription.semiannualPayments')}</option>
+                                                    <option value='12'>{t('subscription.annualPayments')}</option>
                                                 </Select>
                                             </Stack>
                                             <Text className="ms-auto fw-bold" fontSize={"2xl"}>
@@ -195,17 +195,17 @@ const CardMeExpresso = () => {
 
                                 <Stack p={6} className=" cafelab d-flex align-items-left">
                                     <Text fontSize={"md"}>
-                                        {t('subscription.rules.name')}:
+                                        {t('subscription.rules.name')}
                                         <br/>
-                                        - {t('subscription.rules.subscribeBy25')}:
+                                        - {t('subscription.rules.subscribeBy25')}
                                         <br/>
-                                        - {t('subscription.rules.subscriptionsAfter25')}:
+                                        - {t('subscription.rules.subscriptionsAfter25')}
                                         <br/>
-                                        - {t('subscription.rules.automaticRenewal')}:
+                                        - {t('subscription.rules.automaticRenewal')}
                                         <br/>
-                                        - {t('subscription.rules.freeCancellation')}:
+                                        - {t('subscription.rules.freeCancellation')}
                                         <br/>
-                                        - {t('subscription.rules.freeShipping')}:
+                                        - {t('subscription.rules.freeShipping')}
                                     </Text>
                                 </Stack>
                             </ModalBody>

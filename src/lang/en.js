@@ -34,16 +34,26 @@ export default {
     kitDetails: "8 embalagens de 13 em grãos ou moídas de acordo com a sua indicação de consumo.",
     rules: {
       name: "Rules",
-      subscribeBy25: "Subscribe by the 25th of the month to receive the beans roasted in the last wood-fired oven in Portugal. Deliveries start from the 2nd of the following month;",
+      subscribeBy25: "Subscribe until the 25th of the month to receive the beans roasted in the last wood-fired oven in Portugal. Deliveries start from the 2nd of the following month;",
       subscriptionsAfter25: "Subscriptions after the 25th of each month receive the subscription in the following month;",
       automaticRenewal: "Automatic renewal - so that Cafelab is always present in your home;",
       freeCancellation: "Free cancellation after 3 months;",
       freeShipping: "Free shipping."
     },
-    howYouWantYourCoffee: "How do you want your coffee?",
+    howYouWantYourCoffee: "How would you like your coffee?",
     beans: "Beans",
     espresso: "Ground for espresso",
     frenchPress: "Ground for French press/ Italian",
+
+    monthlyPayments: "Monthly payments",
+    quarterlyPayments: "Quarterly payments",
+    semiannualPayments: "Semiannual payments",
+    annualPayments: "Annual payments",
+    checkout: "Go to checkout",
+    close: "Close",
+
+    payment: "Payment",
+    frequency: "How often would you like to pay your subscription?",
   },
   modalQuiz: {
     newHere: "New around?",
@@ -61,13 +71,7 @@ export default {
     coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
     trust: "I trust",
 
-    monthlyPayments: "Monthly payments",
-    quarterlyPayments: "Quarterly payments",
-    semiannualPayments: "Semiannual payments",
-    annualPayments: "Annual payments",
     pricePerMonth: "Only €27.90 per month",
-    checkout: "Go to checkout",
-    close: "Close"
   },
   boutique: {
     title: "Cafelab Boutique",
@@ -90,16 +94,9 @@ export default {
     ratherChoose: "I wanna choose my CafeLab",
     payment: "How do you prefer to pay?",
     coffeeSelection: "Coffee selection",
-
+    yourSubscription: "YOUR SUBSCRIPTION",
     selectYourCoffee: "PICK YOU COFFEES",
-    monthlyPayments: "Monthly payments",
-    quarterlyPayments: "Quarterly payments",
-    semiannualPayments: "Semiannual payments",
-    annualPayments: "Annual payments",
-    pricePerMonth: "Only €25.00 per month",
-    done: "DONE",
-    checkout: "Go to checkout",
-    close: "Close"
+    pricePerMonth: "Only €25.00 per month"
   },
   shoppingCart: {
     title: "Cart",
