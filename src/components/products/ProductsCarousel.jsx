@@ -37,13 +37,13 @@ const EuMeExpressoModal = () => {
 
     if (err) {
         return (
-            <Text mt={5}>Ooops there was an error</Text>
+            <Text mt={5}>{t('boutique.notAvailable')}</Text>
         )
     }
 
     if (products.length <= 0) {
         return (
-            <Text mt={5}>No products available</Text>
+            <Text mt={5}>{t('boutique.notAvailable')}</Text>
         )
     }
 

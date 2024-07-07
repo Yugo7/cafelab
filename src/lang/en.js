@@ -78,6 +78,9 @@ export default {
     description: "In addition to special coffees and accessories, we now bring an exclusive collection of Ecobags, Aprons, Cups and much more!",
     coffeeButton: "Coffee",
     boutiqueButton: "Boutique",
+    buyNow: "Buy Now",
+    addToCart: "Add to cart",
+    notAvailable: "Something went wrong, please try again"
   },
   agenda: {
     title: "Upcoming Events",

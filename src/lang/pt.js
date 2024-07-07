@@ -111,7 +111,10 @@ export default {
     title: "Boutique Cafelab",
     description: "Além dos cafés especiais e acessórios, trazemos agora uma coleção exclusiva de Ecobags, Aventais, Chávenas e muito mais!",
     coffeeButton: "Café",
-    boutiqueButton: "Boutique"
+    boutiqueButton: "Boutique",
+    buyNow: "Comprar agora",
+    addToCart: "Adicionar ao carrinho",
+    notAvailable: "Algo deu errado, tente novamente"
   },
   login: {
     emailLabel: "Email",

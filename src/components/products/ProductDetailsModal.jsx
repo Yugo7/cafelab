@@ -24,6 +24,11 @@ const ProductModal = ({isOpen, onClose, product}) => {
     const navigate = useNavigate();
     const quantityInCart = getItemQuantity(product.id);
 
+    function buyNow(id){
+        increaseCartQuantity(id);
+        navigate('/checkout')
+    }
+
     return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} size={"6xl"} >
             <ModalOverlay
@@ -56,12 +61,12 @@ const ProductModal = ({isOpen, onClose, product}) => {
                         ) : (
                             <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}
                                     onClick={() => increaseCartQuantity(product.id)}>
-                                Add to cart
+                                {t('boutique.addToCart')}
                             </Button>
                         )}
 
-                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => navigate('/checkout')}>
-                            Buy now
+                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
+                        {t('boutique.buyNow')}
                         </Button> </HStack>
                 </ModalBody>
             </ModalContent>
