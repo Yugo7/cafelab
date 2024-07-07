@@ -36,7 +36,7 @@ export default function Checkout() {
                     motionPreset='slideInBottom'
                     onClose={() => {
                         onClose();
-                        navigate('/');
+                        navigate('/boutique');
                     }}
                     isOpen={true}
                     isCentered

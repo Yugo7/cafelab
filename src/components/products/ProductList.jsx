@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, CardBody, CardFooter, Divider, Image, Spinner, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, CardFooter, Divider, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
@@ -79,7 +79,7 @@ const ProductList = ({ products }) => {
                                             )
                                         }
                                         <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => navigate('/checkout')}>
-                                        {t('boutique.buyNow')}
+                                            {t('boutique.buyNow')}
                                         </Button>
                                     </ButtonGroup>
                                 </CardFooter>
