@@ -113,7 +113,7 @@ export default {
     coffeeButton: "Café",
     boutiqueButton: "Boutique",
     buyNow: "Comprar agora",
-    addToCart: "Adicionar ao carrinho",
+    addToCart: "Adicionar",
     notAvailable: "Algo deu errado, tente novamente"
   },
   login: {

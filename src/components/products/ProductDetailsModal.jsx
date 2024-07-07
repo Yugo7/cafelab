@@ -17,12 +17,14 @@ import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 import {useNavigate} from "react-router-dom";
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 const ProductModal = ({isOpen, onClose, product}) => {
     const fontHl3 = useBreakpointValue({base: "lg", md: "2xl"});
     const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
     const navigate = useNavigate();
     const quantityInCart = getItemQuantity(product.id);
+    const { t } = useTranslation();
 
     function buyNow(id){
         increaseCartQuantity(id);

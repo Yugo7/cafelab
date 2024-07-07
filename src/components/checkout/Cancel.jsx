@@ -3,7 +3,7 @@ import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import React, {useEffect} from "react";
 import {Card, CardBody, CardFooter, CardHeader, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import Lottie from "react-lottie";
-import animationData from "../../animations/cancel.json";
+import animationData from '/src/animations/success.json';
 
 
 function Cancel() {
@@ -13,11 +13,9 @@ function Cancel() {
     useEffect(() => {
         const timer = setTimeout(() => {
             emptyCart();
-            navigate('/checkout');
-            // specify the path you want to redirect to
-        }, 7000); // time in milliseconds
+            navigate('/boutique');
+        }, 7000);
 
-        // Cleanup function to clear the timer when the component unmounts
         return () => clearTimeout(timer);
     }, [navigate]);
     return (

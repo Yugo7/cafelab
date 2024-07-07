@@ -6,6 +6,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 import { useNavigate } from "react-router-dom";
 import ProductModal from "./ProductDetailsModal.jsx";
+import { useTranslation } from 'react-i18next';
 
 const ProductList = ({ products }) => {
     const fontHl3 = useBreakpointValue({ base: "lg", md: "2xl" });
@@ -22,6 +23,11 @@ const ProductList = ({ products }) => {
     };
     const navigate = useNavigate();
     const { t } = useTranslation();
+
+    function buyNow(id){
+        increaseCartQuantity(id);
+        navigate('/checkout')
+    }
 
     if (products.length <= 0) {
         return (
@@ -52,7 +58,9 @@ const ProductList = ({ products }) => {
                                                 maxHeight={"350px"}
                                             />
                                         </Box>
-                                        <Tag>{product.size}</Tag>
+                                        <Box align='center'>
+                                            <Tag size={"md"}>{product.size}</Tag>
+                                        </Box>
                                         <Text maxHeight={"100px"} overflow="auto" >
                                             {product.descricao}
                                         </Text>
@@ -78,7 +86,7 @@ const ProductList = ({ products }) => {
                                                 </Button>
                                             )
                                         }
-                                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => navigate('/checkout')}>
+                                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
                                             {t('boutique.buyNow')}
                                         </Button>
                                     </ButtonGroup>
