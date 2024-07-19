@@ -38,6 +38,7 @@ export default function PastEventCard({date, name, description, local, imageFini
                     <Stack>
                         <Link href={instagramUrl} isExternal>
                             <Button
+                            
                                 bg={'red.400'}
                                 color={'white'}
                                 rounded={'lg'}
@@ -50,6 +51,7 @@ export default function PastEventCard({date, name, description, local, imageFini
                                 }}
                                 onClick={onOpen}
                                 leftIcon={<FiInstagram/>}
+                                isDisabled={!instagramUrl} 
                             >
                                 {t('agenda.takeALook')}
                             </Button>

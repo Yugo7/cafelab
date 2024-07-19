@@ -22,12 +22,18 @@ const ProductList = ({ products }) => {
         setIsModalOpen(false);
     };
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     function buyNow(id){
         increaseCartQuantity(id);
         navigate('/checkout')
     }
+    const lang = i18n.language;
+    
+    const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
+    const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
+    const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
+
 
     if (products.length <= 0) {
         return (
@@ -42,16 +48,15 @@ const ProductList = ({ products }) => {
                     const quantityInCart = getItemQuantity(product.id);
                     return (
                         <WrapItem>
-                            <Card onClick={() => handleCardClick(product)} width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
-                                <CardBody>
+                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}>
+                                <CardBody onClick={() => handleCardClick(product)} >
                                     <Stack mt='6' spacing='8'>
-                                        <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product.nome.toUpperCase()}</Text>
+                                        <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>
                                         <Box
                                             align='center'
                                         >
                                             <Image
                                                 src={product.imagem}
-                                                //TODO add alt text
                                                 alt="Description"
                                                 borderRadius='lg'
                                                 objectFit='contain'
@@ -59,10 +64,10 @@ const ProductList = ({ products }) => {
                                             />
                                         </Box>
                                         <Box align='center'>
-                                            <Tag size={"md"}>{product.size}</Tag>
+                                            <Tag size={"md"}>{product[productSizeColumn]}</Tag>
                                         </Box>
                                         <Text maxHeight={"100px"} overflow="auto" >
-                                            {product.descricao}
+                                            {product[productDescriptionColumn]}
                                         </Text>
                                         <Text color='black' fontSize='2xl' alignSelf={"right"}>
                                             {formatCurrency(product.preco)}

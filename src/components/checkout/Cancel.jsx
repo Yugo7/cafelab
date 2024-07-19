@@ -3,7 +3,7 @@ import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import React, {useEffect} from "react";
 import {Card, CardBody, CardFooter, CardHeader, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import Lottie from "react-lottie";
-import animationData from '/src/animations/success.json';
+import animationData from '/src/animations/cancel.json';
 
 
 function Cancel() {

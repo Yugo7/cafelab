@@ -1,11 +1,14 @@
 import {Button, Card, CardBody, CardFooter, Image, SimpleGrid, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import {ButtonGroup} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import { useTranslation } from 'react-i18next';
 import React from "react";
 
 const OurPicks = () => {
     const stackSpacing = useBreakpointValue({base: "20px", md: "40px"});
     const {increaseCartQuantity} = useShoppingCart();
+    
+    const { t, i18n } = useTranslation();
 
     return (
         <Stack fluid className="my-5 text-center">
@@ -42,7 +45,8 @@ const OurPicks = () => {
                     <CardFooter>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(6)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                Add to cart
+                                
+                            {t('boutique.addToCart')}
                             </Button>
                         </ButtonGroup>
                     </CardFooter>
@@ -78,7 +82,8 @@ const OurPicks = () => {
                     <CardFooter>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(11)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                Add to cart
+                                
+                            {t('boutique.addToCart')}
                             </Button>
                         </ButtonGroup>
                     </CardFooter>
@@ -114,7 +119,8 @@ const OurPicks = () => {
                     <CardFooter>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(1)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
-                                Add to cart
+                                
+                            {t('boutique.addToCart')}
                             </Button>
                         </ButtonGroup>
                     </CardFooter>

@@ -9,7 +9,7 @@ import {
     ModalContent,
     ModalHeader,
     ModalOverlay,
-    Stack,
+    Stack,Tag,
     Text,
     useBreakpointValue
 } from "@chakra-ui/react";
@@ -24,7 +24,13 @@ const ProductModal = ({isOpen, onClose, product}) => {
     const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity} = useShoppingCart();
     const navigate = useNavigate();
     const quantityInCart = getItemQuantity(product.id);
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
+
+    const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
+    const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
+    const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
+
 
     function buyNow(id){
         increaseCartQuantity(id);
@@ -37,14 +43,17 @@ const ProductModal = ({isOpen, onClose, product}) => {
                 bg='rgba(0, 0, 0, 0.5)'
             />
             <ModalContent textAlign={"center"} p={4} m={2} shadow={"none"} border={"1px"} >
-                <ModalHeader ><Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product.nome.toUpperCase()}</Text></ModalHeader>
+                <ModalHeader ><Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn]}</Text></ModalHeader>
                 <ModalCloseButton/>
                 <ModalBody>
                     <Stack m={6}>
-                        <Image maxH={"400px"} src={product.imagem} alt={product.nome} alignSelf={"center"}/>
+                        <Image maxH={"400px"} src={product.imagem} alt={product[productNameColumn]} alignSelf={"center"}/>
                     </Stack>
+                                        <Box align='center'>
+                                            <Tag size={"md"}>{product[productSizeColumn]}</Tag>
+                                        </Box>
                     <Stack m={6} >
-                        <Text maxW={"600px"} alignSelf={"center"} >{product.descricao}</Text>
+                        <Text maxW={"600px"} alignSelf={"center"} >{product[productDescriptionColumn]}</Text>
 
                         <Text color='black' fontSize='2xl' alignSelf={"right"}>
                             {formatCurrency(product.preco)}
