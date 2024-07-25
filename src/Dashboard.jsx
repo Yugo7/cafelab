@@ -17,7 +17,7 @@ const Dashboard = () => {
                                 </Box>
                             </Text>
                             <Text fontFamily="Inter" lineHeight="1.48" fontWeight="regular" fontSize="21px" letterSpacing="-0.02em" color="#FFFFFF"
-                                  alignSelf="stretch" textAlign="center">
+                                  alignSelf="stretch" text="center">
                                 Uma nova loja! O seu novo café!
                                 A primeira loja de café de especialidade de Oeiras.
                             </Text>

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Stripe from 'stripe';
-import {CheckoutForm} from './StripeCheckout.jsx';
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import { CheckoutForm } from './StripeCheckout.jsx';
+import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
 import OrderService from "../../services/orderService.jsx";
-import {useErrorBoundary} from "react-error-boundary";
+import { useErrorBoundary } from "react-error-boundary";
 import {
     AlertDialog,
     AlertDialogBody,
@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import Lottie from "react-lottie";
 import animationData from '/src/animations/emptybag.json';
-import {useAuth} from "../context/AuthContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
@@ -24,50 +24,50 @@ const shipping = 5;
 
 export default function Checkout() {
     const [clientSecret, setClientSecret] = useState(null);
-    const {cartItems, subscription, products, emptyCart} = useShoppingCart()
+    const { cartItems, subscription, products, variety, emptyCart } = useShoppingCart()
     const navigate = useNavigate();
-    const {showBoundary} = useErrorBoundary();
-    const {onClose} = useDisclosure()
+    const { showBoundary } = useErrorBoundary();
+    const { onClose } = useDisclosure()
     const { customer } = useAuth();
 
     if (!cartItems.length && !subscription.length) {
         return (
-                <AlertDialog
-                    motionPreset='slideInBottom'
-                    onClose={() => {
-                        onClose();
-                        navigate('/boutique');
-                    }}
-                    isOpen={true}
-                    isCentered
+            <AlertDialog
+                motionPreset='slideInBottom'
+                onClose={() => {
+                    onClose();
+                    navigate('/boutique');
+                }}
+                isOpen={true}
+                isCentered
 
-                >
-                    <AlertDialogOverlay/>
+            >
+                <AlertDialogOverlay />
 
-                    <AlertDialogContent>
-                        <AlertDialogCloseButton/>
-                        <AlertDialogBody>
-                            <Lottie options={{animationData}}/>
-                            Carrinho vazio
-                        </AlertDialogBody>
-                        <AlertDialogFooter>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>)
+                <AlertDialogContent>
+                    <AlertDialogCloseButton />
+                    <AlertDialogBody>
+                        <Lottie options={{ animationData }} />
+                        Carrinho vazio
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>)
     }
 
-    useEffect( () => {
+    useEffect(() => {
         const cart = {
             user: customer,
             items: cartItems,
+            variety: variety
         };
         StripeService.createCheckoutSession(cart);
-
     }, [cartItems, products]);
 
     if (!clientSecret) {
-        return null; // or some loading state
+        return null;
     }
 
-    return <CheckoutForm clientSecret={clientSecret}/>;
+    return <CheckoutForm clientSecret={clientSecret} />;
 }

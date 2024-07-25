@@ -15,6 +15,10 @@ export function ShoppingCartProvider({children}) {
         "shopping-cart",
         []
     )
+    const [variety, setVariety] = useLocalStorage(
+        "variety",
+        "beans"
+    )
     const [subscription, setSubscription] = useLocalStorage(
         "subscription",
         []
@@ -103,6 +107,10 @@ export function ShoppingCartProvider({children}) {
         })
     }
 
+    function setVarietyForOrder(variety) {
+        setVariety(variety)
+    }
+
     return (
         <ShoppingCartContext.Provider
             value={{
@@ -117,7 +125,9 @@ export function ShoppingCartProvider({children}) {
                 emptyCart,
                 products,
                 subscription,
-                addSubscription
+                addSubscription,
+                setVarietyForOrder,
+                variety
             }}
         >
             {children}
