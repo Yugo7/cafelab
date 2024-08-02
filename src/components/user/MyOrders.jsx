@@ -20,6 +20,7 @@ const Orders = () => {
             } else {
                 try {
                     const data = await OrderService.getOrdersByUserId(customer.id);
+                    console.log(customer.id);
                     const filteredData = data.filter(order =>
                         Array.isArray(order.products) && order.products.every(product => product.id < 900)
                     );

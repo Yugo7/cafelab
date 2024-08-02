@@ -22,7 +22,8 @@ import AboutUs from "./AboutUs.jsx";
 import Refunds from "./Refunds.jsx";
 import {ChakraProvider} from "@chakra-ui/react";
 import AuthProvider from "./components/context/AuthContext.jsx";
-import ProtectedRoute from "./components/shared/ProtectedRoute.jsx";
+import ProtectedRoute from "./components/shared/routeProtection/ProtectedRoute.jsx";
+import ProtectedAdminRoute from "./components/shared/routeProtection/ProtectedAdminRoute.jsx";
 import Orders from "./components/user/MyOrders.jsx";
 import {SubscriptionProvider} from "./components/context/SubscriptionContext.jsx";
 import {Elements} from "@stripe/react-stripe-js";
@@ -35,6 +36,7 @@ import ConsentBanner from "./components/shared/ConsentBanner.jsx";
 import Consent from "./Consent.jsx";
 import {Analytics} from "@vercel/analytics/react"
 import ProfilePage from "./components/user/Dashboard.jsx";
+import Dashboard from "./components/dashboard/Dashboard.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -133,6 +135,12 @@ const router = createBrowserRouter([
         path: "/profile",
         element: (
             <ProtectedRoute><ProfilePage/></ProtectedRoute>
+        )
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <ProtectedRoute><Dashboard/></ProtectedRoute>
         )
     },
 ])

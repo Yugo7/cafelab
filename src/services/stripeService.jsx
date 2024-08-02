@@ -6,11 +6,11 @@ const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const StripeService = {
-    createCustomer: async (email, name) => {
+    createCustomer: async (customer) => {
         try {
-            const response = await axios.post(`${BASE_URL}sp/create-customer`, {
-                email: email,
-                name: name
+            console.log('Creating customer:', customer);
+            const response = await axios.post(`${BASE_URL}user`, {
+                customer
             });
             return response.data;
         } catch (error) {

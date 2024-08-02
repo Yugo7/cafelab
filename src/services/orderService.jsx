@@ -13,6 +13,7 @@ const OrderService = {
         }
     },
     getOrdersByUserId: async (userId) => {
+        console.log(userId);
         try {
             const response = await axios.get(`${BASE_URL}orders/${userId}`);
             return response.data;

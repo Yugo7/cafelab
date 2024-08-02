@@ -31,18 +31,32 @@ export const getCustomers = async () => {
     }
 }
 
+
+export const resetPassword = async (email) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}user/change-password`,
+            { email: email}
+        )
+    } catch (e) {
+        throw e;
+    }
+}
+
 export const saveCustomer = async (customer, stripeData) => {
     console.log("save customer: " + customer)
     try {
         const { data, error } = await supabase.auth.signUp({
             email: customer.email,
             password: customer.password,
-            options:{
+            scope: "customer",
+            options: {
                 data: {
                     name: customer.name,
                     age: customer.age,
                     gender: customer.gender,
-                    stripeId: stripeData.id
+                    stripeId: stripeData.id,
+                    role: "customer",
                 },
             },
         });
@@ -83,7 +97,7 @@ export const uploadCustomerProfilePicture = async (id, formData) => {
             formData,
             {
                 ...getAuthConfig(),
-                'Content-Type' : 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         );
     } catch (e) {

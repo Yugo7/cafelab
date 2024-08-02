@@ -12,8 +12,7 @@ const OurPicks = () => {
 
     return (
         <Stack fluid className="my-5 text-center">
-            <Text className="font-headline text-center" fontSize={stackSpacing}>Nossos favoritos</Text>
-            /* TODO: fix image borders to fit in the card */
+            <Text className="font-headline text-center" fontSize={stackSpacing}>{t('ourPicks.headline')}</Text>
             <SimpleGrid spacing={4} mb={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
                 <Card
                     backgroundColor={"#FFFFFF"}>
@@ -26,7 +25,7 @@ const OurPicks = () => {
                         <Stack className="mask">
                             <Stack className="d-flex justify-content-start align-items-end h-100">
                                 <h5>
-                                    <span className="badge bg-primary ms-2">Top Robusta</span>
+                                    <span className="badge bg-primary ms-2">{t('ourPicks.topRobusta')}</span>
                                 </h5>
                             </Stack>
                         </Stack>
@@ -38,8 +37,8 @@ const OurPicks = () => {
                         </Stack>
                     </a>
                     <CardBody>
-                        <Text mb={3} fontWeight={"semibold"}>Tanzânia</Text>
-                        <Text>Café</Text>
+                        <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.tanzania')}</Text>
+                        <Text>{t('ourPicks.coffee')}</Text>
                         <Text mb={3} fontWeight={"semibold"}>€8.00</Text>
                     </CardBody>
                     <CardFooter>
@@ -75,7 +74,7 @@ const OurPicks = () => {
                         </Stack>
                     </a>
                     <CardBody>
-                        <Text mb={3} fontWeight={"semibold"}>Ecobag personalizada CAFELAB</Text>
+                        <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.ecobag')}</Text>
                         <Text>Boutique</Text>
                         <Text mb={3} fontWeight={"semibold"}>€25.00</Text>
                     </CardBody>
@@ -100,7 +99,7 @@ const OurPicks = () => {
                         <Stack className="mask">
                             <Stack className="d-flex justify-content-start align-items-end h-100">
                                 <h5>
-                                    <span className="badge bg-danger ms-2">Top Arábica</span>
+                                    <span className="badge bg-danger ms-2">{t('ourPicks.topArabica')}</span>
                                 </h5>
                             </Stack>
                         </Stack>
@@ -112,8 +111,8 @@ const OurPicks = () => {
                         </Stack>
                     </a>
                     <CardBody>
-                        <Text mb={3} fontWeight={"semibold"}>Etiópia</Text>
-                        <Text>Café</Text>
+                        <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.ethiopia')}</Text>
+                        <Text>{t('ourPicks.coffee')}</Text>
                         <Text mb={3} fontWeight={"semibold"}>€12.50</Text>
                     </CardBody>
                     <CardFooter>

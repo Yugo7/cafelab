@@ -10,9 +10,6 @@ import StripeService from "../../services/stripeService.jsx";
 import {useTranslation} from "react-i18next";
 
 const MyTextInput = ({label, ...props}) => {
-    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-    // which we can spread on <input>. We can use field meta to show an error
-    // message if the field is invalid and it has been touched (i.e. visited)
     const [field, meta] = useField(props);
     return (
         <Box>
@@ -36,7 +33,7 @@ SignupSuccess.propTypes = {
     onClose: PropTypes.func,
     isOpen: PropTypes.bool
 };
-// And now we can use these
+
 const CreateCustomerForm = ({onSuccess}) => {
     const navigate = useNavigate();
     const [isSignupSuccessOpen, setIsSignupSuccessOpen] = useState(false);
@@ -73,8 +70,8 @@ const CreateCustomerForm = ({onSuccess}) => {
                 })}
                 onSubmit={async (customer, {setSubmitting}) => {
                     setSubmitting(true);
-                    const stripeData = await StripeService.createCustomer(customer.email, customer.name)
-                    saveCustomer(customer, stripeData)
+                    const stripeData = await StripeService.createCustomer(customer)
+                    //saveCustomer(customer, stripeData)
                         .then(res => {
                             setIsSignupSuccessOpen(true);
                         }).catch(err => {

@@ -237,4 +237,13 @@ export default {
     successTitle: "Sucesso!",
     successDescription: "Recebemos seu contacto, responderemos assim que possível.",
   },
+  ourPicks: {
+    headline: "Nossos favoritos",
+    coffee: "Café",
+    topRobusta: "Top Robusta",
+    tanzania: "Tanzânia",
+    topArabica: "Top Arábica",
+    ethiopia: "Etiópia",
+    ecobag: "Ecobag personalizada CAFELAB",
+  },
 }

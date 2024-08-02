@@ -1,3 +1,5 @@
+import OurPicks from "../components/products/OurPicks";
+
 export default {
   sideBar: {
     home: "Home",
@@ -240,5 +242,15 @@ export default {
     submitButton: "Submit",
     successTitle: "Success!",
     successDescription: "We received your contact, we will respond as soon as possible.",
+  },
+  ourPicks: {
+    headline: "Our Picks",
+    coffee: "Coffee",
+    topRobusta: "Top Robusta",
+    tanzania: "Tanzania",
+    topArabica: "Top Arabica",
+    ethiopia: "Ethiopia",
+    ecobag: "Custom ecobag CAFELAB",
+    addToCart: "Add to cart",
   },
 };

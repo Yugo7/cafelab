@@ -40,7 +40,7 @@ import {useTranslation} from "react-i18next";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ProfilePage = () => {
-        const {customer, logOut} = useAuth();
+        const {customer, logOut, resetPassword} = useAuth();
         const [orders, setOrders] = useState([]);
         const [subscriptions, setSubscriptions] = useState([]);
         const navigate = useNavigate();
@@ -84,13 +84,18 @@ const ProfilePage = () => {
             ];
         }
 
+        const handleChangePassword = () => {
+            resetPassword(customer.username);
+        };
+    
         useEffect(() => {
             const fetchOrders = async () => {
                 if (!customer) {
                     //navigate("/");
                 } else {
                     try {
-                        const data = await OrderService.getOrdersByUserId(customer.id);
+                        const data = await OrderService.getOrdersByUserId(customer.stripeId);
+                        console.log(data);
                         const [orders, subscriptions] = partition(data, order =>
                             Array.isArray(order.products) && order.products.every(product => product.id < 900)
                         );
@@ -119,6 +124,9 @@ const ProfilePage = () => {
                             />
                             <Text fontSize="lg">{customer.name}</Text>
                             <Text>{customer.username}</Text>
+                            <Button mt={4} variant={"outline"} colorScheme="blackAlpha" onClick={handleChangePassword}>
+                            Change My Password
+                        </Button>
                         </Box>
                     </VStack>
 

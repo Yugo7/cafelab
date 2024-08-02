@@ -1,10 +1,10 @@
-import {createContext, useContext, useEffect, useState} from "react";
-import {signin as performLogin} from "../../services/client.js";
+import { createContext, useContext, useEffect, useState } from "react";
+import { signin as performLogin, resetPassword as resetPasswordServer } from "../../services/client.js";
 import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext({});
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
     const [customer, setCustomer] = useState(null);
 
@@ -27,7 +27,7 @@ const AuthProvider = ({children}) => {
         if (token) {
             setCustomerFromToken();
         }
-    }, [localStorage.getItem("access_token")]); // Add this line
+    }, [localStorage.getItem("access_token")]);
 
 
     const signin = async (usernameAndPassword) => {
@@ -64,7 +64,7 @@ const AuthProvider = ({children}) => {
         if (!token) {
             return false;
         }
-        const {exp: expiration} = jwtDecode(token);
+        const { exp: expiration } = jwtDecode(token);
         if (Date.now() > expiration * 1000) {
             logOut()
             return false;
@@ -73,16 +73,27 @@ const AuthProvider = ({children}) => {
     }
 
     const getUserId = () => {
+        if (!customer) {
+            return false;
+        }
+        return customer.id;
+    }
+
+    const resetPassword = async (email) => {
+        resetPasswordServer(email).then(res => {
+            console.log(res)
+        }).catch(err => {   
+            console.log(err)    
+        })
+    }
+    
+    const getUserRole = () => {
+        if (!isCustomerAuthenticated()) {
+            return false;
+        }
         const token = localStorage.getItem("access_token");
-        if (!token) {
-            return false;
-        }
-        const {exp: expiration} = jwtDecode(token);
-        if (Date.now() > expiration * 1000) {
-            logOut()
-            return false;
-        }
-        return true;
+        const { role } = jwtDecode(token);
+        return role ? role : false;
     }
 
     return (
@@ -91,7 +102,10 @@ const AuthProvider = ({children}) => {
             signin,
             logOut,
             isCustomerAuthenticated,
-            setCustomerFromToken
+            setCustomerFromToken,
+            getUserRole,
+            getUserId,
+            resetPassword
         }}>
             {children}
         </AuthContext.Provider>
