@@ -13,7 +13,6 @@ const OrderService = {
         }
     },
     getOrdersByUserId: async (userId) => {
-        console.log(userId);
         try {
             const response = await axios.get(`${BASE_URL}orders/${userId}`);
             return response.data;
@@ -30,7 +29,7 @@ const OrderService = {
                 user_id: orderData.user_id,
                 products: orderData.items,
                 total: orderData.total,
-                payment_status: orderData.paymentStatus,
+                status: orderData.paymentStatus,
                 user_stripe_id: orderData.user_stripe_id
             });
             return response.data;

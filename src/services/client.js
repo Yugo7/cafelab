@@ -37,7 +37,7 @@ export const resetPassword = async (email) => {
         return await axios.post(
             `${import.meta.env.VITE_API_BASE_URL}user/change-password`,
             { email: email}
-        )
+        ) 
     } catch (e) {
         throw e;
     }

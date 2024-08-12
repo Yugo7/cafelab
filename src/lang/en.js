@@ -253,4 +253,31 @@ export default {
     ecobag: "Custom ecobag CAFELAB",
     addToCart: "Add to cart",
   },
+  userDashboard: {
+    changePassword: "Change My Password",
+    yourSubscription: "YOUR SUBSCRIPTION",
+    changeCoffees: "Change Coffees",
+    noSubscription: "No subscription available",
+    cancelSubscription: "Cancel Subscription",
+    myOrders: "My Orders",
+    indicateCoffees: "Indicate the coffees you want in the next subscriptions",
+    writeMessage: "Write your message here",
+    send: "Send",
+    every: "Every ",
+    months: " months",
+  },
+  myOrders: {
+    noOrders: "No orders available",
+    orderDetails: "Order Details",
+    product: "Product",
+    quantity: "Quantity",
+    price: "Price",
+    orderNumber: "Order #",
+    status: {
+      pending: "Pending",
+      shipped: "Shipped",
+      paymentSuccessful: "Payment Successful",
+      cancelled: "Cancelled"
+    }
+  }
 };

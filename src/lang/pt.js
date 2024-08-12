@@ -246,4 +246,31 @@ export default {
     ethiopia: "Etiópia",
     ecobag: "Ecobag personalizada CAFELAB",
   },
+  userDashboard: {
+    changePassword: "Mudar Minha Senha",
+    yourSubscription: "SUA SUBSCRIÇÃO",
+    changeCoffees: "Alterar cafés",
+    noSubscription: "Nenhuma subscrição disponível",
+    myOrders: "Meus Pedidos",
+    indicateCoffees: "Indique os cafés que deseja nas próximas subscrições",
+    writeMessage: "Escreva sua mensagem aqui",
+    send: "Enviar",
+    cancelSubscription: "Cancelar subscrição",
+    every: "A cada ",
+    months: " meses",
+  },
+  myOrders: {
+    noOrders: "Nenhum pedido disponível",
+    orderDetails: "Detalhes do Pedido",
+    product: "Produto",
+    quantity: "Quantidade",
+    price: "Preço",
+    orderNumber: "Pedido #",
+    status: {
+      pending: "Pendente",
+      shipped: "Enviado",
+      paymentSuccessful: "Pagamento Bem-sucedido",
+      cancelled: "Cancelado"
+    }
+  }
 }

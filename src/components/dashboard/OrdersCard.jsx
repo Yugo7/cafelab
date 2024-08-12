@@ -15,14 +15,14 @@ const OrdersCard = ({ orders }) => {
         return <p>No orders available</p>;
     }
 
-    // Function to count orders by payment_status
+    // Function to count orders by status
     const countOrdersByPaymentStatus = (orders) => {
         return orders.reduce((acc, order) => {
-            const payment_status = order.payment_status;
-            if (!acc[payment_status]) {
-                acc[payment_status] = 0;
+            const status = order.status;
+            if (!acc[status]) {
+                acc[status] = 0;
             }
-            acc[payment_status]++;
+            acc[status]++;
             return acc;
         }, {});
     };
@@ -71,11 +71,11 @@ const OrdersCard = ({ orders }) => {
     return (
         <>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={4}>
-            {Object.entries(ordersByPaymentStatus).map(([payment_status, count], index) => (
+            {Object.entries(ordersByPaymentStatus).map(([status, count], index) => (
                 <Box key={index}>
                     <Card variant={"outline"} colorScheme='green'> 
                         <CardHeader>
-                            <Heading size='md'>Pedidos pagamento {payment_status}</Heading>
+                            <Heading size='md'>Pedidos pagamento {status}</Heading>
                         </CardHeader>
                         <TableContainer>
                             <Table variant='simple'>

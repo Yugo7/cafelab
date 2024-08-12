@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Stripe from 'stripe';
-import { CheckoutForm } from './StripeCheckout.jsx';
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
-import OrderService from "../../services/orderService.jsx";
-import { useErrorBoundary } from "react-error-boundary";
 import {
     AlertDialog,
     AlertDialogBody,
@@ -19,14 +15,9 @@ import animationData from '/src/animations/emptybag.json';
 import { useAuth } from "../context/AuthContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
 
-const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
-const shipping = 5;
-
 export default function Checkout() {
-    const [clientSecret, setClientSecret] = useState(null);
-    const { cartItems, subscription, products, variety, emptyCart } = useShoppingCart()
+    const { cartItems, subscription, products, variety } = useShoppingCart()
     const navigate = useNavigate();
-    const { showBoundary } = useErrorBoundary();
     const { onClose } = useDisclosure()
     const { customer } = useAuth();
 
@@ -57,17 +48,12 @@ export default function Checkout() {
     }
 
     useEffect(() => {
+        console.log('customer', customer);
         const cart = {
             user: customer,
             items: cartItems,
             variety: variety
         };
         StripeService.createCheckoutSession(cart);
-    }, [cartItems, products]);
-
-    if (!clientSecret) {
-        return null;
-    }
-
-    return <CheckoutForm clientSecret={clientSecret} />;
+    }, [cartItems, products, customer]);
 }
