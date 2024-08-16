@@ -38,6 +38,18 @@ const OrderService = {
             throw error;
         }
     },
+
+    
+    cancelSubscription: async (subscription) => {
+        try {
+            const response = await axios.post(`${BASE_URL}subscription/${subscription}`, {
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error creating event:', error);
+            throw error;
+        }
+    },
 }
 
 export default OrderService;

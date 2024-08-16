@@ -89,6 +89,10 @@ const ProfilePage = () => {
         resetPassword(customer.username);
     };
 
+    const cancel = () => {
+        OrderService.cancelSubscription(subscriptions.id)
+    }
+
     useEffect(() => {
         const fetchOrders = async () => {
             if (!customer) {
@@ -196,11 +200,9 @@ const ProfilePage = () => {
                                                                 subscriptions.total
                                                             )} {t('userDashboard.every')} {subscriptions.products.periodicity} {t('userDashboard.months')}
                                                     </Text>
-                                                        <Tooltip label="Disponivel após o terceiro mes de subscrição" aria-label="A tooltip">
-                                                        <Button variant={"outline"} colorScheme={"red"} disabled={true}>
+                                                        <Button variant={"outline"} colorScheme={"red"} onClick={cancel(subscriptions.id)}>
                                                         {t('userDashboard.cancelSubscription')}
                                                         </Button>
-                                                        </Tooltip>
                                                     </Stack>
                                             </Stack>
                                         </HStack>

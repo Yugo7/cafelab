@@ -25,7 +25,6 @@ const MyOrders = () => {
             } else {
                 try {
                     const data = await OrderService.getOrdersByUserId(customer.username);
-                    console.log(customer);
                     const filteredData = data.filter(order =>
                         Array.isArray(order.products) && order.products.every(product => product.id < 900)
                     );
@@ -102,8 +101,6 @@ const MyOrders = () => {
                             <Tbody>
                                 {order.products.map((product, productIndex) => {
                                     const productInfo = products.find(i => i.id === product.id);
-                                    console.log(product)
-                                    console.log(productInfo)
                                     
                                     return (
                                         <Tr key={productIndex}>
