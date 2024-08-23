@@ -190,7 +190,7 @@ export default {
   },
   signup: {
     validation: {
-      nameMax: "Must be 15 characters or less",
+      nameMax: "Must be 70 characters or less",
       required: "Required",
       emailMax: "Must be 20 characters or less",
       emailError: "Invalid email address",

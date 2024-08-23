@@ -1,14 +1,16 @@
 import axios from 'axios';
-import SupabaseClientUtil from "../components/utilities/SupabaseClientUtil.jsx";
 
-const supabase = SupabaseClientUtil.supabaseClient
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const signin = async (usernameAndPassword) => {
     try {
-        return await supabase.auth.signInWithPassword({
-            email: usernameAndPassword.username,
-            password: usernameAndPassword.password,
-        })
+        return await axios.post(
+            `${BASE_URL}user/signin`,
+            {
+                email: usernameAndPassword.username,
+                password: usernameAndPassword.password,
+            }
+        )
     } catch (e) {
         throw e;
     }
@@ -35,7 +37,7 @@ export const getCustomers = async () => {
 export const resetPassword = async (email) => {
     try {
         return await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}user/change-password`,
+            `${BASE_URL}user/change-password`,
             { email: email}
         ) 
     } catch (e) {
@@ -43,27 +45,16 @@ export const resetPassword = async (email) => {
     }
 }
 
-export const saveCustomer = async (customer, stripeData) => {
-    console.log("save customer: " + customer)
+export const createCustomer = async (customer) => {
     try {
-        const { data, error } = await supabase.auth.signUp({
-            email: customer.email,
-            password: customer.password,
-            scope: "customer",
-            options: {
-                data: {
-                    name: customer.name,
-                    age: customer.age,
-                    gender: customer.gender,
-                    stripeId: stripeData.id,
-                    role: "customer",
-                },
-            },
+        console.log('Creating customer:', customer);
+        const response = await axios.post(`${BASE_URL}user`, {
+            customer
         });
-        if (error) throw error;
-        return data;
+        return response.data;
     } catch (error) {
-        console.error("Error creating user: ", error.message);
+        console.error('Error creating customer:', error);
+        throw error;
     }
 }
 

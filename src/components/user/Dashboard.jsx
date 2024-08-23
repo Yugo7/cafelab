@@ -41,13 +41,12 @@ import MyOrders from "./MyOrders.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ProfilePage = () => {
-    const { customer, logOut, resetPassword } = useAuth();
+    const { customer, resetPassword } = useAuth();
     const [orders, setOrders] = useState([]);
     const [subscriptions, setSubscriptions] = useState([]);
     const navigate = useNavigate();
     const { products } = useShoppingCart();
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const tableSize = useBreakpointValue({ base: "sm", md: "md" });
     const [message, setMessage] = useState("");
     const toast = useToast();
     const [submitting, setSubmitting] = useState(false);
@@ -61,7 +60,7 @@ const ProfilePage = () => {
             email: customer.username,
         }
         axios.post(`${BASE_URL}contacts/`, values)
-            .then(response => {
+            .then(() => {
                 // Handle success
                 setSubmitting(false);
                 toast({
@@ -73,7 +72,7 @@ const ProfilePage = () => {
                 });
                 onClose()
             })
-            .catch(error => {
+            .catch(() => {
                 setSubmitting(false);
             });
     }
@@ -225,6 +224,7 @@ const ProfilePage = () => {
                         </MyOrders>
                     </Box>
                 </VStack>
+
             </Box>
         </SidebarWithHeader>
     )

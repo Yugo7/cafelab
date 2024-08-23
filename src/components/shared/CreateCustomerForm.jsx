@@ -1,7 +1,7 @@
 import {Form, Formik, useField} from 'formik';
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Stack, Text} from "@chakra-ui/react";
-import {saveCustomer} from "../../services/client.js";
+import {createCustomer} from "../../services/client.js";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
@@ -55,7 +55,7 @@ const CreateCustomerForm = ({onSuccess}) => {
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(15, t('signup.validation.nameMax'))
+                        .max(70, t('signup.validation.nameMax'))
                         .required(t('signup.validation.required')),
                     email: Yup.string()
                         .email(t('signup.validation.emailError'))
@@ -70,18 +70,16 @@ const CreateCustomerForm = ({onSuccess}) => {
                 })}
                 onSubmit={async (customer, {setSubmitting}) => {
                     setSubmitting(true);
-                    const stripeData = await StripeService.createCustomer(customer)
-                    //saveCustomer(customer, stripeData)
+                    const stripeData = await createCustomer(customer)
                         .then(res => {
                             setIsSignupSuccessOpen(true);
+                            navigate("/");
                         }).catch(err => {
                         errorNotification(
-                            err.code,
-                            err.response.data.message
+                            "Error creating customer"
                         )
                     }).finally(() => {
                         setSubmitting(false);
-                        navigate("/");
                     })
                 }}
             >

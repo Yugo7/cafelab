@@ -11,8 +11,7 @@ const ProtectedAdminRoute = ({ children }) => {
 
     useEffect(() => {
         const role = getUserRole();
-        console.log(role);
-        if (role !== "admin") {
+        if (!role.includes('admin')) {
             toast({
                 title: "Plaease login as an admin to access this page",
                 status: "error",
@@ -24,7 +23,7 @@ const ProtectedAdminRoute = ({ children }) => {
         }
     }, [getUserRole, navigate]);
 
-    return getUserRole() === "admin" ? children : "";
+    return children;
 }
 
 export default ProtectedAdminRoute;

@@ -14,10 +14,9 @@ const AuthProvider = ({ children }) => {
             token = jwtDecode(token);
             setCustomer({
                 username: token.email,
-                name: token.user_metadata.name ? token.user_metadata.name : token.email,
+                name: token.name ? token.name : token.email,
                 role: token.scopes,
-                id: token.sub,
-                stripeId: token.user_metadata.stripeId
+                //stripeId: token.user_metadata.stripeId
             })
         }
     }
@@ -33,18 +32,15 @@ const AuthProvider = ({ children }) => {
     const signin = async (usernameAndPassword) => {
         return new Promise((resolve, reject) => {
             performLogin(usernameAndPassword).then(res => {
-
-                const jwtToken = res.data.session.access_token;
+                const jwtToken = res.data;
                 localStorage.setItem("access_token", jwtToken);
 
                 const decodedToken = jwtDecode(jwtToken);
-
+                console.log(decodedToken)
                 setCustomer({
                     username: decodedToken.email,
-                    name: decodedToken.user_metadata.name ? decodedToken.user_metadata.name : decodedToken.email,
+                    name: decodedToken.name ? decodedToken.name : decodedToken.email,
                     role: decodedToken.scopes,
-                    id: decodedToken.sub,
-                    stripeId: decodedToken.user_metadata.stripeId
                 })
                 resolve(res);
 
