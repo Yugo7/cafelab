@@ -30,8 +30,8 @@ export const getProductsBySection = async (section) => {
     try {
         const products = await getProducts();
 
-        return section ? products.filter(product => product.secao === section && product.is_active) : products.filter(product => product.active);
-    } catch (e) {
+        return section ? products.filter(product => product.secao === section && product.is_active) : products.filter(product => product.is_active);
+    } catch (e) {   
         throw e;
     }
 }
