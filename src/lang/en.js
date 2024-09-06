@@ -28,6 +28,9 @@ export default {
     storeButton: "STORE",
     subscriptionButton: "SUBSCRIPTION",
     visit: "PAY US A VISIT",
+    checkOutOurSubscriptions: "CHECK OUT OUR SUBSCRIPTIONS!",
+    checkOutOurCoffee: "CHECK OUT OUR ESPECIALTY COFFEES!",
+    checkOutOurBoutique: "CHECK OUT OUR BOUTIQUE DEPARTMENT!",
   },
   subscription: {
     subscriptionTitle: "SUBSCRITPION CAFELAB",

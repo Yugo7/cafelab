@@ -1,19 +1,17 @@
 import React from 'react';
-import { Stack, Text, VStack, HStack, Box } from '@chakra-ui/react';
+import { Stack, Text, VStack, HStack, Box, Tag, Spacer } from '@chakra-ui/react';
 import { useTranslation } from "react-i18next";
+import { formatCurrency } from "../utilities/formatCurrency"
 
 const OrdersList = ({ orders, products }) => {
     const { t } = useTranslation();
-
     if (!Array.isArray(orders)) {
         return <p>No orders available</p>;
     }
 
-    // Create a mapping of product IDs to product names
-    const productMap = products.reduce((acc, product) => {
-        acc[product.id] = product.name;
-        return acc;
-    }, {});
+    const getProductById = (id) => {
+        return products.find(product => product.id === id) || { nome_pt: 'Unknown Product', secao: 'Unknown' };
+    };
 
     // Group orders by status
     const groupedOrders = orders.reduce((acc, order) => {
@@ -38,16 +36,59 @@ const OrdersList = ({ orders, products }) => {
                                 <Text fontWeight={"bold"} fontSize={"2xl"} mb={2}>
                                     {status} ({groupedOrders[status].length})
                                 </Text>
+
+                                <Box mb={4}>
+                                    <HStack width={'100%'} p={2} borderBottom="1px solid #ccc">
+                                        <Stack marginRight={2}>
+                                            <Text fontWeight={"medium"} fontSize={"md"}>
+                                                Numero
+                                            </Text>
+                                        </Stack>
+                                        <HStack marginLeft="60px" justifyContent="flex-start">
+                                            <Text fontWeight={"normal"} fontSize={"md"}>
+                                                Items:
+                                            </Text>
+                                        </HStack>
+                                        <Spacer />
+                                        <Stack alignSelf={'flex-end'}>
+                                            <Text fontWeight={"normal"} fontSize={"md"}>
+                                                Total:
+                                            </Text>
+
+                                        </Stack>
+                                    </HStack>
+                                </Box>
                                 {groupedOrders[status].map((order, orderIndex) => {
-                                    console.log('Order:', order); // Log the order object
+
                                     return (
-                                        <HStack key={orderIndex} justifyContent="space-between" p={2} borderBottom="1px solid #ccc">
-                                            <Text fontWeight={"medium"} fontSize={"lg"}>
-                                                #{order.id}
-                                            </Text>
-                                            <Text fontWeight={"normal"} fontSize={"lg"}>
-                                                {order.products.map(productId => productMap[productId]).join(', ')}
-                                            </Text>
+                                        <HStack width={'100%'} key={orderIndex} p={2} borderBottom="1px solid #ccc">
+                                            <Stack marginRight={2}>
+                                                <Text fontWeight={"medium"} fontSize={"lg"}>
+                                                    #{order.id}
+                                                </Text>
+                                            </Stack>
+                                            <HStack marginLeft="60px" justifyContent="flex-start">
+                                                {order.products.map(orderProduct => {
+                                                    const product = getProductById(orderProduct.id);
+                                                    return (
+                                                        <Tag
+                                                            key={orderProduct.id}
+                                                            size="sm"
+                                                            variant="solid"
+                                                            colorScheme={product.secao === 'CAFE' ? 'blue' : 'yellow'}
+                                                        >
+                                                            {product.nome_pt}
+                                                        </Tag>
+                                                    );
+                                                })}
+                                            </HStack>
+                                            <Spacer />
+                                            <Stack alignSelf={'flex-end'}>
+                                                <Text fontWeight={"normal"} fontSize={"lg"}>
+                                                    {formatCurrency(order.total)}
+                                                </Text>
+
+                                            </Stack>
                                         </HStack>
                                     );
                                 })}
