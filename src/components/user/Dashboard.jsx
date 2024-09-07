@@ -104,7 +104,8 @@ const ProfilePage = () => {
                     );
 
                     setOrders(orders);
-                    setSubscriptions(subscriptions[0]);
+                    const activeSubscriptions = subscriptions.filter(subscription => subscription.status === 'ACTIVE');
+                    setSubscriptions(activeSubscriptions[0]);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
