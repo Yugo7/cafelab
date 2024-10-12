@@ -75,7 +75,6 @@ export default {
     coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
     coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
     trust: "I trust",
-
     pricePerMonth: "Only €27.90 per month",
   },
   boutique: {

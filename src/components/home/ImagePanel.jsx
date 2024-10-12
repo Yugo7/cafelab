@@ -20,7 +20,7 @@ const ImagePanel = ({ imageUrl }) => {
             color="white"
             textAlign="center"
         >
-            <Text fontSize="3xl" fontWeight="bold" mb={4}>
+            <Text fontSize="3xl" fontWeight="bold" mb={4} color={"black"}>
                 {t('home.springMenu')}
             </Text>
             <Text fontSize="xl" mb={8}>

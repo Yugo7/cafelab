@@ -62,7 +62,7 @@ const Home = () => {
                         </Text>
                     </Box>
 
-                    <ImagePanel imageUrl={"url('assets/brasil.jpg')"} />
+                    <ImagePanel backgroundColor='black' />
                 </Stack>
                 <Stack spacing={0} direction={['column', 'row']} width="100%" justify="center">
                     <ImagePanel imageUrl={"url('assets/menu.jpg')"} />
