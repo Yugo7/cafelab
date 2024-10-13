@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import ProductCarouselItem from "./ProductCarouselItem.jsx";
 import { getProductsBySection } from "../../services/productsService.jsx";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ const EuMeExpressoModal = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setIsLoading] = useState(false);
+    const [activeProductId, setActiveProductId] = useState(null); 
     const [err, setError] = useState("");
     const padding = useBreakpointValue({ base: "0", md: "10%" });
     const { t } = useTranslation();
@@ -17,6 +18,7 @@ const EuMeExpressoModal = () => {
         getProductsBySection("CAFE")
             .then(data => {
                 setProducts(data);
+                setActiveProductId(data.length > 0 ? data[0].id : null);
                 setIsLoading(false);
             })
             .catch(error => {
@@ -50,14 +52,15 @@ const EuMeExpressoModal = () => {
     }
 
     return (
-            <Stack alignItems={"center"}>
-                <Stack id="cafeCarousel" className="carousel no-transition" data-ride="carousel">
-                    <Stack maxHeight={"100%"} className="carousel-inner" px={padding}>
+            <Box alignItems={"center"}>
+                <Box id="cafeCarousel" className="carousel no-transition" data-ride="carousel">
+                    <Stack className="carousel-inner" px={padding}>
                         {products.map((product, index) => (
                             <ProductCarouselItem
-                                {...product}
+                                product={product}
                                 imageNumber={index}
-                                allProducts={products}
+                                isActive={product.id === activeProductId}
+                                key={product.id} 
                             />
                         ))}
                     </Stack>
@@ -69,8 +72,8 @@ const EuMeExpressoModal = () => {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
-                </Stack>
-            </Stack>
+                </Box>
+            </Box>
     )
 }
 
