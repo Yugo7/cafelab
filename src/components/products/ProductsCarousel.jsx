@@ -3,7 +3,6 @@ import { Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import ProductCarouselItem from "./ProductCarouselItem.jsx";
 import { getProductsBySection } from "../../services/productsService.jsx";
 import { useTranslation } from "react-i18next";
-import Slider from 'react-slick'
 
 const EuMeExpressoModal = () => {
 
