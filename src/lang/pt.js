@@ -26,6 +26,9 @@ export default {
     storeButton: "LOJA",
     subscriptionButton: "SUBSCRIÇÃO",
     visit: "VISITE NOSSO ESPAÇO",
+    checkOutOurSubscriptions: "CONHEÇA NOSSAS SUBSCRIÇÕES!",
+    checkOutOurCoffee: "CONHEÇA NOSSOS CAFÉS DE ESPECIALIDADE!",
+    checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
   },
   subscription: {
     subscriptionTitle: "SUBSCRIÇÃO CAFELAB",
@@ -73,6 +76,7 @@ export default {
     coffeeDescription: "3 embalagens de 175g escolhidas pelo nosso especialista<br />Tenha acesso ao nosso café exclusivo da subscrição!",
     coffeeDetails: "Para os que nos conhecem, e amam uma surpresa. Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista. E ainda tenha acesso aos nossos cafés exclusivos da assinatura.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     trust: "Confio",
+    pricePerMonth: "Apenas €27.90 por mês"
 
   },
   meexpresso: {
@@ -83,6 +87,8 @@ export default {
     yourSubscription: "SUA SUBSCRIÇÃO",
     coffeeSelection: "Selecção de café",
     selectYourCoffee: "ESCOLHA SEUS CAFÉS",
+    pricePerMonth: "Apenas €25.00 por mês",
+    checkout: "Ir para o checkout",
   },
   results: {
     explorer: {
@@ -145,7 +151,6 @@ export default {
     noUpcomingEvents: "Fique ligado para saber sobre os nossos próximos eventos!",
     takeALook: "Veja como foi",
     addtocalendar: "Adicionar ao calendário",
-    // Add other translations related to the Agenda component here...
   },
   footer: {
     aboutUs: "Sobre nós",
