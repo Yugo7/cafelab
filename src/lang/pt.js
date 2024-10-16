@@ -26,7 +26,7 @@ export default {
     storeButton: "LOJA",
     subscriptionButton: "SUBSCRIÇÃO",
     visit: "VISITE NOSSO ESPAÇO",
-    checkOutOurSubscriptions: "CONHEÇA NOSSAS SUBSCRIÇÕES!",
+    checkOutOurSubscriptions: "CHEGARAM NOSSAS SUBSCRIÇÕES!<br /><br /> TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
     checkOutOurCoffee: "CONHEÇA NOSSOS CAFÉS DE ESPECIALIDADE!",
     checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
   },
@@ -80,7 +80,7 @@ export default {
 
   },
   meexpresso: {
-    name: "DEPOIS DO CAFELAB, EU ME EXPRESSO",
+    name: "EU ME EXPRESSO",
     coffeeDescription: "3 embalagens de 175g à sua escolha dentre nossa gama.",
     coffeeDetails: "Para os nossos clientes decididos, ou menos aventureiros. Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     ratherChoose: "Já sei meu CafeLab",

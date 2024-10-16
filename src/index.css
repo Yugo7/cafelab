@@ -211,3 +211,45 @@
     height: 300px;
     width: auto;
 }
+
+.box-header {
+    background-color: #f5f5f5;
+    padding: 16px;
+    font-size: 1.5rem;        
+    font-weight: bold;        
+    text-align: center;       
+    border-bottom: 1px solid #ddd; 
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container  {
+    transition: filter 0.3s ease;
+}
+
+.image-container:hover  {
+    filter: grayscale(100%);
+}
+
+.hover-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    text-align: center;
+    width: 80%;
+    height: 80%;
+}
+
+.image-container:hover .hover-info {
+    opacity: 1;
+}

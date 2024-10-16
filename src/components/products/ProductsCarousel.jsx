@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Box, Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import ProductCarouselItem from "./ProductCarouselItem.jsx";
-import {getProductsBySection} from "../../services/productsService.jsx";
+import { getProductsBySection } from "../../services/productsService.jsx";
+import { useTranslation } from "react-i18next";
 
 const EuMeExpressoModal = () => {
 
@@ -9,7 +10,8 @@ const EuMeExpressoModal = () => {
     const [loading, setIsLoading] = useState(false);
     const [activeProductId, setActiveProductId] = useState(null); 
     const [err, setError] = useState("");
-    const padding = useBreakpointValue({base: "0", md: "10%"});
+    const padding = useBreakpointValue({ base: "0", md: "10%" });
+    const { t } = useTranslation();
 
     useEffect(() => {
         setIsLoading(true);

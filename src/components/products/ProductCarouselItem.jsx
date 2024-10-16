@@ -45,8 +45,8 @@ export default function ProductCarouselItem({product, isActive}) {
                 </Stack>
             </Stack>
             <Stack alignItems="center" align="center">
-                <Card height={sectionHeight} align='stretch' maxWidth="100%" backgroundSize={"cover"}
-                       backgroundColor="whiteAlpha.50" variant='outline' border={"1px"} spacing={stackSpacing}>
+                <Stack height={sectionHeight} align='stretch' maxWidth="100%" backgroundSize={"cover"}
+                       backgroundColor="whiteAlpha.50" variant='outline' spacing={stackSpacing}>
                     <Grid
                         m={4}
                         height={sectionHeight}
@@ -80,7 +80,7 @@ export default function ProductCarouselItem({product, isActive}) {
                             </Stack>
                         </GridItem>
                     </Grid>
-                </Card>
+                </Stack>
             </Stack>
         </Box>
     )
