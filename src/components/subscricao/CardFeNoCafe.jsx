@@ -62,7 +62,7 @@ function CardFeNoCafe() {
 
     return (
         <Box
-            maxW='2xl'
+            w={{"base": "100%", "md": "50%"}}   
             bgColor={"whiteAlpha.50"}
             height={"100%"}
         >
@@ -81,7 +81,10 @@ function CardFeNoCafe() {
                 <Box my={{ base: 4, md: 2 }}>
                 </Box>
                 <Stack p={4} mb={6}>
-                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
+                    <Text align="center" fontSize={"xl"} fontWeight={"semibold"} mb={6}>
+                        <Trans>{t('fenocafe.coffeeHighlight').toUpperCase()}</Trans>
+                    </Text>
+                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"}>
                         <Trans>{t('fenocafe.coffeeDescription')}</Trans>
                     </Text>
 

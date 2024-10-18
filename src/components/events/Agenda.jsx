@@ -94,7 +94,9 @@ const Agenda = () => {
                     </Text>
                 </Stack>
                 { events.length <= 0 ? (
-                    <Stack h={"10vh"} align="center" m={6} spacing={4}>
+                    <Stack h={"10vh"} textAlign="center" m={6} spacing={4} px={
+                        8
+                    }>
                         <Text fontSize={"xl"} mt={5}>{t('agenda.noUpcomingEvents').toUpperCase()}</Text>
                     </Stack>
                 ) : (

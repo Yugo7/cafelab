@@ -56,7 +56,7 @@ const CardMeExpresso = () => {
 
     return (
         <Box             
-        maxW='2xl'
+        w={{"base": "100%", "md": "50%"}}   
         bgColor={"whiteAlpha.50"}
         height={"100%"}>
             <Stack className="box-header" >
@@ -73,17 +73,17 @@ const CardMeExpresso = () => {
             <Stack mx={4}>
                 <Box my={{ base: 4, md: 2 }}>
                 </Box>
-                <Stack p={4} mb={6}>
-                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
+                <Stack p={4} mb={6} pt={10}>
+                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} >
                         <Trans>{t('meexpresso.coffeeDescription')}</Trans>
                     </Text>
-                    <Text fontSize={"lg"} align="center">
+                    <Text fontSize={"md"} align="center">
                         <Trans>{t('meexpresso.coffeeDetails')}</Trans>
                     </Text>
                 </Stack>
             </Stack>
 
-            <Stack alignSelf="center">
+            <Stack mt={12} >
                 <Stack alignSelf="center" justifyContent="center">
                     <Button leftIcon={<FaHandshake />} onClick={onOpen} size='lg' height='48px' border='2px'
                         variant='outline' colorScheme='#FEEBC8'>
