@@ -254,6 +254,7 @@ export default {
     ethiopia: "Ethiopia",
     ecobag: "Custom ecobag CAFELAB",
     addToCart: "Add to cart",
+    colombia: "Colombia",
   },
   userDashboard: {
     changePassword: "Change My Password",

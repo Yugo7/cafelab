@@ -69,7 +69,7 @@ export default function ProductCarouselItem({product, isActive}) {
 
                         <GridItem rowSpan={1}>
                             <Stack justify="flex-end" maxWidth="100%" mt={4}>
-                                <Text className="font-headline text-center" fontSize={fontHl}>{product[productNameColumn]}</Text>
+                                <Text className="font-headline text-center" fontSize={fontHl}>{product[productNameColumn].toUpperCase()}</Text>
                                 <Text className="font-headline text-center" fontSize={fontHl2}>Origem: {product.origem}</Text>
                             </Stack>
                             <Stack justify="flex-end" maxWidth="100%" my={5}>

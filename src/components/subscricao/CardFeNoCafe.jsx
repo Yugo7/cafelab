@@ -44,19 +44,6 @@ function CardFeNoCafe() {
         setPayment(event.target.value);
     };
 
-    function finishSubscription() {
-        if (variety === '') {
-            toast({
-                title: 'Erro',
-                description: "Falta especificar como quer seu café.",
-                status: 'warning',
-                duration: 2000,
-                isClosable: true,
-            })
-        } else {
-            createFeNoCafelab(variety, payment);
-        }
-    }
 
     function getPaymentText() {
         switch (payment) {

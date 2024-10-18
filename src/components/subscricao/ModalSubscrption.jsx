@@ -10,7 +10,7 @@ import {
     ModalFooter,
     Stack,
     Select,
-    Image,
+    useToast,
     Text
 } from '@chakra-ui/react';
 
@@ -24,10 +24,41 @@ const ModalFeNoCafe = ({
     handleChangePayment,
     getPaymentText
 }) => {
+    const toast = useToast();
+    
+    function finishSubscription() {
+        if (variety === '') {
+            toast({
+                title: 'Erro',
+                description: "Falta especificar como quer seu café.",
+                status: 'warning',
+                duration: 2000,
+                isClosable: true,
+            })
+        } else {
+            createFeNoCafelab(variety, payment);
+        }
+    }
+
+    function getPaymentText() {
+        switch (payment) {
+            case '1':
+                return '€27.90 / mês';
+            case '3':
+                return '€83.70 / trimestre';
+            case '6':
+                return '€167.40 / semestre';
+            case '12':
+                return '€334.80 / ano';
+            default:
+                return '';
+        }
+    }
+
     return (
-        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' size={"full"}>
+        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' size={"xl"}>
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent  p={4} >
                 <ModalHeader>{t('fenocafe.name')}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody overflowY="auto">
@@ -37,9 +68,6 @@ const ModalFeNoCafe = ({
                             <option value='expresso'>{t('subscription.espresso')}</option>
                             <option value='frenchpress'>{t('subscription.frenchPress')}</option>
                         </Select>
-                    </Stack>
-                    <Stack alignItems={"center"}>
-                        <Image src='assets/subscricao_fenocafe.jpg' maxH={"50vh"} />
                     </Stack>
                     <Stack my={4}>
                         <Select width={"sm"} value={payment} onChange={handleChangePayment}>
@@ -70,7 +98,7 @@ const ModalFeNoCafe = ({
                     </Stack>
                 </ModalBody>
 
-                <ModalFooter mb={8}>
+                <ModalFooter mb={2}>
                     <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>{t('subscription.checkout')}</Button>
                     <Button onClick={onClose}>{t('subscription.close')}</Button>
                 </ModalFooter>

@@ -19,7 +19,12 @@ export default function Boutique() {
         setIsLoading(true);
         getProductsBySection(section)
             .then(data => {
-                setProducts(data);
+                const sortedProducts = data.sort((a, b) => {
+                    if (a.secao > b.secao) return -1;
+                    if (a.secao < b.secao) return 1;
+                    return 0;
+                });
+                setProducts(sortedProducts);
                 setIsLoading(false);
             })
             .catch(error => {
@@ -32,7 +37,7 @@ export default function Boutique() {
         <SidebarWithHeader>
             <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                 <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
-                    {t('boutique.title')}
+                    {t('boutique.title').toUpperCase()}
                 </Text>
                 <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize} letterSpacing="tighter" color="black"
                       textAlign="center" mx={4}>
@@ -40,14 +45,6 @@ export default function Boutique() {
                 </Text>
             </Stack>
 
-            <Stack className={"main-panel"} Width="100wv"
-                   >
-                <Image
-                    alignSelf="center"
-                    src='assets/capa_boutique.jpeg'
-                    alt='Chakra UI'
-                />
-            </Stack>
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
 
@@ -56,13 +53,13 @@ export default function Boutique() {
                             setSection(prevSection => prevSection === Sections.CAFE ? null : Sections.CAFE);
                             event.currentTarget.blur();
                         }}>
-                            {t('boutique.coffeeButton')}
+                            {t('boutique.coffeeButton').toUpperCase()}
                         </Button>
                         <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={(event) => {
                             setSection(prevSection => prevSection === Sections.BOUTIQUE ? null : Sections.BOUTIQUE);
                             event.currentTarget.blur();
                         }}>
-                            {t('boutique.boutiqueButton')}
+                            {t('boutique.boutiqueButton').toUpperCase()}
                         </Button>
                     </Stack>
                 </Stack>

@@ -91,7 +91,7 @@ const OurPicks = () => {
                     backgroundColor={"#FFFFFF"}
                 >
                     <Image
-                        src="assets/etiopia.png"
+                        src="assets/colombia.png"
                         className="w-100"
                         objectFit="fill"
                     />
@@ -111,13 +111,13 @@ const OurPicks = () => {
                         </Stack>
                     </a>
                     <CardBody>
-                        <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.ethiopia')}</Text>
+                        <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.colombia')}</Text>
                         <Text>{t('ourPicks.coffee')}</Text>
                         <Text mb={3} fontWeight={"semibold"}>€12.50</Text>
                     </CardBody>
                     <CardFooter>
                         <ButtonGroup spacing='2'>
-                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(1)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
+                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(3)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
                                 
                             {t('boutique.addToCart')}
                             </Button>

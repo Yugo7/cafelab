@@ -1,27 +1,24 @@
 
-import { Box, Button, Image, HStack, Stack, Tag, Text } from "@chakra-ui/react";
-import { FiBook, FiShoppingBag } from "react-icons/fi";
+import { Box, Card, Image, Stack, Tag, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 
-import { useNavigate } from "react-router-dom";
-const ImagePanel = () => {
+const ProductImageCarousel = () => {
 
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
     const { products } = useShoppingCart();
-    const navigate = useNavigate();
-
-    const quantityInCart = 1;
 
     const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
     const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
+
+    const filteredProducts = products.filter(product => product.secao === 'CAFE');
+
     return (<Carousel
         centerMode={false}
-        containerClass="container"
         autoPlay
         autoPlaySpeed={5000}
         infinite
@@ -31,36 +28,32 @@ const ImagePanel = () => {
             desktop: {
                 breakpoint: {
                     max: 3000,
-                    min: 1024
+                    min: 1023
                 },
                 items: 3,
                 partialVisibilityGutter: 40
             },
             mobile: {
                 breakpoint: {
-                    max: 464,
+                    max: 1022,
                     min: 0
                 },
                 items: 1,
-                partialVisibilityGutter: 30
-            },
-            tablet: {
-                breakpoint: {
-                    max: 1024,
-                    min: 464
-                },
-                items: 2,
                 partialVisibilityGutter: 30
             }
         }}
         slidesToSlide={1}
     >
-        {products.map((product) => (
-
-            <Stack >
-                <Stack>
+        {filteredProducts.map((product) => (
+            <Stack>
+                <Card width='auto' height={"430px"} bgColor={"whiteAlpha.50"} variant={{ base: "", md: "" }} border={{ base: "none", md: '4px' }}  mx={4}>
                     <Stack m={6} className="image-container" >
-                        <Image src={product.imagem} alt={product[productNameColumn]} />
+                        <Image
+                            objectFit="contain" 
+                            width="auto"
+                            height="100%"
+                            src={product.imagem}
+                            alt={product[productNameColumn]} />
                         <Stack className="hover-info">
                             <Text className="cafelab text-center" fontWeight={"bold"} fontSize={"2xl"}>{product[productNameColumn]}</Text>
                             <Box align='center'>
@@ -73,11 +66,12 @@ const ImagePanel = () => {
                             </Text>
                         </Stack>
                     </Stack>
-                </Stack>
+                </Card>
             </Stack>
+
         ))}
     </Carousel>
     );
 };
 
-export default ImagePanel;
+export default ProductImageCarousel;

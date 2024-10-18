@@ -72,11 +72,27 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.sticker {
+.sticker-preguica {
+    position: absolute;
+    bottom: -193px;
+    right: -50px;
+    align-self: flex-end;
+    padding: 0px;
+    color: #fff;
+}
+
+.sticker-cao{
+    position: absolute;
+    left: -50px;
+    align-self: flex-start;
+    padding: 0px;
+    color: #fff;
+}
+
+.sticker-old {
     position: absolute;
     top: 0;
     left: -5%;
-    background-color: #000000;
     color: #fff;
     border-radius: 20px;
     font-size: 25px;
@@ -252,4 +268,20 @@
 
 .image-container:hover .hover-info {
     opacity: 1;
+}
+
+.sidebar-with-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it is above other content */
+    height: auto;
+    background-color: white; /* Adjust as needed */
+}
+
+.main {
+    margin-top: 70px; /* Adjust based on the height of your header */
+    overflow-y: auto;
+    height: calc(100vh - 70px); /* Adjust based on the height of your header */
 }

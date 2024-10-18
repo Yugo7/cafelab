@@ -24,9 +24,11 @@ export default {
     agendaButton: "AGENDA",
     openOnMaps: "ABRIR NO MAPS",
     storeButton: "LOJA",
+    boutiqueButton: "BOUTIQUE",
     subscriptionButton: "SUBSCRIÇÃO",
     visit: "VISITE NOSSO ESPAÇO",
-    checkOutOurSubscriptions: "CHEGARAM NOSSAS SUBSCRIÇÕES!<br /><br /> TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
+    checkOutOurSubscription1: "CHEGARAM NOSSAS SUBSCRIÇÕES!",
+    checkOutOurSubscription2: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
     checkOutOurCoffee: "CONHEÇA NOSSOS CAFÉS DE ESPECIALIDADE!",
     checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
   },
@@ -87,7 +89,8 @@ export default {
     yourSubscription: "SUA SUBSCRIÇÃO",
     coffeeSelection: "Selecção de café",
     selectYourCoffee: "ESCOLHA SEUS CAFÉS",
-    pricePerMonth: "Apenas €25.00 por mês"
+    pricePerMonth: "Apenas €25.00 por mês",
+    checkout: "Ir para o checkout",
   },
   results: {
     explorer: {
@@ -249,6 +252,7 @@ export default {
     tanzania: "Tanzânia",
     topArabica: "Top Arábica",
     ethiopia: "Etiópia",
+    colombia: "Colômbia",
     ecobag: "Ecobag personalizada CAFELAB",
   },
   userDashboard: {
