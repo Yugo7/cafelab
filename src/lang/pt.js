@@ -48,7 +48,8 @@ export default {
     howYouWantYourCoffee: "Como quer seu café?",
     beans: "Grãos",
     espresso: "Moído para expresso",
-    frenchPress: "Moído para prensa francesa/ italiana",
+    frenchPress: "Moído para prensa francesa",
+    v60: "Moído para filtro",
 
     frequency: "Qual vai ser a frequencia dos pagamentos da subscrição?",
 

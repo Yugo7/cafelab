@@ -44,6 +44,7 @@ export function ShoppingCart(props) {
                                     <option value='beans'>{t('subscription.beans')}</option>
                                     <option value='expresso'>{t('subscription.espresso')}</option>
                                     <option value='frenchpress'>{t('subscription.frenchPress')}</option>
+                                    <option value='v60'>{t('subscription.v60')}</option>
                                 </Select>
                             </Stack>)}
                         <Text className="ms-auto fs-10">

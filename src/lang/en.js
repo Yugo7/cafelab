@@ -48,7 +48,8 @@ export default {
     howYouWantYourCoffee: "How would you like your coffee?",
     beans: "Beans",
     espresso: "Ground for espresso",
-    frenchPress: "Ground for French press/ Italian",
+    frenchPress: "Ground for French press",
+    v60: "Ground for drip coffee",
 
     monthlyPayments: "Monthly payments",
     quarterlyPayments: "Quarterly payments",

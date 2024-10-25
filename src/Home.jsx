@@ -23,12 +23,11 @@ const Home = () => {
     return (
         <SidebarWithHeader>
             <Stack spacing={0}>
-                <Stack paddingY="10px" align="center" maxWidth="100%" spacing="30px">
-                    <Image src="assets/logo.png" alt="Logo" width="250px" />
+                <Stack pt={{ base: "20px", md: "100px" }} align="center" maxWidth="100%" spacing="30px">
                     <Stack justify="flex-start" align="center" spacing={stackSpacing} width="100%" maxWidth="100%">
                         <Stack justify="flex-start" align="center" spacing="-20px">
                             <Text className="cafelab" fontSize={fontSize} color="#000000">
-                                CAFELAB.PT
+                                CAFELAB
                             </Text>
                         </Stack>
                     </Stack>

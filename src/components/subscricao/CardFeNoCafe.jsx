@@ -106,6 +106,7 @@ function CardFeNoCafe() {
                         handleChangeVariety={handleChangeVariety}
                         payment={payment}
                         handleChangePayment={handleChangePayment}
+                        createFeNoCafelab={createFeNoCafelab}
                         getPaymentText={getPaymentText}
                     />
                 </Stack>

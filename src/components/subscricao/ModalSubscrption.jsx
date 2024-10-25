@@ -22,6 +22,7 @@ const ModalFeNoCafe = ({
     handleChangeVariety,
     payment,
     handleChangePayment,
+    createFeNoCafelab,
     getPaymentText
 }) => {
     const toast = useToast();
@@ -67,6 +68,7 @@ const ModalFeNoCafe = ({
                             <option value='beans'>{t('subscription.beans')}</option>
                             <option value='expresso'>{t('subscription.espresso')}</option>
                             <option value='frenchpress'>{t('subscription.frenchPress')}</option>
+                            <option value='v60'>{t('subscription.v60')}</option>
                         </Select>
                     </Stack>
                     <Stack my={4}>

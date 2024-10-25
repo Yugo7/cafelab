@@ -1,22 +1,6 @@
 import {
-    Accordion,
-    AccordionButton,
-    AccordionItem,
-    AccordionPanel,
     Box,
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    Image,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalHeader,
-    ModalOverlay,
-    Select, Spacer,
+    Button, Spacer,
     Stack,
     Text,
     useDisclosure,
@@ -98,6 +82,7 @@ const CardMeExpresso = () => {
                         variety={variety}
                         handleChangeVariety={handleChangeVariety}
                         boxQuantity={boxQuantity}
+                        createEuMeExpresso={createEuMeExpresso}
                         handleNextClick={handleNextClick}
                     />
                 </Stack>

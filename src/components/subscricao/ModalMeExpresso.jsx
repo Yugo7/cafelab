@@ -28,9 +28,9 @@ const ModalMeExpresso = ({
     variety,
     handleChangeVariety,
     boxQuantity,
+    createEuMeExpresso,
     handleNextClick
 }) => {
-
     const [payment, setPayment] = useState('3');
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
@@ -86,6 +86,7 @@ const ModalMeExpresso = ({
                                             <option value='beans'>{t('subscription.beans')}</option>
                                             <option value='expresso'>{t('subscription.espresso')}</option>
                                             <option value='frenchpress'>{t('subscription.frenchPress')}</option>
+                                            <option value='v60'>{t('subscription.v60')}</option>
                                         </Select>
                                     </Stack>
                                     <Stack direction={"row"} my={4}>
