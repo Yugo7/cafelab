@@ -1,5 +1,5 @@
-import {Box, Link, Stack, useBreakpointValue} from "@chakra-ui/react";
-import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
+import { Box, Link, Stack, useBreakpointValue } from "@chakra-ui/react";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {

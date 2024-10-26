@@ -11,7 +11,7 @@ export default {
     signOut: "Sign out",
   },
   home: {
-    headlineText: "A new store! Your new coffee!",
+    headlineText: "CHECK OUT OUR SUBSCRIPTIONS!<br /> HAVE THE BEST OF CAFELAB AT YOUR HOME EVERY MONTH!",
     welcome: "Welcome to our website!",
     addtocalendar: "Add to calendar",
     firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS.",
@@ -23,7 +23,7 @@ export default {
     menuButton: "MENU",
     culturalCalendar: "CULTURAL CALENDAR",
     discoverProjects: "DISCOVER OUR PROJECTS AND EVENTS",
-    agendaButton: "AGENDA",
+    agendaButton: "SCHEDULE",
     openOnMaps: "OPEN ON MAPS",
     storeButton: "STORE",
     subscriptionButton: "SUBSCRIPTION",
@@ -50,7 +50,7 @@ export default {
     espresso: "Ground for espresso",
     frenchPress: "Ground for French press",
     v60: "Ground for drip coffee",
-
+    motto: "CHOOSE, PAY, RECEIVE IT EVERY MONTH IN YOUR HOME!",
     monthlyPayments: "Monthly payments",
     quarterlyPayments: "Quarterly payments",
     semiannualPayments: "Semiannual payments",
@@ -73,8 +73,9 @@ export default {
   },
   fenocafe: {
     name: "IN CAFELAB WE TRUST",
-    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
-    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
+    exclusive: "HAVE ACCESS TO OUR SUBSCRIPTION EXCLUSIVE COFFEE!",
+    coffeeDescription: "3 packs of 175g chosen by our specialist.",
+    coffeeDetails: "For those who already ordered, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. <br /> In beans or ground, according to your consumption indication.",
     trust: "I trust",
     pricePerMonth: "Only €27.90 per month",
   },
@@ -95,10 +96,9 @@ export default {
     addtocalendar: "Add to calendar"
   },
   meexpresso: {
-    name: "AFTER CAFELAB," +
-        " I EXPRESSO MYSELF",
-    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
-    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
+    name: "I EXPRESSO MYSELF",
+    coffeeDescription: "3 packs of 175g from your choice",
+    coffeeDetails: "Choose your own subscription with your most loved coffees. Pick three specialty coffees from our catalog and have the best of CAFELAB at your home every month!<br /> In beans or ground, according to your consumption indication.",
     ratherChoose: "I wanna choose my CafeLab",
     payment: "How do you prefer to pay?",
     coffeeSelection: "Coffee selection",

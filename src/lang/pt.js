@@ -9,7 +9,7 @@ export default {
     signOut: "Sair",
   },
   home: {
-    headlineText: "Uma nova loja! O seu novo café!",
+    headlineText: "CHEGARAM NOSSAS SUBSCRIÇÕES! <br />TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
     welcome: "Bem-vindo ao nosso site!",
     addtocalendar: "Adicionar ao calendário",
     firstCoffeeShop: "A PRIMEIRA LOJA DE CAFÉ DE ESPECIALIDADE DE OEIRAS.",
@@ -50,9 +50,8 @@ export default {
     espresso: "Moído para expresso",
     frenchPress: "Moído para prensa francesa",
     v60: "Moído para filtro",
-
+    motto: "ESCOLHA, COMPRE, RECEBA TODOS OS MESES EM SUA CASA",
     frequency: "Qual vai ser a frequencia dos pagamentos da subscrição?",
-
     payment: "Pagamento",
     monthlyPayments: "Pagamentos mensais",
     quarterlyPayments: "Pagamentos trimestrais",
@@ -76,6 +75,7 @@ export default {
   },
   fenocafe: {
     name: "FÉ NO CAFELAB",
+    exclusive: "TENHA ACESSO AO NOSSO CAFÉ EXCLUSIVO DA ASSINATURA!",
     coffeeDescription: "3 embalagens de 175g escolhidas pelo nosso especialista.",
     coffeeHighlight: "Tenha acesso ao nosso café exclusivo da assinatura!",
     coffeeDetails: "Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés, escolhidos a dedo todos os meses pelo nosso especialista.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",

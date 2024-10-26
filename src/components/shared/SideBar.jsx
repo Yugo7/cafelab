@@ -190,7 +190,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 justifyContent={{ base: 'space-between', md: 'space-between' }}
                 {...rest}>
                 <IconButton
-                    ml={{ base: 4, md: 60 }}
+                    ml={{ base: 4, lg: 60 }}
                     onClick={onOpen}
                     variant="ghost"
                     aria-label="open menu"
@@ -205,7 +205,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                         onClick={() => navigate('/')}
                     />
                 </AbsoluteCenter>
-                <Flex justifyContent="flex-end" alignItems="center" mr={{ base: 4, md: 60 }}>
+                <Flex justifyContent="flex-end" alignItems="center" mr={{ base: 4, lg: 60 }}>
                     <Select w={useBreakpointValue({ base: "70px", md: "100px" })} value={selectedValue} onChange={handleChange}>
                         <option value='en'>{useBreakpointValue({ base: "🇺🇸", md: "🇺🇸 EN" })}</option>
                         <option value='pt'>{useBreakpointValue({ base: "🇵🇹", md: "🇵🇹 PT" })}</option>

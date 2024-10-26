@@ -30,7 +30,7 @@ const Subscricao = () => {
                     />
                 </Stack>
 
-                <Text align="center" fontWeight={"bold"} fontSize="2xl" px={8} my={4}> ESCOLHA, COMPRE, RECEBA TODOS OS MESES EM SUA CASA</Text>
+                <Text align="center" fontWeight={"bold"} fontSize="2xl" px={8} my={4}>{t('subscription.motto')}</Text>
                 <Stack direction={["column", 'row']} pt={8}>
                     <CardFeNoCafe />
                     <CardMeExpresso />

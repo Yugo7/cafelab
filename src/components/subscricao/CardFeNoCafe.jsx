@@ -82,7 +82,7 @@ function CardFeNoCafe() {
                 </Box>
                 <Stack p={4} mb={6}>
                     <Text align="center" fontSize={"xl"} fontWeight={"semibold"} mb={6}>
-                        <Trans>{t('fenocafe.coffeeHighlight').toUpperCase()}</Trans>
+                        <Trans>{t('fenocafe.exclusive').toUpperCase()}</Trans>
                     </Text>
                     <Text align="center" fontSize={"lg"} fontWeight={"semibold"}>
                         <Trans>{t('fenocafe.coffeeDescription')}</Trans>
