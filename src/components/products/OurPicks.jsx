@@ -39,7 +39,7 @@ const OurPicks = () => {
                     <CardBody>
                         <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.tanzania')}</Text>
                         <Text>{t('ourPicks.coffee')}</Text>
-                        <Text mb={3} fontWeight={"semibold"}>€8.00</Text>
+                        <Text mb={3} fontWeight={"semibold"}>€8.50</Text>
                     </CardBody>
                     <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
@@ -113,7 +113,7 @@ const OurPicks = () => {
                     <CardBody>
                         <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.colombia')}</Text>
                         <Text>{t('ourPicks.coffee')}</Text>
-                        <Text mb={3} fontWeight={"semibold"}>€12.50</Text>
+                        <Text mb={3} fontWeight={"semibold"}>€10.00</Text>
                     </CardBody>
                     <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>

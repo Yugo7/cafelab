@@ -47,7 +47,8 @@ const ProductImageCarousel = () => {
         {filteredProducts.map((product) => (
             <Stack>
                 <Card width='auto' height={"430px"} bgColor={"whiteAlpha.50"} variant={{ base: "", md: "" }} border={{ base: "none", md: '4px' }}  mx={4}>
-                    <Stack m={6} className="image-container" >
+                    <Stack m={6} className="image-container" alignItems="center"
+                            height="100%">
                         <Image
                             objectFit="contain" 
                             width="auto"

@@ -1,5 +1,3 @@
-import OurPicks from "../components/products/OurPicks";
-
 export default {
   sideBar: {
     home: "Home",
@@ -14,7 +12,7 @@ export default {
     headlineText: "CHECK OUT OUR SUBSCRIPTIONS!<br /> HAVE THE BEST OF CAFELAB AT YOUR HOME EVERY MONTH!",
     welcome: "Welcome to our website!",
     addtocalendar: "Add to calendar",
-    firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS.",
+    firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS",
     petWorkFriendly: "PET & WORK FRIENDLY",
     newLabel: "NEW!",
     newsLabel: "NEWS!",
@@ -57,6 +55,11 @@ export default {
     annualPayments: "Annual payments",
     checkout: "Go to checkout",
     close: "Close",
+
+    choose: "Choose your coffee",
+    pay: "Set a payment method",
+    assemble: "We will assemble your kit with care",
+    receive: "Receive it every month in your home",
 
     payment: "Payment",
     frequency: "How often would you like to pay your subscription?",

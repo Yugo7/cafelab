@@ -1,25 +1,24 @@
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
-import { Box, Button, Center, Grid, Image, Spacer, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
-import { FiBook, FiCalendar, FiPackage, FiShoppingBag } from "react-icons/fi";
+import { Box, Button, Grid, Image, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
+import { FiCalendar, FiPackage, FiShoppingBag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Trans, useTranslation } from "react-i18next";
 import ProductImageCarousel from "./components/home/ProductCarousel.jsx";
 
 const Home = () => {
+    const { t, i18n } = useTranslation();
+    const currentLanguage = i18n.language;
+
     const stackSpacing = useBreakpointValue({ base: "20px", md: "30px" });
     const boxPadding = useBreakpointValue({ base: "5px", md: "10px" });
     const fontSize = useBreakpointValue({ base: "6xl", md: "70px" });
     const fontHl = useBreakpointValue({ base: "3xl", md: "5xl" });
-    const fontHl2 = useBreakpointValue({ base: "xl", md: "3xl" });
-    const fontHl3 = useBreakpointValue({ base: "lg", md: "4xl" });
-    const sectWidth = useBreakpointValue({ base: "100%", md: "50%" });
     const calendarioSectWidth = useBreakpointValue({ base: "100%", lg: "50%" });
-    const topValue = useBreakpointValue({ base: '200px', md: '-100px' });
+    const textFontSize = useBreakpointValue({ base: "5vw", md: "2.5vw" });
 
     const navigate = useNavigate();
 
-    const { t } = useTranslation();
     return (
         <SidebarWithHeader>
             <Stack spacing={0}>
@@ -45,6 +44,11 @@ const Home = () => {
                                 width="100%"
                                 height="auto"
                                 src="assets/1.png" alt="Subscription" />
+
+                            <Text className="cafelab" minH={"100px"}
+                                width="100%" fontSize={useBreakpointValue({ base: "5vw", md: "3vw" })} textAlign={"Center"} color="#000000">
+                                {t('subscription.choose').toUpperCase()}
+                            </Text>
                         </Box>
                         <Box>
                             <Image
@@ -52,6 +56,10 @@ const Home = () => {
                                 width="100%"
                                 height="auto"
                                 src="assets/2.png" alt="Subscription" />
+                            <Text className="cafelab" minH={"100px"}
+                                width="100%" fontSize={useBreakpointValue({ base: "5vw", md: "3vw" })} textAlign={"Center"} color="#000000">
+                                {t('subscription.pay').toUpperCase()}
+                            </Text>
                         </Box>
                         <Box>
                             <Image
@@ -59,6 +67,10 @@ const Home = () => {
                                 width="100%"
                                 height="auto"
                                 src="assets/3.png" alt="Subscription" />
+                            <Text className="cafelab" minH={"100px"}
+                                width="100%" fontSize={useBreakpointValue({ base: "5vw", md: "2.55vw" })} textAlign={"Center"} color="#000000">
+                                {t('subscription.assemble').toUpperCase()}
+                            </Text>
                         </Box>
                         <Box>
                             <Image
@@ -66,11 +78,15 @@ const Home = () => {
                                 width="100%"
                                 height="auto"
                                 src="assets/4.png" alt="Subscription" />
+                            <Text className="cafelab" minH={"100px"}
+                                width="100%" fontSize={useBreakpointValue({ base: "5vw", md: "2.5vw" })} textAlign={"Center"} color="#000000">
+                                {t('subscription.receive').toUpperCase()}
+                            </Text>
                         </Box>
                     </Grid>
                 </Stack>
                 <Stack align={"center"} spacing={stackSpacing} maxWidth="100%" pb={8}>
-                    <Button leftIcon={<FiPackage />} onClick={() => navigate('/subscricao')} size='xl' height={{base: '80px', md: '100px'}} width={{base: '300px', md: '400px'}} border='2px'
+                    <Button leftIcon={<FiPackage />} onClick={() => navigate('/subscricao')} size='xl' height={{ base: '80px', md: '100px' }} width={{ base: '300px', md: '400px' }} border='2px'
                         variant={"solid"} backgroundColor={"black"} color={"white"} fontSize={"3xl"}>
                         {t('home.subscriptionButton')}</Button>
                 </Stack>
@@ -86,8 +102,8 @@ const Home = () => {
                     <Stack align={"center"} spacing={stackSpacing} mb={10}>
                         <Stack alignSelf="stretch" direction={['column', 'row']} justify="center" align="center" spacing="12px">
 
-                            <Button leftIcon={<FiShoppingBag />} onClick={() => navigate('/boutique')} size='lg' height={{base: '80px', md: '100px'}} width={{base: '300px', md: '400px'}}  border='2px'
-                                variant={"solid"}  backgroundColor={"black"} color={"white"} fontSize={"3xl"}>
+                            <Button leftIcon={<FiShoppingBag />} onClick={() => navigate('/boutique')} size='lg' height={{ base: '80px', md: '100px' }} width={{ base: '300px', md: '400px' }} border='2px'
+                                variant={"solid"} backgroundColor={"black"} color={"white"} fontSize={"3xl"}>
                                 {t('home.storeButton')}
                             </Button>
                         </Stack>
@@ -96,23 +112,35 @@ const Home = () => {
 
                 <Box paddingY="10px">
                 </Box>
-                <Stack direction={{base: "column", lg: 'row'}} my={"10"} pb={12} minH={"400px"} justify="space-around" position="relative">
+                <Stack direction={{ base: "column", lg: 'row' }} my={"10"} pb={12} minH={"400px"} justify="space-around" position="relative">
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({ base: 6, md: 8 })} alignSelf={"center"} pb={8}>
                         <Box backgroundColor="transparent" width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
-                            <Image src="assets/EVENTOS.png" h={{ base: "350px", md: "520px" }} alt="Preguica" maxWidth="100%" objectFit={"cover"} justifyContent={"center"} />
+                            <Image src="assets/EVENTOS.png" h={{ base: "350px", md: "520px" }} alt="Conheça nosso projetos e eventos!" maxWidth="100%" objectFit={"cover"} justifyContent={"center"} />
                         </Box>
+                        {currentLanguage !== 'pt' && (
+                        <Text className="cafelab" height={"auto"}
+                            width="100%" fontSize={textFontSize} textAlign={"Center"} color="#000000">
+                            {t('home.discoverProjects').toUpperCase()}
+                        </Text>
+                        )}
                         <Button leftIcon={<FiCalendar />} alignSelf={"center"} onClick={() => navigate('/agenda')} size='lg' height='48px' width='200px' border='2px'
-                            variant={"solid"}  backgroundColor={"black"} color={"white"}>
+                            variant={"solid"} backgroundColor={"black"} color={"white"}>
                             {t('home.agendaButton')}
                         </Button>
                     </Stack>
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({ base: 6, md: 8 })} alignSelf={"center"} pb={8}>
-                        <Box backgroundColor="transparent" h={"500px"} width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
-                            <Image src="assets/CONHECA.png" h={{ base: "400px", md: "580px" }} alt="Preguica" maxWidth="100%" objectFit={"cover"} justifyContent={"center"} />
+                        <Box backgroundColor="transparent" width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
+                            <Image src="assets/CONHECA.png" minH={{ base: "400px", md: "580px" }} alt="A primeira loja de café de especialidade de Oeiras!" maxWidth="100%" minW={"95%"} objectFit={"cover"} justifyContent={"center"} />
                         </Box>
+                        {currentLanguage !== 'pt' && (
+                            <Text className="cafelab" height={"auto"} width="100%" fontSize={textFontSize} 
+                            textAlign={"center"} color="#000000"  position="relative" top="-50px">
+                                {t('home.firstCoffeeShop').toUpperCase()}
+                            </Text>
+                        )}
                         <Button leftIcon={<FaMapMarkerAlt />} alignSelf={"center"} onClick={() => window.open("https://maps.app.goo.gl/XVfFfdvZ1USq2XjZ7", "_blank")}
                             size='lg' height='48px' width='200px' border='2px'
-                            variant={"solid"}  backgroundColor={"black"} color={"white"}>
+                            variant={"solid"} backgroundColor={"black"} color={"white"}>
                             {t('home.openOnMaps')}
                         </Button>
                     </Stack>

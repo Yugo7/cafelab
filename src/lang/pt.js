@@ -58,6 +58,10 @@ export default {
     semiannualPayments: "Pagamentos semestrais",
     annualPayments: "Pagamentos anuais",
 
+    choose: "Escolha seu café",
+    pay: "Cadastre seu pagamento",
+    assemble: "Nós montamos seu kit com crinho",
+    receive: "Receba todo mês em sua casa",
     pricePerMonth: "Apenas €27.90 por mês",
     checkout: "Ir para o checkout",
     close: "Fechar",
