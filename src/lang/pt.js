@@ -60,7 +60,7 @@ export default {
 
     choose: "Escolha seu café",
     pay: "Cadastre seu pagamento",
-    assemble: "Nós montamos seu kit com crinho",
+    assemble: "Nós montamos seu kit com carinho",
     receive: "Receba todo mês em sua casa",
     pricePerMonth: "Apenas €27.90 por mês",
     checkout: "Ir para o checkout",
