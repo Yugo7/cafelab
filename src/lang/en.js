@@ -1,3 +1,5 @@
+import { Receipt } from "lucide-react";
+
 export default {
   sideBar: {
     home: "Home",
@@ -165,7 +167,8 @@ export default {
     passwordPlaceholder: "Type your password",
     loginButton: "Login",
     noAccountText: "Don't have an account? Signup now.",
-    signInToYourAccount: "Sign in to your account"
+    signInToYourAccount: "Sign in to your account",
+    forgotPassword: "Forgot your password?",
   },
   footer: {
     aboutUs: "About us",
@@ -284,7 +287,29 @@ export default {
       pending: "Pending",
       shipped: "Shipped",
       paymentSuccessful: "Payment Successful",
-      cancelled: "Cancelled"
-    }
+      cancelled: "Cancelled",
+      created: "Created",
+    },
+    receipt: "Here is your receipt",
+  },
+  forgotPassword: {
+    title: "Forgot Password",
+    description: "Forgot your account’s password? Enter your email address and we’ll send you a recovery link.",
+    emailLabel: "Email address",
+    sendButton: "Send Password Reset Email",
+    backToLogin: "Back to Login",
+    successMessage: "Password reset email sent. Check your email for the password reset link.",
+    errorMessage: "An error occurred. Unable to send password reset email."
+  },
+  resetPassword: {
+    title: "Reset Password",
+    newPasswordLabel: "New Password",
+    newPasswordPlaceholder: "Enter your new password",
+    confirmPasswordLabel: "Confirm New Password",
+    confirmPasswordPlaceholder: "Confirm your new password",
+    resetButton: "Reset Password",
+    passwordMismatch: "Passwords do not match.",
+    successMessage: "Password has been reset successfully.",
+    errorMessage: "An error occurred. Unable to reset password."
   }
 };

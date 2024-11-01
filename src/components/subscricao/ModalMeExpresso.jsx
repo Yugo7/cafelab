@@ -13,7 +13,8 @@ import {
     Box,
     Stack,
     Select,
-    Text
+    Text,
+    useToast
 } from '@chakra-ui/react';
 import React, { useState } from "react";
 import { FaCheck } from 'react-icons/fa';
@@ -35,6 +36,7 @@ const ModalMeExpresso = ({
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
     };
+    const toast = useToast();
 
     function finishSubscription() {
         if (variety === '') {

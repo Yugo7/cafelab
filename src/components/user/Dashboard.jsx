@@ -3,6 +3,7 @@ import {
     Avatar,
     Box,
     Button,
+    Center,
     HStack,
     Modal,
     ModalBody,
@@ -104,7 +105,7 @@ const ProfilePage = () => {
                     );
 
                     setOrders(orders);
-                    setSubscriptions(subscriptions[0]);
+                    setSubscriptions(subscriptions);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
@@ -113,7 +114,6 @@ const ProfilePage = () => {
 
         fetchOrders();
     }, [customer, navigate]);
-
     if (!customer) {
         return <Spinner />;
     }
@@ -141,8 +141,8 @@ const ProfilePage = () => {
                             <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                                 {t('userDashboard.yourSubscription')}
                             </Text>
-                            {
-                                subscriptions && subscriptions.products ? (
+                            {   
+                                subscriptions[0] && subscriptions.products ? (
                                     <>
                                         <HStack margin={"auto"} justifyContent="space-evenly">
                                             <Stack gap={2} className="d-flex align-items-center" maxW={"150px"}>
@@ -207,7 +207,7 @@ const ProfilePage = () => {
                                         </HStack>
                                     </>
                                 ) : (
-                                    <Stack my={8}><Text>{t('userDashboard.noSubscription')}</Text></Stack>
+                                    <Stack my={8} textAlign={"center"}><Text>{t('userDashboard.noSubscription')}</Text></Stack>
                                     
                                 )
                             }

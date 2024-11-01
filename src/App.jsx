@@ -37,6 +37,8 @@ import Consent from "./Consent.jsx";
 import {Analytics} from "@vercel/analytics/react"
 import ProfilePage from "./components/user/Dashboard.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
+import ForgotPassword from "./components/login/ForgotPassword.jsx";
+import ResetPassword from "./components/login/ResetPassword.jsx";
 
 const stripePromise = loadStripe(
     import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login/>
+    },
+    {
+        path: "/forgot-password",
+        element: <ForgotPassword/>
+    },
+    {
+        path: "/reset-password/:token",
+        element: <ResetPassword/>
     },
     {
         path: "/signup",

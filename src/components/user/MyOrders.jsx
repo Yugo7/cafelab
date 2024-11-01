@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { Card, CardHeader, Flex, Heading, Stack, Table, TableCaption, TableContainer, Tag, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Card, CardHeader, Flex, Heading, Link, Stack, Table, TableCaption, TableContainer, Tag, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import OrderService from "../../services/orderService.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
@@ -71,6 +71,8 @@ const MyOrders = () => {
                 return t('myOrders.status.paymentSuccessful');
             case 'CANCELLED':
                 return t('myOrders.status.cancelled');
+            case 'CREATED':
+                return t('myOrders.status.created');
             default:
                 return t('myOrders.status.unknown');
         }
@@ -86,6 +88,13 @@ const MyOrders = () => {
                             <Tag colorScheme={getStatusColor(order.status)} ml={4}>
                                 {getStatusText(order.status)}
                             </Tag>
+                            {order.receipt_url ? (
+                                <Link href={order.receipt_url} download>
+                                    <Tag colorScheme='orange' ml={4}>
+                                        {t('myOrders.receipt')}
+                                    </Tag>
+                                </Link >
+                            ) : null}
                         </Flex>
                     </CardHeader>
                     <TableContainer>
@@ -101,7 +110,7 @@ const MyOrders = () => {
                             <Tbody>
                                 {order.products.map((product, productIndex) => {
                                     const productInfo = products.find(i => i.id === product.id);
-                                    
+
                                     return (
                                         <Tr key={productIndex}>
                                             <Td>{productInfo ? productInfo[productNameColumn] : t('myOrders.productNotFound')}</Td>

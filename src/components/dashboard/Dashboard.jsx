@@ -123,7 +123,7 @@ const Dashboard = () => {
                     }
                 ]} />
 
-            </Stack>F
+            </Stack>
         </SidebarWithHeader>)
 }
 

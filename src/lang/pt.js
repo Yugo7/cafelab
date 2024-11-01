@@ -137,7 +137,8 @@ export default {
     passwordPlaceholder: "Digite sua senha",
     loginButton: "Entrar",
     noAccountText: "Não tem uma conta? Cadastre-se agora.",
-    signInToYourAccount: "Faça login na sua conta"
+    signInToYourAccount: "Faça login na sua conta",
+    forgotPassword: "Esqueceu sua senha?",
   },
   shoppingCart: {
     title: "Carrinho",
@@ -285,7 +286,29 @@ export default {
       pending: "Pendente",
       shipped: "Enviado",
       paymentSuccessful: "Pagamento Bem-sucedido",
-      cancelled: "Cancelado"
-    }
+      cancelled: "Cancelado",
+      created: "Criado",
+    },
+    receipt: "Aqui está o seu recibo",
+  },
+  forgotPassword: {
+    title: "Esqueceu a Senha",
+    description: "Esqueceu a senha da sua conta? Digite seu endereço de e-mail e enviaremos um link de recuperação.",
+    emailLabel: "Endereço de e-mail",
+    sendButton: "Enviar e-mail de redefinição de senha",
+    backToLogin: "Voltar para o Login",
+    successMessage: "E-mail de redefinição de senha enviado. Verifique seu e-mail para o link de redefinição de senha.",
+    errorMessage: "Ocorreu um erro. Não foi possível enviar o e-mail de redefinição de senha."
+  },
+  resetPassword: {
+    title: "Redefinir Senha",
+    newPasswordLabel: "Nova Senha",
+    newPasswordPlaceholder: "Digite sua nova senha",
+    confirmPasswordLabel: "Confirmar Nova Senha",
+    confirmPasswordPlaceholder: "Confirme sua nova senha",
+    resetButton: "Redefinir Senha",
+    passwordMismatch: "As senhas não coincidem.",
+    successMessage: "Senha redefinida com sucesso.",
+    errorMessage: "Ocorreu um erro. Não foi possível redefinir a senha."
   }
 }
