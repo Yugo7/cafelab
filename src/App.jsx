@@ -35,7 +35,6 @@ import Service from "./Service.jsx";
 import ConsentBanner from "./components/shared/ConsentBanner.jsx";
 import Consent from "./Consent.jsx";
 import { Analytics} from "@vercel/analytics/react"
-import {SpeedInsights} from '@vercel/speed-insights/react';
 import ProfilePage from "./components/user/Dashboard.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
 import ForgotPassword from "./components/login/ForgotPassword.jsx";
@@ -184,7 +183,6 @@ function App() {
                 </ChakraProvider>
             </I18nextProvider>
             <Analytics/>
-            <SpeedInsights/>
         </>
     )
 }
