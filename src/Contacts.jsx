@@ -10,7 +10,7 @@ const Contacts = () => {
     return (
         <SidebarWithHeader>
             <Stack m={4} pb={6} justify="flex-start" align="center" spacing="24px">
-                <Text className="headline mt-5" fontSize={"3xl"}>{t('contacts.title')}</Text>
+                <Text className="headline mt-5" fontSize={"3xl"}>{t('contacts.title').toUpperCase()}</Text>
             </Stack>
 
             <Stack className={"main-panel"} Width="100wv" textAlign={"center"}>

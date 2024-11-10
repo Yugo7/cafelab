@@ -13,17 +13,8 @@ import {
     ModalOverlay,
     Spinner,
     Stack,
-    Table,
-    TableCaption,
-    TableContainer,
-    Tbody,
-    Td,
     Text,
     Textarea,
-    Th,
-    Thead, Tooltip,
-    Tr,
-    useBreakpointValue,
     useDisclosure,
     useToast,
     VStack
@@ -61,7 +52,6 @@ const ProfilePage = () => {
         }
         axios.post(`${BASE_URL}contacts/`, values)
             .then(() => {
-                // Handle success
                 setSubmitting(false);
                 toast({
                     title: t('contactForm.successTitle'),
@@ -88,24 +78,22 @@ const ProfilePage = () => {
         resetPassword(customer.username);
     };
 
-    const cancel = () => {
-        OrderService.cancelSubscription(subscriptions.id)
+    const cancel = (id) => {
+        OrderService.cancelSubscription(id)
     }
 
     useEffect(() => {
         const fetchOrders = async () => {
             if (!customer) {
-                //navigate("/");
+                navigate("/");
             } else {
                 try {
                     const data = await OrderService.getOrdersByUserId(customer.username);
                     const [orders, subscriptions] = partition(data, order =>
-                        Array.isArray(order.products) && order.products.every(product => product.id < 900)
+                        Array.isArray(order.products) && order.type === 'LOJA'
                     );
-
                     setOrders(orders);
-                    const activeSubscriptions = subscriptions.filter(subscription => subscription.status === 'ACTIVE');
-                    setSubscriptions(activeSubscriptions[0]);
+                    setSubscriptions(subscriptions);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
@@ -114,7 +102,6 @@ const ProfilePage = () => {
 
         fetchOrders();
     }, [customer, navigate]);
-
     if (!customer) {
         return <Spinner />;
     }
@@ -142,25 +129,24 @@ const ProfilePage = () => {
                             <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                                 {t('userDashboard.yourSubscription')}
                             </Text>
-                            {
-                                subscriptions && subscriptions.products ? (
+                            { subscriptions.length > 0 ? subscriptions.map((subscription, index) => (
                                     <>
                                         <HStack margin={"auto"} justifyContent="space-evenly">
                                             <Stack gap={2} className="d-flex align-items-center" maxW={"150px"}>
                                                 <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} mb={4}>
-                                                    {subscriptions.products.name.toUpperCase()}
+                                                    {subscription.products.name.toUpperCase()}
                                                 </Text>
                                                 <Image
-                                                    src={subscriptions.products.image}
+                                                    src={subscription.products.image}
                                                     style={{ width: "120px", objectFit: "cover" }}
                                                 />
                                             </Stack>
                                             <Stack>
                                                 <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} mb={4}>
-                                                    {subscriptions.products.periodicity_string.toUpperCase()}
+                                                    {subscription.products.periodicity_string.toUpperCase()}
                                                 </Text>
                                                 <Stack className="d-flex align-items-left">
-                                                    {subscriptions.products.coffee ? subscriptions.products.coffee.map((coffee) => (
+                                                    {subscription.products.coffee ? subscription.products.coffee.map((coffee) => (
                                                         <>
                                                             <Stack direction={"row"}>
                                                                 <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"} align={"left"}>
@@ -190,26 +176,25 @@ const ProfilePage = () => {
                                                             </Modal>
                                                         </>
                                                     )) : null}
-                                                    {subscriptions.products.coffee ? (
+                                                    {subscription.products.coffee ? (
                                                         <Button onClick={onOpen}>
                                                             {t('userDashboard.changeCoffees')}
                                                         </Button>) : null}
 
                                                     <Text className="ms-auto" pt={6} fontSize={"lg"}>
                                                             {formatCurrency(
-                                                                subscriptions.total
-                                                            )} {t('userDashboard.every')} {subscriptions.products.periodicity} {t('userDashboard.months')}
+                                                                subscription.total
+                                                            )} {t('userDashboard.every')} {subscription.products.periodicity} {t('userDashboard.months')}
                                                     </Text>
-                                                        <Button variant={"outline"} colorScheme={"red"} onClick={cancel(subscriptions.id)}>
+                                                        <Button variant={"outline"} colorScheme={"red"} onClick={cancel(subscription.id)}>
                                                         {t('userDashboard.cancelSubscription')}
                                                         </Button>
                                                     </Stack>
                                             </Stack>
                                         </HStack>
                                     </>
-                                ) : (
-                                    <Stack my={8}><Text>{t('userDashboard.noSubscription')}</Text></Stack>
-                                    
+                                )) : (
+                                    <Stack my={8} textAlign={"center"}><Text>{t('userDashboard.noSubscription')}</Text></Stack>
                                 )
                             }
                         </Stack>

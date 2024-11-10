@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { signin as performLogin, resetPassword as resetPasswordServer } from "../../services/client.js";
+import { signin as performLogin, requestResetPasswordServer, resetPasswordServer } from "../../services/client.js";
 import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext({});
@@ -75,8 +75,16 @@ const AuthProvider = ({ children }) => {
         return customer.id;
     }
 
-    const resetPassword = async (email) => {
-        resetPasswordServer(email).then(res => {
+    const requestResetPassword = async (email) => {
+        requestResetPasswordServer(email).then(res => {
+            console.log(res)
+        }).catch(err => {   
+            console.log(err)    
+        })
+    }
+    
+    const resetPassword = async (password, token) => {
+        resetPasswordServer(password, token).then(res => {
             console.log(res)
         }).catch(err => {   
             console.log(err)    
@@ -101,6 +109,7 @@ const AuthProvider = ({ children }) => {
             setCustomerFromToken,
             getUserRole,
             getUserId,
+            requestResetPassword,
             resetPassword
         }}>
             {children}

@@ -44,15 +44,6 @@ export default function Boutique() {
                     {t('boutique.description')}
                 </Text>
             </Stack>
-
-            <Stack className={"main-panel"} Width="100wv"
-            >
-                <Image
-                    alignSelf="center"
-                    src='assets/capa_boutique.jpeg'
-                    alt='Chakra UI'
-                />
-            </Stack>
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
 

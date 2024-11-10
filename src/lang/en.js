@@ -1,4 +1,4 @@
-import OurPicks from "../components/products/OurPicks";
+import { Receipt } from "lucide-react";
 
 export default {
   sideBar: {
@@ -11,10 +11,10 @@ export default {
     signOut: "Sign out",
   },
   home: {
-    headlineText: "A new store! Your new coffee!",
+    headlineText: "CHECK OUT OUR SUBSCRIPTIONS!<br /> HAVE THE BEST OF CAFELAB AT YOUR HOME EVERY MONTH!",
     welcome: "Welcome to our website!",
     addtocalendar: "Add to calendar",
-    firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS.",
+    firstCoffeeShop: "THE FIRST SPECIALTY COFFEE SHOP IN OEIRAS",
     petWorkFriendly: "PET & WORK FRIENDLY",
     newLabel: "NEW!",
     newsLabel: "NEWS!",
@@ -23,11 +23,14 @@ export default {
     menuButton: "MENU",
     culturalCalendar: "CULTURAL CALENDAR",
     discoverProjects: "DISCOVER OUR PROJECTS AND EVENTS",
-    agendaButton: "AGENDA",
+    agendaButton: "SCHEDULE",
     openOnMaps: "OPEN ON MAPS",
     storeButton: "STORE",
     subscriptionButton: "SUBSCRIPTION",
     visit: "PAY US A VISIT",
+    checkOutOurSubscriptions: "CHECK OUT OUR SUBSCRIPTIONS!",
+    checkOutOurCoffee: "CHECK OUT OUR ESPECIALTY COFFEES!",
+    checkOutOurBoutique: "CHECK OUT OUR BOUTIQUE DEPARTMENT!",
   },
   subscription: {
     subscriptionTitle: "SUBSCRITPION CAFELAB",
@@ -45,14 +48,20 @@ export default {
     howYouWantYourCoffee: "How would you like your coffee?",
     beans: "Beans",
     espresso: "Ground for espresso",
-    frenchPress: "Ground for French press/ Italian",
-
+    frenchPress: "Ground for French press",
+    v60: "Ground for drip coffee",
+    motto: "CHOOSE, PAY, RECEIVE IT EVERY MONTH IN YOUR HOME!",
     monthlyPayments: "Monthly payments",
     quarterlyPayments: "Quarterly payments",
     semiannualPayments: "Semiannual payments",
     annualPayments: "Annual payments",
     checkout: "Go to checkout",
     close: "Close",
+
+    choose: "Choose your coffee",
+    pay: "Set a payment method",
+    assemble: "We will assemble your kit with care",
+    receive: "Receive it every month in your home",
 
     payment: "Payment",
     frequency: "How often would you like to pay your subscription?",
@@ -69,10 +78,10 @@ export default {
   },
   fenocafe: {
     name: "IN CAFELAB WE TRUST",
-    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
-    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
+    exclusive: "HAVE ACCESS TO OUR SUBSCRIPTION EXCLUSIVE COFFEE!",
+    coffeeDescription: "3 packs of 175g chosen by our specialist.",
+    coffeeDetails: "For those who already ordered, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. <br /> In beans or ground, according to your consumption indication.",
     trust: "I trust",
-
     pricePerMonth: "Only €27.90 per month",
   },
   boutique: {
@@ -92,10 +101,9 @@ export default {
     addtocalendar: "Add to calendar"
   },
   meexpresso: {
-    name: "AFTER CAFELAB," +
-        " I EXPRESSO MYSELF",
-    coffeeDescription: "3 packs of 175g chosen by our specialist<br />Get access to our exclusive subscription coffee!",
-    coffeeDetails: "For those who know us, and love a surprise. Whoever has asked, knows that an indication from our specialist never fails! Receive at your home a collection of three special coffees, handpicked every month by our specialist. And also have access to our exclusive signature coffees.<br /> In beans or ground, according to your consumption indication.",
+    name: "I EXPRESSO MYSELF",
+    coffeeDescription: "3 packs of 175g from your choice",
+    coffeeDetails: "Choose your own subscription with your most loved coffees. Pick three specialty coffees from our catalog and have the best of CAFELAB at your home every month!<br /> In beans or ground, according to your consumption indication.",
     ratherChoose: "I wanna choose my CafeLab",
     payment: "How do you prefer to pay?",
     coffeeSelection: "Coffee selection",
@@ -159,7 +167,8 @@ export default {
     passwordPlaceholder: "Type your password",
     loginButton: "Login",
     noAccountText: "Don't have an account? Signup now.",
-    signInToYourAccount: "Sign in to your account"
+    signInToYourAccount: "Sign in to your account",
+    forgotPassword: "Forgot your password?",
   },
   footer: {
     aboutUs: "About us",
@@ -252,6 +261,7 @@ export default {
     ethiopia: "Ethiopia",
     ecobag: "Custom ecobag CAFELAB",
     addToCart: "Add to cart",
+    colombia: "Colombia",
   },
   userDashboard: {
     changePassword: "Change My Password",
@@ -277,7 +287,29 @@ export default {
       pending: "Pending",
       shipped: "Shipped",
       paymentSuccessful: "Payment Successful",
-      cancelled: "Cancelled"
-    }
+      cancelled: "Cancelled",
+      created: "Created",
+    },
+    receipt: "Here is your receipt",
+  },
+  forgotPassword: {
+    title: "Forgot Password",
+    description: "Forgot your account’s password? Enter your email address and we’ll send you a recovery link.",
+    emailLabel: "Email address",
+    sendButton: "Send Password Reset Email",
+    backToLogin: "Back to Login",
+    successMessage: "Password reset email sent. Check your email for the password reset link.",
+    errorMessage: "An error occurred. Unable to send password reset email."
+  },
+  resetPassword: {
+    title: "Reset Password",
+    newPasswordLabel: "New Password",
+    newPasswordPlaceholder: "Enter your new password",
+    confirmPasswordLabel: "Confirm New Password",
+    confirmPasswordPlaceholder: "Confirm your new password",
+    resetButton: "Reset Password",
+    passwordMismatch: "Passwords do not match.",
+    successMessage: "Password has been reset successfully.",
+    errorMessage: "An error occurred. Unable to reset password."
   }
 };

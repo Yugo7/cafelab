@@ -9,7 +9,7 @@ export default {
     signOut: "Sair",
   },
   home: {
-    headlineText: "Uma nova loja! O seu novo café!",
+    headlineText: "CHEGARAM NOSSAS SUBSCRIÇÕES! <br />TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
     welcome: "Bem-vindo ao nosso site!",
     addtocalendar: "Adicionar ao calendário",
     firstCoffeeShop: "A PRIMEIRA LOJA DE CAFÉ DE ESPECIALIDADE DE OEIRAS.",
@@ -24,9 +24,11 @@ export default {
     agendaButton: "AGENDA",
     openOnMaps: "ABRIR NO MAPS",
     storeButton: "LOJA",
+    boutiqueButton: "BOUTIQUE",
     subscriptionButton: "SUBSCRIÇÃO",
     visit: "VISITE NOSSO ESPAÇO",
-    checkOutOurSubscriptions: "CONHEÇA NOSSAS SUBSCRIÇÕES!",
+    checkOutOurSubscription1: "CHEGARAM NOSSAS SUBSCRIÇÕES!",
+    checkOutOurSubscription2: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
     checkOutOurCoffee: "CONHEÇA NOSSOS CAFÉS DE ESPECIALIDADE!",
     checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
   },
@@ -46,16 +48,20 @@ export default {
     howYouWantYourCoffee: "Como quer seu café?",
     beans: "Grãos",
     espresso: "Moído para expresso",
-    frenchPress: "Moído para prensa francesa/ italiana",
-
+    frenchPress: "Moído para prensa francesa",
+    v60: "Moído para filtro",
+    motto: "ESCOLHA, COMPRE, RECEBA TODOS OS MESES EM SUA CASA",
     frequency: "Qual vai ser a frequencia dos pagamentos da subscrição?",
-
     payment: "Pagamento",
     monthlyPayments: "Pagamentos mensais",
     quarterlyPayments: "Pagamentos trimestrais",
     semiannualPayments: "Pagamentos semestrais",
     annualPayments: "Pagamentos anuais",
 
+    choose: "Escolha seu café",
+    pay: "Cadastre seu pagamento",
+    assemble: "Nós montamos seu kit com carinho",
+    receive: "Receba todo mês em sua casa",
     pricePerMonth: "Apenas €27.90 por mês",
     checkout: "Ir para o checkout",
     close: "Fechar",
@@ -73,16 +79,18 @@ export default {
   },
   fenocafe: {
     name: "FÉ NO CAFELAB",
-    coffeeDescription: "3 embalagens de 175g escolhidas pelo nosso especialista<br />Tenha acesso ao nosso café exclusivo da subscrição!",
-    coffeeDetails: "Para os que nos conhecem, e amam uma surpresa. Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés especiais, escolhidos a dedo todos os meses pelo nosso especialista. E ainda tenha acesso aos nossos cafés exclusivos da assinatura.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
+    exclusive: "TENHA ACESSO AO NOSSO CAFÉ EXCLUSIVO DA ASSINATURA!",
+    coffeeDescription: "3 embalagens de 175g escolhidas pelo nosso especialista.",
+    coffeeHighlight: "Tenha acesso ao nosso café exclusivo da assinatura!",
+    coffeeDetails: "Quem já pediu, sabe que uma indicação do nosso especialista nunca falha! Receba na sua casa uma coleção de três cafés, escolhidos a dedo todos os meses pelo nosso especialista.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     trust: "Confio",
     pricePerMonth: "Apenas €27.90 por mês"
 
   },
   meexpresso: {
-    name: "DEPOIS DO CAFELAB, EU ME EXPRESSO",
+    name: "EU ME EXPRESSO",
     coffeeDescription: "3 embalagens de 175g à sua escolha dentre nossa gama.",
-    coffeeDetails: "Para os nossos clientes decididos, ou menos aventureiros. Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
+    coffeeDetails: "Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
     ratherChoose: "Já sei meu CafeLab",
     yourSubscription: "SUA SUBSCRIÇÃO",
     coffeeSelection: "Selecção de café",
@@ -129,7 +137,8 @@ export default {
     passwordPlaceholder: "Digite sua senha",
     loginButton: "Entrar",
     noAccountText: "Não tem uma conta? Cadastre-se agora.",
-    signInToYourAccount: "Faça login na sua conta"
+    signInToYourAccount: "Faça login na sua conta",
+    forgotPassword: "Esqueceu sua senha?",
   },
   shoppingCart: {
     title: "Carrinho",
@@ -249,6 +258,7 @@ export default {
     tanzania: "Tanzânia",
     topArabica: "Top Arábica",
     ethiopia: "Etiópia",
+    colombia: "Colômbia",
     ecobag: "Ecobag personalizada CAFELAB",
   },
   userDashboard: {
@@ -275,7 +285,29 @@ export default {
       pending: "Pendente",
       shipped: "Enviado",
       paymentSuccessful: "Pagamento Bem-sucedido",
-      cancelled: "Cancelado"
-    }
+      cancelled: "Cancelado",
+      created: "Criado",
+    },
+    receipt: "Aqui está o seu recibo",
+  },
+  forgotPassword: {
+    title: "Esqueceu a Senha",
+    description: "Esqueceu a senha da sua conta? Digite seu endereço de e-mail e enviaremos um link de recuperação.",
+    emailLabel: "Endereço de e-mail",
+    sendButton: "Enviar e-mail de redefinição de senha",
+    backToLogin: "Voltar para o Login",
+    successMessage: "E-mail de redefinição de senha enviado. Verifique seu e-mail para o link de redefinição de senha.",
+    errorMessage: "Ocorreu um erro. Não foi possível enviar o e-mail de redefinição de senha."
+  },
+  resetPassword: {
+    title: "Redefinir Senha",
+    newPasswordLabel: "Nova Senha",
+    newPasswordPlaceholder: "Digite sua nova senha",
+    confirmPasswordLabel: "Confirmar Nova Senha",
+    confirmPasswordPlaceholder: "Confirme sua nova senha",
+    resetButton: "Redefinir Senha",
+    passwordMismatch: "As senhas não coincidem.",
+    successMessage: "Senha redefinida com sucesso.",
+    errorMessage: "Ocorreu um erro. Não foi possível redefinir a senha."
   }
 }

@@ -20,18 +20,19 @@ import {
     useDisclosure,
     useToast
 } from "@chakra-ui/react";
-import {FaHandshake} from "react-icons/fa";
-import React, {useState} from "react";
-import {useSubscription} from "../context/SubscriptionContext.jsx";
-import {Trans, useTranslation} from "react-i18next";
-import {Space} from "lucide-react";
+import { FaHandshake } from "react-icons/fa";
+import React, { useState } from "react";
+import { useSubscription } from "../context/SubscriptionContext.jsx";
+import { Trans, useTranslation } from "react-i18next";
+import { Space, Stars } from "lucide-react";
+import ModalFeNoCafe from "./ModalSubscrption.jsx";
 
 function CardFeNoCafe() {
 
-    const {isOpen, onOpen, onClose} = useDisclosure();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
-    const {createFeNoCafelab} = useSubscription();
-    const {t} = useTranslation();
+    const { createFeNoCafelab } = useSubscription();
+    const { t } = useTranslation();
 
     const [variety, setVariety] = useState('');
     const handleChangeVariety = (event) => {
@@ -43,19 +44,6 @@ function CardFeNoCafe() {
         setPayment(event.target.value);
     };
 
-    function finishSubscription() {
-        if (variety === '') {
-            toast({
-                title: 'Erro',
-                description: "Falta especificar como quer seu café.",
-                status: 'warning',
-                duration: 2000,
-                isClosable: true,
-            })
-        } else {
-            createFeNoCafelab(variety, payment);
-        }
-    }
 
     function getPaymentText() {
         switch (payment) {
@@ -73,14 +61,12 @@ function CardFeNoCafe() {
     }
 
     return (
-        <Card
-            maxW='2xl'
-            bgColor={"whiteAlpha.50"} variant='outline' border={"1px"}
+        <Box
+            w={{"base": "100%", "md": "50%"}}   
+            bgColor={"whiteAlpha.50"}
             height={"100%"}
         >
-            <CardHeader align={"center"}>
-                <Box my={8}>
-                </Box>
+            <Stack className="box-header" >
                 <Stack justify="flex-start" align="center" fontSize={"3xl"} spacing="0px">
                     <Text className="font-headline" textAlign={"center"}>
                         {t('fenocafe.name')}
@@ -90,95 +76,42 @@ function CardFeNoCafe() {
                         €27.90
                     </Text>
                 </Stack>
-            </CardHeader>
-            <CardBody mx={4}>
-                <Box my={5}>
+            </Stack>
+            <Stack mx={4}>
+                <Box my={{ base: 4, md: 2 }}>
                 </Box>
-                <Stack>
-                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} mb={6}>
+                <Stack p={4} mb={6}>
+                    <Text align="center" fontSize={"xl"} fontWeight={"semibold"} mb={6}>
+                        <Trans>{t('fenocafe.exclusive').toUpperCase()}</Trans>
+                    </Text>
+                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"}>
                         <Trans>{t('fenocafe.coffeeDescription')}</Trans>
                     </Text>
-                </Stack>
-                <Text fontSize={"md"} align="center">
-                    <Trans>{t('fenocafe.coffeeDetails')}</Trans>
-                </Text>
-            </CardBody>
 
-            <Image
-                alignSelf="center"
-                objectFit='cover'
-                src='assets/subscricao_meexpresso.jpg'
-                alt='Depois do cafelab eu me expresso'
-                m={6}
-                boxSize={"80%"}
-                borderRadius='lg'
-            />
-            <CardFooter alignSelf="center">
-                <Flex justifyContent="center" alignItems="center">
-                    <Button leftIcon={<FaHandshake/>} onClick={onOpen} size='lg' height='48px' width='200px'
-                            border='2px'
-                            variant='outline' colorScheme='#FEEBC8'>
+                    <Text fontSize={"md"} align="center">
+                        <Trans>{t('fenocafe.coffeeDetails')}</Trans>
+                    </Text>
+                </Stack>
+                <Stack justifyContent="center" alignItems="center" mt={8}>
+                    <Button leftIcon={<FaHandshake />} onClick={onOpen} size='lg' height='48px' width='200px'
+                        border='2px'
+                        variant='outline' colorScheme='#FEEBC8'>
                         {t('fenocafe.trust')}
                     </Button>
-                    <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}
-                           motionPreset='slideInBottom' size={"full"}>
-                        <ModalOverlay/>
-                        <ModalContent>
-                            <ModalHeader>{t('fenocafe.name')}</ModalHeader>
-                            <ModalCloseButton/>
-                            <ModalBody overflowY="auto">
-                                <Stack my={4}>
-                                    <Select placeholder={t('subscription.howYouWantYourCoffee')} value={variety} onChange={handleChangeVariety}>
-                                        <option value='beans'>{t('subscription.beans')}</option>
-                                        <option value='expresso'>{t('subscription.espresso')}</option>
-                                        <option value='frenchpress'>{t('subscription.frenchPress')}</option>
-                                    </Select>
-                                </Stack>
-                                <Stack alignItems={"center"}>
-                                    <Image
-                                        src='assets/subscricao_fenocafe.jpg'
-                                        maxH={"50vh"}
-                                    />
-                                </Stack>
-                                <Stack my={4}>
-                                    <Select width={"sm"} value={payment} onChange={handleChangePayment}>
-                                        <option value='1'>"test"</option>
-                                        <option value='3'>{t('subscription.quarterlyPayments')}</option>
-                                        <option value='6'>{t('subscription.semiannualPayments')}</option>
-                                        <option value='12'>{t('subscription.annualPayments')}</option>
-                                    </Select>
-                                </Stack>
-                                <Text className="ms-auto fw-bold" fontSize={"2xl"}>
-                                    {getPaymentText()}
-                                </Text>
-                                <Text className="ms-auto " fontSize={"2xl"}>
-                                    {t('fenocafe.pricePerMonth')}
-                                </Text>
-                                <Stack pt={6} pb={6} className=" cafelab d-flex align-items-left">
-                                    <Text fontSize={"md"}>
-                                        {t('subscription.rules.name')}
-                                        <br/>
-                                        - {t('subscription.rules.subscribeBy25')}
-                                        <br/>
-                                        - {t('subscription.rules.subscriptionsAfter25')}
-                                        <br/>
-                                        - {t('subscription.rules.automaticRenewal')}
-                                        <br/>
-                                        - {t('subscription.rules.freeCancellation')}
-                                        <br/>
-                                        - {t('subscription.rules.freeShipping')}
-                                    </Text>
-                                </Stack>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button colorScheme='green' mr={2} onClick={() => finishSubscription()}>{t('subscription.checkout')}</Button>
-                                <Button onClick={onClose}>{t('subscription.close')}</Button>
-                            </ModalFooter>
-                        </ModalContent>
-                    </Modal>
-                </Flex>
-            </CardFooter>
-        </Card>
+                    <ModalFeNoCafe
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        t={t}
+                        variety={variety}
+                        handleChangeVariety={handleChangeVariety}
+                        payment={payment}
+                        handleChangePayment={handleChangePayment}
+                        createFeNoCafelab={createFeNoCafelab}
+                        getPaymentText={getPaymentText}
+                    />
+                </Stack>
+            </Stack>
+        </Box>
     )
 }
 

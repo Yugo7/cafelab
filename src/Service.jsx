@@ -114,7 +114,7 @@ Dúvidas sobre os Termos de Serviço devem ser enviadas para cafelabpt@gmail.com
 
         <SidebarWithHeader>
             <Stack m={4} justify="flex-start" align="center" spacing="24px">
-                <Text className="headline mt-5" fontSize={"3xl"}>Termos do serviço</Text>
+                <Text className="headline mt-5" fontSize={"3xl"}>TERMOS DE SERVIÇO</Text>
             </Stack>
             <Stack minHeight={"60vh"} justify={"center"} m={4}  pb={8}  align="center" spacing="24px">
                 <Box width='80%' as="pre" className={"cafelab-inner"} style={{ whiteSpace: "pre-wrap" }}>

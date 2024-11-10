@@ -2,14 +2,17 @@ import {createContext, useContext} from "react"
 import {useLocalStorage} from "../hooks/useLocalStorage"
 import {useToast} from "@chakra-ui/react";
 import StripeService from "../../services/stripeService.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const SubscriptionContext = createContext({})
+
 
 export function useSubscription() {
     return useContext(SubscriptionContext)
 }
 
 export function SubscriptionProvider({children}) {
+    const { customer } = useAuth();
     const [coffee, setCoffee] = useLocalStorage(
         "coffee",
         []
@@ -77,7 +80,7 @@ export function SubscriptionProvider({children}) {
             variety: variety
         };
 
-        StripeService.createSubscriptionCheckoutSession(subscricao)
+        StripeService.createSubscriptionCheckoutSession(subscricao, customer)
     }
 
     function createEuMeExpresso(variety, payment){
@@ -87,7 +90,7 @@ export function SubscriptionProvider({children}) {
             variety: variety,
             coffee: coffee
         };
-        StripeService.createSubscriptionCheckoutSession(subscricao)
+        StripeService.createSubscriptionCheckoutSession(subscricao, customer)
     }
 
     return (

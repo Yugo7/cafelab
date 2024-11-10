@@ -118,6 +118,9 @@ const Login = () => {
                     <Link color={"blue.500"} href={"/signup"}>
                         {t('login.noAccountText')}
                     </Link>
+                    <Link color={"blue.500"} href={"/forgot-password"}>
+                        {t('login.forgotPassword')}
+                    </Link>
                 </Stack>
             </Flex>
         </Stack>

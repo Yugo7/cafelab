@@ -12,9 +12,11 @@ const OrderService = {
             throw error;
         }
     },
+
     getOrdersByUserId: async (userId) => {
         try {
             const response = await axios.get(`${BASE_URL}orders/${userId}`);
+            console.log('response', response.data);
             return response.data;
         } catch (error) {
             console.error('Error fetching all events:', error);
@@ -22,31 +24,11 @@ const OrderService = {
         }
     },
 
-
-    addOrder: async (orderData) => {
+    cancelSubscription: async (subscriptionId) => {
         try {
-            const response = await axios.post(`${BASE_URL}orders`, {
-                user_id: orderData.user_id,
-                products: orderData.items,
-                total: orderData.total,
-                status: orderData.paymentStatus,
-                user_stripe_id: orderData.user_stripe_id
-            });
+            const response = await axios.post(`${BASE_URL}subscription/cancel/${subscriptionId}`, {});
             return response.data;
         } catch (error) {
-            console.error('Error creating event:', error);
-            throw error;
-        }
-    },
-
-    
-    cancelSubscription: async (subscription) => {
-        try {
-            const response = await axios.post(`${BASE_URL}subscription/${subscription}`, {
-            });
-            return response.data;
-        } catch (error) {
-            console.error('Error creating event:', error);
             throw error;
         }
     },

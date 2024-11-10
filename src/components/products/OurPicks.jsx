@@ -12,9 +12,9 @@ const OurPicks = () => {
 
     return (
         <Stack fluid className="my-5 text-center">
-            <Text className="font-headline text-center" fontSize={stackSpacing}>{t('ourPicks.headline')}</Text>
+            <Text className="font-headline text-center" fontSize={stackSpacing}>{t('ourPicks.headline').toUpperCase()}</Text>
             <SimpleGrid spacing={4} mb={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-                <Card
+            <Card bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} p={4}
                     backgroundColor={"#FFFFFF"}>
                     <Image
                         src="assets/tanzania.png"
@@ -39,9 +39,9 @@ const OurPicks = () => {
                     <CardBody>
                         <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.tanzania')}</Text>
                         <Text>{t('ourPicks.coffee')}</Text>
-                        <Text mb={3} fontWeight={"semibold"}>€8.00</Text>
+                        <Text mb={3} fontWeight={"semibold"}>€8.50</Text>
                     </CardBody>
-                    <CardFooter>
+                    <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(6)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
                                 
@@ -50,7 +50,7 @@ const OurPicks = () => {
                         </ButtonGroup>
                     </CardFooter>
                 </Card>
-                <Card
+                <Card bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} p={4}
                     backgroundColor={"#FFFFFF"}>
                     <Image
                         src="assets/ecobag.png"
@@ -78,7 +78,7 @@ const OurPicks = () => {
                         <Text>Boutique</Text>
                         <Text mb={3} fontWeight={"semibold"}>€25.00</Text>
                     </CardBody>
-                    <CardFooter>
+                    <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(11)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
                                 
@@ -87,7 +87,7 @@ const OurPicks = () => {
                         </ButtonGroup>
                     </CardFooter>
                 </Card>
-                <Card
+                <Card bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} p={4}
                     backgroundColor={"#FFFFFF"}
                 >
                     <Image
@@ -113,9 +113,9 @@ const OurPicks = () => {
                     <CardBody>
                         <Text mb={3} fontWeight={"semibold"}>{t('ourPicks.colombia')}</Text>
                         <Text>{t('ourPicks.coffee')}</Text>
-                        <Text mb={3} fontWeight={"semibold"}>€12.50</Text>
+                        <Text mb={3} fontWeight={"semibold"}>€10.00</Text>
                     </CardBody>
-                    <CardFooter>
+                    <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
                             <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(3)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
                                 

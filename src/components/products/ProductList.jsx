@@ -48,7 +48,7 @@ const ProductList = ({ products }) => {
                     const quantityInCart = getItemQuantity(product.id);
                     return (
                         <WrapItem>
-                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"1px"} height={"826px"}>
+                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"4px"}  height={"826px"}>
                                 <CardBody onClick={() => handleCardClick(product)} >
                                     <Stack mt='6' spacing='8'>
                                         <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>

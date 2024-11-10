@@ -2,6 +2,7 @@ import process from 'node:process'
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import {VitePWA} from 'vite-plugin-pwa'
+import path from 'path';
 
 const pwaOptions = {
   mode: 'production',
@@ -86,5 +87,15 @@ export default defineConfig({
   ],
   optimizeDeps: {
     exclude: ['js-big-decimal']
-  }
+  },
+  build: {
+    rollupOptions: {
+      external: ['@vercel/speed-insights/react']
+    }
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })

@@ -33,12 +33,22 @@ export const getCustomers = async () => {
     }
 }
 
-
-export const resetPassword = async (email) => {
+export const requestResetPasswordServer = async (email) => {
     try {
         return await axios.post(
-            `${BASE_URL}user/change-password`,
+            `${BASE_URL}user/forgot-password`,
             { email: email}
+        ) 
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const resetPasswordServer = async (pw, token) => {
+    try {
+        return await axios.post(
+            `${BASE_URL}user/change-password/${token}`,
+            { password: pw}
         ) 
     } catch (e) {
         throw e;
@@ -47,7 +57,6 @@ export const resetPassword = async (email) => {
 
 export const createCustomer = async (customer) => {
     try {
-        console.log('Creating customer:', customer);
         const response = await axios.post(`${BASE_URL}user`, {
             customer
         });

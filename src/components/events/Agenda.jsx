@@ -90,12 +90,14 @@ const Agenda = () => {
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                     <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                        {t('agenda.title')}
+                        {t('agenda.title').toUpperCase()}
                     </Text>
                 </Stack>
                 { events.length <= 0 ? (
-                    <Stack h={"10vh"} align="center" m={6} spacing={4}>
-                        <Text fontSize={"xl"} mt={5}>{t('agenda.noUpcomingEvents')}</Text>
+                    <Stack h={"10vh"} textAlign="center" m={6} spacing={4} px={
+                        8
+                    }>
+                        <Text fontSize={"xl"} mt={5}>{t('agenda.noUpcomingEvents').toUpperCase()}</Text>
                     </Stack>
                 ) : (
                     <Stack alignSelf={"center"} w={"90vw"}>
@@ -114,7 +116,7 @@ const Agenda = () => {
                 <Stack alignSelf={"center"} w={"90vw"}>
                     <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
                         <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                            {t('agenda.pastEventsTitle')}
+                            {t('agenda.pastEventsTitle').toUpperCase()}
                         </Text>
                     </Stack>
                     <Carousel responsive={responsive}>
