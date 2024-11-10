@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import OurPicks from "./OurPicks.jsx";
-import {Button, Image, Spinner, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import { Button, Image, Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import ProductList from "./ProductList.jsx";
-import {getProductsBySection, Sections} from "../../services/productsService.jsx";
+import { getProductsBySection, Sections } from "../../services/productsService.jsx";
 import { useTranslation } from 'react-i18next';
 
 export default function Boutique() {
 
-    const fontHeadlineSize = useBreakpointValue({base: "lg", md: "2xl"});
+    const fontHeadlineSize = useBreakpointValue({ base: "lg", md: "2xl" });
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState([]);
     const [section, setSection] = useState();
-    const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
+    const fontSize = useBreakpointValue({ base: "5xl", md: "62px" });
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -36,15 +36,14 @@ export default function Boutique() {
     return (
         <SidebarWithHeader>
             <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
-                <Text className="cafelab" align="center" fontSize={fontSize}  color="#000000">
+                <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
                     {t('boutique.title').toUpperCase()}
                 </Text>
                 <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize} letterSpacing="tighter" color="black"
-                      textAlign="center" mx={4}>
+                    textAlign="center" mx={4}>
                     {t('boutique.description')}
                 </Text>
             </Stack>
-
             <Stack backgroundColor={"whiteAlpha.50"}>
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
 
@@ -65,9 +64,9 @@ export default function Boutique() {
                 </Stack>
 
                 {isLoading ? (
-                    <Spinner/>
+                    <Spinner />
                 ) : (
-                    <ProductList products={products}/>
+                    <ProductList products={products} />
                 )}
 
                 <Stack align={"center"} mx={10} p={10}>

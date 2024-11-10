@@ -160,7 +160,6 @@ export default {
     noUpcomingEvents: "Fique ligado para saber sobre os nossos próximos eventos!",
     takeALook: "Veja como foi",
     addtocalendar: "Adicionar ao calendário",
-    // Add other translations related to the Agenda component here...
   },
   footer: {
     aboutUs: "Sobre nós",
