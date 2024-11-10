@@ -15,7 +15,7 @@ const ProductImageCarousel = () => {
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
     const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
 
-    const filteredProducts = products.filter(product => product.secao === 'CAFE');
+    const filteredProducts = products.filter(product => product.secao === 'CAFE' && product.is_active);
 
     return (<Carousel
         centerMode={false}
@@ -61,7 +61,6 @@ const ProductImageCarousel = () => {
                                 <Tag variant={"solid"} size={"md"}>{product[productSizeColumn]}</Tag>
                             </Box>
                             <Text maxW={"600px"} alignSelf={"center"} maxH={"75%"} overflow="auto">{product[productDescriptionColumn]}</Text>
-
                             <Text fontSize='2xl' alignSelf={"center"}>
                                 {formatCurrency(product.preco)}
                             </Text>
@@ -69,7 +68,6 @@ const ProductImageCarousel = () => {
                     </Stack>
                 </Card>
             </Stack>
-
         ))}
     </Carousel>
     );

@@ -144,7 +144,6 @@ const Home = () => {
                             {t('home.openOnMaps')}
                         </Button>
                     </Stack>
-
                 </Stack>
             </Stack>
         </SidebarWithHeader >

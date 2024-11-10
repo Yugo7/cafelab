@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, Flex, Heading, Link, Stack, Table, TableCaption, TableContainer, Tag, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
-import SidebarWithHeader from "../shared/SideBar.jsx";
 import OrderService from "../../services/orderService.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
 import { useTranslation } from 'react-i18next';
+import { getStatusColor, getStatusText } from "@/utils/statusUtil.js";
 
 const MyOrders = () => {
     const { customer, } = useAuth();
@@ -46,38 +46,6 @@ const MyOrders = () => {
         )
     }
 
-    const getStatusColor = (status) => {
-        switch (status) {
-            case 'PENDING':
-                return 'yellow';
-            case 'SHIPPED':
-                return 'blue';
-            case 'PAYMENT_SUCCESSFUL':
-                return 'green';
-            case 'CANCELLED':
-                return 'red';
-            default:
-                return 'gray';
-        }
-    };
-
-    const getStatusText = (status) => {
-        switch (status) {
-            case 'PENDING':
-                return t('myOrders.status.pending');
-            case 'SHIPPED':
-                return t('myOrders.status.shipped');
-            case 'PAYMENT_SUCCESSFUL':
-                return t('myOrders.status.paymentSuccessful');
-            case 'CANCELLED':
-                return t('myOrders.status.cancelled');
-            case 'CREATED':
-                return t('myOrders.status.created');
-            default:
-                return t('myOrders.status.unknown');
-        }
-    };
-
     return (
         <>
             {orders.map((order, index) => (
@@ -86,7 +54,7 @@ const MyOrders = () => {
                         <Flex align="center">
                             <Heading size='md'>{t('myOrders.orderNumber')} {order.id}</Heading>
                             <Tag colorScheme={getStatusColor(order.status)} ml={4}>
-                                {getStatusText(order.status)}
+                                {getStatusText(order.status, t)}
                             </Tag>
                             {order.receipt_url ? (
                                 <Link href={order.receipt_url} download>

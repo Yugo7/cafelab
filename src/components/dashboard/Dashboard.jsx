@@ -1,7 +1,7 @@
 import OrderStatusGrid from "./OrdersCard.jsx";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
-import { Stack, Table, Thead, Tbody, Tr, Th, Td, Text } from '@chakra-ui/react';
+import { Stack, Text } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
@@ -16,7 +16,6 @@ const Dashboard = () => {
     const { products } = useShoppingCart();
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
-    const [subscriptions, setSubscriptions] = useState([]);
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -26,14 +25,7 @@ const Dashboard = () => {
             } else {
                 try {
                     const data = await OrderService.getOrders();
-                    const orders = data.filter(order =>
-                        Array.isArray(order.products) && order.products.every(product => product.id < 900)
-                    );
-                    const subscriptions = data.filter(order =>
-                        Array.isArray(order.products) && order.products.every(product => product.id >= 900)
-                    );
-                    setOrders(orders);
-                    setSubscriptions(subscriptions);
+                    setOrders(data);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
@@ -59,36 +51,11 @@ const Dashboard = () => {
 
     return (
         <SidebarWithHeader>
-            <Stack m={6} spacing={4}>
+            <Stack m={{base: 0, md: 6 }} spacing={4}>
 
                 <OrderStatusGrid orders={orders} />
                 <OrdersLineChart orders={orders} />
                 <OrdersList orders={orders} products={products} />
-
-                <Table variant="simple">
-                    <Thead>
-                        <Tr>
-                            <Th>Order ID</Th>
-                            <Th>Status</Th>
-                            <Th>Products</Th>
-                            <Th>Total Price</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        {orders.map(order => (
-                            <Tr key={order.id}>
-                                <Td>{order.id}</Td>
-                                <Td>{order.status}</Td>
-                                <Td>
-                                    {order.products.map(product => (
-                                        <Text key={product.id}>{product.name}</Text>
-                                    ))}
-                                </Td>
-                                <Td>${calculateTotalPrice(order.products).toFixed(2)}</Td>
-                            </Tr>
-                        ))}
-                    </Tbody>
-                </Table>
 
                 <AnalyticsChart accesses={[
                     {
