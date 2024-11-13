@@ -275,6 +275,9 @@ export default {
     send: "Send",
     every: "Every ",
     months: " months",
+    nextShipping: "Next shipping",
+    sinceDate: "Subscribed since",
+    pendencies: "Solve your pendencies to receive your next subscription",
   },
   myOrders: {
     noOrders: "No orders available",

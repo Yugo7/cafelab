@@ -88,11 +88,6 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['js-big-decimal']
   },
-  build: {
-    rollupOptions: {
-      external: ['@vercel/speed-insights/react']
-    }
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
