@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import OurPicks from "./OurPicks.jsx";
-import { Button, Image, Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Button, Spinner, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import ProductList from "./ProductList.jsx";
 import { getProductsBySection, Sections } from "../../services/productsService.jsx";
 import { useTranslation } from 'react-i18next';
@@ -69,9 +69,9 @@ export default function Boutique() {
                     <ProductList products={products} />
                 )}
 
-                <Stack align={"center"} mx={10} p={10}>
-                    <OurPicks />
-                </Stack>
+            </Stack>
+            <Stack align={"center"} mx={10} p={10}>
+                <OurPicks />
             </Stack>
         </SidebarWithHeader>
     );

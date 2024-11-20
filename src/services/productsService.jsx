@@ -4,7 +4,6 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const getProducts = async () => {
     try {
-        // Try to get data from cache
         const cachedData = localStorage.getItem('products');
         const cachedTime = localStorage.getItem('productsTime');
         if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
@@ -43,3 +42,71 @@ export const getProductsById = async (id) => {
         throw e;
     }
 }
+
+const createProduct = async (productData) => {
+    try {
+        const formData = new FormData();
+        Object.keys(productData).forEach(key => {
+            formData.append(key, productData[key]);
+        });
+
+        const response = await axios.post(`${BASE_URL}products`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error creating product:', error);
+        throw error;
+    }
+};
+
+const updateProduct = async (productData) => {
+    try {
+        const formData = new FormData();
+        Object.keys(productData).forEach(key => {
+            formData.append(key, productData[key]);
+        });
+
+        const response = await axios.put(`${BASE_URL}products/${productData.id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating product:', error);
+        throw error;
+    }
+};
+
+const deleteProduct = async (productId) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}products/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Error deleting product with ID ${productId}:`, error);
+        throw error;
+    }
+};
+
+const getSecaoValues = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}products/sections`);
+        return response.data;
+    } catch (error) {
+        console.error(`Error deleting product with ID ${productId}:`, error);
+        throw error;
+    }
+};
+
+export const productService = {
+    getProducts,
+    getSecaoValues,
+    getProductsBySection,
+    getProductsById,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+};

@@ -1,4 +1,4 @@
-import OrderStatusGrid from "./OrdersCard.jsx";
+import OrderStatusGrid from "./Orders/OrdersCard.jsx";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { Stack, Text } from '@chakra-ui/react';
@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import OrderService from "../../services/orderService.jsx";
-import OrdersLineChart from "./OrdersLineChart.jsx";
+import OrdersLineChart from "./Orders/OrdersLineChart.jsx";
 import AnalyticsChart from "./AnalyticsChart.jsx";
-import OrdersList from "./OrdersList.jsx";
+import OrdersList from "./Orders/OrdersList.jsx";
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
 
 const Dashboard = () => {
