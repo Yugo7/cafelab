@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Stack, Text, VStack, HStack, Box, Tag, Spacer, Select, Wrap} from '@chakra-ui/react';
 import {useTranslation} from "react-i18next";
-import {formatCurrency} from "../utilities/formatCurrency";
+import {formatCurrency} from "../../utilities/formatCurrency.jsx";
 import {Button} from "react-bootstrap";
-import {getStatusColor, getStatusText} from "../../utils/statusUtil.js";
+import {getStatusColor, getStatusText} from "@/utils/statusUtil.js";
 
 const OrdersList = ({orders, products}) => {
     const {t} = useTranslation();

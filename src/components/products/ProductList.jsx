@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, CardBody, CardFooter, Divider, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
@@ -29,7 +29,7 @@ const ProductList = ({ products }) => {
         navigate('/checkout')
     }
     const lang = i18n.language;
-    
+
     const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
     const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
@@ -42,19 +42,17 @@ const ProductList = ({ products }) => {
     }
 
     return (
-        <Wrap justify={"center"} spacing={"30px"} m={5}>
+        <Wrap justify={"center"} spacing={"30px"} m={5} display="flex" alignItems="stretch">
             {
                 products.map((product) => {
                     const quantityInCart = getItemQuantity(product.id);
                     return (
-                        <WrapItem>
-                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"4px"}  height={"826px"}>
-                                <CardBody onClick={() => handleCardClick(product)} >
+                        <WrapItem key={product.id} display="flex" flexDirection="column">
+                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} height="100%" display="flex" flexDirection="column">
+                                <CardBody onClick={() => handleCardClick(product)} flex="1">
                                     <Stack mt='6' spacing='8'>
                                         <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>
-                                        <Box
-                                            align='center'
-                                        >
+                                        <Box align='center'>
                                             <Image
                                                 src={product.imagem}
                                                 alt="Description"
@@ -66,7 +64,7 @@ const ProductList = ({ products }) => {
                                         <Box align='center'>
                                             <Tag size={"md"}>{product[productSizeColumn]}</Tag>
                                         </Box>
-                                        <Text maxHeight={"100px"} overflow="auto" >
+                                        <Text maxHeight={"100px"} overflow="auto">
                                             {product[productDescriptionColumn]}
                                         </Text>
                                         <Text color='black' fontSize='2xl' alignSelf={"right"}>
@@ -102,8 +100,7 @@ const ProductList = ({ products }) => {
                             )}
                         </WrapItem>
                     )
-                }
-                )
+                })
             }
         </Wrap>
     );
