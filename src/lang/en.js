@@ -1,5 +1,3 @@
-import { Receipt } from "lucide-react";
-
 export default {
   sideBar: {
     home: "Home",
@@ -91,7 +89,9 @@ export default {
     boutiqueButton: "Boutique",
     buyNow: "Buy Now",
     addToCart: "Add to cart",
-    notAvailable: "Something went wrong, please try again"
+    notAvailable: "Something went wrong, please try again",
+    sortByPrice: "Sort by Price",
+    sortByDate: "Sort by Date"
   },
   agenda: {
     title: "Upcoming Events",
@@ -314,5 +314,14 @@ export default {
     passwordMismatch: "Passwords do not match.",
     successMessage: "Password has been reset successfully.",
     errorMessage: "An error occurred. Unable to reset password."
-  }
+  },
+  newsletter: {
+    title: "Subscribe to our Newsletter",
+    description: "Stay updated with our latest news and offers. Sign up now and get a 10% coupon!",
+    emailLabel: "Email Address",
+    emailPlaceholder: "Enter your email",
+    subscribeButton: "Subscribe",
+    consentText: "I have read and agree to the ",
+    consentLinkText: "privacy policy and terms and conditions."
+  },
 };
