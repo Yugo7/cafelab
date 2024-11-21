@@ -20,7 +20,7 @@ import {
     useColorModeValue,
     useDisclosure
 } from '@chakra-ui/react';
-import logo from '/assets/logo.png';
+import logo from '/assets/logo-natal.jpg';
 
 import {useNavigate} from 'react-router-dom';
 
@@ -215,7 +215,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                     <Image
                         height={"16"}
                         margin='auto'
-                        src='assets/logo.png'
+                        src={logo}
                         alt='CafeLab'
                         onClick={() => navigate('/')}
                     />

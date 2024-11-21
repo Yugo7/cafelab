@@ -100,6 +100,11 @@ export default {
     takeALook: "Take a look",
     addtocalendar: "Add to calendar"
   },
+  monthCoffee: {
+    coffeeOfTheMonth: "Coffee of the Month",
+    coffeeOfTheMonthDescription: "Discover our featured coffee of the month, carefully selected for its unique flavor and quality.",
+    learnMore: "Learn More"
+  },
   meexpresso: {
     name: "I EXPRESSO MYSELF",
     coffeeDescription: "3 packs of 175g from your choice",

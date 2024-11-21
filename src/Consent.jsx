@@ -50,15 +50,15 @@ Para saber mais sobre nossas práticas de privacidade, caso tenha dúvidas ou se
     Av. Moçambique 14 A, Oeiras, PT-11, 2780-027, Portugal
 `
 const Consent = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <SidebarWithHeader>
             <Stack m={4} justify="flex-start" align="center" spacing="24px">
                 <Text className="headline mt-5" fontSize={"3xl"}>{t('consent.title')}</Text>
             </Stack>
-            <Stack minHeight={"60vh"} justify={"center"} m={4}  pb={8}  align="center" spacing="24px">
-                <Box width='80%' as="pre" className={"cafelab-inner"} style={{ whiteSpace: "pre-wrap" }}>
+            <Stack minHeight={"60vh"} justify={"center"} m={4} pb={8} align="center" spacing="24px">
+                <Box width='80%' as="pre" className={"cafelab-inner"} style={{whiteSpace: "pre-wrap"}}>
                     <Trans>{t('consent.content')}</Trans>
                 </Box>
             </Stack>

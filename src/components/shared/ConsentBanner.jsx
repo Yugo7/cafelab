@@ -28,7 +28,7 @@ const ConsentBanner = () => {
         <Box position="fixed" bottom="0" width="100%" bg="gray.200" p="4">
           <Box maxW="container.md" mx="auto">
             {t('consentBanner.message')}
-            <Link color={"blue"} ml={4} href={"/consent"}>{t('consentBanner.linkText')}</Link>
+            <Link color={"blue"} ml={4} href={"/privacidade"}>{t('consentBanner.linkText')}</Link>
             <Button colorScheme="blue" ml="4" onClick={handleConsent}>
               {t('consentBanner.buttonText')}
             </Button>

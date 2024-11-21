@@ -132,6 +132,11 @@ export default {
         sortByPrice: "Ordenar por Preço",
         sortByDate: "Ordenar por Data"
     },
+    monthCoffee: {
+        coffeeOfTheMonth: "Café do Mês",
+        coffeeOfTheMonthDescription: "Descubra o nosso café do mês em destaque, cuidadosamente selecionado pela sua qualidade e sabor único.",
+        learnMore: "Saiba Mais"
+    },
     login: {
         emailLabel: "Email",
         emailPlaceholder: "seu@email.com",
