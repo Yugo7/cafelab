@@ -1,7 +1,7 @@
 {
-  "name": "react",
+  "name": "cafelab-fe",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -45,6 +45,7 @@
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.8.0",
     "react-snowfall": "^2.1.1",
+    "react-zxing": "^2.0.2",
     "stripe": "^15.3.0",
     "yup": "^0.32.11"
   },
