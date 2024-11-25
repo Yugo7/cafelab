@@ -167,6 +167,7 @@ export default {
         contactUs: "Contacte-nos",
         termsOfService: "Termos de serviço",
         refundPolicy: "Politica de reembolso",
+        complaintsBook: "Livro de reclamações",
     },
     sidebar: {
         home: "Início",

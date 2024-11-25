@@ -1,10 +1,10 @@
-import { Box, Link, Stack, useBreakpointValue } from "@chakra-ui/react";
-import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useTranslation } from 'react-i18next';
+import {Box, Link, Stack, useBreakpointValue} from "@chakra-ui/react";
+import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
+import {useTranslation} from 'react-i18next';
 
 const Footer = () => {
-    const paddingValue = useBreakpointValue({ base: "30px", md: "300px" });
-    const { t } = useTranslation();
+    const paddingValue = useBreakpointValue({base: "30px", md: "300px"});
+    const {t} = useTranslation();
 
     return (
         <Box className={"footer"} py="6" alignItems={"center"}>
@@ -17,16 +17,21 @@ const Footer = () => {
                     <Link href="/reembolso">{t('footer.refundPolicy')}</Link>
                 </Stack>
 
-                <Stack direction="row" pl={paddingValue} spacing="4">
-                    <Link href="https://www.facebook.com/cafelablisbon" isExternal>
-                        <FaFacebook />
-                    </Link>
-                    <Link href="https://www.instagram.com/cafelabpt/" isExternal>
-                        <FaInstagram />
-                    </Link>
-                    <Link href="https://www.youtube.com/channel/UCQl_vcXvPTqBoX_cTEWklFg" isExternal>
-                        <FaYoutube />
-                    </Link>
+                <Stack direction="column" pl={paddingValue} >
+                    <Stack direction="row" spacing="4" justifyContent="center"  >
+                        <Link href="https://www.facebook.com/cafelablisbon" isExternal>
+                            <FaFacebook/>
+                        </Link>
+                        <Link href="https://www.instagram.com/cafelabpt/" isExternal>
+                            <FaInstagram/>
+                        </Link>
+                        <Link href="https://www.youtube.com/channel/UCQl_vcXvPTqBoX_cTEWklFg" isExternal>
+                            <FaYoutube/>
+                        </Link>
+                    </Stack>
+                    <Stack direction="row" mt="4">
+                        <Link href="https://www.livroreclamacoes.pt/Inicio/" fontSize={"sm"}>{t('footer.complaintsBook')}</Link>
+                    </Stack>
                 </Stack>
             </Stack>
         </Box>
