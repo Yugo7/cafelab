@@ -5,13 +5,13 @@ import { useZxing } from 'react-zxing';
 import axios from 'axios';
 
 const QRCodeScanner = () => {
-  const [scanResult, setScanResult] = useState(null);
   const navigate = useNavigate();
 
+  const [result, setResult] = useState("");
   const { ref } = useZxing({
-    onResult(result) {
-      setScanResult(result.getText());
-      //sendPayloadToBackend(result.getText());
+    onDecodeResult(result) {
+        console.log('Scanned data:', result.getText());
+      setResult(result.getText());
     },
   });
 
@@ -27,16 +27,15 @@ const QRCodeScanner = () => {
 
   return (
     <Stack align="center" spacing={4} p={4}>
-      <Text fontSize="2xl" fontWeight="bold">Scan QR Code</Text>
       <Box width="100%" maxWidth="500px">
         <video ref={ref} style={{ width: '100%' }} />
       </Box>
-      {scanResult && (
+      {result && (
         <Box mt={4} p={4} borderWidth="1px" borderRadius="lg">
-          <Text>Scanned Data: {scanResult}</Text>
+          <Text>Scanned Data: {result}</Text>
         </Box>
       )}
-      <Button onClick={() => navigate('/')}>Go Back</Button>
+      <Button onClick={() => navigate('/')}>Voltar</Button>
     </Stack>
   );
 };

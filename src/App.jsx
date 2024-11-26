@@ -42,6 +42,7 @@ import ResetPassword from "./components/login/ResetPassword.jsx";
 import Products from "./components/dashboard/Produtos.jsx";
 import Events from "./components/dashboard/Events.jsx";
 import Loyalty from "./components/dashboard/Loyalty.jsx";
+import Newsletter from "./components/dashboard/Newsletter.jsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const { ToastContainer } = createStandaloneToast();
@@ -73,6 +74,7 @@ const routes = [
   { path: "/dashboard/produtos", element: <ProtectedAdminRoute><Products /></ProtectedAdminRoute> },
   { path: "/dashboard/eventos", element: <ProtectedAdminRoute><Events /></ProtectedAdminRoute> },
   { path: "/dashboard/fidelidade", element: <ProtectedAdminRoute><Loyalty /></ProtectedAdminRoute> },
+  { path: "/dashboard/newsletter", element: <ProtectedAdminRoute><Newsletter /></ProtectedAdminRoute> },
 ];
 
 function App() {
