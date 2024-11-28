@@ -44,6 +44,7 @@
     "react-lottie": "^1.2.4",
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.8.0",
+    "react-snowfall": "^2.1.1",
     "stripe": "^15.3.0",
     "yup": "^0.32.11"
   },

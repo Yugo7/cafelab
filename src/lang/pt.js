@@ -128,7 +128,14 @@ export default {
         boutiqueButton: "Boutique",
         buyNow: "Comprar agora",
         addToCart: "Adicionar",
-        notAvailable: "Algo deu errado, tente novamente"
+        notAvailable: "Algo deu errado, tente novamente",
+        sortByPrice: "Ordenar por Preço",
+        sortByDate: "Ordenar por Data"
+    },
+    monthCoffee: {
+        coffeeOfTheMonth: "Café do Mês",
+        coffeeOfTheMonthDescription: "Descubra o nosso café do mês em destaque, cuidadosamente selecionado pela sua qualidade e sabor único.",
+        learnMore: "Saiba Mais"
     },
     login: {
         emailLabel: "Email",
@@ -167,7 +174,6 @@ export default {
         contactUs: "Contacte-nos",
         termsOfService: "Termos de serviço",
         refundPolicy: "Politica de reembolso",
-        complaintsBook: "Livro de reclamações",
     },
     sidebar: {
         home: "Início",
@@ -315,5 +321,14 @@ export default {
         passwordMismatch: "As senhas não coincidem.",
         successMessage: "Senha redefinida com sucesso.",
         errorMessage: "Ocorreu um erro. Não foi possível redefinir a senha."
+    },
+    newsletter: {
+        title: "Assine a nossa Newsletter",
+        description: "Fique atualizado com nossas últimas notícias e ofertas. Inscreva-se agora e ganhe um cupom de 10%!",
+        emailLabel: "Endereço de Email",
+        emailPlaceholder: "Digite seu email",
+        subscribeButton: "Assinar",
+        consentText: "Li e aceito a ",
+        consentLinkText: "política de privacidade e os termos e condições de subscrição da newsletter."
     },
 }
