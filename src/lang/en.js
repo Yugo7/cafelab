@@ -181,6 +181,7 @@ export default {
     contactUs: "Contact us",
     termsOfService: "Terms of service",
     refundPolicy: "Refund policy",
+    complaintsBook: "Complaints book",
   },
   sidebar: {
     home: "Home",
