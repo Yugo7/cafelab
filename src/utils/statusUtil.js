@@ -6,6 +6,7 @@ export const getStatusColor = (status) => {
         case 'SHIPPED':
             return 'blue';
         case 'PAYMENT_SUCCESSFUL':
+        case 'ACTIVE':
             return 'green';
         case 'CANCELLED':
             return 'red';
@@ -26,6 +27,8 @@ export const getStatusText = (status, t) => {
             return t('myOrders.status.cancelled');
         case 'CREATED':
             return t('myOrders.status.created');
+        case 'ACTIVE':
+            return t('myOrders.status.active');
         default:
             return t('myOrders.status.unknown');
     }

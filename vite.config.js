@@ -28,7 +28,7 @@ const pwaOptions = {
 
     icons: [
       {
-        src: 'assets/icons/144 20.56.00.png', // path to your 144px icon
+        src: 'assets/icons/144.png', // path to your 144px icon
         sizes: '144x144',
         type: 'image/png',
       },

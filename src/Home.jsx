@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Trans, useTranslation } from "react-i18next";
 import ProductImageCarousel from "./components/home/ProductCarousel.jsx";
-import Newsletter from "@/components/newsletter/Newsletter.jsx";
 import Snowfall from 'react-snowfall';
 
 const Home = () => {
@@ -172,7 +171,6 @@ const Home = () => {
                         </Box>
                     </Grid>
                 </Stack>
-                <Newsletter />
             </Stack>
         </SidebarWithHeader>
     )
