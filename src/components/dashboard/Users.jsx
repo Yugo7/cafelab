@@ -48,9 +48,9 @@ const UsersPage = () => {
     return (
         <SidebarWithHeader>
             <Box p={4}>
-                <Heading mb={4}>Usuários</Heading>
+                <Heading mb={4}>Base de clientes</Heading>
                 <Input
-                    placeholder="Pesquisar usuários por nome ou email"
+                    placeholder="Pesquisar cliente por nome ou email"
                     mb={4}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -62,7 +62,7 @@ const UsersPage = () => {
                             <Th>Email</Th>
                             <Th>Endereço</Th>
                             <Th>NIF</Th>
-                            <Th>Função</Th>
+                            <Th>tipo</Th>
                         </Tr>
                     </Thead>
                     <Tbody>

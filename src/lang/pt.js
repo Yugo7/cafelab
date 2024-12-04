@@ -324,12 +324,60 @@ export default {
         errorMessage: "Ocorreu um erro. Não foi possível redefinir a senha."
     },
     newsletter: {
-        title: "Assine a nossa Newsletter",
-        description: "Fique atualizado com nossas últimas notícias e ofertas. Inscreva-se agora e ganhe um cupom de 10%!",
+        title: "Cadastre-se para receber nossas novidades e promoções!",
+        description: "Fique atualizado com nossas últimas notícias e ofertas.",
         emailLabel: "Endereço de Email",
         emailPlaceholder: "Digite seu email",
         subscribeButton: "Assinar",
         consentText: "Li e aceito a ",
         consentLinkText: "política de privacidade e os termos e condições de subscrição da newsletter."
     },
+    unsubscribe: {
+        title: "Cancelar Inscrição",
+        description: "Lamentamos vê-lo partir. Por favor, informe-nos por que está cancelando a inscrição.",
+        emailLabel: "Email",
+        emailPlaceholder: "Digite seu email",
+        reasonLabel: "Motivo do cancelamento",
+        reason1: "Muitos emails",
+        reason2: "Conteúdo não relevante",
+        reason3: "Outro",
+        commentsLabel: "Comentários adicionais",
+        commentsPlaceholder: "Digite seus comentários",
+        submitButton: "Cancelar Inscrição",
+        toast: {
+            unsubscriptionSuccessTitle: "Cancelamento de inscrição bem-sucedido.",
+            unsubscriptionSuccessDescription: "Você foi removido da lista de newsletter.",
+            unsubscriptionFailedTitle: "Falha no cancelamento de inscrição.",
+            unsubscriptionFailedDescription: "Falha ao cancelar a inscrição. Por favor, tente novamente."
+        }
+    },
+    orderModal: {
+        header: "Informações do Pedido",
+        orderId: "ID do Pedido",
+        status: "Status",
+        total: "Total",
+        createdAt: "Criado em",
+        note: "Nota",
+        type: "Tipo",
+        variety: "Variedade",
+        products: "Produtos",
+        productName: "Nome",
+        productSize: "Tamanho",
+        productPrice: "Preço",
+        productQuantity: "Quantidade",
+        productImage: "Imagem",
+        productVariety: "Variedade",
+        productDescription: "Descrição",
+        productPeriodicity: "Periodicidade",
+        viewReceipt: "Ver Recibo",
+        closeButton: "Fechar"
+    },
+    toast: {
+        subscriptionSuccessTitle: "Inscrição bem-sucedida.",
+        subscriptionSuccessDescription: "Você foi inscrito na newsletter.",
+        subscriptionFailedTitle: "Falha na inscrição.",
+        subscriptionFailedDescription: "Falha ao inscrever-se. Por favor, tente novamente.",
+        consentRequiredTitle: "Consentimento necessário.",
+        consentRequiredDescription: "Você deve dar consentimento para se inscrever."
+    }
 }

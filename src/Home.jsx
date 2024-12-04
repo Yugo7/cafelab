@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Trans, useTranslation } from "react-i18next";
 import ProductImageCarousel from "./components/home/ProductCarousel.jsx";
+import MailMarketing from "@/components/email/MailMarketing.jsx";
 import Snowfall from 'react-snowfall';
 
 const Home = () => {
@@ -171,6 +172,7 @@ const Home = () => {
                         </Box>
                     </Grid>
                 </Stack>
+                <MailMarketing />
             </Stack>
         </SidebarWithHeader>
     )

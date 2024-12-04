@@ -62,7 +62,7 @@ const Products = () => {
         <SidebarWithHeader>
             <Box m={8}>
                 <h1>Painel produtos</h1>
-                <Button my={4} colorScheme="blue" onClick={handleAddProduct}>Add Product</Button>
+                <Button my={4} colorScheme="blue" onClick={handleAddProduct}>Adicionar produtos</Button>
                 <ProductList products={products} onEdit={handleEdit} onDelete={handleDelete}/>
 
                 <Modal size={"4xl"} isOpen={isOpen} onClose={onClose}>

@@ -43,6 +43,7 @@ import Products from "./components/dashboard/Produtos.jsx";
 import Events from "./components/dashboard/Events.jsx";
 import Loyalty from "./components/dashboard/Loyalty.jsx";
 import Users from "@/components/dashboard/Users.jsx";
+import Unsubscribe from "@/components/email/Unsubscribe.jsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const { ToastContainer } = createStandaloneToast();
@@ -68,6 +69,7 @@ const routes = [
   { path: "/sobre", element: <AboutUs /> },
   { path: "/servico", element: <Service /> },
   { path: "/reembolso", element: <Refunds /> },
+  { path: "/cancelar-inscricao", element: <Unsubscribe /> },
   { path: "/orders", element: <ProtectedRoute><Orders /></ProtectedRoute> },
   { path: "/profile", element: <ProtectedRoute><ProfilePage /></ProtectedRoute> },
   { path: "/dashboard", element: <ProtectedAdminRoute><Dashboard /></ProtectedAdminRoute> },

@@ -6,9 +6,9 @@ const OrderService = {
     getOrders: async () => {
         try {
             const response = await axios.get(`${BASE_URL}orders/`);
-            return response.data;
+            return response.data.filter(order => !order.is_test);
         } catch (error) {
-            console.error('Error fetching all events:', error);
+            console.error('Error fetching all orders:', error);
             throw error;
         }
     },
@@ -16,10 +16,9 @@ const OrderService = {
     getOrdersByUserId: async (userId) => {
         try {
             const response = await axios.get(`${BASE_URL}orders/${userId}`);
-            console.log('response', response.data);
-            return response.data;
+            return response.data.filter(order => !order.is_test);
         } catch (error) {
-            console.error('Error fetching all events:', error);
+            console.error('Error fetching orders by user ID:', error);
             throw error;
         }
     },

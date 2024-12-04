@@ -23,7 +23,7 @@ const getPastEvents = async (filterDate) => {
 const getAllEvents = async () => {
     try {
         const response = await axios.get(`${BASE_URL}events/`);
-        return response.data;
+        return response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
         console.error('Error fetching all events:', error);
         throw error;
