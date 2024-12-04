@@ -1,10 +1,20 @@
-import React from 'react';
-import { Box, Button, Stack, Image, Text, Tag, SimpleGrid, Spacer, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Button, Stack, Image, Text, Tag, SimpleGrid, Spacer, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Input } from '@chakra-ui/react';
 import { formatCurrency } from "@/components/utilities/formatCurrency.jsx";
 
 const ProductList = ({ products, onEdit, onDelete }) => {
-    const activeProducts = products.filter(product => product.is_active);
-    const inactiveProducts = products.filter(product => !product.is_active);
+    const [filter, setFilter] = useState('');
+
+    const handleFilterChange = (e) => {
+        setFilter(e.target.value);
+    };
+
+    const filteredProducts = products.filter(product =>
+        product.nome_pt.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    const activeProducts = filteredProducts.filter(product => product.is_active);
+    const inactiveProducts = filteredProducts.filter(product => !product.is_active);
 
     const renderProducts = (products) => (
         <SimpleGrid minChildWidth="300px" spacing={4}>
@@ -41,8 +51,8 @@ const ProductList = ({ products, onEdit, onDelete }) => {
                     </Stack>
                     <Spacer />
                     <Stack direction="row" spacing={4} mt={4}>
-                        <Button colorScheme="yellow" onClick={() => onEdit(product)}>Edit</Button>
-                        <Button colorScheme="red" onClick={() => onDelete(product)}>Delete</Button>
+                        <Button colorScheme="yellow" onClick={() => onEdit(product)}>Editar</Button>
+                        <Button colorScheme="red" onClick={() => onDelete(product)}>Excluir</Button>
                     </Stack>
                 </Stack>
             ))}
@@ -50,31 +60,39 @@ const ProductList = ({ products, onEdit, onDelete }) => {
     );
 
     return (
-        <Accordion allowMultiple>
-            <AccordionItem>
-                <AccordionButton>
-                    <Box flex="1" textAlign="left" fontSize="2xl" fontWeight="bold">
-                        Active Products
-                    </Box>
-                    <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                    {renderProducts(activeProducts)}
-                </AccordionPanel>
-            </AccordionItem>
+        <Box>
+            <Input
+                placeholder="Filtrar por nome"
+                value={filter}
+                onChange={handleFilterChange}
+                mb={4}
+            />
+            <Accordion allowMultiple>
+                <AccordionItem>
+                    <AccordionButton>
+                        <Box flex="1" textAlign="left" fontSize="2xl" fontWeight="bold">
+                            Produtos Ativos
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                        {renderProducts(activeProducts)}
+                    </AccordionPanel>
+                </AccordionItem>
 
-            <AccordionItem>
-                <AccordionButton>
-                    <Box flex="1" textAlign="left" fontSize="2xl" fontWeight="bold">
-                        Inactive Products
-                    </Box>
-                    <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                    {renderProducts(inactiveProducts)}
-                </AccordionPanel>
-            </AccordionItem>
-        </Accordion>
+                <AccordionItem>
+                    <AccordionButton>
+                        <Box flex="1" textAlign="left" fontSize="2xl" fontWeight="bold">
+                            Produtos Inativos
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                        {renderProducts(inactiveProducts)}
+                    </AccordionPanel>
+                </AccordionItem>
+            </Accordion>
+        </Box>
     );
 };
 

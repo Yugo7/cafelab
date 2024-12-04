@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 import ProductModal from "./ProductDetailsModal.jsx";
 import { useTranslation } from 'react-i18next';
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, openProduct }) => {
     const fontHl3 = useBreakpointValue({ base: "lg", md: "2xl" });
     const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentProduct, setCurrentProduct] = useState(null);
+
     const handleCardClick = (product) => {
         setCurrentProduct(product);
         setIsModalOpen(true);
@@ -21,6 +22,17 @@ const ProductList = ({ products }) => {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+
+    useEffect(() => {
+        if (openProduct) {
+            const product = products.find(p => p.id === parseInt(openProduct));
+            if (product) {
+                setCurrentProduct(product);
+                setIsModalOpen(true);
+            }
+        }
+    }, [openProduct, products]);
+
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
 
@@ -33,7 +45,6 @@ const ProductList = ({ products }) => {
     const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
     const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
-
 
     if (products.length <= 0) {
         return (
@@ -95,13 +106,13 @@ const ProductList = ({ products }) => {
                                     </ButtonGroup>
                                 </CardFooter>
                             </Card>
-                            {currentProduct && (
-                                <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={currentProduct} />
-                            )}
                         </WrapItem>
                     )
                 })
             }
+            {currentProduct && (
+                <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={currentProduct} />
+            )}
         </Wrap>
     );
 };

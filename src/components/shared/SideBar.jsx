@@ -82,6 +82,7 @@ const SidebarContent = ({onClose}) => {
         {name: 'Dashboard', route: '/dashboard', icon: FiHome},
         {name: 'Produtos', route: '/dashboard/produtos', icon: FiPackage},
         {name: 'Eventos', route: '/dashboard/eventos', icon: TbPaperBag},
+        {name: 'Users', route: '/dashboard/users', icon: TbPaperBag},
     ];
 
     return (

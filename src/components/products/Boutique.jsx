@@ -1,20 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import OurPicks from "./OurPicks.jsx";
-import {Button, Spinner, Stack, Text, useBreakpointValue, Select, Grid, GridItem} from "@chakra-ui/react";
+import queryString from 'query-string';
+import { Button, Spinner, Stack, Text, useBreakpointValue, Select, Grid, GridItem } from "@chakra-ui/react";
 import ProductList from "./ProductList.jsx";
-import {getProductsBySection, Sections} from "../../services/productsService.jsx";
-import {useTranslation} from 'react-i18next';
+import { getProductsBySection, Sections } from "../../services/productsService.jsx";
+import { useTranslation } from 'react-i18next';
+import { useLocation } from "react-router-dom";
 
 export default function Boutique() {
-
-    const fontHeadlineSize = useBreakpointValue({base: "lg", md: "2xl"});
+    const fontHeadlineSize = useBreakpointValue({ base: "lg", md: "2xl" });
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState([]);
     const [section, setSection] = useState();
     const [sortOption, setSortOption] = useState("price");
-    const fontSize = useBreakpointValue({base: "5xl", md: "62px"});
-    const {t} = useTranslation();
+    const fontSize = useBreakpointValue({ base: "5xl", md: "62px" });
+    const { t } = useTranslation();
+
+    const location = useLocation();
+    const { coffeeId } = queryString.parse(location.search);
 
     useEffect(() => {
         setIsLoading(true);
@@ -50,8 +54,8 @@ export default function Boutique() {
                 </Text>
             </Stack>
             <Stack backgroundColor={"whiteAlpha.50"}>
-                <Grid justifyItems={"center"} templateColumns={{base: "1fr", md: "1fr 1fr 1fr"}}>
-                    <GridItem/>
+                <Grid justifyItems={"center"} templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}>
+                    <GridItem />
                     <GridItem>
                         <Stack direction={'row'} spacing={4}>
                             <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}
@@ -79,14 +83,16 @@ export default function Boutique() {
                 </Grid>
 
                 {isLoading ? (
-                    <Spinner/>
+                    <Spinner />
                 ) : (
-                    <ProductList products={products}/>
+                    <ProductList
+                        products={products}
+                        openProduct={coffeeId}
+                    />
                 )}
-
             </Stack>
             <Stack align={"center"} mx={10} p={10}>
-                <OurPicks/>
+                <OurPicks />
             </Stack>
         </SidebarWithHeader>
     );

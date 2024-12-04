@@ -6,21 +6,24 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import OrderService from "../../services/orderService.jsx";
-import OrdersLineChart from "./Orders/OrdersLineChart.jsx";
 import AnalyticsChart from "./AnalyticsChart.jsx";
 import OrdersList from "./Orders/OrdersList.jsx";
 import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import AnalyticsService from "../../services/AnalyticsService.jsx";
 
 const Dashboard = () => {
     const { customer } = useAuth();
     const { products } = useShoppingCart();
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
+    const [accesses, setAccesses] = useState([]);
     const { t } = useTranslation();
 
     useEffect(() => {
         const fetchOrders = async () => {
             if (!customer) {
+                console.error('No customer found');
+                console.log(customer)
                 //navigate("/");
             } else {
                 try {
@@ -32,7 +35,21 @@ const Dashboard = () => {
             }
         };
 
+        const fetchAccesses = async () => {
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() - 15);
+            const endDate = new Date();
+
+            try {
+                const data = await AnalyticsService.getWebsiteAccessData(startDate.toISOString(), endDate.toISOString());
+                setAccesses(data);
+            } catch (error) {
+                console.error('Failed to fetch website access data:', error);
+            }
+        };
+
         fetchOrders();
+        fetchAccesses();
     }, [customer, navigate]);
 
     const calculateTotalPrice = (products) => {
@@ -54,41 +71,9 @@ const Dashboard = () => {
             <Stack m={{base: 0, md: 6 }} spacing={4}>
 
                 <OrderStatusGrid orders={orders} />
-                <OrdersLineChart orders={orders} />
                 <OrdersList orders={orders} products={products} />
 
-                <AnalyticsChart accesses={[
-                    {
-                        "date": "2024-08-18",
-                        "accesses": 68,
-                        "visitors": 20
-                    },
-                    {
-                        "date": "2024-08-17",
-                        "accesses": 120,
-                        "visitors": 34
-                    },
-                    {
-                        "date": "2024-08-19",
-                        "accesses": 300,
-                        "visitors": 90
-                    },
-                    {
-                        "date": "2024-08-20",
-                        "accesses": 232,
-                        "visitors": 34
-                    },
-                    {
-                        "date": "2024-08-22",
-                        "accesses": 23,
-                        "visitors": 20
-                    },
-                    {
-                        "date": "2024-08-21",
-                        "accesses": 123,
-                        "visitors": 12
-                    }
-                ]} />
+                <AnalyticsChart accesses={accesses} />
 
             </Stack>
         </SidebarWithHeader>)

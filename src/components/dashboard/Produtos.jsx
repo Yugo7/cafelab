@@ -65,7 +65,7 @@ const Products = () => {
                 <Button my={4} colorScheme="blue" onClick={handleAddProduct}>Add Product</Button>
                 <ProductList products={products} onEdit={handleEdit} onDelete={handleDelete}/>
 
-                <Modal isOpen={isOpen} onClose={onClose}>
+                <Modal size={"4xl"} isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay/>
                     <ModalContent>
                         <ModalHeader>{currentProduct ? 'Edit Product' : 'Add Product'}</ModalHeader>

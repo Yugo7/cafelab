@@ -1,15 +1,29 @@
-import React, {useState} from 'react';
-import {Stack, Text, VStack, HStack, Box, Tag, Spacer, Select, Wrap} from '@chakra-ui/react';
-import {useTranslation} from "react-i18next";
-import {formatCurrency} from "../../utilities/formatCurrency.jsx";
-import {Button} from "react-bootstrap";
-import {getStatusColor, getStatusText} from "@/utils/statusUtil.js";
+// src/components/dashboard/Orders/OrdersList.jsx
+import React, { useState } from 'react';
+import { Stack, Text, VStack, HStack, Box, Tag, Spacer, Select, Wrap } from '@chakra-ui/react';
+import { useTranslation } from "react-i18next";
+import { formatCurrency } from "../../utilities/formatCurrency.jsx";
+import { Button } from "react-bootstrap";
+import { getStatusColor, getStatusText } from "@/utils/statusUtil.js";
+import OrderModal from './OrderModal';
 
-const OrdersList = ({orders, products}) => {
-    const {t} = useTranslation();
+const OrdersList = ({ orders, products }) => {
+    const { t } = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [orderType, setOrderType] = useState('all');
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOrderClick = (order) => {
+        setSelectedOrder(order);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedOrder(null);
+        setIsModalOpen(false);
+    };
 
     if (!Array.isArray(orders)) {
         return <p>No orders available</p>;
@@ -58,7 +72,7 @@ const OrdersList = ({orders, products}) => {
                                 Produtos
                             </Text>
                         </Stack>
-                        <Spacer/>
+                        <Spacer />
                         <Stack alignSelf={'flex-end'}>
                             <Text fontWeight={"normal"} fontSize={"lg"}>
                                 total
@@ -68,8 +82,8 @@ const OrdersList = ({orders, products}) => {
                 </Box>
                 <Stack width={"100%"} mt={4}>
                     {paginatedOrders.length > 0 ? (
-                        paginatedOrders.map((order, index) => (
-                            <Box key={index}>
+                        paginatedOrders.map((order) => (
+                            <Box key={order.id} onClick={() => handleOrderClick(order)} cursor="pointer">
                                 <HStack width={'100%'} p={2} borderBottom="1px solid #ccc">
                                     <Stack marginRight={2}>
                                         <Text fontWeight={"medium"} fontSize={"lg"}>
@@ -86,18 +100,16 @@ const OrdersList = ({orders, products}) => {
                                     </Wrap>
                                     <Wrap marginLeft="60px" justifyContent="flex-start">
                                         {order.type === 'LOJA' && Array.isArray(order.products) ? (
-                                            order.products.map(orderProduct => {
-                                                return (
-                                                    <Tag
-                                                        key={orderProduct.id}
-                                                        size="sm"
-                                                        variant="solid"
-                                                        colorScheme={orderProduct.secao === 'CAFE' ? 'blue' : 'yellow'}
-                                                    >
-                                                        {orderProduct.name}
-                                                    </Tag>
-                                                );
-                                            })
+                                            order.products.map(orderProduct => (
+                                                <Tag
+                                                    key={orderProduct.id}
+                                                    size="sm"
+                                                    variant="solid"
+                                                    colorScheme={orderProduct.secao === 'CAFE' ? 'blue' : 'yellow'}
+                                                >
+                                                    {orderProduct.name}
+                                                </Tag>
+                                            ))
                                         ) : (
                                             <>
                                                 <Tag colorScheme={"red"} key={order.products.id}>{order.products.name}</Tag>
@@ -114,7 +126,7 @@ const OrdersList = ({orders, products}) => {
                                             </>
                                         )}
                                     </Wrap>
-                                    <Spacer/>
+                                    <Spacer />
                                     <Stack alignSelf={'flex-end'}>
                                         <Text fontWeight={"normal"} fontSize={"lg"}>
                                             {formatCurrency(order.total)}
@@ -149,6 +161,11 @@ const OrdersList = ({orders, products}) => {
                     </Button>
                 </HStack>
             </Box>
+            <OrderModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                selectedOrder={selectedOrder}
+            />
         </VStack>
     );
 };

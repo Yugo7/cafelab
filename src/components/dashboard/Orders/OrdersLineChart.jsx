@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Stack, Card, CardHeader, Heading, Box } from '@chakra-ui/react';
+import {Stack, Card, CardHeader, Heading, Box, Text} from '@chakra-ui/react';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -66,6 +66,12 @@ const OrdersLineChart = ({ orders }) => {
 
 	return (
 		<Stack m={6} maxW={"1000px"}>
+
+			<Stack h={"5vh"} align="center" m={6} spacing={4}>
+				<Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
+					Pedidos por mês
+				</Text>
+			</Stack>
 			<Card>
 				<CardHeader>
 					<Heading size='md'>Orders by Month</Heading>

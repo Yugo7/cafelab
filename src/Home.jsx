@@ -39,7 +39,7 @@ const Home = () => {
                         color="green.700">
                         <Trans>{t('home.headlineText')}</Trans>
                     </Text>
-                    <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={4} p={4} m={8} h={"auto"} w={"100%"} alignItems={"center"}>
+                    <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={4} p={4} h={"auto"} w={"100%"} alignItems={"center"}>
                         <Box>
                             <Image
                                 objectFit="cover"
@@ -152,7 +152,7 @@ const Home = () => {
                         color="green.700">
                         {t('monthCoffee.coffeeOfTheMonth').toUpperCase()}
                     </Text>
-                    <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4} m={8} borderWidth="1px" borderRadius="lg" overflow="hidden" alignItems={"center"} maxW={"1000px"}>
+                    <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4} m={8} borderWidth="4px" borderColor={"green.700"} borderRadius="lg" overflow="hidden" alignItems={"center"} maxW={"1000px"}>
                         <Image
                             objectFit="cover"
                             width="auto"
@@ -165,7 +165,7 @@ const Home = () => {
                             <Text className="cafelab" fontWeight="normal" fontSize={useBreakpointValue({ base: "xl", md: "3xl" })} color="green.700" mt={4}>
                                 {t('monthCoffee.coffeeOfTheMonthDescription')}
                             </Text>
-                            <Button mt={4} size='lg' variant={"solid"} backgroundColor={"green.700"} color={"white"} onClick={() => navigate('/coffee-of-the-month')}>
+                            <Button mt={4} size='lg' variant={"solid"} backgroundColor={"green.700"} color={"white"} onClick={() => navigate('/boutique?coffeeId=5')}>
                                 {t('monthCoffee.learnMore')}
                             </Button>
                         </Box>
