@@ -3,7 +3,17 @@ import { Button, FormControl, FormLabel, Input, Textarea, Stack, Switch, Select 
 import { productService } from '@/services/productsService.jsx';
 
 const ProductForm = ({ product, onSave, onClose }) => {
-    const [formData, setFormData] = useState(product || {});
+    const initializeFormData = (product) => {
+        const formData = { ...product, secao: product?.secao || 'CAFE', is_active: product?.is_active || false };
+        Object.keys(formData).forEach(key => {
+            if (formData[key] === null) {
+                formData[key] = '';
+            }
+        });
+        return formData;
+    };
+
+    const [formData, setFormData] = useState({ ...product, secao: product?.secao || 'CAFE', is_active: product?.is_active || false });
     const [imageFile, setImageFile] = useState(null);
     const [secaoTypes, setSecaoTypes] = useState([]);
 
@@ -39,8 +49,7 @@ const ProductForm = ({ product, onSave, onClose }) => {
         if (imageFile) {
             formData.image = imageFile;
         }
-        await productService.createProduct(formData);
-        onSave(formData);
+        await onSave(formData);
         onClose();
     };
 
@@ -81,7 +90,7 @@ const ProductForm = ({ product, onSave, onClose }) => {
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel htmlFor="secao">Seção</FormLabel>
-                    <Select name="secao" id="secao" value={formData.secao || ''} onChange={handleChange}>
+                    <Select name="secao" id="secao"  value={formData.secao || 'CAFE'} onChange={handleChange}>
                         {secaoTypes.map((type) => (
                             <option key={type} value={type}>{type}</option>
                         ))}

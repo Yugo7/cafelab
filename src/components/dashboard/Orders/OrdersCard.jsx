@@ -5,7 +5,7 @@ import {
     Card,
     CardHeader,
     Heading,
-    CardBody, Stack, Text, VStack
+    CardBody, Stack, Text
 } from '@chakra-ui/react';
 import {Line} from "react-chartjs-2";
 
@@ -110,8 +110,7 @@ const OrderStatusGrid = ({orders}) => {
     };
 
     return (
-        <>
-
+        <Stack alignSelf="center" w={"85vw"}>
             <Stack h={"5vh"} align="center" m={6} spacing={4}>
                 <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                     Pedidos por tipo
@@ -169,7 +168,7 @@ const OrderStatusGrid = ({orders}) => {
                     </Box>
                 </Card>
             </Box>
-        </>
+        </Stack>
     );
 };
 

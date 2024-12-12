@@ -1,4 +1,3 @@
-// src/components/dashboard/Orders/OrdersList.jsx
 import React, { useState } from 'react';
 import { Stack, Text, VStack, HStack, Box, Tag, Spacer, Select, Wrap } from '@chakra-ui/react';
 import { useTranslation } from "react-i18next";
@@ -38,7 +37,7 @@ const OrdersList = ({ orders, products }) => {
     const totalOrders = filteredOrders.length;
 
     return (
-        <VStack justifyContent="center" alignItems="center" w={"auto"} p={5}>
+        <VStack alignSelf="center" alignItems="center" w={"85vw"} p={5}>
             <Box borderWidth="1px" borderRadius="lg" p={4} w={"100vw"} maxW={"1200px"}>
                 <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                     Pedidos

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Box, Stack, Text, Select, Input } from '@chakra-ui/react';
+import { Stack, Text, Select, Input } from '@chakra-ui/react';
 import AnalyticsService from '../../services/AnalyticsService';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
 // Register the required components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const AnalyticsChart = ({ accesses }) => {
+const AnalyticsChart = ({ setDateRange }) => {
     const [chartData, setChartData] = useState({});
     const [period, setPeriod] = useState(30); // Default to last 30 days
     const [customStartDate, setCustomStartDate] = useState('');
     const [customEndDate, setCustomEndDate] = useState('');
+
+    const handleDateRangeChange = (startDate, endDate) => {
+        setDateRange({ startDate, endDate });
+    };
 
     useEffect(() => {
         const fetchAnalyticsData = async () => {
@@ -32,6 +36,7 @@ const AnalyticsChart = ({ accesses }) => {
                 if (data) {
                     const formattedData = formatChartData(data);
                     setChartData(formattedData);
+                    handleDateRangeChange(startDate, endDate); // Update date range
                 } else {
                     console.error('No data received from AnalyticsService');
                 }
@@ -59,7 +64,7 @@ const AnalyticsChart = ({ accesses }) => {
             labels,
             datasets: [
                 {
-                    label: 'Accesses',
+                    label: 'Acessos',
                     data: accesses,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -67,7 +72,7 @@ const AnalyticsChart = ({ accesses }) => {
                     fill: false,
                 },
                 {
-                    label: 'Visitors',
+                    label: 'Visitantes',
                     data: visitors,
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderColor: 'rgba(153, 102, 255, 1)',
@@ -86,7 +91,7 @@ const AnalyticsChart = ({ accesses }) => {
             },
             title: {
                 display: true,
-                text: 'Website Accesses and Visitors by Period',
+                text: 'Acessos e Visitantes do Site por Período',
             },
         },
     };
@@ -94,10 +99,10 @@ const AnalyticsChart = ({ accesses }) => {
     console.log('Chart data:', chartData);
 
     return (
-        <Box>
+        <Stack maxW={"1000px"} w={"85vw"} align="center" alignSelf={"center"}>
             <Stack h={"5vh"} align="center" m={6} spacing={4}>
                 <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
-                    Website Analytics
+                    Acessos ao Site
                 </Text>
             </Stack>
             <Select
@@ -106,11 +111,11 @@ const AnalyticsChart = ({ accesses }) => {
                 onChange={(e) => setPeriod(e.target.value === 'custom' || e.target.value === 'all' ? e.target.value : Number(e.target.value))}
                 mb={4}
             >
-                <option value={7}>Last 7 days</option>
-                <option value={15}>Last 15 days</option>
-                <option value={30}>Last 30 days</option>
-                <option value="all">All data</option>
-                <option value="custom">Custom</option>
+                <option value={7}>Últimos 7 dias</option>
+                <option value={15}>Últimos 15 dias</option>
+                <option value={30}>Últimos 30 dias</option>
+                <option value="all">Todos os dados</option>
+                <option value="custom">Personalizado</option>
             </Select>
             {period === 'custom' && (
                 <Stack direction="row" spacing={4} mb={4}>
@@ -126,8 +131,8 @@ const AnalyticsChart = ({ accesses }) => {
                     />
                 </Stack>
             )}
-            {chartData.labels ? <Line data={chartData} options={options} /> : <Text>Loading...</Text>}
-        </Box>
+            {chartData.labels ? <Line data={chartData} options={options} /> : <Text>Carregando...</Text>}
+        </Stack>
     );
 };
 

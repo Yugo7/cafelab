@@ -11,6 +11,12 @@ const ProtectedAdminRoute = ({ children }) => {
 
     useEffect(() => {
         const role = getUserRole();
+
+        if (!role) {
+            navigate("/");
+            return;
+        }
+
         if (!role.includes('admin')) {
             toast({
                 title: "Plaease login as an admin to access this page",

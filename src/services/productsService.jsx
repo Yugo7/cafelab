@@ -2,23 +2,23 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const getProducts = async () => {
+export const getProducts = async (useCache = true) => {
     try {
-        const cachedData = localStorage.getItem('products');
-        const cachedTime = localStorage.getItem('productsTime');
-        if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
-            return JSON.parse(cachedData);
-        } else {
-            const {data} = await axios.get(`${BASE_URL}products/`);
-            localStorage.setItem('products', JSON.stringify(data));
-            localStorage.setItem('productsTime', new Date().getTime());
-
-            return data;
+        if (useCache) {
+            const cachedData = localStorage.getItem('products');
+            const cachedTime = localStorage.getItem('productsTime');
+            if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
+                return JSON.parse(cachedData);
+            }
         }
+        const { data } = await axios.get(`${BASE_URL}products/`);
+        localStorage.setItem('products', JSON.stringify(data));
+        localStorage.setItem('productsTime', new Date().getTime());
+        return data;
     } catch (e) {
         throw e;
     }
-}
+};
 
 export const Sections = Object.freeze({
     BOUTIQUE: 'BOUTIQUE',
@@ -50,6 +50,7 @@ const createProduct = async (productData) => {
             formData.append(key, productData[key]);
         });
 
+        console.log(formData)
         const response = await axios.post(`${BASE_URL}products`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -65,6 +66,7 @@ const createProduct = async (productData) => {
 const updateProduct = async (productData) => {
     try {
         const formData = new FormData();
+        console.log(productData)
         Object.keys(productData).forEach(key => {
             formData.append(key, productData[key]);
         });

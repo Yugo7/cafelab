@@ -1,47 +1,39 @@
 import OrderStatusGrid from "./Orders/OrdersCard.jsx";
 import SidebarWithHeader from "../shared/SideBar.jsx";
-import { useAuth } from "../context/AuthContext.jsx";
-import { Stack, Text } from '@chakra-ui/react';
-import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from "react-i18next";
+import {useAuth} from "../context/AuthContext.jsx";
+import {Stack, Text} from '@chakra-ui/react';
+import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useTranslation} from "react-i18next";
 import OrderService from "../../services/orderService.jsx";
 import AnalyticsChart from "./AnalyticsChart.jsx";
+import Origins from "./Origins.jsx";
 import OrdersList from "./Orders/OrdersList.jsx";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
 import AnalyticsService from "../../services/AnalyticsService.jsx";
 
 const Dashboard = () => {
-    const { customer } = useAuth();
-    const { products } = useShoppingCart();
+    const {customer} = useAuth();
+    const {products} = useShoppingCart();
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [accesses, setAccesses] = useState([]);
-    const { t } = useTranslation();
+    const [dateRange, setDateRange] = useState({ startDate: new Date(), endDate: new Date() });
+    const {t} = useTranslation();
 
     useEffect(() => {
         const fetchOrders = async () => {
-            if (!customer) {
-                console.error('No customer found');
-                console.log(customer)
-                //navigate("/");
-            } else {
-                try {
-                    const data = await OrderService.getOrders();
-                    setOrders(data);
-                } catch (error) {
-                    console.error('Failed to fetch orders:', error);
-                }
+            try {
+                const data = await OrderService.getOrders();
+                setOrders(data);
+            } catch (error) {
+                console.error('Failed to fetch orders:', error);
             }
         };
 
         const fetchAccesses = async () => {
-            const startDate = new Date();
-            startDate.setDate(startDate.getDate() - 15);
-            const endDate = new Date();
-
             try {
-                const data = await AnalyticsService.getWebsiteAccessData(startDate.toISOString(), endDate.toISOString());
+                const data = await AnalyticsService.getWebsiteAccessData(dateRange.startDate.toISOString(), dateRange.endDate.toISOString());
                 setAccesses(data);
             } catch (error) {
                 console.error('Failed to fetch website access data:', error);
@@ -50,7 +42,7 @@ const Dashboard = () => {
 
         fetchOrders();
         fetchAccesses();
-    }, [customer, navigate]);
+    }, [customer, navigate, dateRange]);
 
     const calculateTotalPrice = (products) => {
         return products.reduce((total, product) => total + product.price, 0);
@@ -68,13 +60,11 @@ const Dashboard = () => {
 
     return (
         <SidebarWithHeader>
-            <Stack m={{base: 0, md: 6 }} spacing={4}>
-
-                <OrderStatusGrid orders={orders} />
-                <OrdersList orders={orders} products={products} />
-
-                <AnalyticsChart accesses={accesses} />
-
+            <Stack m={{base: 0, md: 6}} spacing={4}>
+                <OrderStatusGrid orders={orders}/>
+                <OrdersList orders={orders} products={products}/>
+                <AnalyticsChart accesses={accesses} setDateRange={setDateRange}/>
+                <Origins accesses={accesses} dateRange={dateRange}/>
             </Stack>
         </SidebarWithHeader>)
 }

@@ -12,7 +12,7 @@ const Products = () => {
 
     const fetchProducts = async () => {
         try {
-            const data = await productService.getProducts();
+            const data = await productService.getProducts(false);
             setProducts(data);
         } catch (error) {
             console.error('Failed to fetch products:', error);
@@ -24,11 +24,14 @@ const Products = () => {
     }, []);
 
     const handleSave = async (product) => {
+        console.log(product)
         try {
             if (currentProduct) {
+                console.log("update")
                 await productService.updateProduct({ ...currentProduct, ...product });
                 setProducts(products.map(p => p.id === currentProduct.id ? { ...currentProduct, ...product } : p));
             } else {
+                console.log("create")
                 const newProduct = await productService.createProduct(product);
                 setProducts([...products, newProduct]);
             }

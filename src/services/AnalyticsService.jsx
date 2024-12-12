@@ -15,6 +15,19 @@ const AnalyticsService = {
             throw error;
         }
     },
+
+    getWebsiteAccessStatistics: async (startDate, endDate) => {
+        try {
+            const response = await axios.post(`${BASE_URL}internal/vercel-analytics/statistics`, {
+                start: startDate,
+                end: endDate
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching website access data:', error);
+            throw error;
+        }
+    },
 }
 
 export default AnalyticsService;
