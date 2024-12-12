@@ -20,7 +20,7 @@ import MyOrders from "./MyOrders.jsx";
 import MySubscriptions from "./MySubscriptions.jsx";
 
 const ProfilePage = () => {
-    const { customer, resetPassword } = useAuth();
+    const { customer, requestResetPassword } = useAuth();
     const [orders, setOrders] = useState([]);
     const [subscriptions, setSubscriptions] = useState([]);
     const navigate = useNavigate();
@@ -40,7 +40,13 @@ const ProfilePage = () => {
     }
 
     const handleChangePassword = () => {
-        resetPassword(customer.username);
+        requestResetPassword(customer.username);
+        toast({
+            title: t('forgotPassword.successMessage'),
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+        });
     };
 
     useEffect(() => {
