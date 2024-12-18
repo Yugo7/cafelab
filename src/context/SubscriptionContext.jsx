@@ -1,8 +1,8 @@
 import {createContext, useContext} from "react"
-import {useLocalStorage} from "../hooks/useLocalStorage"
+import {useLocalStorage} from "../components/hooks/useLocalStorage.jsx"
 import {useToast} from "@chakra-ui/react";
-import StripeService from "../../services/stripeService.jsx";
-import { useAuth } from "../context/AuthContext.jsx";
+import StripeService from "../services/stripeService.jsx";
+import { useAuth } from "./AuthContext.jsx";
 
 const SubscriptionContext = createContext({})
 

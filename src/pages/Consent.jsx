@@ -1,4 +1,4 @@
-import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import SidebarWithHeader from "../components/shared/SideBar.jsx";
 import {Box, Stack, Text} from "@chakra-ui/react";
 import {Trans, useTranslation} from "react-i18next";
 

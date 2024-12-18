@@ -1,12 +1,15 @@
-import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import React, { useEffect } from 'react';
+import SidebarWithHeader from "../components/shared/SideBar.jsx";
 import { Box, Button, Grid, Image, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import { FiCalendar, FiPackage, FiShoppingBag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Trans, useTranslation } from "react-i18next";
-import ProductImageCarousel from "./components/home/ProductCarousel.jsx";
+import ProductImageCarousel from "../components/home/ProductCarousel.jsx";
 import MailMarketing from "@/components/email/MailMarketing.jsx";
 import Snowfall from 'react-snowfall';
+import MailMarketingSignup from "@/components/popups/MailMarketingSignup.jsx";
+import AdPopup from "@/components/popups/AdPopup.jsx";
 
 const Home = () => {
     const { t, i18n } = useTranslation();
@@ -20,6 +23,13 @@ const Home = () => {
     const textFontSize = useBreakpointValue({ base: "5vw", md: "2.5vw" });
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            document.getElementById('ad-popup-button').click();
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <SidebarWithHeader>
@@ -173,6 +183,8 @@ const Home = () => {
                     </Grid>
                 </Stack>
                 <MailMarketing />
+
+                <AdPopup />
             </Stack>
         </SidebarWithHeader>
     )

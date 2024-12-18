@@ -2,7 +2,7 @@
 import { Box, Card, Image, Stack, Tag, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 
 const ProductImageCarousel = () => {

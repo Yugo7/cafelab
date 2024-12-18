@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import React, {useEffect} from "react";
 import {Card, CardBody, CardFooter, CardHeader, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import Lottie from "react-lottie";

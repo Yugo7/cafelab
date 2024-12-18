@@ -11,10 +11,10 @@ import {
     VStack
 } from '@chakra-ui/react';
 import SidebarWithHeader from "../shared/SideBar.jsx";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import OrderService from "../../services/orderService.jsx";
 import { useNavigate } from "react-router-dom";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { useTranslation } from "react-i18next";
 import MyOrders from "./MyOrders.jsx";
 import MySubscriptions from "./MySubscriptions.jsx";

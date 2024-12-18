@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap"
-import { useShoppingCart } from "../context/ShoppingCartContext"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { formatCurrency } from "../utilities/formatCurrency.jsx"
 import { CartItem } from "./CartItem"
 import { Link } from "react-router-dom"

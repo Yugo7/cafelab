@@ -1,7 +1,7 @@
 import {createContext, useContext, useState, useEffect} from "react"
-import {useLocalStorage} from "../hooks/useLocalStorage"
-import {ShoppingCart} from "../cart/ShoppingCart"
-import {getProducts} from "../../services/productsService";
+import {useLocalStorage} from "../components/hooks/useLocalStorage.jsx"
+import {ShoppingCart} from "../components/cart/ShoppingCart.jsx"
+import {getProducts} from "../services/productsService.jsx";
 
 const ShoppingCartContext = createContext({})
 

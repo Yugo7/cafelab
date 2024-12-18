@@ -10,8 +10,8 @@ import {
     ModalCloseButton,
     useDisclosure, Box
 } from '@chakra-ui/react';
-import EventForm from './Events/EventsForm.jsx';
-import EventList from './Events/EventsList.jsx';
+import EventForm from './events/EventsForm.jsx';
+import EventList from './events/EventsList.jsx';
 import {useEffect} from 'react';
 import eventService from '../../services/eventService.js';
 

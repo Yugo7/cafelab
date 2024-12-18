@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 import { useNavigate } from "react-router-dom";
 import ProductModal from "./ProductDetailsModal.jsx";

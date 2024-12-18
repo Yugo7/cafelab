@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Text, useToast } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { useTranslation } from 'react-i18next';
 
 const ResetPassword = () => {

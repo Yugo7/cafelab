@@ -14,7 +14,7 @@ import {
     useDisclosure
 } from "@chakra-ui/react";
 import React, {useEffect} from "react";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 
 function ModalKit() {
     const modalSize = useBreakpointValue({base: "full", md: "xl"});

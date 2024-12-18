@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Input, Heading, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
+import {Box, Input, Heading, Table, Thead, Tbody, Tr, Th, Td, Wrap, WrapItem} from '@chakra-ui/react';
 import { FaCheckDouble } from "react-icons/fa";
 import UserService from '../../services/UserService.jsx';
 import SidebarWithHeader from "@/components/shared/SideBar.jsx";
-import UserModal from './Users/UserModal.jsx';
+import UserModal from './users/UserModal.jsx';
+import CustomerCard from "@/components/customer/CustomerCard.jsx";
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]);
@@ -55,30 +56,14 @@ const UsersPage = () => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Table variant="simple">
-                    <Thead>
-                        <Tr>
-                            <Th>Nome</Th>
-                            <Th>Email</Th>
-                            <Th>Endereço</Th>
-                            <Th>NIF</Th>
-                            <Th>tipo</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        {filteredUsers.map((user) => (
-                            <Tr key={user.id} onClick={() => handleUserClick(user)} cursor="pointer">
-                                <Td>{user.name}</Td>
-                                <Td>{user.email}</Td>
-                                <Td>{user.address ? `${user.address.line1}, ${user.address.line2}, ${user.address.city}, ${user.address.country}, ${user.address.postal_code}` : 'Nenhum endereço disponível'}</Td>
-                                <Td>{user.nif || 'Nenhum NIF disponível'}</Td>
-                                <Td>{user.role.join(', ')}</Td>
-                            </Tr>
-                        ))}
-                    </Tbody>
-                </Table>
             </Box>
-
+            <Wrap justify={"center"} spacing={"30px"}>
+                {filteredUsers.map((user, index) => (
+                    <WrapItem key={index}>
+                        <CustomerCard user={user} />
+                    </WrapItem>
+                ))}
+            </Wrap>
             <UserModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

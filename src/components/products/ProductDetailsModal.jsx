@@ -13,7 +13,7 @@ import {
     Text,
     useBreakpointValue
 } from "@chakra-ui/react";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
 import { useNavigate } from "react-router-dom";
 import React from "react";

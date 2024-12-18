@@ -4,8 +4,8 @@ import {loadStripe} from "@stripe/stripe-js"
 import {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import {CardText, CardTitle, Image,} from "react-bootstrap";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
-import {useAuth} from "../context/AuthContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import axios from "axios";
 
 const stripePromise = loadStripe(

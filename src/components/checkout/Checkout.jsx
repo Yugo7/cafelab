@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import {
     AlertDialog,
     AlertDialogBody,
@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Lottie from "react-lottie";
 import animationData from '/src/animations/emptybag.json';
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import StripeService from "../../services/stripeService.jsx";
 
 export default function Checkout() {

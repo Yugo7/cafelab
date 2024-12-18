@@ -14,7 +14,7 @@ import {formatCurrency} from "@/components/utilities/formatCurrency.jsx";
 import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
-import {useAuth} from "@/components/context/AuthContext.jsx";
+import {useAuth} from "@/context/AuthContext.jsx";
 import OrderService from "@/services/orderService.jsx";
 
 const MySubscriptions = ({subscriptions}) => {

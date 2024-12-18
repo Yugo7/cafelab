@@ -24,12 +24,15 @@ import logo from '/assets/logo-natal.jpg';
 
 import {useNavigate} from 'react-router-dom';
 
-import {FiCalendar, FiCoffee, FiHome, FiMenu, FiPackage} from 'react-icons/fi';
+import {FiCalendar, FiUsers , FiHome, FiMenu, FiPackage} from 'react-icons/fi';
+import { GrAnnounce } from "react-icons/gr";
+import { MdDashboard, MdEvent  } from "react-icons/md";
+
 import Footer from "./Footer.jsx";
 import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import {Stack} from "react-bootstrap";
-import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import {TbPaperBag} from "react-icons/tb";
 import {useTranslation} from "react-i18next";
 
@@ -79,10 +82,11 @@ const SidebarContent = ({onClose}) => {
     ];
 
     const AdminLinkItems = [
-        {name: 'Dashboard', route: '/dashboard', icon: FiHome},
-        {name: 'Produtos', route: '/dashboard/produtos', icon: FiPackage},
-        {name: 'Eventos', route: '/dashboard/eventos', icon: TbPaperBag},
-        {name: 'Users', route: '/dashboard/users', icon: TbPaperBag},
+        {name: 'Dashboard', route: '/dashboard', icon: MdDashboard},
+        {name: 'Produtos', route: '/dashboard/produtos', icon: TbPaperBag},
+        {name: 'Eventos', route: '/dashboard/eventos', icon: MdEvent},
+        {name: 'Users', route: '/dashboard/users', icon: FiUsers},
+        {name: 'Ads', route: '/dashboard/ads', icon: GrAnnounce},
     ];
 
     return (

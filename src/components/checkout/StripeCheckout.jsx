@@ -4,7 +4,7 @@ import {loadStripe} from "@stripe/stripe-js"
 import React, {useState} from "react"
 import {Button, Card, CardBody, CardFooter, CardHeader, Stack, Text} from "@chakra-ui/react";
 import {CardTitle,} from "react-bootstrap";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import {CartItem} from "../cart/CartItem.jsx";
 import {errorNotification} from "../../services/notification.js";
 import {useTranslation} from "react-i18next";

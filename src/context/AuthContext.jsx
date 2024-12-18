@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { signin as performLogin, requestResetPasswordServer, resetPasswordServer } from "../../services/client.js";
+import { signin as performLogin, requestResetPasswordServer, resetPasswordServer } from "../services/client.js";
 import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext({});

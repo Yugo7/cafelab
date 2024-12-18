@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, Flex, Heading, Link, Stack, Table, TableCaption, TableContainer, Tag, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import OrderService from "../../services/orderService.jsx";
 import { formatCurrency } from "../utilities/formatCurrency.jsx";
-import { useShoppingCart } from "../context/ShoppingCartContext.jsx";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { useTranslation } from 'react-i18next';
 import { getStatusColor, getStatusText } from "@/utils/statusUtil.js";
 

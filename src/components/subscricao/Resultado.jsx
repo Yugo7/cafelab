@@ -1,7 +1,7 @@
 import {Card, CardBody, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import {Trans, useTranslation} from "react-i18next";
 import React, {useEffect} from "react";
-import {useSubscription} from "../context/SubscriptionContext.jsx";
+import {useSubscription} from "../../context/SubscriptionContext.jsx";
 
 const Resultado = ({exp, sabor, uso}) => {
     const {emptyCoffee, addCoffee, } = useSubscription()

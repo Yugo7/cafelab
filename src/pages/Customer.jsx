@@ -4,12 +4,13 @@ import {
     Spinner,
     Text
 } from '@chakra-ui/react';
-import SidebarWithHeader from "./components/shared/SideBar.jsx";
-import { useEffect, useState } from 'react';
-import { getCustomers } from "./services/client.js";
-import CardWithImage from "./components/customer/CustomerCard.jsx";
-import CreateCustomerDrawer from "./components/customer/CreateCustomerDrawer.jsx";
-import {errorNotification} from "./services/notification.js";
+import SidebarWithHeader from "../components/shared/SideBar.jsx";
+import {useEffect, useState} from 'react';
+import {getCustomers} from "../services/client.js";
+import CustomerCard from "../components/customer/CustomerCard.jsx";
+import CreateCustomerDrawer from "../components/customer/CreateCustomerDrawer.jsx";
+import {errorNotification} from "../services/notification.js";
+import UserService from "@/services/UserService.jsx";
 
 const Customer = () => {
 
@@ -17,19 +18,15 @@ const Customer = () => {
     const [loading, setLoading] = useState(false);
     const [err, setError] = useState("");
 
-    const fetchCustomers = () => {
+    const  fetchCustomers = async () =>  {
         setLoading(true);
-        getCustomers().then(res => {
-            setCustomers(res.data)
-        }).catch(err => {
-            setError(err.response.data.message)
-            errorNotification(
-                err.code,
-                err.response.data.message
-            )
-        }).finally(() => {
-            setLoading(false)
-        })
+        try {
+            const data = await UserService.getUsers();
+            setCustomers(data)
+        } catch (error) {
+            console.error('Failed to fetch users:', error);
+        }
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -40,6 +37,7 @@ const Customer = () => {
         return (
             <SidebarWithHeader>
                 <Spinner
+                    alignSelf={"center"}
                     thickness='4px'
                     speed='0.65s'
                     emptyColor='gray.200'
@@ -61,7 +59,7 @@ const Customer = () => {
         )
     }
 
-    if(customers.length <= 0) {
+    if (customers.length <= 0) {
         return (
             <SidebarWithHeader>
                 <CreateCustomerDrawer
@@ -78,13 +76,9 @@ const Customer = () => {
                 fetchCustomers={fetchCustomers}
             />
             <Wrap justify={"center"} spacing={"30px"}>
-                {customers.map((customer, index) => (
+                {customers.map((user, index) => (
                     <WrapItem key={index}>
-                        <CardWithImage
-                            {...customer}
-                            imageNumber={index}
-                            fetchCustomers={fetchCustomers}
-                        />
+                        <CustomerCard user={user} />
                     </WrapItem>
                 ))}
             </Wrap>

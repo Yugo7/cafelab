@@ -3,7 +3,7 @@ import animationData from '/src/animations/success.json';
 import {Card, CardBody, CardFooter, CardHeader, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 
 function Success() {
     const navigate = useNavigate();

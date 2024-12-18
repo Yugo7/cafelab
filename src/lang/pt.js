@@ -325,6 +325,7 @@ export default {
     },
     newsletter: {
         title: "Cadastre-se para receber nossas novidades e promoções!",
+        coupon: "Ganhe 10% de desconto na sua primeira compra",
         description: "Fique atualizado com nossas últimas notícias e ofertas.",
         emailLabel: "Endereço de Email",
         emailPlaceholder: "Digite seu email",
@@ -374,10 +375,11 @@ export default {
     },
     toast: {
         subscriptionSuccessTitle: "Inscrição bem-sucedida.",
-        subscriptionSuccessDescription: "Você foi inscrito na newsletter.",
+        subscriptionSuccessDescription: "Você foi inscrito, cheque teu email para receber as novidades.",
         subscriptionFailedTitle: "Falha na inscrição.",
         subscriptionFailedDescription: "Falha ao inscrever-se. Por favor, tente novamente.",
         consentRequiredTitle: "Consentimento necessário.",
-        consentRequiredDescription: "Você deve dar consentimento para se inscrever."
+        consentRequiredDescription: "Você deve dar consentimento para se inscrever.",
+        emptyEmailTitle: "Email inválido."
     }
 }

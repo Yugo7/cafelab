@@ -16,7 +16,7 @@ import {
 import React, {useEffect, useState} from "react";
 import {quizData} from "./questions.jsx";
 import {quizDataEn} from "./questions-en.js";
-import {useSubscription} from "../context/SubscriptionContext.jsx";
+import {useSubscription} from "../../context/SubscriptionContext.jsx";
 import Resultado from "./Resultado.jsx";
 import {useTranslation} from "react-i18next";
 import i18n from "../../lang/i18n.js";

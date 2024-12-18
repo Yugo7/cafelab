@@ -1,4 +1,4 @@
-import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import SidebarWithHeader from "../components/shared/SideBar.jsx";
 import {Stack, Text, Box} from "@chakra-ui/react";
 
 const Service = () => {

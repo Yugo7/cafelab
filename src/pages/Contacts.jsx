@@ -1,6 +1,6 @@
-import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import SidebarWithHeader from "../components/shared/SideBar.jsx";
 import {HStack, Image, Stack, Text, VStack} from "@chakra-ui/react";
-import ContactUsForm from "./components/shared/ContactUsForm.jsx";
+import ContactUsForm from "../components/shared/ContactUsForm.jsx";
 import React from "react";
 import {useTranslation} from "react-i18next";
 

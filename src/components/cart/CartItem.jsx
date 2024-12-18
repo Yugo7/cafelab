@@ -1,5 +1,5 @@
 import { Button, Image, Stack } from "react-bootstrap"
-import { useShoppingCart } from "../context/ShoppingCartContext"
+import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { formatCurrency } from "../utilities/formatCurrency"
 import { Text, Select } from "@chakra-ui/react";
 import { useTranslation } from 'react-i18next';

@@ -15,7 +15,7 @@ import {
     Td, HStack
 } from '@chakra-ui/react';
 import { FaCheck } from "react-icons/fa";
-import OrderModal from '../Orders/OrderModal';
+import OrderModal from '../orders/OrderModal';
 import {green} from "vite-plugin-pwa/dist/chunk-UB6OAFZF.js";
 
 const UserModal = ({ isOpen, onClose, selectedUser, orders }) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure, Box } from '@chakra-ui/react';
-import ProductForm from './Products/ProductForm.jsx';
-import ProductList from './Products/ProductList';
+import ProductForm from './products/ProductForm.jsx';
+import ProductList from './products/ProductList';
 import {productService} from '@/services/productsService.jsx';
 import SidebarWithHeader from "@/components/shared/SideBar.jsx";
 

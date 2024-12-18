@@ -323,6 +323,7 @@ export default {
     },
     newsletter: {
         title: "Subscribe to get our latest news and best deals!",
+        coupon: "Get a 10% discount on your first purchase!",
         description: "Stay updated with our latest news and offers.",
         emailLabel: "Email Address",
         emailPlaceholder: "Enter your email",
@@ -376,6 +377,7 @@ export default {
         subscriptionFailedTitle: "Subscription failed.",
         subscriptionFailedDescription: "Failed to subscribe. Please try again.",
         consentRequiredTitle: "Consent required.",
-        consentRequiredDescription: "You must give consent to subscribe."
+        consentRequiredDescription: "You must give consent to subscribe.",
+        emptyEmailTitle: "Email required."
     }
 };

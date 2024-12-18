@@ -1,7 +1,7 @@
 import {Alert, AlertIcon, Box, Button, Flex, FormLabel, Heading, Image, Input, Link, Stack, Text,} from '@chakra-ui/react';
 import {Form, Formik, useField} from "formik";
 import * as Yup from 'yup';
-import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";

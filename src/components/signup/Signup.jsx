@@ -1,4 +1,4 @@
-import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect} from "react";
 import {Flex, Heading, Image, Link, Stack, Text} from "@chakra-ui/react";

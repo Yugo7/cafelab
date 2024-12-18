@@ -1,6 +1,6 @@
 import {Box, Button, Card, Grid, GridItem, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React, {useEffect, useMemo, useState} from "react";
-import {useSubscription} from "../context/SubscriptionContext.jsx";
+import {useSubscription} from "../../context/SubscriptionContext.jsx";
 import { useTranslation } from 'react-i18next';
 
 export default function ProductCarouselItem({product, isActive}) {

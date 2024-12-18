@@ -7,7 +7,7 @@ import {
     Button,
     Center,
     Flex,
-    Heading,
+    Heading, HStack,
     Image,
     Stack,
     Tag,
@@ -15,14 +15,16 @@ import {
     useColorModeValue, useDisclosure,
 } from '@chakra-ui/react';
 
-import {useRef} from 'react'
+import React, {useRef} from 'react'
 import {customerProfilePictureUrl, deleteCustomer} from "../../services/client.js";
 import {errorNotification, successNotification} from "../../services/notification.js";
 import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
+import {FaCheck} from "react-icons/fa";
 
-export default function CardWithImage({id, name, email, age, gender, fetchCustomers}) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export default function CustomerCard({user}) {
+    const {isOpen, onOpen, onClose} = useDisclosure()
     const cancelRef = useRef()
+    console.log(user)
 
     return (
         <Center py={6}>
@@ -46,7 +48,8 @@ export default function CardWithImage({id, name, email, age, gender, fetchCustom
                 <Flex justify={'center'} mt={-12}>
                     <Avatar
                         size={'xl'}
-                        src={customerProfilePictureUrl(id)}
+                        src={customerProfilePictureUrl(user.id)}
+                        name={user.name}
                         alt={'Author'}
                         css={{
                             border: '2px solid white',
@@ -56,22 +59,25 @@ export default function CardWithImage({id, name, email, age, gender, fetchCustom
 
                 <Box p={6}>
                     <Stack spacing={2} align={'center'} mb={5}>
-                        <Tag borderRadius={"full"}>{id}</Tag>
+                        <Tag borderRadius={"full"}>{user.id}</Tag>
                         <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                            {name}
+                            {user.name}
                         </Heading>
-                        <Text color={'gray.500'}>{email}</Text>
-                        <Text color={'gray.500'}>Age {age} | {gender}</Text>
+                        <Text color={'gray.500'}>{user.username}</Text>
+                        <Text fontWeight="bold">Nome: {user.name}</Text>
+                        <Text>Email: {user.username}</Text>
+                        <Text>
+                            Endereço: {user.address ? `${user.address.line1}, ${user.address.line2}, ${user.address.city}, ${user.address.country}, ${user.address.postal_code}` : 'Nenhum endereço disponível'}
+                        </Text>
+                        <Text>NIF: {user.nif || 'Não disponível'}</Text>
+                        <Text>Tipo: {user.role?.join(', ') || 'Não disponível'}</Text>
+                        <HStack alignContent={"center"}>
+                            <FaCheck color={"green"}/>
+                            <Text>Comunicação por email?</Text>
+                        </HStack>
                     </Stack>
                 </Box>
                 <Stack direction={'row'} justify={'center'} spacing={6} p={4}>
-                    <Stack>
-                        <UpdateCustomerDrawer
-                            initialValues={{ name, email, age }}
-                            customerId={id}
-                            fetchCustomers={fetchCustomers}
-                        />
-                    </Stack>
                     <Stack>
                         <Button
                             bg={'red.400'}
@@ -100,7 +106,7 @@ export default function CardWithImage({id, name, email, age, gender, fetchCustom
                                     </AlertDialogHeader>
 
                                     <AlertDialogBody>
-                                        Are you sure you want to delete {name}? You can't undo this action afterwards.
+                                        Are you sure you want to delete {user.name}? You can't undo this action afterwards.
                                     </AlertDialogBody>
 
                                     <AlertDialogFooter>
@@ -108,13 +114,11 @@ export default function CardWithImage({id, name, email, age, gender, fetchCustom
                                             Cancel
                                         </Button>
                                         <Button colorScheme='red' onClick={() => {
-                                            deleteCustomer(id).then(res => {
+                                            deleteCustomer(user.id).then(res => {
                                                 successNotification(
                                                     'Customer deleted',
-                                                    `${name} was successfully deleted`
+                                                    `${user.name} was successfully deleted`
                                                 )
-                                                fetchCustomers();
-
                                             }).catch(err => {
                                                 errorNotification(
                                                     err.code,

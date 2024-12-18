@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Card, CardBody, Image, Stack, Text, useBreakpointValue, Wrap, WrapItem} from "@chakra-ui/react";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import {formatCurrency} from "../utilities/formatCurrency.jsx";
 
 const MenuList = ({menuItems}) => {

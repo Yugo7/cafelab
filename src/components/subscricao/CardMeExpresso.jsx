@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { FaHandshake } from "react-icons/fa";
 import React, { useState } from "react";
-import { useSubscription } from "../context/SubscriptionContext.jsx";
+import { useSubscription } from "../../context/SubscriptionContext.jsx";
 import { Trans, useTranslation } from "react-i18next";
 import ModalMeExpresso from "./ModalMeExpresso.jsx";
 

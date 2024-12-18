@@ -1,6 +1,6 @@
-import OrderStatusGrid from "./Orders/OrdersCard.jsx";
+import OrderStatusGrid from "./orders/OrdersCard.jsx";
 import SidebarWithHeader from "../shared/SideBar.jsx";
-import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import {Stack, Text} from '@chakra-ui/react';
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
@@ -8,8 +8,8 @@ import {useTranslation} from "react-i18next";
 import OrderService from "../../services/orderService.jsx";
 import AnalyticsChart from "./AnalyticsChart.jsx";
 import Origins from "./Origins.jsx";
-import OrdersList from "./Orders/OrdersList.jsx";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import OrdersList from "./orders/OrdersList.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import AnalyticsService from "../../services/AnalyticsService.jsx";
 
 const Dashboard = () => {

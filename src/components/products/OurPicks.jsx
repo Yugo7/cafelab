@@ -1,6 +1,6 @@
 import {Button, Card, CardBody, CardFooter, Image, SimpleGrid, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import {ButtonGroup} from "react-bootstrap";
-import {useShoppingCart} from "../context/ShoppingCartContext.jsx";
+import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import { useTranslation } from 'react-i18next';
 import React from "react";
 
