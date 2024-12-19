@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, SimpleGrid } from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const ProductList = ({ products, openProduct }) => {
     const fontHl3 = useBreakpointValue({ base: "lg", md: "2xl" });
+    const margin = useBreakpointValue({ base: "2", md: "4", xl: "10" });
     const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,13 +54,13 @@ const ProductList = ({ products, openProduct }) => {
     }
 
     return (
-        <Wrap justify={"center"} spacing={"30px"} m={5} display="flex" alignItems="stretch">
+        <SimpleGrid minChildWidth="min(300px, 95vw, 90vw)" spacing={"20px"} m={margin}>
             {
                 products.map((product) => {
                     const quantityInCart = getItemQuantity(product.id);
                     return (
-                        <WrapItem key={product.id} display="flex" flexDirection="column">
-                            <Card width='sm' bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} height="100%" display="flex" flexDirection="column">
+                        <Box key={product.id} display="flex" flexDirection="column">
+                            <Card bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} height="100%" display="flex" flexDirection="column">
                                 <CardBody onClick={() => handleCardClick(product)} flex="1">
                                     <Stack mt='6' spacing='8'>
                                         <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>
@@ -78,12 +79,12 @@ const ProductList = ({ products, openProduct }) => {
                                         <Text maxHeight={"100px"} overflow="auto">
                                             {product[productDescriptionColumn]}
                                         </Text>
-                                        <Text color='black' fontSize='2xl' alignSelf={"right"}>
+                                        <Text color='black' fontSize='2xl' alignSelf={"center"}>
                                             {formatCurrency(product.preco)}
                                         </Text>
                                     </Stack>
                                 </CardBody>
-                                <CardFooter>
+                                <CardFooter justifyContent={"center"} >
                                     <ButtonGroup spacing='2'>
                                         {
                                             quantityInCart > 0 ? (
@@ -106,14 +107,14 @@ const ProductList = ({ products, openProduct }) => {
                                     </ButtonGroup>
                                 </CardFooter>
                             </Card>
-                        </WrapItem>
+                        </Box>
                     )
                 })
             }
             {currentProduct && (
                 <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={currentProduct} />
             )}
-        </Wrap>
+        </SimpleGrid>
     );
 };
 

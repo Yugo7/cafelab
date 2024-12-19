@@ -4,23 +4,28 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Button,
     useDisclosure,
     Image,
-    Text,
+    Text, Button, ModalFooter,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const AdPopup = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const navigate = useNavigate();
 
     React.useEffect(() => {
-        // Automatically open the modal after a delay (e.g., 3 seconds)
-        const timer = setTimeout(onOpen, 3000);
+        const timer = setTimeout(onOpen, 1000);
         return () => clearTimeout(timer);
     }, [onOpen]);
+
+    const handleButtonClick = () => {
+        navigator.clipboard.writeText('PRIMEIRA10');
+        setCopied(true);
+        navigate('/boutique');
+    };
 
     return (
         <>
@@ -30,13 +35,16 @@ const AdPopup = () => {
                     <ModalHeader>Bem vindo ao cafelab.pt!</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Image src="assets/Primeira compra.png" alt="Ad Image" />
+                        <Image src="assets/Primeira compra Dezembro.png" alt="Ad Image" />
                         <Text mt={4}></Text>
                     </ModalBody>
+                    <ModalFooter  justifyContent={"center"}>
+                        <Button onClick={handleButtonClick}>Ir a loja</Button>
+                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
-        
+
     );
 };
 
