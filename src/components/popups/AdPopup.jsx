@@ -23,7 +23,6 @@ const AdPopup = () => {
 
     const handleButtonClick = () => {
         navigator.clipboard.writeText('PRIMEIRA10');
-        setCopied(true);
         navigate('/boutique');
     };
 
