@@ -34,7 +34,7 @@ const AdPopup = () => {
                     <ModalHeader>Bem vindo ao cafelab.pt!</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Image src="assets/Primeira compra Dezembro.png" alt="Ad Image" />
+                        <Image src="assets/ad.png" alt="Ad Image" />
                         <Text mt={4}></Text>
                     </ModalBody>
                     <ModalFooter  justifyContent={"center"}>
