@@ -17,7 +17,7 @@ const ProductList = ({ products, onEdit, onDelete }) => {
     const inactiveProducts = filteredProducts.filter(product => !product.is_active);
 
     const renderProducts = (products) => (
-        <SimpleGrid minChildWidth="300px" spacing={4}>
+        <SimpleGrid minChildWidth="minmax(300px, 95vw)" spacing={4}>
             {products.map((product) => (
                 <Stack key={product.id} p={4} borderWidth="1px" borderRadius="lg">
                     <Stack mt='6' spacing='4'>

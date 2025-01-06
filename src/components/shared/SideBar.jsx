@@ -20,13 +20,13 @@ import {
     useColorModeValue,
     useDisclosure
 } from '@chakra-ui/react';
-import logo from '/assets/logo-natal.jpg';
+import logo from '/assets/logo.png';
 
 import {useNavigate} from 'react-router-dom';
 
-import {FiCalendar, FiUsers , FiHome, FiMenu, FiPackage} from 'react-icons/fi';
-import { GrAnnounce } from "react-icons/gr";
-import { MdDashboard, MdEvent  } from "react-icons/md";
+import {FiCalendar, FiUsers, FiHome, FiMenu, FiPackage} from 'react-icons/fi';
+import {GrAnnounce} from "react-icons/gr";
+import {MdDashboard, MdEvent} from "react-icons/md";
 
 import Footer from "./Footer.jsx";
 import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
@@ -109,7 +109,7 @@ const SidebarContent = ({onClose}) => {
                         </NavItem>
                     ))}
                     <br/>
-                    { Array.isArray(role) && role.includes('admin') ? AdminLinkItems.map((link) => (
+                    {Array.isArray(role) && role.includes('admin') ? AdminLinkItems.map((link) => (
                         <NavItem key={link.name} route={link.route} icon={link.icon}>
                             {link.name}
                         </NavItem>

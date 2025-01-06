@@ -1,12 +1,6 @@
 import {
-    AlertDialog,
-    AlertDialogBody, AlertDialogContent,
-    AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay,
-    Avatar,
     Box,
-    Button,
     Center,
-    Flex,
     Heading,
     Image,
     Stack,
@@ -15,11 +9,10 @@ import {
     useColorModeValue, useDisclosure,
 } from '@chakra-ui/react';
 
-import {FiCalendar} from "react-icons/fi";
 import {useTranslation} from "react-i18next";
 import AddToCalendarButton from "./Calendar.jsx";
 
-export default function CardWithImage({id, date, name, description, local, imageFinish, imagePromotion}) {
+export default function CardWithImage({id, date, name, description, local, imageFinish, image_promotion}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const { t } = useTranslation();
@@ -44,7 +37,7 @@ export default function CardWithImage({id, date, name, description, local, image
                 <Image
                     h={'250px'}
                     w={'full'}
-                    src={imagePromotion}
+                    src={image_promotion}
                     objectFit={'cover'}
                 />
 

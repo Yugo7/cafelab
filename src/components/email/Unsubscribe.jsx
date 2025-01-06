@@ -14,7 +14,7 @@ import {
     useToast
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import logo from '/assets/logo-natal.jpg';
+import logo from '/assets/logo.png';
 import { unsubscribeEmail } from "@/services/emailService.js";
 import { useNavigate } from "react-router-dom";
 

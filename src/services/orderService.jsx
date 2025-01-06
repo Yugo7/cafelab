@@ -31,6 +31,17 @@ const OrderService = {
             throw error;
         }
     },
+
+    async getUsress(id) {
+        try {
+            const response = await axios.get(`https://cafelab-service.onrender.com/users`);
+            console.log(response.data)
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching user by ID:', error);
+            throw error;
+        }
+    }
 }
 
 export default OrderService;

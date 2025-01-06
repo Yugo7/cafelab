@@ -1,4 +1,4 @@
-export default class Event {
+class Event {
   constructor(name, description, local, date, imagePromotion, imageFinish, instagramUrl) {
     this.name = name;
     this.description = description;

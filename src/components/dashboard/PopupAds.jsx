@@ -9,19 +9,30 @@ import {
     Stack,
     Image,
     useToast,
-    Text
+    Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    ModalFooter,
+    useDisclosure,
+    useBreakpointValue
 } from '@chakra-ui/react';
 import { v4 as uuidv4 } from 'uuid';
 import SidebarWithHeader from "../shared/SideBar.jsx";
 import AdList from "./ads/AdList.jsx";
+import CouponManager from "./ads/CouponManager.jsx";
 
 const PopupAds = () => {
     const [campaigns, setCampaigns] = useState([]);
     const [currentCampaign, setCurrentCampaign] = useState({ id: '', text: '', image: '', duration: '', startDate: '', endDate: '' });
     const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const modalSize = useBreakpointValue({ base: "full", xl: "6xl" });
 
     useEffect(() => {
-        // Load campaigns from local storage or API
         const savedCampaigns = [
             {
                 "id": "1",
@@ -83,22 +94,22 @@ const PopupAds = () => {
 
     const handleSaveCampaign = () => {
         if (currentCampaign.id) {
-            // Update existing campaign
             setCampaigns(campaigns.map(c => c.id === currentCampaign.id ? currentCampaign : c));
             toast({ title: 'Campaign updated', status: 'success', duration: 3000, isClosable: true });
         } else {
-            // Create new campaign
             const newCampaign = { ...currentCampaign, id: uuidv4() };
             setCampaigns([...campaigns, newCampaign]);
             toast({ title: 'Campaign created', status: 'success', duration: 3000, isClosable: true });
         }
         setCurrentCampaign({ id: '', text: '', image: '', duration: '', startDate: '', endDate: '' });
         localStorage.setItem('campaigns', JSON.stringify([...campaigns, currentCampaign]));
+        onClose();
     };
 
     const handleEditCampaign = (id) => {
         const campaign = campaigns.find(c => c.id === id);
         setCurrentCampaign(campaign);
+        onOpen();
     };
 
     const handleDeleteCampaign = (id) => {
@@ -111,37 +122,51 @@ const PopupAds = () => {
     return (
         <SidebarWithHeader>
             <Box p={5}>
-                <FormControl>
-                    <FormLabel>Text</FormLabel>
-                    <Textarea name="text" value={currentCampaign.text} onChange={handleInputChange} />
-                </FormControl>
-                <FormControl mt={4}>
-                    <FormLabel>Image</FormLabel>
-                    <Input type="file" onChange={handleImageChange} />
-                    {currentCampaign.image && <Image src={currentCampaign.image} alt="Campaign" mt={2} />}
-                </FormControl>
-                <FormControl mt={4}>
-                    <FormLabel>Duration (in days)</FormLabel>
-                    <Input name="duration" value={currentCampaign.duration} onChange={handleInputChange} />
-                </FormControl>
-                <FormControl mt={4}>
-                    <FormLabel>Start Date</FormLabel>
-                    <Input name="startDate" value={currentCampaign.startDate} onChange={handleInputChange} />
-                </FormControl>
-                <FormControl mt={4}>
-                    <FormLabel>End Date</FormLabel>
-                    <Input name="endDate" value={currentCampaign.endDate} onChange={handleInputChange} />
-                </FormControl>
-                <Button mt={4} colorScheme="teal" onClick={handleSaveCampaign}>
-                    {currentCampaign.id ? 'Update Campaign' : 'Create Campaign'}
-                </Button>
-
-                <Box mt={8}>
-                    <AdList ads={campaigns} onEdit={handleEditCampaign} onDelete={handleDeleteCampaign} />
-                </Box>
+                <Button my={4} colorScheme="blue" onClick={onOpen}>Add Campaign</Button>
+                <AdList ads={campaigns} onEdit={handleEditCampaign} onDelete={handleDeleteCampaign} />
+                <CouponManager />
             </Box>
+
+            <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+                <ModalOverlay />
+                <ModalContent bg="white" color="black" borderRadius="md" boxShadow="xl">
+                    <ModalHeader fontSize="2xl" fontWeight="bold" borderBottom="1px solid" borderColor="gray.200">
+                        {currentCampaign.id ? 'Edit Campaign' : 'Create Campaign'}
+                    </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <FormControl>
+                            <FormLabel>Text</FormLabel>
+                            <Textarea name="text" value={currentCampaign.text} onChange={handleInputChange} />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Image</FormLabel>
+                            <Input type="file" onChange={handleImageChange} />
+                            {currentCampaign.image && <Image src={currentCampaign.image} alt="Campaign" mt={2} />}
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Duration (in days)</FormLabel>
+                            <Input name="duration" value={currentCampaign.duration} onChange={handleInputChange} />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Start Date</FormLabel>
+                            <Input name="startDate" value={currentCampaign.startDate} onChange={handleInputChange} />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>End Date</FormLabel>
+                            <Input name="endDate" value={currentCampaign.endDate} onChange={handleInputChange} />
+                        </FormControl>
+                    </ModalBody>
+                    <ModalFooter borderTop="1px solid" borderColor="gray.200" justifyContent="center">
+                        <Button colorScheme="teal" onClick={handleSaveCampaign}>
+                            {currentCampaign.id ? 'Update Campaign' : 'Create Campaign'}
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </SidebarWithHeader>
     );
 };
+
 
 export default PopupAds;

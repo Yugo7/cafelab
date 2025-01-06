@@ -4,7 +4,7 @@ import {useRef} from 'react'
 import {FiInstagram} from "react-icons/fi";
 import {useTranslation} from "react-i18next";
 
-export default function PastEventCard({date, name, description, local, imageFinish, instagramUrl}) {
+export default function PastEventCard({date, name, description, local, image_finish, instagram_url}) {
     const {onOpen} = useDisclosure()
     const { t } = useTranslation();
     return (
@@ -20,7 +20,7 @@ export default function PastEventCard({date, name, description, local, imageFini
                 <Image
                     h={'250px'}
                     w={'full'}
-                    src={imageFinish}
+                    src={image_finish}
                     objectFit={'cover'}
                 />
 
@@ -36,7 +36,7 @@ export default function PastEventCard({date, name, description, local, imageFini
                 </Box>
                 <Stack direction={'row'} justify={'center'} spacing={6} p={4}>
                     <Stack>
-                        <Link href={instagramUrl} isExternal>
+                        <Link href={instagram_url} isExternal>
                             <Button
                             
                                 bg={'red.400'}
@@ -51,7 +51,7 @@ export default function PastEventCard({date, name, description, local, imageFini
                                 }}
                                 onClick={onOpen}
                                 leftIcon={<FiInstagram/>}
-                                isDisabled={!instagramUrl} 
+                                isDisabled={!instagram_url}
                             >
                                 {t('agenda.takeALook')}
                             </Button>

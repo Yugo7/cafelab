@@ -56,6 +56,29 @@ const MySubscriptions = ({subscriptions}) => {
 
     const cancel = (id) => {
         OrderService.cancelSubscription(id)
+            .then(() => {
+                toast({
+                    title: t('Sucesso'),
+                    description: t('Sua solicitacao foi recebida, dentro de 24 horas recebera um email de confirmacao'),
+                    status: "success",
+                    duration: 9000,
+                    isClosable: true,
+                });
+            })
+            .catch(() => {
+                toast({
+                    title: t('Erro'),
+                    description: t('Algo correu mal, entre em contacto conosco por algum canal de comunicacao'),
+                    status: "error",
+                    duration: 9000,
+                    isClosable: true,
+                });
+            });
+
+    }
+
+    const testconn = (id) => {
+        OrderService.getUsress(id)
     }
 
     return (
@@ -108,6 +131,11 @@ const MySubscriptions = ({subscriptions}) => {
                                 {formatCurrency(subscription.total)} {t('userDashboard.every')} {subscription.products.periodicity} {t('userDashboard.months')}
                             </Text>
                             <Button variant={"outline"} colorScheme={"red"} onClick={() => cancel(subscription.id)}>
+                                {t('userDashboard.cancelSubscription')}
+                            </Button>
+
+
+                            <Button variant={"outline"} colorScheme={"red"} onClick={() => testconn(subscription.id)}>
                                 {t('userDashboard.cancelSubscription')}
                             </Button>
                         </Stack>

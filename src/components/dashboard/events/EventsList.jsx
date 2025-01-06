@@ -20,14 +20,14 @@ const EventList = ({events, onEdit, onDelete, onOpen}) => {
 
                     <Text>Imagem promoção:</Text>
                     <Image
-                        src={event?.imagePromotion?.startsWith('assets/') ? `/${event.imagePromotion}` : event?.imagePromotion || 'defaultImagePath'}
+                        src={event?.image_promotion?.startsWith('assets/') ? `/${event.image_promotion}` : event?.image_promotion || 'defaultImagePath'}
                         alt="Promo" boxSize="200px" overflow={"hidden"} />
                     <Text>Imagem fim do evento:</Text>
                     <Image
-                        src={event?.imageFinish?.startsWith('assets/') ? `/${event.imageFinish}` : event?.imageFinish || 'defaultImagePath'}
+                        src={event?.image_finish?.startsWith('assets/') ? `/${event.image_finish}` : event?.image_finish || 'defaultImagePath'}
                            alt="Post" boxSize="200px"  overflow={"hidden"}/>
                     <Stack>
-                        <Link href={event.instagramUrl} isExternal>
+                        <Link href={event.instagram_url} isExternal>
                             <Button
                                 bg={'red.400'}
                                 color={'white'}
@@ -41,7 +41,7 @@ const EventList = ({events, onEdit, onDelete, onOpen}) => {
                                 }}
                                 onClick={onOpen}
                                 leftIcon={<FiInstagram />}
-                                isDisabled={!event.instagramUrl}
+                                isDisabled={!event.instagram_url}
                             >
                                 Instagram
                             </Button>
