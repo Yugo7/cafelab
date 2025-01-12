@@ -4,7 +4,7 @@ import {
     Stack,
     Text,
     useDisclosure,
-    useToast
+    useToast, Tooltip
 } from "@chakra-ui/react";
 import { FaHandshake } from "react-icons/fa";
 import React, { useState } from "react";
@@ -69,10 +69,13 @@ const CardMeExpresso = () => {
 
             <Stack mt={12} >
                 <Stack alignSelf="center" justifyContent="center">
-                    <Button leftIcon={<FaHandshake />} onClick={onOpen} size='lg' height='48px' border='2px'
-                        variant='outline' colorScheme='#FEEBC8'>
-                        {t('meexpresso.ratherChoose')}
-                    </Button>
+                    <Tooltip label={t('meexpresso.changingStock')} aria-label="A tooltip">
+                        <Button leftIcon={<FaHandshake />} onClick={onOpen} size='lg' height='48px' border='2px'
+                                variant='outline' colorScheme='#FEEBC8'
+                                disabled={true} >
+                            {t('meexpresso.ratherChoose')}
+                        </Button>
+                    </Tooltip>
                     <ModalMeExpresso
                         isOpen={isOpen}
                         onClose={onClose}

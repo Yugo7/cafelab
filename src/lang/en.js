@@ -112,6 +112,7 @@ export default {
         coffeeDetails: "Choose your own subscription with your most loved coffees. Pick three specialty coffees from our catalog and have the best of CAFELAB at your home every month!<br /> In beans or ground, according to your consumption indication.",
         ratherChoose: "I wanna choose my CafeLab",
         payment: "How do you prefer to pay?",
+        changingStock: "We are changing our stock, soon we will have more options for you!",
         coffeeSelection: "Coffee selection",
         yourSubscription: "YOUR SUBSCRIPTION",
         selectYourCoffee: "PICK YOU COFFEES",

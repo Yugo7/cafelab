@@ -92,6 +92,7 @@ export default {
         coffeeDescription: "3 embalagens de 175g à sua escolha dentre nossa gama.",
         coffeeDetails: "Escolha e monte sua própria subscrição com os cafés que já ama. Selecione três dos nossos cafés especiais e receba todos os meses na sua casa, o melhor do CAFELAB.<br /> Em grão ou moído, de acordo com a sua indicação de consumo.",
         ratherChoose: "Já sei meu CafeLab",
+        changingStock: "Estamos alterando nossos cafés em estoque. Por favor, volte mais tarde.",
         yourSubscription: "SUA SUBSCRIÇÃO",
         coffeeSelection: "Selecção de café",
         selectYourCoffee: "ESCOLHA SEUS CAFÉS",
