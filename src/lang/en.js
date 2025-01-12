@@ -27,7 +27,7 @@ export default {
         subscriptionButton: "SUBSCRIPTION",
         visit: "PAY US A VISIT",
         checkOutOurSubscriptions: "CHECK OUT OUR SUBSCRIPTIONS!",
-        checkOutOurCoffee: "CHECK OUT OUR ESPECIALTY COFFEES!",
+        checkOutOurCoffee: "CHECK OUT OUR PRODUCTS AND SPECIALTY COFFEES!",
         checkOutOurBoutique: "CHECK OUT OUR BOUTIQUE DEPARTMENT!",
     },
     subscription: {
@@ -89,9 +89,10 @@ export default {
         boutiqueButton: "Boutique",
         buyNow: "Buy Now",
         addToCart: "Add to cart",
-        notAvailable: "Something went wrong, please try again",
+        notAvailable: "No results found",
         sortByPrice: "Sort by Price",
-        sortByDate: "Sort by Date"
+        sortByDate: "Sort by Date",
+        searchPlaceholder: 'Pesquisar',
     },
     agenda: {
         title: "Upcoming Events",

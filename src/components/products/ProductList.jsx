@@ -49,7 +49,7 @@ const ProductList = ({ products, openProduct }) => {
 
     if (products.length <= 0) {
         return (
-            <Text mt={5}> {t('boutique.notAvailable')}</Text>
+            <Text textAlign={"center"} mt={5}> {t('boutique.notAvailable')}</Text>
         )
     }
 

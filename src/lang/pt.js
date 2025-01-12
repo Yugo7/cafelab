@@ -6,7 +6,7 @@ export default {
         menu: "Menu Primavera",
         agenda: "Agenda",
         login: "Entrar",
-        signOut: "Sair",
+        signOut: "Sair"
     },
     home: {
         headlineText: "CHEGARAM NOSSAS SUBSCRIÇÕES! <br />TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
@@ -29,7 +29,7 @@ export default {
         visit: "VISITE NOSSO ESPAÇO",
         checkOutOurSubscription1: "CHEGARAM NOSSAS SUBSCRIÇÕES!",
         checkOutOurSubscription2: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
-        checkOutOurCoffee: "CONHEÇA NOSSOS CAFÉS DE ESPECIALIDADE!",
+        checkOutOurCoffee: "CONHEÇA NOSSOS PRODUTOS E CAFÉS DE ESPECIALIDADE!",
         checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
     },
     subscription: {
@@ -128,9 +128,10 @@ export default {
         boutiqueButton: "Boutique",
         buyNow: "Comprar agora",
         addToCart: "Adicionar",
-        notAvailable: "Algo deu errado, tente novamente",
+        notAvailable: "Nenhum produto corresponde a sua pesquisa.",
         sortByPrice: "Ordenar por Preço",
-        sortByDate: "Ordenar por Data"
+        sortByDate: "Ordenar por Data",
+        searchPlaceholder: 'Pesquisar',
     },
     monthCoffee: {
         coffeeOfTheMonth: "Café do Mês",

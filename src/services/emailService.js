@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const new_url = "http://localhost:8080/email/";
+const NEW_BE = import.meta.env.VITE_API_RENDER_URL;
 
 export const subscribeEmail = async (email) => {
     try {
@@ -25,7 +25,7 @@ export const unsubscribeEmail = async (email, reason, comment) => {
 
 export const sendEmail = async (emailData) => {
     try {
-        const response = await axios.post(`${new_url}content`, emailData);
+        const response = await axios.post(`${NEW_BE}content`, emailData);
         console.log('Email data:', emailData);
         return response.data;
     } catch (error) {
