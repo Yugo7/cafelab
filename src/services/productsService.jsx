@@ -7,7 +7,7 @@ export const getProducts = async (useCache = true) => {
         if (useCache) {
             const cachedData = localStorage.getItem('products');
             const cachedTime = localStorage.getItem('productsTime');
-            if (cachedData && cachedTime && new Date().getTime() - cachedTime < 360 * 60 * 1000) {
+            if (cachedData && cachedTime && new Date().getTime() - cachedTime < 10 * 60 * 1000) {
                 return JSON.parse(cachedData);
             }
         }

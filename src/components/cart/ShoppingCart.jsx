@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Offcanvas } from "react-bootstrap"
 import { useShoppingCart } from "../../context/ShoppingCartContext"
 import { formatCurrency } from "../utilities/formatCurrency.jsx"
@@ -9,7 +9,7 @@ import { Text, Stack, Select } from "@chakra-ui/react";
 
 export function ShoppingCart(props) {
     const { t } = useTranslation();
-    const { closeCart, cartItems, products, emptyCart, variety, setVarietyForOrder } = useShoppingCart()
+    const { closeCart, cartItems, products, emptyCart, variety, setVarietyForOrder } = useShoppingCart();
 
     const handleChangeVariety = (event) => {
         setVarietyForOrder(event.target.value);

@@ -2,6 +2,7 @@ import {createContext, useContext, useState, useEffect} from "react"
 import {useLocalStorage} from "../components/hooks/useLocalStorage.jsx"
 import {ShoppingCart} from "../components/cart/ShoppingCart.jsx"
 import {getProducts} from "../services/productsService.jsx";
+import { clearCache } from '../utils/cacheUtils';
 
 const ShoppingCartContext = createContext({})
 
@@ -24,10 +25,18 @@ export function ShoppingCartProvider({children}) {
         []
     )
     const [products, setProducts] = useState([]);
+    const [isCacheCleared, setIsCacheCleared] = useState(() => {
+        return localStorage.getItem("isCacheCleared") === "true";
+    });
 
     useEffect(() => {
+        if (!isCacheCleared) {
+            clearCache();
+            setIsCacheCleared(true);
+            localStorage.setItem("isCacheCleared", "true");
+        }
         getProducts().then(setProducts);
-    }, []);
+    }, [isCacheCleared]);
 
     const cartQuantity = cartItems.reduce(
         (quantity, item) => item.quantity + quantity,

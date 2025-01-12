@@ -42,6 +42,7 @@ import ResetPassword from "./components/login/ResetPassword.jsx";
 import Products from "./components/dashboard/Produtos.jsx";
 import Events from "./components/dashboard/Events.jsx";
 import Loyalty from "./components/dashboard/Loyalty.jsx";
+import MailMarketing from "./components/dashboard/MailMarketing.jsx";
 import Users from "@/components/dashboard/Users.jsx";
 import Unsubscribe from "@/components/email/Unsubscribe.jsx";
 import Customer from "@/pages/Customer.jsx";
@@ -79,6 +80,7 @@ const routes = [
   { path: "/dashboard/produtos", element: <ProtectedAdminRoute><Products /></ProtectedAdminRoute> },
   { path: "/dashboard/eventos", element: <ProtectedAdminRoute><Events /></ProtectedAdminRoute> },
   { path: "/dashboard/fidelidade", element: <ProtectedAdminRoute><Loyalty /></ProtectedAdminRoute> },
+  { path: "/dashboard/mail", element: <ProtectedAdminRoute><MailMarketing /></ProtectedAdminRoute> },
   { path: "/dashboard/users", element: <ProtectedAdminRoute><Users /></ProtectedAdminRoute> },
   { path: "/dashboard/ads", element: <ProtectedAdminRoute><PopupAds /></ProtectedAdminRoute> },
 ];
