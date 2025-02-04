@@ -47,6 +47,7 @@ import Users from "@/components/dashboard/Users.jsx";
 import Unsubscribe from "@/components/email/Unsubscribe.jsx";
 import Customer from "@/pages/Customer.jsx";
 import PopupAds from "@/components/dashboard/PopupAds.jsx";
+import Special from "@/pages/Special.jsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const { ToastContainer } = createStandaloneToast();
@@ -83,6 +84,7 @@ const routes = [
   { path: "/dashboard/mail", element: <ProtectedAdminRoute><MailMarketing /></ProtectedAdminRoute> },
   { path: "/dashboard/users", element: <ProtectedAdminRoute><Users /></ProtectedAdminRoute> },
   { path: "/dashboard/ads", element: <ProtectedAdminRoute><PopupAds /></ProtectedAdminRoute> },
+  { path: "/valentines", element: <Special /> },
 ];
 
 function App() {

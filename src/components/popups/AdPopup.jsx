@@ -11,10 +11,12 @@ import {
     Text, Button, ModalFooter,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import {useTranslation} from "react-i18next";
 
 const AdPopup = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
+    const {t} = useTranslation();
 
     React.useEffect(() => {
         const timer = setTimeout(onOpen, 1000);
@@ -22,8 +24,8 @@ const AdPopup = () => {
     }, [onOpen]);
 
     const handleButtonClick = () => {
-        navigator.clipboard.writeText('PRIMEIRA10');
-        navigate('/boutique');
+        //navigator.clipboard.writeText('PRIMEIRA10');
+        navigate('/valentines');
     };
 
     return (
@@ -31,14 +33,16 @@ const AdPopup = () => {
             <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Bem vindo ao cafelab.pt!</ModalHeader>
+                    <ModalHeader>{t('special.title')}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Image src="assets/ad.png" alt="Ad Image" />
+                        <Image src="https://aygbtvycljt8mna3.public.blob.vercel-storage.com/Brunch%20sao%20valentin-iOhlPcM7Ieh4DAcpp6eU11khG0Po1a.jpg" alt="Valentine's CafeLab" />
                         <Text mt={4}></Text>
                     </ModalBody>
                     <ModalFooter  justifyContent={"center"}>
-                        <Button onClick={handleButtonClick}>Ir a loja</Button>
+                        <Button onClick={handleButtonClick}>
+                            {t('special.findOutMore')}
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

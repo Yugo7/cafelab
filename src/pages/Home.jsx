@@ -156,6 +156,7 @@ const Home = () => {
                     </Stack>
                 </Stack>
                 <MailMarketing />
+                <AdPopup />
             </Stack>
         </SidebarWithHeader>
     )

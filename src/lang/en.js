@@ -381,5 +381,23 @@ export default {
         consentRequiredTitle: "Consent required.",
         consentRequiredDescription: "You must give consent to subscribe.",
         emptyEmailTitle: "Email required."
-    }
+    },
+    special: {
+        title: "Valentine's Day CafeLab!",
+        description: "Love is in the air... and at CafeLab! 💕 \n This Valentine's Day, give an unforgettable experience with our Exclusive Brunch for Two! Only on February 14 and 15 – with a special gift for coffee lovers! ☕🔥",
+        address: "Av. Moçambique 14 A, 2780-027 Oeiras",
+        phoneTitle: "Phone",
+        phoneNumber: "(+351) 214 420 636",
+        emailTitle: "Email",
+        emailAddress: "cafelabpt@gmail.com",
+        rules: {
+            name: "Rules",
+            redeemDate: "The voucher must be redeemed between February 14 and 15, 2025;",
+            redeemHour: "Brunch is served until 11 AM;",
+            includes: "The voucher entitles you to CafeLab Brunch for two, an exclusive tasting kit, and a discount coupon for use on the website (cafelab.pt);",
+            noShipping: "The voucher will be sent within 24 hours after payment confirmation; Brunch cannot be shipped;",
+            limit: "Maximum of 10 redemptions per person. The voucher is non-refundable and cannot be exchanged for cash"
+        },
+        findOutMore: "Learn more",
+    },
 };
