@@ -122,6 +122,22 @@ const Home = () => {
                 </Stack>
                 <Box paddingY="10px">
                 </Box>
+
+                <Stack width={calendarioSectWidth} m={useBreakpointValue({ base: 6, md: 8 })} alignSelf={"center"} pb={8}>
+
+                    <Text className="cafelab" height={"auto"} width="100%" fontSize={"lg"} textAlign={"center"} color="black">
+                        {t('special.title')}
+                    </Text>
+                    <Box backgroundColor="transparent" width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
+                        <Image src="https://aygbtvycljt8mna3.public.blob.vercel-storage.com/Brunch%20sao%20valentin-iOhlPcM7Ieh4DAcpp6eU11khG0Po1a.jpg" alt="Valentine's CafeLab" />
+                    </Box>
+                    <Text className="cafelab" height={"auto"} width="100%" fontSize={"sm"} textAlign={"center"} color="black">
+                        {t('special.description')}
+                    </Text>
+                    <Button onClick={() => navigate('/valentines')} >
+                        {t('special.findOutMore')}
+                    </Button>
+                </Stack>
                 <Stack direction={{ base: "column", lg: 'row' }} my={"10"} minH={"400px"} justify="space-around" position="relative">
                     <Stack width={calendarioSectWidth} m={useBreakpointValue({ base: 6, md: 8 })} alignSelf={"center"} pb={8}>
                         <Box backgroundColor="transparent" width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
