@@ -17,11 +17,15 @@ const Special = () => {
         <SidebarWithHeader>
             <Stack m={4} justify="flex-start" align="center" spacing="24px" textAlign={"center"}>
                 <Text className="headline mt-5" fontSize={"3xl"}>{t('special.title').toUpperCase()}</Text>
+                <Text className="font-headline" fontSize={"3xl"} textAlign={"center"}>
+                    €25.00
+                </Text>
             </Stack>
             <Stack justify="flex-start" align="center">
                 <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize}
                       letterSpacing="tighter" color="black"
-                      textAlign="center" mx={4}>
+                      textAlign="center" mx={4}
+                      whiteSpace="pre-line" >
                     {t('special.description')}
                 </Text>
 
@@ -36,9 +40,17 @@ const Special = () => {
                 maxW={{base: "90vw", md: "600px"}}
             />
 
-            <Stack  m={4} p={6} className=" cafelab d-flex align-items-left">
+            <Stack m={4} justify="flex-start" align="center" spacing="24px" textAlign={"center"}>
+                <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize}
+                      letterSpacing="tighter" color="black"
+                      textAlign="center" mx={4} whiteSpace="pre-line">
+                    {t('special.brunchItems')}
+                </Text>
+            </Stack>
+
+            <Stack m={4} p={6} className=" cafelab d-flex align-items-left">
                 <Button mb={8} size={"lg"} colorScheme={"red"} onClick={handleButtonClick} alignSelf={"center"}>
-                    Adicionar ao carrinho
+                    {t('special.addToCart')}
                 </Button>
 
                 <Text m={4} fontSize={"md"}>

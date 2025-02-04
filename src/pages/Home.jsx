@@ -3,7 +3,7 @@ import SidebarWithHeader from "../components/shared/SideBar.jsx";
 import { Box, Button, Grid, Image, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import { FiCalendar, FiPackage, FiShoppingBag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
 import { Trans, useTranslation } from "react-i18next";
 import ProductImageCarousel from "../components/home/ProductCarousel.jsx";
 import MailMarketing from "@/components/email/MailMarketing.jsx";
@@ -131,11 +131,14 @@ const Home = () => {
                     <Box backgroundColor="transparent" width={"100%"} padding={boxPadding} style={{ overflow: 'visible', position: 'relative' }}>
                         <Image src="https://aygbtvycljt8mna3.public.blob.vercel-storage.com/Brunch%20sao%20valentin-iOhlPcM7Ieh4DAcpp6eU11khG0Po1a.jpg" alt="Valentine's CafeLab" />
                     </Box>
-                    <Text className="cafelab" height={"auto"} width="100%" fontSize={"sm"} textAlign={"center"} color="black">
+                    <Text className="cafelab" height={"auto"} width="100%" fontSize={"sm"} textAlign={"center"} color="black"  whiteSpace="pre-line">
                         {t('special.description')}
                     </Text>
-                    <Button onClick={() => navigate('/valentines')} >
-                        {t('special.findOutMore')}
+                    <Button onClick={() => navigate('/valentines')}  alignSelf={"center"}
+                            leftIcon={<FaRegHeart />} rightIcon={<FaRegHeart />}
+                            size='lg' height='48px' width='200px' border='2px'
+                            variant={"solid"} backgroundColor={"black"} color={"white"}>
+                        {t('special.findOutMore').toUpperCase()}
                     </Button>
                 </Stack>
                 <Stack direction={{ base: "column", lg: 'row' }} my={"10"} minH={"400px"} justify="space-around" position="relative">

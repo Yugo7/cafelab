@@ -387,12 +387,9 @@ export default {
 
     special: {
         title: "Valentine's Day CafeLab!",
-        description: "O amor está no ar… e no CafeLab! 💕 \n Este São Valentim, ofereça uma experiência inesquecível com o nosso Brunch Exclusivo para Dois! Apenas nos dias 14 e 15 de fevereiro – e com um presente especial para os amantes de café! ☕🔥",
-        address: "Av. Moçambique 14 A, 2780-027 Oeiras",
-        phoneTitle: "Telefone",
-        phoneNumber: "(+351) 214 420 636",
-        emailTitle: "Email",
-        emailAddress: "cafelabpt@gmail.com",
+        description: "O amor está no ar… e no CafeLab! 💕 \n Este São Valentim, ofereça uma experiência inesquecível com o nosso Brunch Exclusivo para Dois!\nApenas nos dias 14 e 15 de fevereiro – e com um presente especial para os amantes de café! ☕🔥",
+        brunchItems: "O que está incluído no Brunch?\n- 2 Croissants com queijo\n- 1 Prensa francesa\n- 2 Iogurtes naturais\n-2 Bolos de laranja\n- 1 Jarra de sumo",
+        addToCart: "Adicionar ao carrinho",
         rules: {
             name: "Regras",
             redeemDate: "O voucher precisa ser resgatado entre os dias 14 e 15 de fevereiro de 2025;",

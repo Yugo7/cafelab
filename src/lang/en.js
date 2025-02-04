@@ -384,20 +384,17 @@ export default {
     },
     special: {
         title: "Valentine's Day CafeLab!",
-        description: "Love is in the air... and at CafeLab! 💕 \n This Valentine's Day, give an unforgettable experience with our Exclusive Brunch for Two! Only on February 14 and 15 – with a special gift for coffee lovers! ☕🔥",
-        address: "Av. Moçambique 14 A, 2780-027 Oeiras",
-        phoneTitle: "Phone",
-        phoneNumber: "(+351) 214 420 636",
-        emailTitle: "Email",
-        emailAddress: "cafelabpt@gmail.com",
+        description: "Love is in the air... and at CafeLab! 💕 \n This Valentine's Day, gift your special one with an unforgettable experience our Exclusive Brunch for Two!\nOnly on February 14 and 15 – with a special gift for coffee lovers! ☕🔥",
+        brunchItems: "What's included in the Brunch?\n- 2 Cheese Croissants\n- 1 French Press\n- 2 Natural Yogurts\n- 2 Orange Cakes\n- 1 Jug of Juice",
+        addToCart: "Add to Cart",
         rules: {
             name: "Rules",
             redeemDate: "The voucher must be redeemed between February 14 and 15, 2025;",
-            redeemHour: "Brunch is served until 11 AM;",
-            includes: "The voucher entitles you to CafeLab Brunch for two, an exclusive tasting kit, and a discount coupon for use on the website (cafelab.pt);",
+            redeemHour: "Brunch is served until 11 am;",
+            includes: "The voucher entitles you to CafeLab Brunch for two, an exclusive tasting kit, and a discount coupon to be used on the website (cafelab.pt);",
             noShipping: "The voucher will be sent within 24 hours after payment confirmation; Brunch cannot be shipped;",
-            limit: "Maximum of 10 redemptions per person. The voucher is non-refundable and cannot be exchanged for cash"
+            limit: "Maximum of 10 redemptions per person. The voucher is non-refundable and cannot be converted into cash."
         },
-        findOutMore: "Learn more",
+        findOutMore: "Find out more",
     },
 };
