@@ -55,7 +55,7 @@ const ProfilePage = () => {
                 navigate("/");
             } else {
                 try {
-                    const data = await OrderService.getOrdersByUserId(customer.username);
+                    const data = await OrderService.getOrdersByUserId(customer.email);
                     const [orders, subscriptions] = partition(data, order =>
                         Array.isArray(order.products) && order.type === 'LOJA'
                     );

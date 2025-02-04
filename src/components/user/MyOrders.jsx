@@ -24,7 +24,7 @@ const MyOrders = () => {
                 //navigate("/");
             } else {
                 try {
-                    const data = await OrderService.getOrdersByUserId(customer.username);
+                    const data = await OrderService.getOrdersByUserId(customer.email);
                     const filteredData = data.filter(order =>
                         Array.isArray(order.products) && order.products.every(product => product.id < 900)
                     );

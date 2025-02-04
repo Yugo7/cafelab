@@ -43,7 +43,7 @@ const LoginForm = () => {
             initialValues={{username: '', password: ''}}
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(true);
-                signin(values).then(res => {
+                signin(values).then(() => {
                     console.log("Successfully logged in");
                 }).catch(err => {
                     errorNotification(

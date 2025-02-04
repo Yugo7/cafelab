@@ -11,6 +11,7 @@ import Origins from "./Origins.jsx";
 import OrdersList from "./orders/OrdersList.jsx";
 import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
 import AnalyticsService from "../../services/AnalyticsService.jsx";
+import Balance from "@/components/dashboard/balance/Balance.jsx";
 
 const Dashboard = () => {
     const {customer} = useAuth();
@@ -18,6 +19,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [accesses, setAccesses] = useState([]);
+    const [balances, setBalances] = useState([]);
     const [dateRange, setDateRange] = useState({ startDate: new Date(), endDate: new Date() });
     const {t} = useTranslation();
 
@@ -40,6 +42,16 @@ const Dashboard = () => {
             }
         };
 
+        const fetchBalance = async () => {
+            try {
+                const data = await AnalyticsService.getBalance(dateRange.startDate.toISOString(), dateRange.endDate.toISOString());
+                setBalances(data);
+            } catch (error) {
+                console.error('Failed to fetch website access data:', error);
+            }
+        };
+
+        fetchBalance();
         fetchOrders();
         fetchAccesses();
     }, [customer, navigate, dateRange]);
@@ -61,6 +73,7 @@ const Dashboard = () => {
     return (
         <SidebarWithHeader>
             <Stack m={{base: 0, md: 6}} spacing={4}>
+                <Balance balanceData={balances} />
                 <OrderStatusGrid orders={orders}/>
                 <OrdersList orders={orders} products={products}/>
                 <AnalyticsChart accesses={accesses} setDateRange={setDateRange}/>

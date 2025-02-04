@@ -40,19 +40,17 @@ const OrderStatusGrid = ({orders}) => {
     const ordersByPaymentStatus = countOrdersByPaymentStatus(orders);
     const ordersByType = countOrdersByType(orders);
 
-    console.log('ordersByType:', ordersByType);
-
     const typeColors = {
         'LOJA': "blue",
         'SUBSCRICAO': 'orange'
     };
 
     const statusColors = {
-        'CREATED': 'gray',
-        'PENDING': 'yellow',
-        'ACTIVE': 'green',
-        'PAYMENT_SUCCESSFUL': 'green',
-        'CANCELLED': 'red',
+        'CRIADO': 'gray',
+        'PENDENTE': 'yellow',
+        'ATIVO': 'green',
+        'PAGAMENTO EFETUADO': 'green',
+        'CANCELADO': 'red',
         // Add more statuses and colors as needed
     };
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -18,7 +19,7 @@ const StripeService = {
 
     createCheckoutSession: async (cart) => {
         try {
-            const response = await axios.post(`${BASE_URL}sp/create-checkout`, {
+            const response = await axios.post(`${BASE_URL}checkout/payment`, {
                 cart: cart
             });
             window.location.href =  response.data.session.url;
@@ -31,7 +32,7 @@ const StripeService = {
 
     createSubscriptionCheckoutSession: async (subscription, user) => {
         try {
-            const response = await axios.post(`${BASE_URL}sp/create-checkout-session`, {
+            const response = await axios.post(`${BASE_URL}checkout/subscription`, {
                 subscription: subscription,
                 user: user
             });

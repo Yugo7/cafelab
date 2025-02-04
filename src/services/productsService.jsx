@@ -11,7 +11,7 @@ export const getProducts = async (useCache = true) => {
                 return JSON.parse(cachedData);
             }
         }
-        const { data } = await axios.get(`${BASE_URL}products/`);
+        const { data } = await axios.get(`${BASE_URL}products`);
         localStorage.setItem('products', JSON.stringify(data));
         localStorage.setItem('productsTime', new Date().getTime());
         return data;

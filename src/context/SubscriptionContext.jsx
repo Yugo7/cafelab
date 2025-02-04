@@ -33,7 +33,7 @@ export function SubscriptionProvider({children}) {
         setCoffee([]);
     }
 
-    function addCoffee(name) {
+    function addCoffee(id, name) {
         if (boxQuantity >= 3) {
             toast({
                 title: 'Limite máximo.',
@@ -41,18 +41,18 @@ export function SubscriptionProvider({children}) {
                 status: 'error',
                 duration: 2000,
                 isClosable: true,
-            })
+            });
             return;
         }
         setCoffee(prevCoffees => {
-            const existingCoffee = prevCoffees.find(coffee => coffee.name === name);
+            const existingCoffee = prevCoffees.find(coffee => coffee.id === id);
 
             if (existingCoffee) {
                 return prevCoffees.map(coffee =>
-                    coffee.name === name ? {...coffee, quantity: coffee.quantity + 1} : coffee
+                    coffee.id === id ? {...coffee, quantity: coffee.quantity + 1} : coffee
                 );
             } else {
-                return [...prevCoffees, {name, quantity: 1}];
+                return [...prevCoffees, {id, name, quantity: 1}];
             }
         });
     }

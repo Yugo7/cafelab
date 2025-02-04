@@ -28,6 +28,20 @@ const AnalyticsService = {
             throw error;
         }
     },
+
+
+    getBalance: async (startDate, endDate) => {
+        try {
+            const response = await axios.get(`${BASE_URL}balances/timeseries`, {
+                start: startDate,
+                end: endDate
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching website access data:', error);
+            throw error;
+        }
+    },
 }
 
 export default AnalyticsService;

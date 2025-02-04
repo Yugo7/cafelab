@@ -25,7 +25,7 @@ export default function Boutique() {
     const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
 
     const filteredProducts = products.filter(product =>
-        product[productNameColumn].toLowerCase().includes(searchTerm.toLowerCase())
+        product[productNameColumn] && product[productNameColumn].toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     useEffect(() => {

@@ -5,8 +5,9 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const OrderService = {
     getOrders: async () => {
         try {
-            const response = await axios.get(`${BASE_URL}orders/`);
-            return response.data.filter(order => !order.is_test);
+            const response = await axios.get(`${BASE_URL}orders`);
+            console.log(response.data)
+            return response.data.content.filter(order => !order.is_test);
         } catch (error) {
             console.error('Error fetching all orders:', error);
             throw error;
@@ -15,7 +16,7 @@ const OrderService = {
 
     getOrdersByUserId: async (userId) => {
         try {
-            const response = await axios.get(`${BASE_URL}orders/${userId}`);
+            const response = await axios.get(`${BASE_URL}users/${userId}/orders`);
             return response.data.filter(order => !order.is_test);
         } catch (error) {
             console.error('Error fetching orders by user ID:', error);

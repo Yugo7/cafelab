@@ -10,11 +10,13 @@ const AuthProvider = ({ children }) => {
     const setCustomerFromToken = () => {
         let token = localStorage.getItem("access_token");
         if (token) {
-            token = jwtDecode(token);
+            let decodedToken = jwtDecode(token);
             setCustomer({
-                username: token.email,
-                name: token.name ? token.name : token.email,
-                role: token.scopes,
+                username: decodedToken.username,
+                email: decodedToken.sub,
+                name: decodedToken.name ? decodedToken.name : decodedToken.sub,
+                role: decodedToken.role,
+                id: decodedToken.id
             });
         }
     };
@@ -31,13 +33,7 @@ const AuthProvider = ({ children }) => {
             performLogin(usernameAndPassword).then(res => {
                 const jwtToken = res.data;
                 localStorage.setItem("access_token", jwtToken);
-
-                const decodedToken = jwtDecode(jwtToken);
-                setCustomer({
-                    username: decodedToken.email,
-                    name: decodedToken.name ? decodedToken.name : decodedToken.email,
-                    role: decodedToken.scopes,
-                });
+                setCustomerFromToken();
                 resolve(res);
             }).catch(err => {
                 reject(err);

@@ -1,4 +1,4 @@
-import {Box, Button, Card, Grid, GridItem, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import {Box, Button, Grid, GridItem, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React, {useEffect, useMemo, useState} from "react";
 import {useSubscription} from "../../context/SubscriptionContext.jsx";
 import { useTranslation } from 'react-i18next';
@@ -17,8 +17,6 @@ export default function ProductCarouselItem({product, isActive}) {
 
     const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
-    const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
-
     const {
         getCoffeeQuantity,
         addCoffee,
@@ -41,7 +39,7 @@ export default function ProductCarouselItem({product, isActive}) {
                     <Stack mx={2} alignSelf={"center"}>
                         <span>{coffeeQuantity}</span>
                     </Stack>
-                    <Button variant='ghost' onClick={() => addCoffee(product[productNameColumn])}>+</Button>
+                    <Button variant='ghost' onClick={() => addCoffee(product.id, product[productNameColumn])}>+</Button>
                 </Stack>
             </Stack>
             <Stack alignItems="center" align="center">
