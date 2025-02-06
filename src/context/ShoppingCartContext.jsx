@@ -3,6 +3,7 @@ import {useLocalStorage} from "../components/hooks/useLocalStorage.jsx"
 import {ShoppingCart} from "../components/cart/ShoppingCart.jsx"
 import {getProducts} from "../services/productsService.jsx";
 import { clearCache } from '../utils/cacheUtils';
+import {useToast} from "@chakra-ui/react";
 
 const ShoppingCartContext = createContext({})
 
@@ -11,6 +12,7 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({children}) {
+    const toast = useToast()
     const [isOpen, setIsOpen] = useState(false)
     const [cartItems, setCartItems] = useLocalStorage(
         "shopping-cart",
@@ -65,18 +67,27 @@ export function ShoppingCartProvider({children}) {
 
     function increaseCartQuantity(id) {
         setCartItems(currItems => {
-            if (currItems.find(item => item.id === id) == null) {
-                return [...currItems, {id, quantity: 1}];
+            const existingItem = currItems.find(item => item.id === id);
+
+            if (existingItem) {
+                if (existingItem.quantity >= 5) {
+                    toast({
+                        title: 'Limite máximo.',
+                        description: "Não é possível adicionar mais de 5 unidades deste item.",
+                        status: 'error',
+                        duration: 2000,
+                        isClosable: true,
+                    });
+                    return currItems;
+                } else {
+                    return currItems.map(item =>
+                        item.id === id ? {...item, quantity: item.quantity + 1} : item
+                    );
+                }
             } else {
-                return currItems.map(item => {
-                    if (item.id === id) {
-                        return {...item, quantity: item.quantity + 1}
-                    } else {
-                        return item
-                    }
-                })
+                return [...currItems, {id, quantity: 1}];
             }
-        })
+        });
     }
 
     function addSubscription(incoming) {

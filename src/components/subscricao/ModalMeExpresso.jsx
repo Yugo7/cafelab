@@ -16,22 +16,23 @@ import {
     Text,
     useToast
 } from '@chakra-ui/react';
-import React, { useState } from "react";
-import { FaCheck } from 'react-icons/fa';
+import React, {useState} from "react";
+import {FaCheck} from 'react-icons/fa';
 import ProductsCarousel from "../products/ProductsCarousel.jsx";
 
 const ModalMeExpresso = ({
-    isOpen,
-    onClose,
-    t,
-    isOpenIndex,
-    setIsOpenIndex,
-    variety,
-    handleChangeVariety,
-    boxQuantity,
-    createEuMeExpresso,
-    handleNextClick
-}) => {
+                             isOpen,
+                             onClose,
+                             t,
+                             isOpenIndex,
+                             setIsOpenIndex,
+                             variety,
+                             handleChangeVariety,
+                             boxQuantity,
+                             coffee,
+                             createEuMeExpresso,
+                             handleNextClick
+                         }) => {
     const [payment, setPayment] = useState('3');
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
@@ -69,10 +70,10 @@ const ModalMeExpresso = ({
 
     return (
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' size={"full"}>
-            <ModalOverlay />
+            <ModalOverlay/>
             <ModalContent>
                 <ModalHeader>{t('meexpresso.yourSubscription')}</ModalHeader>
-                <ModalCloseButton />
+                <ModalCloseButton/>
                 <ModalBody overflowY="auto">
                     <Accordion allowToggle={false} index={isOpenIndex} onChange={setIsOpenIndex}>
                         <AccordionItem>
@@ -84,7 +85,8 @@ const ModalMeExpresso = ({
                             <AccordionPanel>
                                 <Stack>
                                     <Stack my={4}>
-                                        <Select placeholder={t('subscription.howYouWantYourCoffee')} value={variety} onChange={handleChangeVariety}>
+                                        <Select placeholder={t('subscription.howYouWantYourCoffee')} value={variety}
+                                                onChange={handleChangeVariety}>
                                             <option value='beans'>{t('subscription.beans')}</option>
                                             <option value='expresso'>{t('subscription.espresso')}</option>
                                             <option value='frenchpress'>{t('subscription.frenchPress')}</option>
@@ -96,14 +98,21 @@ const ModalMeExpresso = ({
                                             {t('meexpresso.selectYourCoffee')}: {boxQuantity}/3
                                         </Text>
                                         <Stack px={4}>
-                                            <Button leftIcon={<FaCheck />} onClick={handleNextClick} size='sm' border='2px'
-                                                variant='outline' colorScheme='#FEEBC8' disabled={boxQuantity !== 3}>
+                                            <Button leftIcon={<FaCheck/>} onClick={handleNextClick} size='sm'
+                                                    border='2px'
+                                                    variant='outline' colorScheme='#FEEBC8'
+                                                    disabled={boxQuantity !== 3}>
                                                 {t('subscription.done')}
                                             </Button>
                                         </Stack>
                                     </Stack>
+                                    <Stack px={4}>
+                                        {coffee.map((coffeeItem, index) => (
+                                            <Text key={index}>{coffeeItem.name}: {coffeeItem.quantity}</Text>
+                                        ))}
+                                    </Stack>
                                 </Stack>
-                                <ProductsCarousel />
+                                <ProductsCarousel/>
                             </AccordionPanel>
                         </AccordionItem>
                         <AccordionItem>
@@ -126,7 +135,8 @@ const ModalMeExpresso = ({
                                 <Text className="ms-auto" fontSize={"2xl"}>
                                     {t('meexpresso.pricePerMonth')}
                                 </Text>
-                                <Button m={2} colorScheme={"green"} onClick={() => finishSubscription()}>{t('meexpresso.checkout')}</Button>
+                                <Button m={2} colorScheme={"green"}
+                                        onClick={() => finishSubscription()}>{t('meexpresso.checkout')}</Button>
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
@@ -134,15 +144,15 @@ const ModalMeExpresso = ({
                     <Stack p={6} className=" cafelab d-flex align-items-left">
                         <Text fontSize={"md"}>
                             {t('subscription.rules.name')}
-                            <br />
+                            <br/>
                             - {t('subscription.rules.subscribeBy25')}
-                            <br />
+                            <br/>
                             - {t('subscription.rules.subscriptionsAfter25')}
-                            <br />
+                            <br/>
                             - {t('subscription.rules.automaticRenewal')}
-                            <br />
+                            <br/>
                             - {t('subscription.rules.freeCancellation')}
-                            <br />
+                            <br/>
                             - {t('subscription.rules.freeShipping')}
                         </Text>
                     </Stack>

@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 export default function ProductCarouselItem({product, isActive}) {
     const stackSpacing = useBreakpointValue({base: "20px", md: "40px"});
-    const fontHl = useBreakpointValue({base: "2xl", md: "52px"});
-    const fontHl2 = useBreakpointValue({base: "lg", md: "2xl"});
+    const fontHl = useBreakpointValue({base: "2xl", md: "35px"});
+    const fontHl2 = useBreakpointValue({base: "lg", md: "xl"});
     const fontContent = useBreakpointValue({base: "md", md: "xl"});
     const sectionHeight = useBreakpointValue({base: "90%", md: "90%"});
     const imageHeight = useBreakpointValue({base: "200px", md: "350px"});
@@ -34,8 +34,8 @@ export default function ProductCarouselItem({product, isActive}) {
     }, [getCoffeeQuantity, product[productNameColumn]]);
 
     return (
-        <Box className={isActive ? "carousel-item active" : "carousel-item"}>
-            <Stack mb={8} align={'center'}>
+        <Box className={isActive ? "carousel-item active" : "carousel-item"} >
+            <Stack mb={{base: "", md: 8}} align={'center'}>
                 <Stack direction={"row"}>
                     <Button variant='ghost' onClick={() => removeCoffee(product[productNameColumn])}>-</Button>
                     <Stack mx={2} alignSelf={"center"}>
@@ -53,9 +53,11 @@ export default function ProductCarouselItem({product, isActive}) {
                         templateColumns={gridValue}
                     >
                         <Box
-                            minW={'300px'}
+                            minW={'200px'}
                             align='center'
                             mt={8}
+                            height={{base: "200px", md: "auto"}}
+                            mr={{base: 0, md: 10}}
                         >
                             <Image
                                 src={product.imagem}
@@ -67,9 +69,9 @@ export default function ProductCarouselItem({product, isActive}) {
                             />
                         </Box>
 
-                        <GridItem rowSpan={1}>
+                        <GridItem rowSpan={1} h={{base: "50vh", md: "auto"}}>
                             <Stack justify="flex-end" maxWidth="100%" mt={4}>
-                                <Text className="font-headline text-center" fontSize={fontHl}>{product[productNameColumn].toUpperCase()}</Text>
+                                <Text className="font-headline text-center fit-text" fontSize={fontHl}>{product[productNameColumn].toUpperCase()}</Text>
                                 <Text className="font-headline text-center" fontSize={fontHl2}>Origem: {product.origem}</Text>
                             </Stack>
                             <Stack justify="flex-end" maxWidth="100%" my={5}>

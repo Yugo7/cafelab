@@ -1,7 +1,4 @@
-import Stripe from "stripe";
 import axios from "axios";
-
-const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -30,7 +27,6 @@ const StripeService = {
             console.error('Error creating checkout session:', error);
             throw error;
         }
-
     },
 
     createSubscriptionCheckoutSession: async (subscription, user) => {
@@ -45,7 +41,6 @@ const StripeService = {
             console.error('Error creating checkout session:', error);
             throw error;
         }
-
     }
 }
 

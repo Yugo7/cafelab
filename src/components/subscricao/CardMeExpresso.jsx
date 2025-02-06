@@ -6,19 +6,19 @@ import {
     useDisclosure,
     useToast, Tooltip
 } from "@chakra-ui/react";
-import { FaHandshake } from "react-icons/fa";
-import React, { useState } from "react";
-import { useSubscription } from "../../context/SubscriptionContext.jsx";
-import { Trans, useTranslation } from "react-i18next";
+import {FaHandshake} from "react-icons/fa";
+import React, {useState} from "react";
+import {useSubscription} from "../../context/SubscriptionContext.jsx";
+import {Trans, useTranslation} from "react-i18next";
 import ModalMeExpresso from "./ModalMeExpresso.jsx";
 
 const CardMeExpresso = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {isOpen, onOpen, onClose} = useDisclosure();
     const [isOpenIndex, setIsOpenIndex] = useState(0);
-    const { boxQuantity, createEuMeExpresso } = useSubscription();
+    const {boxQuantity, createEuMeExpresso, coffee} = useSubscription();
     const [variety, setVariety] = useState('');
     const toast = useToast();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     const handleNextClick = () => {
         if (variety === '') {
@@ -39,11 +39,11 @@ const CardMeExpresso = () => {
     };
 
     return (
-        <Box             
-        w={{"base": "100%", "md": "50%"}}   
-        bgColor={"whiteAlpha.50"}
-        height={"100%"}>
-            <Stack className="box-header" >
+        <Box
+            w={{"base": "100%", "md": "50%"}}
+            bgColor={"whiteAlpha.50"}
+            height={"100%"}>
+            <Stack className="box-header">
                 <Stack justify="flex-start" align="center" fontSize={"3xl"} spacing="0px">
                     <Text className="font-headline">
                         {t('meexpresso.name')}
@@ -55,10 +55,10 @@ const CardMeExpresso = () => {
                 </Stack>
             </Stack>
             <Stack mx={4}>
-                <Box my={{ base: 4, md: 2 }}>
+                <Box my={{base: 4, md: 2}}>
                 </Box>
                 <Stack p={4} mb={6} pt={10}>
-                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"} >
+                    <Text align="center" fontSize={"lg"} fontWeight={"semibold"}>
                         <Trans>{t('meexpresso.coffeeDescription')}</Trans>
                     </Text>
                     <Text fontSize={"md"} align="center">
@@ -67,15 +67,12 @@ const CardMeExpresso = () => {
                 </Stack>
             </Stack>
 
-            <Stack mt={12} >
+            <Stack mt={12}>
                 <Stack alignSelf="center" justifyContent="center">
-                    <Tooltip label={t('meexpresso.changingStock')} aria-label="A tooltip">
-                        <Button leftIcon={<FaHandshake />} onClick={onOpen} size='lg' height='48px' border='2px'
-                                variant='outline' colorScheme='#FEEBC8'
-                                disabled={true} >
-                            {t('meexpresso.ratherChoose')}
-                        </Button>
-                    </Tooltip>
+                    <Button leftIcon={<FaHandshake/>} onClick={onOpen} size='lg' height='48px' border='2px'
+                            variant='outline' colorScheme='#FEEBC8'>
+                        {t('meexpresso.ratherChoose')}
+                    </Button>
                     <ModalMeExpresso
                         isOpen={isOpen}
                         onClose={onClose}
@@ -85,6 +82,7 @@ const CardMeExpresso = () => {
                         variety={variety}
                         handleChangeVariety={handleChangeVariety}
                         boxQuantity={boxQuantity}
+                        coffee={coffee}
                         createEuMeExpresso={createEuMeExpresso}
                         handleNextClick={handleNextClick}
                     />

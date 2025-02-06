@@ -36,7 +36,7 @@ export function SubscriptionProvider({children}) {
     function addCoffee(name) {
         if (boxQuantity >= 3) {
             toast({
-                title: 'Limie máximo.',
+                title: 'Limite máximo.',
                 description: "Já há 3 cafés na sua seleção.",
                 status: 'error',
                 duration: 2000,
@@ -102,7 +102,8 @@ export function SubscriptionProvider({children}) {
                 boxQuantity,
                 emptyCoffee,
                 createFeNoCafelab,
-                createEuMeExpresso
+                createEuMeExpresso,
+                coffee
             }}
         >
             {children}

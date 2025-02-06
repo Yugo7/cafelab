@@ -1,12 +1,15 @@
 import SidebarWithHeader from "../components/shared/SideBar.jsx";
-import {Button, Image, Spacer, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import {Button, HStack, Image, Spacer, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {useShoppingCart} from "@/context/ShoppingCartContext.jsx";
+import {ButtonGroup} from "react-bootstrap";
+import {MdAddShoppingCart} from "react-icons/md";
 
 const Special = () => {
+    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
+    const quantityInCart = getItemQuantity(40);
 
-    const {increaseCartQuantity} = useShoppingCart();
     const handleButtonClick = () => {
         increaseCartQuantity(40);
     };
@@ -49,10 +52,24 @@ const Special = () => {
             </Stack>
 
             <Stack m={4} p={6} className=" cafelab d-flex align-items-left">
-                <Button mb={8} size={"lg"} colorScheme={"red"} onClick={handleButtonClick} alignSelf={"center"}>
-                    {t('special.addToCart')}
-                </Button>
-
+                    {
+                        quantityInCart > 0 ? (
+                            <>
+                            <Text alignSelf={"center"}>{quantityInCart} {t('special.inCart')}</Text>
+                            <HStack alignSelf={"center"}>
+                                <Button variant='ghost' onClick={() => decreaseCartQuantity(40)}>-</Button>
+                                <Stack mx={2} alignSelf={"center"}>
+                                    <span fontSize={3}>{quantityInCart}</span>
+                                </Stack>
+                                <Button variant='ghost' onClick={() => increaseCartQuantity(40)}>+</Button>
+                            </HStack>
+                            </>
+                        ) : (
+                            <Button mb={8} size={"lg"} colorScheme={"red"} onClick={handleButtonClick} alignSelf={"center"}>
+                                {t('special.addToCart')}
+                            </Button>
+                        )
+                    }
                 <Text m={4} fontSize={"md"}>
                     {t('special.rules.name')}
                     <br/>

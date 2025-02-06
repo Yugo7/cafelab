@@ -393,8 +393,10 @@ export default {
             redeemHour: "Brunch is served until 11 am;",
             includes: "The voucher entitles you to CafeLab Brunch for two, an exclusive tasting kit, and a discount coupon to be used on the website (cafelab.pt);",
             noShipping: "The voucher will be sent within 24 hours after payment confirmation; Brunch cannot be shipped;",
-            limit: "Maximum of 10 redemptions per person. The voucher is non-refundable and cannot be converted into cash."
+            limit: "Vouchers are available while supplies last. Maximum of 2 redemptions per person. The voucher is non-refundable and cannot be converted into cash."
         },
         findOutMore: "Find out more",
+        inCart: " vouchers in cart 💕",
     },
+
 };

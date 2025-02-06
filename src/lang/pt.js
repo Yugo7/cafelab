@@ -396,8 +396,9 @@ export default {
             redeemHour: "Os brunchs são servidos até às 11hs;",
             includes: "O voucher dá direito ao Brunch CafeLab para duas pessoas, um kit degustação exclusivo e mais um cupom de desconto para ser utilizado no site (cafelab.pt);",
             noShipping: "O voucher será enviado em até 24 horas após a confirmação do pagamento; O brunch não pode ser enviado;",
-            limit: "Maximo de 10 resgates por pessoa. O voucher não é reembolsável e não pode ser convertido em numerário."
+            limit: "Os vouchers tem quantidade limitada. Máximo de 2 resgates por pessoa. O voucher não é reembolsável e não pode ser convertido em numerário."
         },
         findOutMore: "Saiba mais",
+        inCart: "vouchers no carrinho 💕",
     },
 }
