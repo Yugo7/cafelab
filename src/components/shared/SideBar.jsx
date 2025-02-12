@@ -21,24 +21,23 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 import logo from '/assets/logo.png';
-
-import {useNavigate} from 'react-router-dom';
-
-import {FiCalendar, FiUsers, FiHome, FiMenu, FiPackage} from 'react-icons/fi';
-import {GrAnnounce} from "react-icons/gr";
-import {MdDashboard, MdEvent} from "react-icons/md";
-
+import { useNavigate } from 'react-router-dom';
+import { FiCalendar, FiUsers, FiHome, FiMenu, FiPackage, FiShare2 } from 'react-icons/fi';
+import { GrAnnounce } from "react-icons/gr";
+import { MdDashboard, MdEvent } from "react-icons/md";
 import Footer from "./Footer.jsx";
-import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
-import {useShoppingCart} from "../../context/ShoppingCartContext.jsx";
-import {Stack} from "react-bootstrap";
-import {useAuth} from "../../context/AuthContext.jsx";
-import {TbPaperBag} from "react-icons/tb";
-import {useTranslation} from "react-i18next";
+import { FaShoppingCart, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
+import { Stack } from "react-bootstrap";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { TbPaperBag } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
+import ShareModal from './ShareModal'; // Import ShareModal
 
+export default function SidebarWithHeader({ children }) {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isShareOpen, onOpen: onOpenShare, onClose: onCloseShare } = useDisclosure(); // Add disclosure for ShareModal
 
-export default function SidebarWithHeader({children}) {
-    const {isOpen, onOpen, onClose} = useDisclosure();
     return (
         <>
             <Box className="sidebar-with-header" height={"80px"}>
@@ -51,19 +50,18 @@ export default function SidebarWithHeader({children}) {
                         returnFocusOnClose={false}
                         onOverlayClick={onClose}>
                         <DrawerContent>
-                            <SidebarContent onClose={onClose}/>
+                            <SidebarContent onClose={onClose} />
                         </DrawerContent>
                     </Drawer>
-                    <MobileNav onOpen={onOpen}/>
+                    <MobileNav onOpenMenu={onOpen} onOpenShare={onOpenShare} />
                 </Flex>
             </Box>
             <Stack gap={4} className='main'>
                 {children}
-                <Footer>
-                </Footer>
+                <Footer />
             </Stack>
+            <ShareModal isOpen={isShareOpen} onClose={onCloseShare}/>
         </>
-
     );
 }
 
@@ -188,11 +186,10 @@ const NavItem = ({icon, route, children, ...rest}) => {
     );
 };
 
-const MobileNav = ({onOpen, ...rest}) => {
+const MobileNav = ({ onOpenMenu, onOpenShare, ...rest }) => {
     const navigate = useNavigate();
-    const {cartQuantity, openCart} = useShoppingCart()
-
-    const {i18n} = useTranslation();
+    const { cartQuantity, openCart } = useShoppingCart();
+    const { i18n } = useTranslation();
     const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
 
     const handleChange = (event) => {
@@ -201,6 +198,7 @@ const MobileNav = ({onOpen, ...rest}) => {
         i18n.changeLanguage(newLanguage);
         localStorage.setItem('language', newLanguage);
     };
+
     return (
         <>
             <Flex
@@ -209,15 +207,23 @@ const MobileNav = ({onOpen, ...rest}) => {
                 bg={useColorModeValue('white', 'gray.900')}
                 borderBottomWidth="1px"
                 borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-                justifyContent={{base: 'space-between', md: 'space-between'}}
+                justifyContent={{ base: 'space-between', md: 'space-between' }}
                 {...rest}>
-                <IconButton
-                    ml={{base: 4, lg: 60}}
-                    onClick={onOpen}
-                    variant="ghost"
-                    aria-label="open menu"
-                    icon={<FiMenu/>}
-                />
+                <HStack alignContent={"flex-start"}>
+                    <IconButton
+                        ml={{ base: 4, lg: 60 }}
+                        onClick={onOpenMenu}
+                        variant="ghost"
+                        aria-label="open menu"
+                        icon={<FiMenu />}
+                    />
+                    <IconButton
+                        onClick={onOpenShare } // Call onOpenShare when share icon is clicked
+                        variant="ghost"
+                        aria-label="open share modal"
+                        icon={<FiShare2 />}
+                    />
+                </HStack>
                 <AbsoluteCenter axis='horizontal'>
                     <Image
                         height={"16"}
@@ -227,23 +233,20 @@ const MobileNav = ({onOpen, ...rest}) => {
                         onClick={() => navigate('/')}
                     />
                 </AbsoluteCenter>
-                <Flex justifyContent="flex-end" alignItems="center" mr={{base: 4, lg: 60}}>
-                    <Select w={useBreakpointValue({base: "70px", md: "100px"})} value={selectedValue}
-                            onChange={handleChange}>
-                        <option value='en'>{useBreakpointValue({base: "🇺🇸", md: "🇺🇸 EN"})}</option>
-                        <option value='pt'>{useBreakpointValue({base: "🇵🇹", md: "🇵🇹 PT"})}</option>
+                <Flex justifyContent="flex-end" alignItems="center" mr={{ base: 4, lg: 60 }}>
+                    <Select w={useBreakpointValue({ base: "64px", md: "100px" })} value={selectedValue} onChange={handleChange}>
+                        <option value='en'>{useBreakpointValue({ base: "🇺🇸", md: "🇺🇸 EN" })}</option>
+                        <option value='pt'>{useBreakpointValue({ base: "🇵🇹", md: "🇵🇹 PT" })}</option>
                     </Select>
                     <IconButton
                         size="lg"
                         variant="ghost"
                         aria-label="shopping cart"
-                        icon={<FaShoppingCart/>}
+                        icon={<FaShoppingCart />}
                         onClick={openCart}
                     >
                     </IconButton>
-                    <Badge ml={-3}
-                           bgColor={"red.400"}
-                           color={"white"}>
+                    <Badge ml={-3} bgColor={"red.400"} color={"white"}>
                         {cartQuantity}
                     </Badge>
                 </Flex>

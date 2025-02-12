@@ -20,67 +20,6 @@ import { v4 as uuidv4 } from 'uuid';
 import CouponList from './CouponList';
 import {fetchCoupons} from "@/services/adsService.jsx";
 
-const getMockCoupons = () => {
-    return [
-        {
-            id: 'YZnYrQeh',
-            name: 'Cupom exclusivo subscricao',
-            percent_off: null,
-            amount_off: 500,
-            currency: 'eur',
-            duration: 'forever',
-            valid: false,
-            redeem_by: null,
-            promotionCodes: [
-                {
-                    id: 'promo_1QKUrwRqqMn2mwDSUordunad',
-                    active: true,
-                    code: 'SUB5',
-                    created: 1731459340,
-                    max_redemptions: 1,
-                    times_redeemed: 0
-                }
-            ]
-        },
-        {
-            id: 'Nwp6iD30',
-            name: 'Cupom sorteio Correio do bem',
-            percent_off: null,
-            amount_off: 500,
-            currency: 'eur',
-            duration: 'forever',
-            valid: true,
-            redeem_by: null,
-            promotionCodes: [
-                {
-                    id: 'promo_1QG7PJRqqMn2mwDSvLFJ0ZUN',
-                    active: true,
-                    code: 'sorteiofeira55',
-                    created: 1730415841,
-                    max_redemptions: null,
-                    times_redeemed: 0
-                },
-                {
-                    id: 'promo_1QG7P3RqqMn2mwDSnS8lGc9R',
-                    active: true,
-                    code: 'sorteiofeira14',
-                    created: 1730415825,
-                    max_redemptions: null,
-                    times_redeemed: 0
-                },
-                {
-                    id: 'promo_1QG7OqRqqMn2mwDSsEDA5v54',
-                    active: true,
-                    code: 'sorteioFeira1',
-                    created: 1730415812,
-                    max_redemptions: 1,
-                    times_redeemed: 0
-                }
-            ]
-        }
-    ];
-};
-
 const CouponManager = () => {
     const [coupons, setCoupons] = useState([]);
     const [currentCoupon, setCurrentCoupon] = useState({ id: '', code: '', discount: '' });
@@ -107,7 +46,7 @@ const CouponManager = () => {
         } else {
             const newCoupon = { ...currentCoupon, id: uuidv4() };
             setCoupons([...coupons, newCoupon]);
-            toast({ title: 'Cupom criado', status: 'success', duration: 3000, isClosable: true });
+            toast({title: 'Cupom criado', status: 'success', duration: 3000, isClosable: true});
         }
         setCurrentCoupon({ id: '', code: '', discount: '' });
         onClose();
