@@ -397,6 +397,7 @@ export default {
         },
         findOutMore: "Find out more",
         inCart: " vouchers in cart 💕",
+        saleOver: "Brunch sales are over! Thanks for participating!",
     },
 
 };

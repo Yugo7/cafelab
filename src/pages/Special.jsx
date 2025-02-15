@@ -1,19 +1,9 @@
 import SidebarWithHeader from "../components/shared/SideBar.jsx";
-import {Button, HStack, Image, Spacer, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import {Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
-import {useShoppingCart} from "@/context/ShoppingCartContext.jsx";
-import {ButtonGroup} from "react-bootstrap";
-import {MdAddShoppingCart} from "react-icons/md";
 
 const Special = () => {
-    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
-    const quantityInCart = getItemQuantity(40);
-
-    const handleButtonClick = () => {
-        increaseCartQuantity(40);
-    };
-
     const fontHeadlineSize = useBreakpointValue({base: "lg", md: "2xl"});
     const {t} = useTranslation();
     return (
@@ -28,7 +18,7 @@ const Special = () => {
                 <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize}
                       letterSpacing="tighter" color="black"
                       textAlign="center" mx={4}
-                      whiteSpace="pre-line" >
+                      whiteSpace="pre-line">
                     {t('special.description')}
                 </Text>
 
@@ -51,25 +41,10 @@ const Special = () => {
                 </Text>
             </Stack>
 
-            <Stack m={4} p={6} className=" cafelab d-flex align-items-left">
-                    {
-                        quantityInCart > 0 ? (
-                            <>
-                            <Text alignSelf={"center"}>{quantityInCart} {t('special.inCart')}</Text>
-                            <HStack alignSelf={"center"}>
-                                <Button variant='ghost' onClick={() => decreaseCartQuantity(40)}>-</Button>
-                                <Stack mx={2} alignSelf={"center"}>
-                                    <span fontSize={3}>{quantityInCart}</span>
-                                </Stack>
-                                <Button variant='ghost' onClick={() => increaseCartQuantity(40)}>+</Button>
-                            </HStack>
-                            </>
-                        ) : (
-                            <Button mb={8} size={"lg"} colorScheme={"red"} onClick={handleButtonClick} alignSelf={"center"}>
-                                {t('special.addToCart')}
-                            </Button>
-                        )
-                    }
+            <Stack m={4} p={6}  alignSelf={"center"} maxW={"500px"} className=" cafelab d-flex align-items-left">
+                <Text alignSelf={"center"} color="red.500" fontSize="xl">
+                    {t('special.saleOver')}
+                </Text>
                 <Text m={4} fontSize={"md"}>
                     {t('special.rules.name')}
                     <br/>

@@ -400,5 +400,6 @@ export default {
         },
         findOutMore: "Saiba mais",
         inCart: "vouchers no carrinho 💕",
+        saleOver: "Vendas encerradas para o Brunch de São Valentim. Obrigado por participar!",
     },
 }
