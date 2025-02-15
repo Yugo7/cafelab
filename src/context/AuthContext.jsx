@@ -11,11 +11,12 @@ const AuthProvider = ({ children }) => {
         let token = localStorage.getItem("access_token");
         if (token) {
             let decodedToken = jwtDecode(token);
+            console.log(decodedToken.roles.map(role => role.authority));
             setCustomer({
                 username: decodedToken.username,
                 email: decodedToken.sub,
                 name: decodedToken.name ? decodedToken.name : decodedToken.sub,
-                role: decodedToken.role,
+                role: decodedToken.roles.map(role => role.authority),
                 id: decodedToken.id
             });
         }
@@ -31,7 +32,7 @@ const AuthProvider = ({ children }) => {
     const signin = async (usernameAndPassword) => {
         return new Promise((resolve, reject) => {
             performLogin(usernameAndPassword).then(res => {
-                const jwtToken = res.data;
+                const jwtToken = res.data.token;
                 localStorage.setItem("access_token", jwtToken);
                 setCustomerFromToken();
                 resolve(res);
@@ -87,8 +88,9 @@ const AuthProvider = ({ children }) => {
             return false;
         }
         const token = localStorage.getItem("access_token");
-        const { role } = jwtDecode(token);
-        return role ? role : false;
+
+        const decodedToken = jwtDecode(token);
+        return decodedToken.roles.map(role => role.authority);
     };
 
     return (

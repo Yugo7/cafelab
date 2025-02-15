@@ -30,7 +30,6 @@ import ModalFeNoCafe from "./ModalSubscrption.jsx";
 function CardFeNoCafe() {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const toast = useToast();
     const { createFeNoCafelab } = useSubscription();
     const { t } = useTranslation();
 
@@ -43,22 +42,6 @@ function CardFeNoCafe() {
     const handleChangePayment = (event) => {
         setPayment(event.target.value);
     };
-
-
-    function getPaymentText() {
-        switch (payment) {
-            case '1':
-                return '€27.90 / mês';
-            case '3':
-                return '€83.70 / trimestre';
-            case '6':
-                return '€167.40 / semestre';
-            case '12':
-                return '€334.80 / ano';
-            default:
-                return '';
-        }
-    }
 
     return (
         <Box
@@ -107,7 +90,6 @@ function CardFeNoCafe() {
                         payment={payment}
                         handleChangePayment={handleChangePayment}
                         createFeNoCafelab={createFeNoCafelab}
-                        getPaymentText={getPaymentText}
                     />
                 </Stack>
             </Stack>

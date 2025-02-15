@@ -22,7 +22,7 @@ const StripeService = {
             const response = await axios.post(`${BASE_URL}checkout/payment`, {
                 cart: cart
             });
-            window.location.href =  response.data.session.url;
+            window.location.href =  response.data.url;
             return response.data;
         } catch (error) {
             console.error('Error creating checkout session:', error);
@@ -36,7 +36,7 @@ const StripeService = {
                 subscription: subscription,
                 user: user
             });
-            window.location.href =  response.data.session.url;
+            window.location.href =  response.data.url;
             return response.data;
         } catch (error) {
             console.error('Error creating checkout session:', error);

@@ -22,8 +22,7 @@ const ModalFeNoCafe = ({
     handleChangeVariety,
     payment,
     handleChangePayment,
-    createFeNoCafelab,
-    getPaymentText
+    createFeNoCafelab
 }) => {
     const toast = useToast();
     

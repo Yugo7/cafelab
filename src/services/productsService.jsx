@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInstance from "@/services/axiosInstance.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -11,7 +12,7 @@ export const getProducts = async (useCache = true) => {
                 return JSON.parse(cachedData);
             }
         }
-        const { data } = await axios.get(`${BASE_URL}products`);
+        const { data } = await axiosInstance.get(`${BASE_URL}products`);
         localStorage.setItem('products', JSON.stringify(data));
         localStorage.setItem('productsTime', new Date().getTime());
         return data;

@@ -33,8 +33,10 @@ const AnalyticsService = {
     getBalance: async (startDate, endDate) => {
         try {
             const response = await axios.get(`${BASE_URL}balances/timeseries`, {
-                start: startDate,
-                end: endDate
+                params: {
+                    start: startDate,
+                    end: endDate
+                }
             });
             return response.data;
         } catch (error) {

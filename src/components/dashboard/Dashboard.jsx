@@ -53,7 +53,7 @@ const Dashboard = () => {
 
         fetchBalance();
         fetchOrders();
-        fetchAccesses();
+        //fetchAccesses();
     }, [customer, navigate, dateRange]);
 
     const calculateTotalPrice = (products) => {
@@ -74,10 +74,6 @@ const Dashboard = () => {
         <SidebarWithHeader>
             <Stack m={{base: 0, md: 6}} spacing={4}>
                 <Balance balanceData={balances} />
-                <OrderStatusGrid orders={orders}/>
-                <OrdersList orders={orders} products={products}/>
-                <AnalyticsChart accesses={accesses} setDateRange={setDateRange}/>
-                <Origins accesses={accesses} dateRange={dateRange}/>
             </Stack>
         </SidebarWithHeader>)
 }
