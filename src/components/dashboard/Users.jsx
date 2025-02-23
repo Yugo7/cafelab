@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Input, Heading, Table, Thead, Tbody, Tr, Th, Td, Wrap, WrapItem} from '@chakra-ui/react';
-import { FaCheckDouble } from "react-icons/fa";
+import {FaCheckDouble} from "react-icons/fa";
 import UserService from '../../services/UserService.jsx';
 import SidebarWithHeader from "@/components/shared/SideBar.jsx";
 import UserModal from './users/UserModal.jsx';
@@ -47,7 +47,7 @@ const UsersPage = () => {
     );
 
     return (
-        <SidebarWithHeader>
+        <>
             <Box p={4}>
                 <Heading mb={4}>Base de clientes</Heading>
                 <Input
@@ -60,7 +60,7 @@ const UsersPage = () => {
             <Wrap justify={"center"} spacing={"30px"}>
                 {filteredUsers.map((user, index) => (
                     <WrapItem key={index}>
-                        <CustomerCard user={user} />
+                        <CustomerCard user={user}/>
                     </WrapItem>
                 ))}
             </Wrap>
@@ -70,7 +70,7 @@ const UsersPage = () => {
                 selectedUser={selectedUser}
                 orders={orders}
             />
-        </SidebarWithHeader>
+        </>
     );
 };
 

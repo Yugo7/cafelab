@@ -36,8 +36,8 @@ const Events = () => {
     const handleSave = async (event) => {
         try {
             if (currentEvent) {
-                await eventService.updateEvent({ ...currentEvent, ...event });
-                setEvents(events.map(e => e.id === currentEvent.id ? { ...currentEvent, ...event } : e));
+                await eventService.updateEvent({...currentEvent, ...event});
+                setEvents(events.map(e => e.id === currentEvent.id ? {...currentEvent, ...event} : e));
             } else {
                 const newEvent = await eventService.createEvent(event);
                 setEvents([...events, newEvent]);
@@ -69,24 +69,21 @@ const Events = () => {
     };
 
     return (
-        <SidebarWithHeader>
-            <Box m={8}>
-                <h1>Painel eventos</h1>
-                <Button my={4} colorScheme="blue" onClick={handleAddEvent}>Add Event</Button>
-                <EventList events={events} onEdit={handleEdit} onDelete={handleDelete} onOpen={onOpen}/>
-
-                <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay/>
-                    <ModalContent>
-                        <ModalHeader>{currentEvent ? 'Edit Event' : 'Add Event'}</ModalHeader>
-                        <ModalCloseButton/>
-                        <ModalBody>
-                            <EventForm event={currentEvent} onSave={handleSave} onClose={onClose}/>
-                        </ModalBody>
-                    </ModalContent>
-                </Modal>
-            </Box>
-        </SidebarWithHeader>
+        <>
+            <h1>Painel eventos</h1>
+            <Button my={4} colorScheme="blue" onClick={handleAddEvent}>Add Event</Button>
+            <EventList events={events} onEdit={handleEdit} onDelete={handleDelete} onOpen={onOpen}/>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay/>
+                <ModalContent>
+                    <ModalHeader>{currentEvent ? 'Edit Event' : 'Add Event'}</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody>
+                        <EventForm event={currentEvent} onSave={handleSave} onClose={onClose}/>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+        </>
     );
 };
 

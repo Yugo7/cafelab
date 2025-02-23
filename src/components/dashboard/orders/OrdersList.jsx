@@ -27,6 +27,7 @@ const OrdersList = ({ orders, products }) => {
     if (!Array.isArray(orders)) {
         return <p>No orders available</p>;
     }
+
     const filteredOrders = orderType === 'all' ? orders : orders.filter(order => order.type === orderType);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -37,9 +38,9 @@ const OrdersList = ({ orders, products }) => {
     const totalOrders = filteredOrders.length;
 
     return (
-        <VStack alignSelf="center" alignItems="center" w={"85vw"} p={5}>
-            <Box borderWidth="1px" borderRadius="lg" p={4} w={"100vw"} maxW={"1200px"}>
-                <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
+        <VStack alignSelf="center" alignItems="center" w={"85vw"} m={6} p={4}>
+            <Box borderWidth="1px" borderRadius="lg" p={4} w={"100vw"} maxW={"1200px"} >
+                <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} mb={4}>
                     Pedidos
                 </Text>
                 <Select
@@ -98,31 +99,19 @@ const OrdersList = ({ orders, products }) => {
                                         </Tag>
                                     </Wrap>
                                     <Wrap marginLeft="60px" justifyContent="flex-start">
-                                        {order.type === 'LOJA' && Array.isArray(order.products) ? (
-                                            order.products.map(orderProduct => (
+                                        {order.type === 'LOJA' && Array.isArray(order.cart) ? (
+                                            order.cart.map(orderProduct => (
                                                 <Tag
-                                                    key={orderProduct.id}
+                                                    key={orderProduct.product.id}
                                                     size="sm"
                                                     variant="solid"
-                                                    colorScheme={orderProduct.secao === 'CAFE' ? 'blue' : 'yellow'}
+                                                    colorScheme={orderProduct.product.secao === 'CAFE' ? 'blue' : 'yellow'}
                                                 >
-                                                    {orderProduct.name}
+                                                    {orderProduct.product.nome_pt} x {orderProduct.quantity}
                                                 </Tag>
                                             ))
-                                        ) : (
-                                            <>
-                                                <Tag colorScheme={"red"} key={order.products.id}>{order.products.name}</Tag>
-                                                {order.products.coffee && order.products.coffee.map(coffee => (
-                                                    <Tag
-                                                        key={coffee.id}
-                                                        size="sm"
-                                                        variant="solid"
-                                                        colorScheme="gray"
-                                                    >
-                                                        {coffee.name} x {coffee.quantity}
-                                                    </Tag>
-                                                ))}
-                                            </>
+                                        )  : (
+                                            <Text>{t('userDashboard.subscription')}</Text>
                                         )}
                                     </Wrap>
                                     <Spacer />

@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Stack, Text, Select, Input } from '@chakra-ui/react';
+import React, {useEffect, useState} from 'react';
+import {Line} from 'react-chartjs-2';
+import {Stack, Text, Select, Input, SimpleGrid, GridItem} from '@chakra-ui/react';
 import AnalyticsService from '../../services/AnalyticsService';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js';
 
 // Register the required components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const AnalyticsChart = ({ setDateRange }) => {
+const AnalyticsChart = ({setDateRange}) => {
     const [chartData, setChartData] = useState({});
     const [period, setPeriod] = useState(30); // Default to last 30 days
     const [customStartDate, setCustomStartDate] = useState('');
     const [customEndDate, setCustomEndDate] = useState('');
 
     const handleDateRangeChange = (startDate, endDate) => {
-        setDateRange({ startDate, endDate });
+        setDateRange({startDate, endDate});
     };
 
     useEffect(() => {
@@ -23,7 +32,7 @@ const AnalyticsChart = ({ setDateRange }) => {
             let startDate = customStartDate ? new Date(customStartDate) : new Date();
 
             if (period === 'all') {
-                startDate = new Date(0); // Set to epoch time to get all data
+                startDate = new Date("2024-06-10"); // Set to epoch time to get all data
             } else if (period !== 'custom') {
                 startDate.setDate(endDate.getDate() - period);
             }
@@ -100,7 +109,7 @@ const AnalyticsChart = ({ setDateRange }) => {
 
     return (
         <Stack maxW={"1000px"} w={"85vw"} align="center" alignSelf={"center"}>
-            <Stack h={"5vh"} align="center" m={6} spacing={4}>
+            <Stack h={{ base: "", sm: "5vh"}} align="center"  mb={4}  spacing={4}>
                 <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                     Acessos ao Site
                 </Text>
@@ -118,20 +127,24 @@ const AnalyticsChart = ({ setDateRange }) => {
                 <option value="custom">Personalizado</option>
             </Select>
             {period === 'custom' && (
-                <Stack direction="row" spacing={4} mb={4}>
-                    <Input
-                        type="date"
-                        value={customStartDate}
-                        onChange={(e) => setCustomStartDate(e.target.value)}
-                    />
-                    <Input
-                        type="date"
-                        value={customEndDate}
-                        onChange={(e) => setCustomEndDate(e.target.value)}
-                    />
-                </Stack>
+                <SimpleGrid columns={{sm: 2}} direction="row" spacing={4} mb={4}>
+                    <GridItem>
+                        <Input
+                            type="date"
+                            value={customStartDate}
+                            onChange={(e) => setCustomStartDate(e.target.value)}
+                        />
+                    </GridItem>
+                    <GridItem>
+                        <Input
+                            type="date"
+                            value={customEndDate}
+                            onChange={(e) => setCustomEndDate(e.target.value)}
+                        />
+                    </GridItem>
+                </SimpleGrid>
             )}
-            {chartData.labels ? <Line data={chartData} options={options} /> : <Text>Carregando...</Text>}
+            {chartData.labels ? <Line data={chartData} options={options}/> : <Text>Carregando...</Text>}
         </Stack>
     );
 };

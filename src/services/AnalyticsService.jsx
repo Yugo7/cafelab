@@ -1,11 +1,13 @@
-import axios from 'axios';
+import axiosInstance from "@/services/axiosInstance.jsx";
+import axios from 'axios'
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const LEGACY_URL = import.meta.env.VITE_API_LEGACY_URL;
 
 const AnalyticsService = {
     getWebsiteAccessData: async (startDate, endDate) => {
         try {
-            const response = await axios.post(`${BASE_URL}internal/vercel-analytics`, {
+            const response = await axios.post(`${LEGACY_URL}internal/vercel-analytics`, {
                 start: startDate,
                 end: endDate
             });
@@ -18,7 +20,7 @@ const AnalyticsService = {
 
     getWebsiteAccessStatistics: async (startDate, endDate) => {
         try {
-            const response = await axios.post(`${BASE_URL}internal/vercel-analytics/statistics`, {
+            const response = await axios.post(`${LEGACY_URL}internal/vercel-analytics/statistics`, {
                 start: startDate,
                 end: endDate
             });
@@ -32,7 +34,7 @@ const AnalyticsService = {
 
     getBalance: async (startDate, endDate) => {
         try {
-            const response = await axios.get(`${BASE_URL}balances/timeseries`, {
+            const response = await axiosInstance.get(`${BASE_URL}balances/timeseries`, {
                 params: {
                     start: startDate,
                     end: endDate

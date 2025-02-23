@@ -15,7 +15,7 @@ const ProductImageCarousel = () => {
     const productDescriptionColumn = `descricao_${lang === 'en' ? 'en' : 'pt'}`;
     const productSizeColumn = `size_${lang === 'en' ? 'en' : 'pt'}`;
 
-    const filteredProducts = products.sort((a, b) => a.secao.localeCompare(b.secao)).filter(product => product.is_active);
+    const filteredProducts = products.sort((a, b) => a.secao.localeCompare(b.secao));
 
     return (<Carousel
         centerMode={false}

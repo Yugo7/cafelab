@@ -79,24 +79,24 @@ const Origins = ({dateRange}) => {
             <Box>
                 <Text fontSize="2xl" mb={4}>Accessos por país</Text>
                 <Bar data={countryChartData}
-                     options={{...options, plugins: {...options.plugins, title: {text: 'Accesses per Country'}}}}/>
+                     options={{...options, plugins: {...options.plugins, title: {text: 'Acessos por país'}}}}/>
             </Box>
             <Box>
                 <Text fontSize="2xl" mb={4}>Accessos por dispositivos/Browser</Text>
                 <Bar data={deviceChartData} options={{
                     ...options,
-                    plugins: {...options.plugins, title: {text: 'Accesses per Device/Browser'}}
+                    plugins: {...options.plugins, title: {text: 'Acessos por Device/Browser'}}
                 }}/>
             </Box>
             <Box>
                 <Text fontSize="2xl" mb={4}>Accessos por OS</Text>
                 <Bar data={osChartData}
-                     options={{...options, plugins: {...options.plugins, title: {text: 'Accesses per OS'}}}}/>
+                     options={{...options, plugins: {...options.plugins, title: {text: 'Acessos por OS'}}}}/>
             </Box>
             <Box>
                 <Text fontSize="2xl" mb={4}>Origem do acessos</Text>
                 <Bar data={originChartData}
-                     options={{...options, plugins: {...options.plugins, title: {text: 'Accesses per Origin'}}}}/>
+                     options={{...options, plugins: {...options.plugins, title: {text: 'Acessos por referal'}}}}/>
             </Box>
         </Stack>
     );

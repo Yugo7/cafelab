@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@/services/axiosInstance.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -22,7 +22,7 @@ const getPastEvents = async (filterDate) => {
 
 const getAllEvents = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}events`);
+        const response = await axiosInstance.get(`${BASE_URL}events`);
         return response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
         console.error('Error fetching all events:', error);
@@ -32,7 +32,7 @@ const getAllEvents = async () => {
 
 const getEventById = async (eventId) => {
     try {
-        const response = await axios.get(`${BASE_URL}events/${eventId}`);
+        const response = await axiosInstance.get(`${BASE_URL}events/${eventId}`);
         return response.data;
     } catch (error) {
         console.error(`Error fetching event with ID ${eventId}:`, error);
@@ -59,7 +59,7 @@ const createEvent = async (eventData) => {
 
         console.log('Creating event:', Object.fromEntries(formData.entries()));
 
-        const response = await axios.post(`${BASE_URL}events`, formData, {
+        const response = await axiosInstance.post(`${BASE_URL}events`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -89,7 +89,7 @@ const updateEvent = async (eventData) => {
             formData.append('instagramUrl', eventData.instagramUrl);
         }
 
-        const response = await axios.put(`${BASE_URL}events/${eventData.id}`, formData, {
+        const response = await axiosInstance.put(`${BASE_URL}events/${eventData.id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -103,7 +103,7 @@ const updateEvent = async (eventData) => {
 
 const deleteEvent = async (eventId) => {
     try {
-        const response = await axios.delete(`${BASE_URL}events/${eventId}`);
+        const response = await axiosInstance.delete(`${BASE_URL}events/${eventId}`);
         return response.data;
     } catch (error) {
         console.error(`Error deleting event with ID ${eventId}:`, error);

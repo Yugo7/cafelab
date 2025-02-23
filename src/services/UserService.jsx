@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axiosInstance from "@/services/axiosInstance.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const getUsers = async () => {
-    const response = await axios.get(`${BASE_URL}user`);
+    const response = await axiosInstance.get(`${BASE_URL}user`);
     return response.data;
 };
 
 const getUserOrders = async (userId) => {
-    const response = await axios.get(`${BASE_URL}user/${userId}/orders`);
+    const response = await axiosInstance.get(`${BASE_URL}user/${userId}/orders`);
     return response.data;
 };
 

@@ -1,14 +1,14 @@
-
 export const getStatusColor = (status) => {
     switch (status) {
-        case 'PENDING':
+        case 'PENDENTE':
+        case 'CRIADO':
             return 'yellow';
-        case 'SHIPPED':
+        case 'ENVIADO':
             return 'blue';
-        case 'PAYMENT_SUCCESSFUL':
-        case 'ACTIVE':
+        case 'PAGAMENTO EFETUADO':
+        case 'ATIVO':
             return 'green';
-        case 'CANCELLED':
+        case 'CANCELADO':
             return 'red';
         default:
             return 'gray';
@@ -17,17 +17,17 @@ export const getStatusColor = (status) => {
 
 export const getStatusText = (status, t) => {
     switch (status) {
-        case 'PENDING':
+        case 'PENDENTE':
             return t('myOrders.status.pending');
-        case 'SHIPPED':
+        case 'ENVIADO':
             return t('myOrders.status.shipped');
-        case 'PAYMENT_SUCCESSFUL':
+        case 'PAGAMENTO EFETUADO':
             return t('myOrders.status.paymentSuccessful');
-        case 'CANCELLED':
+        case 'CANCELADO':
             return t('myOrders.status.cancelled');
-        case 'CREATED':
+        case 'CRIADO':
             return t('myOrders.status.created');
-        case 'ACTIVE':
+        case 'ATIVO':
             return t('myOrders.status.active');
         default:
             return t('myOrders.status.unknown');

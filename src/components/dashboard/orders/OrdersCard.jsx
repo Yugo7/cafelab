@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     SimpleGrid,
@@ -8,37 +8,35 @@ import {
     CardBody, Stack, Text
 } from '@chakra-ui/react';
 import {Line} from "react-chartjs-2";
+import OrderService from "@/services/orderService.jsx";
 
-const OrderStatusGrid = ({orders}) => {
+const OrderStatusGrid = () => {
+    const [ordersData, setOrders] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    if (!Array.isArray(orders)) {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await Promise.all([
+                    OrderService.getOrdersSummary(),
+                ]);
+                setOrders(data);
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    } , []);
+
+    console.log(ordersData);
+    if (!ordersData) {
         return <p>No orders available</p>;
     }
 
-    const countOrdersByPaymentStatus = (orders) => {
-        return orders.reduce((acc, order) => {
-            const status = order.status;
-            if (!acc[status]) {
-                acc[status] = 0;
-            }
-            acc[status]++;
-            return acc;
-        }, {});
-    };
-
-    const countOrdersByType = (orders) => {
-        return orders.reduce((acc, order) => {
-            const type = order.type;
-            if (!acc[type]) {
-                acc[type] = 0;
-            }
-            acc[type]++;
-            return acc;
-        }, {});
-    };
-
-    const ordersByPaymentStatus = countOrdersByPaymentStatus(orders);
-    const ordersByType = countOrdersByType(orders);
 
     const typeColors = {
         'LOJA': "blue",
@@ -54,38 +52,13 @@ const OrderStatusGrid = ({orders}) => {
         // Add more statuses and colors as needed
     };
 
-    const ordersByMonth = (orders) => {
-        return orders.reduce((acc, order) => {
-            const date = new Date(order.created_at);
-
-            // Check if the date is valid
-            if (isNaN(date)) {
-                console.error(`Invalid date: ${order.created_at}`);
-                return acc;
-            }
-
-            const month = date.getMonth();
-
-            if (!acc[month]) {
-                acc[month] = 0;
-            }
-
-            acc[month]++;
-
-            return acc;
-        }, {});
-    };
-
-    // Call the ordersByMonth function and store the result
-    const ordersByMonthData = ordersByMonth(orders);
-
     // Generate labels and data for the chart
     const data = {
-        labels: Object.keys(ordersByMonthData).map(month => new Date(0, month).toLocaleString('default', { month: 'long' })),
+        labels: Object.keys(ordersData[0].ordersByMonth).map(month => new Date(0, month).toLocaleString('default', { month: 'long' })),
         datasets: [
             {
                 label: 'Orders',
-                data: Object.values(ordersByMonthData),
+                data: Object.values(ordersData[0].ordersByMonth),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
@@ -116,7 +89,7 @@ const OrderStatusGrid = ({orders}) => {
             </Stack>
 
             <SimpleGrid columns={{sm: 3, md: 4, lg: 5}} justifyContent="center" alignItems="center" spacing={4}>
-                {Object.entries(ordersByType).map(([type, count], index) => (
+                {Object.entries(ordersData[0].ordersByType).map(([type, count], index) => (
                     <Box key={index}>
                         <Card variant={"outline"} bgColor={`${typeColors[type]}.50`} borderColor={`${typeColors[type]}.500`} borderWidth={"3px"}  alignItems={"center"}>
                             <CardHeader color={`${typeColors[type]}.500`} >
@@ -138,7 +111,7 @@ const OrderStatusGrid = ({orders}) => {
                 </Text>
             </Stack>
             <SimpleGrid columns={{sm: 3, lg: 4, xl: 5}} justifyContent="center" alignItems="center" spacing={4}>
-                { Object.entries(ordersByPaymentStatus).map(([status, count], index) => (
+                { Object.entries(ordersData[0].ordersByStatus).map(([status, count], index) => (
                     <Box key={index}>
                         <Card variant={"outline"} bgColor={`${statusColors[status]}.50`} borderColor={`${statusColors[status]}.500`} borderWidth={"3px"}  alignItems={"center"}>
                             <CardHeader color={`${statusColors[status]}.500`} >
