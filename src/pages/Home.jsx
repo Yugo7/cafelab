@@ -8,7 +8,6 @@ import { Trans, useTranslation } from "react-i18next";
 import ProductImageCarousel from "../components/home/ProductCarousel.jsx";
 import MailMarketing from "@/components/email/MailMarketing.jsx";
 import MailMarketingSignup from "@/components/popups/MailMarketingSignup.jsx";
-import AdPopup from "@/components/popups/AdPopup.jsx";
 import {CoffeeOfTheMonth} from "@/components/home/CoffeeOfTheMonth.jsx";
 
 const Home = () => {
