@@ -1,5 +1,4 @@
 import axios from "axios";
-new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

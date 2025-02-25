@@ -81,12 +81,7 @@ const SidebarContent = ({onClose}) => {
 
     const AdminLinkItems = [
         {name: 'Dashboard', route: '/dashboard', icon: MdDashboard},
-        {name: 'Produtos', route: '/dashboard/produtos', icon: TbPaperBag},
-        {name: 'Eventos', route: '/dashboard/eventos', icon: MdEvent},
-        {name: 'Users', route: '/dashboard/users', icon: FiUsers},
-        {name: 'Ads', route: '/dashboard/ads', icon: GrAnnounce},
         //{name: 'Fidelidade', route: '/dashboard/fidelidade', icon: TbPaperBag},
-        {name: 'Mail Marketing', route: '/dashboard/mail', icon: TbPaperBag},
     ];
 
     return (

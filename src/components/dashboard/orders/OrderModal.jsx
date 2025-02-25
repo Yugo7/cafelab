@@ -25,7 +25,7 @@ const OrderModal = ({ isOpen, onClose, selectedOrder }) => {
                             {Array.isArray(selectedOrder.products) ? (
                                 selectedOrder.products.map((product) => (
                                     <Box key={product.id} p={2} borderWidth="1px" borderRadius="lg" mb={2}>
-                                        <Text>{t('orderModal.productName')}: {product.name}</Text>
+                                        <Text>{t('orderModal.productName')}: {product.nome_pt}</Text>
                                         <Text>{t('orderModal.productSize')}: {product.size}</Text>
                                         <Text>{t('orderModal.productPrice')}: €{product.price}</Text>
                                         <Text>{t('orderModal.productQuantity')}: {product.quantity}</Text>
