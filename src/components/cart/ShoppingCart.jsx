@@ -25,7 +25,7 @@ export function ShoppingCart(props) {
         return product?.secao === 'VOUCHER';
     });
 
-    const shippingCost = allItemsAreVouchers ? 0 : 5;
+    const shippingCost = allItemsAreVouchers ? 0 : 500;
 
     return (
         <Offcanvas show={props.isOpen} size="md" onHide={closeCart} placement="end">
