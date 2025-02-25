@@ -40,19 +40,6 @@ export function ShoppingCartProvider({children}) {
         getProducts().then(setProducts);
     }, [isCacheCleared]);
 
-    const removeInactiveItemsFromCart = () => {
-        const activeItemIds = products.filter(product => product.isActive).map(product => product.id);
-        const updatedCartItems = cartItems.filter(cartItem => activeItemIds.includes(cartItem.id));
-
-        if (JSON.stringify(cartItems) !== JSON.stringify(updatedCartItems)) {
-            setCartItems(updatedCartItems);
-        }
-    };
-
-    useEffect(() => {
-        removeInactiveItemsFromCart();
-    }, [cartItems, products]);
-
     const cartQuantity = cartItems.reduce(
         (quantity, item) => item.quantity + quantity,
         0
