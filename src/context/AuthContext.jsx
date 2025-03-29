@@ -76,11 +76,12 @@ const AuthProvider = ({ children }) => {
     };
 
     const resetPassword = async (password, token) => {
-        resetPasswordServer(password, token).then(res => {
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        });
+        try {
+            const response = await resetPasswordServer(password, token);
+            return { success: true, data: response.data }; // Ensure the response includes a success field
+        } catch (error) {
+            return { success: false, error: error.message }; // Return a success field even in case of error
+        }
     };
 
     const getUserRole = () => {

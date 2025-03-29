@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axiosInstance from "@/services/axiosInstance.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const signin = async (usernameAndPassword) => {
     try {
-        return await axios.post(
+        return await axiosInstance.post(
             `${BASE_URL}auth/login`,
             {
                 email: usernameAndPassword.username,
@@ -24,7 +24,7 @@ const getAuthConfig = () => ({
 
 export const getCustomers = async () => {
     try {
-        return await axios.get(
+        return await axiosInstance.get(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers`,
             getAuthConfig()
         )
@@ -35,18 +35,19 @@ export const getCustomers = async () => {
 
 export const requestResetPasswordServer = async (email) => {
     try {
-        return await axios.post(
+        return await axiosInstance.post(
             `${BASE_URL}user/forgot-password`,
             { email: email}
         ) 
     } catch (e) {
         throw e;
+
     }
 }
 
 export const resetPasswordServer = async (pw, token) => {
     try {
-        return await axios.post(
+        return await axiosInstance.post(
             `${BASE_URL}user/change-password/${token}`,
             { password: pw}
         ) 
@@ -57,7 +58,7 @@ export const resetPasswordServer = async (pw, token) => {
 
 export const createCustomer = async (customer) => {
     try {
-        const response = await axios.post(`${BASE_URL}user`, {
+        const response = await axiosInstance.post(`${BASE_URL}user`, {
             customer
         });
         return response.data;
@@ -69,7 +70,7 @@ export const createCustomer = async (customer) => {
 
 export const updateCustomer = async (id, update) => {
     try {
-        return await axios.put(
+        return await axiosInstance.put(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`,
             update,
             getAuthConfig()
@@ -81,7 +82,7 @@ export const updateCustomer = async (id, update) => {
 
 export const deleteCustomer = async (id) => {
     try {
-        return await axios.delete(
+        return await axiosInstance.delete(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`,
             getAuthConfig()
         )
@@ -92,7 +93,7 @@ export const deleteCustomer = async (id) => {
 
 export const uploadCustomerProfilePicture = async (id, formData) => {
     try {
-        return axios.post(
+        return axiosInstance.post(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}/profile-image`,
             formData,
             {

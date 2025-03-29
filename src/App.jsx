@@ -48,6 +48,7 @@ import Unsubscribe from "@/components/email/Unsubscribe.jsx";
 import Customer from "@/pages/Customer.jsx";
 import PopupAds from "@/components/dashboard/PopupAds.jsx";
 import Special from "@/pages/Special.jsx";
+import GiftCard from "@/components/giftcard/GiftCard.jsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const { ToastContainer } = createStandaloneToast();
@@ -61,6 +62,7 @@ const routes = [
   { path: "/agenda", element: <Agenda /> },
   { path: "/menu", element: <ProtectedRoute><Menu /></ProtectedRoute> },
   { path: "/subscricao", element: <Subscricao /> },
+  { path: "/giftcard", element: <GiftCard /> },
   { path: "/cart", element: <ShoppingCart /> },
   { path: "/privacidade", element: <Consent /> },
   { path: "/boutique", element: <Boutique /> },

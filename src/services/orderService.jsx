@@ -19,7 +19,7 @@ const OrderService = {
 
     getOrdersByUserId: async (userId) => {
         try {
-            const response = await axiosInstance.get(`${BASE_URL}users/${userId}/orders`);
+            const response = await axiosInstance.get(`${BASE_URL}user/orders`);
             return response.data.filter(order => !order.is_test);
         } catch (error) {
             console.error('Error fetching orders by user ID:', error);

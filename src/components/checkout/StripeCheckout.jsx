@@ -34,7 +34,7 @@ export function CheckoutForm({clientSecret}) {
                     ))}
                     <Text className="ms-auto fs-10">
                         {t('shoppingCart.shipping')}{" "}
-                        {formatCurrency(5)}
+                        {formatCurrency(500)}
                     </Text>
                     <Text className="ms-auto fw-bold fs-5">
                         {t('stripeCheckout.total')}{" "}

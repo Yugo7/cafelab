@@ -29,18 +29,23 @@ const ResetPassword = () => {
         setIsLoading(true);
 
         try {
-            await resetPassword(password, token);
-            toast({
-                title: t('resetPassword.successMessage'),
-                status: 'success',
-                duration: 10000,
-                isClosable: true,
-                onCloseComplete: () => {
-                    setPassword('');
-                    setConfirmPassword('');
-                    navigate('/login');
-                },
-            });
+            const response = await resetPassword(password, token);
+            console.log('Reset Password Response:', response);
+            if (response && response.success) { // Adjust this condition based on your actual response structure
+                toast({
+                    title: t('resetPassword.successMessage'),
+                    status: 'success',
+                    duration: 10000,
+                    isClosable: true,
+                    onCloseComplete: () => {
+                        setPassword('');
+                        setConfirmPassword('');
+                        navigate('/login');
+                    },
+                });
+            } else {
+                throw new Error('Password reset failed');
+            }
         } catch (error) {
             toast({
                 title: t('resetPassword.errorMessage'),

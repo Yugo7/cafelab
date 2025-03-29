@@ -8,7 +8,7 @@ const getUsers = async () => {
 };
 
 const getUserOrders = async (userId) => {
-    const response = await axiosInstance.get(`${BASE_URL}user/${userId}/orders`);
+    const response = await axiosInstance.get(`${BASE_URL}user/orders`);
     return response.data;
 };
 

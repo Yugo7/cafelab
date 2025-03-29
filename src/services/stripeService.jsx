@@ -19,7 +19,7 @@ const StripeService = {
     createCheckoutSession: async (cart) => {
         try {
             const response = await axios.post(`${BASE_URL}checkout/payment`, {
-                cart: cart
+                cart: cart,
             });
             window.location.href =  response.data.url;
             return response.data;

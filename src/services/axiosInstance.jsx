@@ -10,6 +10,11 @@ axiosInstance.interceptors.request.use(
         if (token && token !== "null") {
             config.headers.Authorization = `Bearer ${token}`;
         }
+        config.params = {
+            ...config.params,
+            isActive: false
+        };
+
         return config;
     },
     (error) => {

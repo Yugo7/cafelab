@@ -3,6 +3,7 @@ export default {
         home: "Início",
         subscription: "Subscrição",
         boutique: "Boutique",
+        giftCard: "Gift Card",
         menu: "Menu Primavera",
         agenda: "Agenda",
         login: "Entrar",
@@ -66,6 +67,15 @@ export default {
         checkout: "Ir para o checkout",
         close: "Fechar",
         done: "done"
+    },
+    giftCard: {
+        title: "GIFT CARDS CAFELAB",
+        motto: "Presenteie quem você ama com um Gift Card Cafelab!",
+        selectAmount: "Selecione o valor do seu Gift Card:",
+        customAmount: "Valor personalizado",
+        enterCustomAmount: "Quanto você gostaria de presentear?",
+        selectPlaceholder: "Selecione o valor do seu Gift Card:",
+        purchase: "Comprar",
     },
     modalQuiz: {
         newHere: "Novo por aqui?",
@@ -285,7 +295,12 @@ export default {
         months: " meses",
         nextShipping: "Próximo envio",
         sinceDate: "Data da subscrição",
-        pendencies: "Solucione sua pendencia para receber próximo envio"
+        pendencies: "Solucione sua pendencia para receber próximo envio",
+        yourBalance: "SEUS CRÉDITOS",
+        balance: "Saldo",
+        expiresAt: "Expira em",
+        redeem: "Resgatar Créditos",
+        history: "Historico",
     },
     myOrders: {
         noOrders: "Nenhum pedido disponível",

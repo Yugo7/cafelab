@@ -3,6 +3,7 @@ export default {
         home: "Home",
         subscription: "Subscription",
         boutique: "Boutique",
+        giftCard: "Gift Card",
         menu: "Spring Menu",
         agenda: "Schedule",
         login: "Login",

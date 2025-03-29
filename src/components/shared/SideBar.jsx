@@ -76,6 +76,7 @@ const SidebarContent = ({onClose}) => {
         {name: t('sideBar.home'), route: '/', icon: FiHome},
         {name: t('sideBar.subscription'), route: '/subscricao', icon: FiPackage},
         {name: t('sideBar.boutique'), route: '/boutique', icon: TbPaperBag},
+        {name: t('sideBar.giftCard'), route: '/giftcard', icon: TbPaperBag},
         {name: t('sideBar.agenda'), route: '/agenda', icon: FiCalendar},
     ];
 

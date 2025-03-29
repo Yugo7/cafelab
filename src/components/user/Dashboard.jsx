@@ -18,6 +18,7 @@ import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
 import { useTranslation } from "react-i18next";
 import MyOrders from "./MyOrders.jsx";
 import MySubscriptions from "./MySubscriptions.jsx";
+import MyBalance from "@/components/user/MyBalance.jsx";
 
 const ProfilePage = () => {
     const { customer, requestResetPassword } = useAuth();
@@ -56,17 +57,15 @@ const ProfilePage = () => {
             } else {
                 try {
                     const data = await OrderService.getOrdersByUserId(customer.email);
-                    const [orders, subscriptions] = partition(data, order =>
-                        Array.isArray(order.products) && order.type === 'LOJA'
-                    );
-                    setOrders(orders);
-                    setSubscriptions(subscriptions);
+                    console.log(data);
+                    setOrders(data);
+                    console.log(orders);
+                    //setSubscriptions(subscriptions);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
             }
         };
-
         fetchOrders();
     }, [customer, navigate]);
     if (!customer) {
@@ -88,6 +87,17 @@ const ProfilePage = () => {
                         </Button>
                     </Box>
                 </VStack>
+
+                <Stack justifyContent="center" alignItems="center" w="100vw" p={5}>
+                    <Box borderWidth="1px" borderRadius="lg" p={4} w={"100vw"} maxW={"800px"}>
+                        <Stack width={"100%"}>
+                            <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
+                                {t('userDashboard.yourBalance')}
+                            </Text>
+                        </Stack>
+                        <MyBalance />
+                    </Box>
+                </Stack>
 
                 <Stack justifyContent="center" alignItems="center" w="100vw" p={5}>
                     <Box borderWidth="1px" borderRadius="lg" p={4} w={"100vw"} maxW={"800px"}>
