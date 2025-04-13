@@ -89,19 +89,19 @@ const MySubscriptions = ({subscriptions}) => {
                         borderBottom="1px solid #cbd5e0" pb={4} alignItems="center">
                     <Stack gap={2} className="d-flex align-items-center" textAlign={"center"} w={{ base: "50%", md: '100%' }} >
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} >
-                            {subscription.products.name.toUpperCase()}
+                            {subscription.name.toUpperCase()}
                         </Text>
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} >
-                            {subscription.products.periodicity_string.toUpperCase()}
+                            {subscription.periodicityString.toUpperCase()}
                         </Text>
                         <Text className="cafelab" fontWeight={"medium"}  fontSize={"lg"}>
                             {t('userDashboard.sinceDate')}:
-                            <br/> {new Date(subscription.created_at).toLocaleDateString('en-GB')}
+                            <br/> {new Date(subscription.order.created_at).toLocaleDateString('en-GB')}
                         </Text>
-                        <Tag colorScheme={subscription.status === 'ACTIVE' ? 'green' : subscription.status === 'PENDING' ? 'yellow' : 'red'}>
-                            {subscription.status === 'ACTIVE' ? t('myOrders.status.active').toUpperCase() : subscription.status === 'PENDING' ? t('myOrders.status.pending').toUpperCase() : t('myOrders.status.inactive').toUpperCase() }
+                        <Tag colorScheme={subscription.order.status === 'ACTIVE' ? 'green' : subscription.order.status === 'PENDING' ? 'yellow' : 'red'}>
+                            {subscription.order.status === 'ACTIVE' ? t('myOrders.status.active').toUpperCase() : subscription.order.status === 'PENDING' ? t('myOrders.status.pending').toUpperCase() : t('myOrders.status.inactive').toUpperCase() }
                         </Tag>
-                        {subscription.status === 'ACTIVE' ? (
+                        {subscription.order.status === 'ACTIVE' ? (
                             <Text className="cafelab" fontWeight={"medium"}  fontSize={"lg"}>
                                 {t('userDashboard.nextShipping')}:
                                 <br/> 02/{new Date().getMonth() + 2}/{new Date().getFullYear()}
@@ -114,28 +114,28 @@ const MySubscriptions = ({subscriptions}) => {
                     </Stack>
                     <Stack pt={8} className="d-flex align-items-center" textAlign={"center"} w={{ base: "50%", md: '100%' }} >
                         <Stack>
-                            {subscription.products.coffee ? subscription.products.coffee.map((coffee, coffeeIndex) => (
-                                <Stack key={coffeeIndex} direction={"row"}>
-                                    <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"} align={"left"}>
-                                        - {coffee.name.toUpperCase()} x {coffee.quantity}
-                                    </Text>
-                                </Stack>
-                            )) : null}
-                            {subscription.products.coffee ? (
-                                <Button onClick={onOpen}>
-                                    {t('userDashboard.changeCoffees')}
-                                </Button>
-                            ) : null}
+                            {/*{subscription.products.coffee ? subscription.products.coffee.map((coffee, coffeeIndex) => (*/}
+                            {/*    <Stack key={coffeeIndex} direction={"row"}>*/}
+                            {/*        <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"} align={"left"}>*/}
+                            {/*            - {coffee.name.toUpperCase()} x {coffee.quantity}*/}
+                            {/*        </Text>*/}
+                            {/*    </Stack>*/}
+                            {/*)) : null}*/}
+                            {/*{subscription.products.coffee ? (*/}
+                            {/*    <Button onClick={onOpen}>*/}
+                            {/*        {t('userDashboard.changeCoffees')}*/}
+                            {/*    </Button>*/}
+                            {/*) : null}*/}
 
                             <Text className="ms-auto" pt={6} fontSize={"lg"}>
-                                {formatCurrency(subscription.total)} {t('userDashboard.every')} {subscription.products.periodicity} {t('userDashboard.months')}
+                                {formatCurrency(subscription.order.total)} {t('userDashboard.every')} {subscription.periodicity} {t('userDashboard.months')}
                             </Text>
-                            <Button variant={"outline"} colorScheme={"red"} onClick={() => cancel(subscription.id)}>
+                            <Button variant={"outline"} colorScheme={"red"} onClick={() => cancel(subscription.order.id)}>
                                 {t('userDashboard.cancelSubscription')}
                             </Button>
 
 
-                            <Button variant={"outline"} colorScheme={"red"} onClick={() => testconn(subscription.id)}>
+                            <Button variant={"outline"} colorScheme={"red"} onClick={() => testconn(subscription.order.id)}>
                                 {t('userDashboard.cancelSubscription')}
                             </Button>
                         </Stack>

@@ -37,7 +37,7 @@ const Orders = () => {
     return (
         <Box m={6}>
             <Stack>
-                <h2>Orders</h2>
+                <h2>Pedidos</h2>
             </Stack>
             <OrderStatusGrid />
             <OrdersList orders={orders} products={products} />

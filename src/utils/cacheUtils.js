@@ -3,6 +3,7 @@ export const clearCache = () => {
     localStorage.removeItem('productsTime');
     localStorage.removeItem('coffee');
     localStorage.removeItem('subscription');
+    localStorage.removeItem('token');
 
     console.log('Cache cleared');
 };

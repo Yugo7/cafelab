@@ -122,7 +122,13 @@ const OrdersList = ({ products }) => {
                                                     </Tag>
                                                 ))
                                             )  : (
-                                                <Text>{t('userDashboard.subscription')}</Text>
+                                                <Tag
+                                                    size="sm"
+                                                    variant="solid"
+                                                    colorScheme='orange'
+                                                >
+                                                    Subscricao
+                                                </Tag>
                                             )}
                                         </Wrap>
                                         <Spacer />

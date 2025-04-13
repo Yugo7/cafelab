@@ -34,11 +34,6 @@ const MyBalance = (userBalance) => {
     const lang = i18n.language;
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const mockUserBalance = {
-        balance: "15000",
-        expiresAt: new Date('2024-12-31')
-    };
-
     if (!userBalance) {
         return (
             <Stack h={"60vh"} align="center" m={6} spacing={4}>
@@ -61,17 +56,19 @@ const MyBalance = (userBalance) => {
                             {t('userDashboard.balance')}
                         </Text>
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} >
-                            {formatCurrency(mockUserBalance.balance)}
+                            {formatCurrency(userBalance.userBalance.balance)}
                         </Text>
                     </Stack>
+
+                    {userBalance.userBalance.expiration ? (
                     <Stack>
                         <Text className="cafelab" fontWeight={"normal"} fontSize={"lg"}>
                             {t('userDashboard.expiresAt')}:
                         </Text>
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"xl"} align={"center"} >
-                            {mockUserBalance.expiresAt.toLocaleDateString()}
+                            {userBalance.userBalance.expiration.toLocaleDateString()}
                         </Text>
-                    </Stack>
+                    </Stack> ) : null}
                 </Stack>
                 <Stack pt={8} className="d-flex align-items-center"  justifyContent="space-evenly" direction={{ base: "column", md: 'row' }}  textAlign={"center"} w='100%' >
                     <Stack spacing={8}>

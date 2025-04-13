@@ -1,4 +1,5 @@
 import axiosInstance from './axiosInstance';
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const OrderService = {
@@ -17,10 +18,9 @@ const OrderService = {
         }
     },
 
-    getOrdersByUserId: async (userId) => {
+    getUserInfo: async () => {
         try {
-            const response = await axiosInstance.get(`${BASE_URL}user/orders`);
-            return response.data.filter(order => !order.is_test);
+            return (await axiosInstance.get(`${BASE_URL}user/orders`)).data;
         } catch (error) {
             console.error('Error fetching orders by user ID:', error);
             throw error;

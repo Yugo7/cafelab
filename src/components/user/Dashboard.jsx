@@ -24,6 +24,7 @@ const ProfilePage = () => {
     const { customer, requestResetPassword } = useAuth();
     const [orders, setOrders] = useState([]);
     const [subscriptions, setSubscriptions] = useState([]);
+    const [balance, setBalance] = useState([]);
     const navigate = useNavigate();
     const { products } = useShoppingCart();
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,11 +57,12 @@ const ProfilePage = () => {
                 navigate("/");
             } else {
                 try {
-                    const data = await OrderService.getOrdersByUserId(customer.email);
-                    console.log(data);
-                    setOrders(data);
-                    console.log(orders);
-                    //setSubscriptions(subscriptions);
+                    const data = await OrderService.getUserInfo();
+
+                    console.log('data', data);
+                    setOrders(data.orders);
+                    setSubscriptions(data.subscriptions);
+                    setBalance(data.balance);
                 } catch (error) {
                     console.error('Failed to fetch orders:', error);
                 }
@@ -95,7 +97,7 @@ const ProfilePage = () => {
                                 {t('userDashboard.yourBalance')}
                             </Text>
                         </Stack>
-                        <MyBalance />
+                        <MyBalance userBalance={ balance }/>
                     </Box>
                 </Stack>
 
@@ -114,7 +116,7 @@ const ProfilePage = () => {
                         <Text className="cafelab" fontWeight={"medium"} fontSize={"5xl"} align={"center"} mb={4}>
                             {t('userDashboard.myOrders').toUpperCase()}
                         </Text>
-                        <MyOrders>
+                        <MyOrders orders={orders}>
                         </MyOrders>
                     </Box>
                 </Stack>

@@ -302,6 +302,25 @@ export default {
         redeem: "Resgatar Créditos",
         history: "Historico",
     },
+    balance: {
+        EXPENSE: "Saida",
+        INCOME: "Entrada",
+        orderDetails: "Detalhes do Pedido",
+        product: "Produto",
+        quantity: "Quantidade",
+        price: "Preço",
+        orderNumber: "Pedido #",
+        status: {
+            pending: "Pendente",
+            shipped: "Enviado",
+            paymentSuccessful: "Pagamento Bem-sucedido",
+            cancelled: "Cancelado",
+            created: "Criado",
+            active: "Ativo",
+            inactive: "Inativo"
+        },
+        receipt: "Aqui está o seu recibo",
+    },
     myOrders: {
         noOrders: "Nenhum pedido disponível",
         orderDetails: "Detalhes do Pedido",
