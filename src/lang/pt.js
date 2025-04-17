@@ -10,7 +10,7 @@ export default {
         signOut: "Sair"
     },
     home: {
-        headlineText: "CHEGARAM NOSSAS SUBSCRIÇÕES! <br />TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
+        headlineText: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
         welcome: "Bem-vindo ao nosso site!",
         addtocalendar: "Adicionar ao calendário",
         firstCoffeeShop: "A PRIMEIRA LOJA DE CAFÉ DE ESPECIALIDADE DE OEIRAS.",
