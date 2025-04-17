@@ -32,15 +32,16 @@ import { Stack } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { TbPaperBag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
-import ShareModal from './ShareModal'; // Import ShareModal
+import ShareModal from './ShareModal';
+import ScrollLogoEffect from "@/components/shared/ScrollLogoEffect.jsx"; // Import ShareModal
 
-export default function SidebarWithHeader({ children }) {
+export default function SidebarWithHeader({ children, onScrollChange}) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isShareOpen, onOpen: onOpenShare, onClose: onCloseShare } = useDisclosure(); // Add disclosure for ShareModal
 
     return (
         <>
-            <Box className="sidebar-with-header" height={"80px"}>
+            <Box className="sidebar-with-header" height={"150px"}>
                 <Flex bg={useColorModeValue('white', 'gray.900')} direction="column">
                     <Drawer
                         autoFocus={false}
@@ -53,10 +54,10 @@ export default function SidebarWithHeader({ children }) {
                             <SidebarContent onClose={onClose} />
                         </DrawerContent>
                     </Drawer>
-                    <MobileNav onOpenMenu={onOpen} onOpenShare={onOpenShare} />
+                    <MobileNav onOpenMenu={onOpen} onOpenShare={onOpenShare}/>
                 </Flex>
             </Box>
-            <Stack gap={4} className='main'>
+            <Stack className='main'>
                 {children}
                 <Footer />
             </Stack>
@@ -187,6 +188,7 @@ const MobileNav = ({ onOpenMenu, onOpenShare, ...rest }) => {
     const { cartQuantity, openCart } = useShoppingCart();
     const { i18n } = useTranslation();
     const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
+    const [ isScrolled, setIsScrolled ] = useState(false);
 
     const handleChange = (event) => {
         const newLanguage = event.target.value;
@@ -198,12 +200,14 @@ const MobileNav = ({ onOpenMenu, onOpenShare, ...rest }) => {
     return (
         <>
             <Flex
-                height="20"
-                alignItems="center"
+                height="150"
+                pt={"20px"}
+                alignItems="start"
                 bg={useColorModeValue('white', 'gray.900')}
                 borderBottomWidth="1px"
                 borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
                 justifyContent={{ base: 'space-between', md: 'space-between' }}
+                transition="all 0.4s ease"
                 {...rest}>
                 <HStack alignContent={"flex-start"}>
                     <IconButton
@@ -222,12 +226,20 @@ const MobileNav = ({ onOpenMenu, onOpenShare, ...rest }) => {
                 </HStack>
                 <AbsoluteCenter axis='horizontal'>
                     <Image
-                        height={"16"}
+                        height={"20"}
                         margin='auto'
                         src={logo}
                         alt='CafeLab'
                         onClick={() => navigate('/')}
                     />
+
+                    <Stack py={{base: "20px", lg: "30px"}} align="center" maxWidth="100%" spacing="30px">
+                            <Stack justify="flex-start" align="center" spacing="-20px">
+                                <Text className="cafelab" fontSize={"4xl"} color={"Black"}>
+                                    CAFELAB
+                                </Text>
+                            </Stack>
+                        </Stack>
                 </AbsoluteCenter>
                 <Flex justifyContent="flex-end" alignItems="center" mr={{ base: 4, lg: 60 }}>
                     <Select w={useBreakpointValue({ base: "64px", md: "100px" })} value={selectedValue} onChange={handleChange}>

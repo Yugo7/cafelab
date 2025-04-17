@@ -281,9 +281,9 @@
 }
 
 .main {
-    margin-top: 70px; /* Adjust based on the height of your header */
+    margin-top: 150px;
     overflow-y: auto;
-    height: calc(100vh - 70px); /* Adjust based on the height of your header */
+    height: calc(100vh - 150px); /* Adjust based on the height of your header */
 }
 
 .editor-container {

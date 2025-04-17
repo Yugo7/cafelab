@@ -24,7 +24,7 @@ export default {
         discoverProjects: "DESCUBRA NOSSOS PROJETOS E EVENTOS",
         agendaButton: "AGENDA",
         openOnMaps: "ABRIR NO MAPS",
-        storeButton: "LOJA",
+        storeButton: "COMPRE AGORA!",
         boutiqueButton: "BOUTIQUE",
         subscriptionButton: "SUBSCRIÇÃO",
         visit: "VISITE NOSSO ESPAÇO",
@@ -32,6 +32,7 @@ export default {
         checkOutOurSubscription2: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
         checkOutOurCoffee: "CONHEÇA NOSSOS PRODUTOS E CAFÉS DE ESPECIALIDADE!",
         checkOutOurBoutique: "CONHEÇA NOSSA SESSÃO DE BOUTIQUE!",
+        homeBanner: "grãos torrados no último forno à lenha de Portugal."
     },
     subscription: {
         subscriptionTitle: "SUBSCRIÇÃO CAFELAB",
