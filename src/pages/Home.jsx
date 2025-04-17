@@ -15,7 +15,8 @@ const Home = () => {
     const {t, i18n} = useTranslation();
 
     const stackSpacing = useBreakpointValue({base: "20px", md: "30px"});
-    const fontHl = useBreakpointValue({base: "3xl", md: "5xl"});
+    const fontHl = useBreakpointValue({base: "3xl", lg: "5xl"});
+    const fontImages = useBreakpointValue({base: "lg", lg: "1.3vw"});
 
     const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ const Home = () => {
                 <Box height={"7vh"} w={"50vw"} alignSelf={"center"} alignContent={"end"} borderRadius={"3xl"}
                      overflow={"hidden"}
                      textAlign={"-webkit-center"} bgColor={"white"} borderBottom={"white" + " 1px solid"}>
-                    <Box bgColor={"blackAlpha.200"}>
+                    <Box bgColor={"#faf0e6"}>
                         <Text className={"cafelab"} fontWeight="normal" fontSize={{base: "lg", lg: "2xl"}}
                               color="black">
                             BOUTIQUE
@@ -63,7 +64,7 @@ const Home = () => {
             <Stack pt={8} px={{base: "10px", md: "20px"}} bgColor={"#D2B9A9"}>
                 <Stack bgColor={"white"} borderRadius={"3xl"} overflow="hidden">
                     <Box paddingY="10px" height={"10vh"} w={"100%"} alignSelf={"center"} alignContent={"end"}
-                         textAlign={"-webkit-center"} bgColor={"blackAlpha.200"}>
+                         textAlign={"-webkit-center"} bgColor={"#faf0e6"}>
                         <Text className={"cafelab"} px={useBreakpointValue({base: 4, md: 8})} fontWeight="normal"
                               align="center" fontSize={fontHl}
                               lineHeight={"100%"} letterSpacing="-0.04em">
@@ -91,15 +92,15 @@ const Home = () => {
                 <Box paddingY="10px">
                 </Box>
                 <Stack bgColor={"white"} p={4} borderRadius={"3xl"}>
-                    <Stack spacing={0} width="100%" justify="center" pt={8} bgColor={"blackAlpha.200"}>
+                    <Stack spacing={0} width="100%" justify="center" pt={8} bgColor={"#faf0e6"}>
                         <Text className={"cafelab"} px={useBreakpointValue({base: 4, md: 8})} fontWeight="normal"
                               align="center" fontSize={fontHl}
                               lineHeight={"100%"} letterSpacing="-0.04em">
                             <Trans>{t('home.headlineText')}</Trans>
                         </Text>
-                        <Grid templateColumns={{base: "repeat(2, 1fr)", md: "repeat(2, 1fr)"}} gap={4} p={4} h={"auto"}
-                              w={{base: "100%", md: "auto"}} alignItems={"center"} alignSelf={"anchor-center"}>
-                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} w={"sm"} justifySelf={"start"}
+                        <Grid templateColumns={{base: "repeat(1, 1fr)", md: "repeat(2, 1fr)"}} gap={4} p={4} h={"auto"}
+                              w={{base: "auto", md: "auto"}} alignItems={"center"} alignSelf={"anchor-center"}>
+                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} w={{base: "3xs", lg: "sm"}} justifySelf={{base: "center", lg: "start"}}
                                  alignSelf={"start"}>
                                 <Image
                                     objectFit="cover"
@@ -108,12 +109,12 @@ const Home = () => {
                                     src="assets/1.png" alt="Subscription"/>
 
                                 <Text className="cafelab" minH={"100px"}
-                                      width="100%" fontSize={useBreakpointValue({base: "5vw", md: "1vw"})}
+                                      width="100%" fontSize={fontImages}
                                       textAlign={"Center"}>
                                     {t('subscription.choose').toUpperCase()}
                                 </Text>
                             </Box>
-                            <Box bgColor={"white"} h={"lg"} w={"lg"} borderRadius={"50%"} p={4}
+                            <Box bgColor={"white"} h={{base: "xs", lg: "lg"}} w={{base: "xs", lg: "lg"}} borderRadius={"50%"} p={4}
                                  textAlign={"-webkit-center"} overflow={"hidden"}>
                                 <Image
                                     objectFit="cover"
@@ -121,13 +122,13 @@ const Home = () => {
                                     height="auto"
                                     src="assets/2.png" alt="Subscription"/>
                                 <Text className="cafelab" minH={"100px"}
-                                      width="100%" fontSize={useBreakpointValue({base: "5vw", md: "1vw"})}
+                                      width="100%" fontSize={fontImages}
                                       textAlign={"Center"}>
                                     {t('subscription.pay').toUpperCase()}
                                 </Text>
                             </Box>
-                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} borderRadius={"50%"} w={"md"}
-                                 alignSelf={"start"} justifySelf={"start"} overflow={"hidden"}>
+                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} borderRadius={"50%"} w={{base: "3xs", lg: "md"}}
+                                 alignSelf={"start"} justifySelf={{base: "center", lg: "start"}} overflow={"hidden"}>
                                 <Image
                                     bgColor={"gray"}
                                     objectFit="cover"
@@ -135,20 +136,20 @@ const Home = () => {
                                     height="auto"
                                     src="assets/3.png" alt="Subscription"/>
                                 <Text className="cafelab" minH={"100px"}
-                                      width="100%" fontSize={useBreakpointValue({base: "5vw", md: "1vw"})}
+                                      width="100%" fontSize={fontImages}
                                       textAlign={"Center"}>
                                     {t('subscription.assemble').toUpperCase()}
                                 </Text>
                             </Box>
-                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} w={"sm"} alignSelf={"end"}
-                                 justifySelf={"end"}>
+                            <Box bgColor={"white"} borderRadius={"3xl"} p={4} w={{base: "3xs", lg: "sm"}} alignSelf={"end"}
+                                 justifySelf={{base: "center", lg: "end"}}>
                                 <Image
                                     objectFit="cover"
                                     width="100%"
                                     height="auto"
                                     src="assets/4.png" alt="Subscription"/>
                                 <Text className="cafelab" minH={"100px"}
-                                      width="100%" fontSize={useBreakpointValue({base: "5vw", md: "1vw"})}
+                                      width="100%" fontSize={fontImages}
                                       textAlign={"Center"}>
                                     {t('subscription.receive').toUpperCase()}
                                 </Text>
@@ -163,14 +164,14 @@ const Home = () => {
                         </Button>
                     </Stack>
                     </Stack>
-                </Stack>
+                </Stack>#faf0e6
                 <Box paddingY="10px">
                 </Box>
                 <Stack bgColor={"white"} borderRadius={"3xl"} overflow={"hidden"}>
                     <VStack direction={{base: "column", lg: 'row'}} minH={"200px"}
                             position="relative">
                         <Box height={"10vh"} w={"100%"} alignSelf={"center"} alignContent={"end"}
-                             textAlign={"-webkit-center"} bgColor={"blackAlpha.200"} mb={4}>
+                             textAlign={"-webkit-center"} bgColor={"#faf0e6"} mb={4}>
                             <Text className={"cafelab"} px={useBreakpointValue({base: 4, md: 8})} fontWeight="normal"
                                   align="center" fontSize={fontHl}
                                   lineHeight={"100%"} letterSpacing="-0.04em">
