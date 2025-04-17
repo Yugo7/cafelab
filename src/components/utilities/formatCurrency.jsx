@@ -5,7 +5,6 @@ const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined, {
 
 export function formatCurrency(number) {
     if (typeof number === 'string') {
-        console.error('number input:', number);
         number = Number(number);
     }
     if (isNaN(number)) {
