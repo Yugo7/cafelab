@@ -9,6 +9,11 @@ export default {
         login: "Login",
         signOut: "Sign out",
     },
+    hero: {
+        headline: "Discover the Best Coffee",
+        subheadline: "Experience the finest coffee blends from around the world.",
+        ctaButton: "Shop Now"
+    },
     home: {
         headlineText: "CHECK OUT OUR SUBSCRIPTIONS!<br /> HAVE THE BEST OF CAFELAB AT YOUR HOME EVERY MONTH!",
         welcome: "Welcome to our website!",

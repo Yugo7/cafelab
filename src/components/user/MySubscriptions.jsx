@@ -83,7 +83,7 @@ const MySubscriptions = ({subscriptions}) => {
 
     return (
         <>
-            {subscriptions.length > 0 ? subscriptions.map((subscription, index) => (
+            {subscriptions && subscriptions.length > 0 ? subscriptions.map((subscription, index) => (
 
                 <Stack direction={{ base: "column", md: 'row' }} key={index} justifyContent="space-evenly" my={6}
                         borderBottom="1px solid #cbd5e0" pb={4} alignItems="center">
@@ -96,7 +96,7 @@ const MySubscriptions = ({subscriptions}) => {
                         </Text>
                         <Text className="cafelab" fontWeight={"medium"}  fontSize={"lg"}>
                             {t('userDashboard.sinceDate')}:
-                            <br/> {new Date(subscription.order.created_at).toLocaleDateString('en-GB')}
+                            <br/> {new Date(subscription.order.createdAt).toLocaleDateString('en-GB')}
                         </Text>
                         <Tag colorScheme={subscription.order.status === 'ACTIVE' ? 'green' : subscription.order.status === 'PENDING' ? 'yellow' : 'red'}>
                             {subscription.order.status === 'ACTIVE' ? t('myOrders.status.active').toUpperCase() : subscription.order.status === 'PENDING' ? t('myOrders.status.pending').toUpperCase() : t('myOrders.status.inactive').toUpperCase() }

@@ -1,28 +1,38 @@
 import React, { useEffect, useState } from "react";
-import SidebarWithHeader from "../shared/SideBar.jsx";
-import OurPicks from "./OurPicks.jsx";
-import queryString from 'query-string';
-import { Button, Spinner, Stack, Text, useBreakpointValue, Select, Grid, GridItem, Input } from "@chakra-ui/react";
-import ProductList from "./ProductList.jsx";
-import { getProductsBySection, Sections } from "../../services/productsService.jsx";
-import { useTranslation } from 'react-i18next';
+import {
+    Box,
+    Text,
+    Stack,
+    Spinner,
+    Input,
+    Select,
+    Grid,
+    GridItem,
+    Button,
+    Image,
+    Divider, Flex,
+} from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
+import queryString from "query-string";
+import { getProductsBySection, Sections } from "../../services/productsService";
+import ProductList from "./ProductList";
+import OurPicks from "./OurPicks";
+import SidebarWithHeader from "../shared/SideBar";
+import { useTranslation } from "react-i18next";
 
 export default function Boutique() {
-    const fontHeadlineSize = useBreakpointValue({ base: "lg", md: "2xl" });
-    const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [section, setSection] = useState();
     const [sortOption, setSortOption] = useState("price");
     const [searchTerm, setSearchTerm] = useState("");
-    const fontSize = useBreakpointValue({ base: "5xl", md: "62px" });
 
     const location = useLocation();
     const { coffeeId } = queryString.parse(location.search);
 
     const { t, i18n } = useTranslation();
     const lang = i18n.language;
-    const productNameColumn = `nome_${lang === 'en' ? 'en' : 'pt'}`;
+    const productNameColumn = `nome_${lang === "en" ? "en" : "pt"}`;
 
     const filteredProducts = products.filter(product =>
         product[productNameColumn] && product[productNameColumn].toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,11 +43,8 @@ export default function Boutique() {
         getProductsBySection(section)
             .then(data => {
                 const sortedProducts = data.sort((a, b) => {
-                    if (sortOption === "price") {
-                        return a.preco - b.preco;
-                    } else if (sortOption === "date") {
-                        return new Date(a.created_at) - new Date(b.created_at);
-                    }
+                    if (sortOption === "price") return a.preco - b.preco;
+                    if (sortOption === "date") return new Date(a.created_at) - new Date(b.created_at);
                     return 0;
                 });
                 setProducts(sortedProducts);
@@ -51,64 +58,78 @@ export default function Boutique() {
 
     return (
         <SidebarWithHeader>
-            <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
-                <Text className="cafelab" align="center" fontSize={fontSize} color="#000000">
-                    {t('boutique.title').toUpperCase()}
-                </Text>
-                <Text maxW={"800px"} fontFamily="Roboto" fontWeight="regular" fontSize={fontHeadlineSize}
-                      letterSpacing="tighter" color="black"
-                      textAlign="center" mx={4}>
-                    {t('boutique.description')}
-                </Text>
-            </Stack>
-            <Stack backgroundColor={"whiteAlpha.50"}>
-                <Grid justifyItems={"center"} templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}>
-                    <GridItem />
-                    <GridItem>
-                        <Stack direction={'row'} spacing={4}>
-                            <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}
-                                    onClick={(event) => {
-                                        setSection(prevSection => prevSection === Sections.CAFE ? null : Sections.CAFE);
-                                        event.currentTarget.blur();
-                                    }}>
-                                {t('boutique.coffeeButton').toUpperCase()}
-                            </Button>
-                            <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}
-                                    onClick={(event) => {
-                                        setSection(prevSection => prevSection === Sections.BOUTIQUE ? null : Sections.BOUTIQUE);
-                                        event.currentTarget.blur();
-                                    }}>
-                                {t('boutique.boutiqueButton').toUpperCase()}
-                            </Button>
-                        </Stack>
-                    </GridItem>
-                    <GridItem mt={{base: 4, md: 0}}>
-                        <Select maxW={"200px"} onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
-                            <option value="price">{t('boutique.sortByPrice')}</option>
-                            <option value="date">{t('boutique.sortByDate')}</option>
-                        </Select>
-                    </GridItem>
-                </Grid>
-                <Stack direction={'row'} spacing={4} justify="center" mt={4}>
-                    <Input
-                        placeholder={t('boutique.searchPlaceholder')}
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        maxW={"300px"}
-                    />
+            <Box position="relative" overflow="hidden">
+                <Image
+                    src="https://www.svgrepo.com/download/163174/coffee-grains.svg"
+                    position="absolute"
+                    top="5%"
+                    left="-40px"
+                    boxSize={["60px", "80px", "100px"]}
+                    opacity={0.06}
+                    zIndex={0}
+                />
+                <Image
+                    src="https://www.svgrepo.com/download/163174/coffee-grains.svg"
+                    position="absolute"
+                    bottom="10%"
+                    right="-40px"
+                    boxSize={["60px", "80px", "100px"]}
+                    opacity={0.06}
+                    zIndex={0}
+                />
+
+                <Stack justify="flex-start" align="center" my={6} mx={4} spacing={6} zIndex={1} position="relative">
+                    <Text fontSize={["3xl", "5xl"]} fontWeight="bold" textAlign="center">
+                        {t("boutique.title").toUpperCase()}
+                    </Text>
+                    <Text maxW="800px" fontSize={["md", "lg"]} color="gray.700" textAlign="center">
+                        {t("boutique.description")}
+                    </Text>
                 </Stack>
-                {isLoading ? (
-                    <Spinner />
-                ) : (
-                    <ProductList
-                        products={filteredProducts}
-                        openProduct={coffeeId}
-                    />
-                )}
-            </Stack>
-            <Stack align={"center"} mx={10} p={10}>
-                <OurPicks />
-            </Stack>
+
+                <Stack backgroundColor="whiteAlpha.50" spacing={6} px={4} zIndex={1} position="relative">
+                    <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={4} alignItems="center">
+                        <GridItem />
+                        <GridItem>
+                            <Stack direction="row" justify="center">
+                                <Button onClick={() => setSection(section === Sections.CAFE ? null : Sections.CAFE)}>
+                                    {t("boutique.coffeeButton").toUpperCase()}
+                                </Button>
+                                <Button onClick={() => setSection(section === Sections.BOUTIQUE ? null : Sections.BOUTIQUE)}>
+                                    {t("boutique.boutiqueButton").toUpperCase()}
+                                </Button>
+                            </Stack>
+                        </GridItem>
+                        <GridItem>
+                            <Select maxW="200px" onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
+                                <option value="price">{t("boutique.sortByPrice")}</option>
+                                <option value="date">{t("boutique.sortByDate")}</option>
+                            </Select>
+                        </GridItem>
+                    </Grid>
+
+                    <Flex justify="center">
+                        <Input
+                            placeholder={t("boutique.searchPlaceholder")}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            maxW="300px"
+                        />
+                    </Flex>
+
+                    {isLoading ? (
+                        <Spinner alignSelf="center" />
+                    ) : (
+                        <Stack spacing={6} divider={<Divider borderColor="gray.200" />}>
+                            <ProductList products={filteredProducts} openProduct={coffeeId} />
+                        </Stack>
+                    )}
+                </Stack>
+
+                <Stack align="center" mx={10} py={10} zIndex={1} position="relative">
+                    <OurPicks />
+                </Stack>
+            </Box>
         </SidebarWithHeader>
     );
 }

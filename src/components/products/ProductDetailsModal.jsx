@@ -70,12 +70,12 @@ const ProductModal = ({ isOpen, onClose, product }) => {
                                 <Button variant='ghost' onClick={() => increaseCartQuantity(product.id)}>+</Button>
                             </>
                         ) : (
-                            <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}
+                            <Button variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"}
                                 onClick={() => increaseCartQuantity(product.id)}>
                                 {t('boutique.addToCart')}
                             </Button>
                         )}
-                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
+                        <Button ml={2} variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
                             {t('boutique.buyNow')}
                         </Button>
                     </HStack>

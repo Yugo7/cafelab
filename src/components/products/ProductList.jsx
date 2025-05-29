@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Card, CardBody, CardFooter, Image, Tag, Stack, Text, useBreakpointValue, SimpleGrid } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    Image,
+    Tag,
+    Stack,
+    Text,
+    useBreakpointValue,
+    SimpleGrid,
+    Divider,
+} from "@chakra-ui/react";
 import { ButtonGroup } from "react-bootstrap";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
@@ -12,17 +25,6 @@ const ProductList = ({ products, openProduct }) => {
     const fontHl3 = useBreakpointValue({ base: "lg", md: "2xl" });
     const margin = useBreakpointValue({ base: "2", md: "4", xl: "10" });
     const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState(null);
-
-    const handleCardClick = (product) => {
-        setCurrentProduct(product);
-        setIsModalOpen(true);
-    };
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
 
     useEffect(() => {
         if (openProduct) {
@@ -54,16 +56,26 @@ const ProductList = ({ products, openProduct }) => {
     }
 
     return (
-        <SimpleGrid minChildWidth="min(300px, 95vw, 90vw)" spacing={"20px"} m={margin}>
-            {
-                products.map((product) => {
+        <Stack spacing={6} m={margin}>
+            <SimpleGrid minChildWidth="min(300px, 95vw, 90vw)" spacing={"20px"}>
+                {products.map((product) => {
                     const quantityInCart = getItemQuantity(product.id);
                     return (
-                        <Box key={product.id} display="flex" flexDirection="column">
-                            <Card bgColor={"whiteAlpha.50"} variant='outline' border={"4px"} height="100%" display="flex" flexDirection="column">
-                                <CardBody onClick={() => handleCardClick(product)} flex="1">
+                        <Box
+                            key={product.id}
+                            display="flex"
+                            flexDirection="column"
+                            pb={6}
+                            p={2}
+                            _hover={{ border: "4px solid black", padding: 4 }}
+                            transition="all 0.2s ease-in-out"
+                        >
+                            <Card bgColor={"whiteAlpha.50"} variant='unstyled' height="100%" display="flex" flexDirection="column">
+                                <CardBody
+                                    onClick={() => navigate(`/boutique/${product.id}`)}
+                                    flex="1">
                                     <Stack mt='6' spacing='8'>
-                                        <Text className="cafelab text-center" fontWeight={"bold"} fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>
+                                        <Text className="cafelab text-center" fontWeight="bold" fontSize={fontHl3}>{product[productNameColumn].toUpperCase()}</Text>
                                         <Box align='center'>
                                             <Image
                                                 src={product.imagem}
@@ -96,12 +108,12 @@ const ProductList = ({ products, openProduct }) => {
                                                     <Button variant='ghost' onClick={() => increaseCartQuantity(product.id)}>+</Button>
                                                 </>
                                             ) : (
-                                                <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} leftIcon={<MdAddShoppingCart />} onClick={() => increaseCartQuantity(product.id)}>
+                                                <Button variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"} leftIcon={<MdAddShoppingCart />} onClick={() => increaseCartQuantity(product.id)}>
                                                     {t('boutique.addToCart')}
                                                 </Button>
                                             )
                                         }
-                                        <Button ml={2} variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
+                                        <Button ml={2} variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"} onClick={() => buyNow(product.id)}>
                                             {t('boutique.buyNow')}
                                         </Button>
                                     </ButtonGroup>
@@ -109,12 +121,9 @@ const ProductList = ({ products, openProduct }) => {
                             </Card>
                         </Box>
                     )
-                })
-            }
-            {currentProduct && (
-                <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={currentProduct} />
-            )}
-        </SimpleGrid>
+                })}
+            </SimpleGrid>
+        </Stack>
     );
 };
 

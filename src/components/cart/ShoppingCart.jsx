@@ -28,7 +28,8 @@ export function ShoppingCart(props) {
     const shippingCost = allItemsAreVouchers ? 0 : 500;
 
     return (
-        <Offcanvas show={props.isOpen} size="md" onHide={closeCart} placement="end">
+        <Offcanvas show={props.isOpen} size="md" onHide={closeCart} placement="end"
+                   style={{ zIndex: 1050 }} >
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>{t('shoppingCart.title')}</Offcanvas.Title>
             </Offcanvas.Header>

@@ -43,7 +43,7 @@ const OurPicks = () => {
                     </CardBody>
                     <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
-                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(6)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
+                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(6)} backgroundColor={"#092607"} color={"antiquewhite"}>
                                 
                             {t('boutique.addToCart')}
                             </Button>
@@ -80,7 +80,7 @@ const OurPicks = () => {
                     </CardBody>
                     <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
-                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(11)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
+                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(11)} backgroundColor={"#092607"} color={"antiquewhite"}>
                                 
                             {t('boutique.addToCart')}
                             </Button>
@@ -117,7 +117,7 @@ const OurPicks = () => {
                     </CardBody>
                     <CardFooter justifyContent={"center"}>
                         <ButtonGroup spacing='2'>
-                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(3)} backgroundColor={"blackAlpha.800"} color={"antiquewhite"}>
+                            <Button ml={2} variant={"solid"} onClick={() => increaseCartQuantity(3)} backgroundColor={"#092607"} color={"antiquewhite"}>
                                 
                             {t('boutique.addToCart')}
                             </Button>

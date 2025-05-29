@@ -1,264 +1,248 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
-    AbsoluteCenter,
-    Avatar,
-    Badge,
     Box,
-    CloseButton,
-    Drawer,
-    DrawerContent,
     Flex,
-    HStack,
-    Icon,
     IconButton,
     Image,
-    Link,
-    Select,
-    Spacer,
+    VStack,
     Text,
+    HStack,
+    Select,
+    Badge,
+    CloseButton,
     useBreakpointValue,
     useColorModeValue,
-    useDisclosure
+    useDisclosure,
+    Drawer,
+    DrawerContent, Icon,
 } from '@chakra-ui/react';
-import logo from '/assets/logo.png';
-import { useNavigate } from 'react-router-dom';
-import { FiCalendar, FiUsers, FiHome, FiMenu, FiPackage, FiShare2 } from 'react-icons/fi';
-import { GrAnnounce } from "react-icons/gr";
-import { MdDashboard, MdEvent } from "react-icons/md";
-import Footer from "./Footer.jsx";
-import { FaShoppingCart, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
-import { useShoppingCart } from "../../context/ShoppingCartContext.jsx";
-import { Stack } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext.jsx";
-import { TbPaperBag } from "react-icons/tb";
-import { useTranslation } from "react-i18next";
-import ShareModal from './ShareModal';
-import ScrollLogoEffect from "@/components/shared/ScrollLogoEffect.jsx"; // Import ShareModal
 
-export default function SidebarWithHeader({ children, onScrollChange}) {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const { isOpen: isShareOpen, onOpen: onOpenShare, onClose: onCloseShare } = useDisclosure(); // Add disclosure for ShareModal
+import {
+    FiCalendar,
+    FiUsers,
+    FiHome,
+    FiMenu,
+    FiPackage,
+    FiShare2,
+} from 'react-icons/fi';
+
+import {FaShoppingCart, FaSignInAlt, FaSignOutAlt} from 'react-icons/fa';
+import {MdDashboard} from 'react-icons/md';
+import {TbPaperBag} from 'react-icons/tb';
+import {useShoppingCart} from '../../context/ShoppingCartContext.jsx';
+import {useTranslation} from 'react-i18next';
+import {useNavigate} from 'react-router-dom';
+import Footer from './Footer.jsx';
+import ShareModal from './ShareModal.jsx';
+import logo from '/assets/Cafe lab logo Background Removed.png';
+import {useAuth} from '../../context/AuthContext.jsx';
+
+export default function SidebarWithHeader({children, hero = true}) {
+    const {isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose} = useDisclosure();
+    const {isOpen: isShareOpen, onOpen: onOpenShare, onClose: onCloseShare} = useDisclosure();
+    const scrollableRef = useRef(null);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const hasAdjustedScroll = useRef(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!hero) return setIsScrolled(true);
+            const scrolled = window.scrollY > 0;
+            if (!hasAdjustedScroll.current && scrolled) {
+                window.scrollTo(0, 1);
+                hasAdjustedScroll.current = true;
+            }
+            setIsScrolled(scrolled);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <>
-            <Box className="sidebar-with-header" height={"150px"}>
-                <Flex bg={useColorModeValue('white', 'gray.900')} direction="column">
-                    <Drawer
-                        autoFocus={false}
-                        isOpen={isOpen}
-                        placement="left"
-                        onClose={onClose}
-                        returnFocusOnClose={false}
-                        onOverlayClick={onClose}>
-                        <DrawerContent>
-                            <SidebarContent onClose={onClose} />
-                        </DrawerContent>
-                    </Drawer>
-                    <MobileNav onOpenMenu={onOpen} onOpenShare={onOpenShare}/>
-                </Flex>
-            </Box>
-            <Stack className='main'>
+        <Box position="relative">
+            <Drawer isOpen={isMenuOpen} placement="left" onClose={onMenuClose}>
+                <DrawerContent>
+                    <SidebarContent onClose={onMenuClose}/>
+                </DrawerContent>
+            </Drawer>
+
+            <MobileNav onOpenMenu={onMenuOpen} onOpenShare={onOpenShare} isScrolled={isScrolled}/>
+
+            <Box ref={scrollableRef} flex="1" overflowY="auto">
                 {children}
-                <Footer />
-            </Stack>
+                <Footer/>
+            </Box>
+
             <ShareModal isOpen={isShareOpen} onClose={onCloseShare}/>
-        </>
+        </Box>
     );
 }
+
+const MobileNav = ({onOpenMenu, onOpenShare, isScrolled}) => {
+    const navigate = useNavigate();
+    const {cartQuantity, openCart} = useShoppingCart();
+    const {i18n} = useTranslation();
+    const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
+
+    const handleChange = (e) => {
+        const newLang = e.target.value;
+        setSelectedValue(newLang);
+        i18n.changeLanguage(newLang);
+        localStorage.setItem('language', newLang);
+    };
+
+    return (
+        <Flex
+            as="header"
+            position="sticky"
+            top="0"
+            zIndex="1000"
+            width="100%"
+            height={isScrolled ? '80px' : '350px'}
+            alignItems="center"
+            bg={useColorModeValue('#ADDCC8', 'gray.900')}
+            justifyContent="space-between"
+            px={{base: 4, md: 8, lg: 10}}
+            transition="all 0.3s ease-in-out"
+            boxShadow={isScrolled ? 'md' : 'none'}
+        >
+            <HStack spacing={2} alignSelf="flex-start" mt="20px">
+                <IconButton onClick={onOpenMenu} variant="ghost" aria-label="open menu" icon={<FiMenu/>}/>
+                <IconButton onClick={onOpenShare} variant="ghost" aria-label="open share modal" icon={<FiShare2/>}/>
+            </HStack>
+
+            <Box
+                position="absolute"
+                bottom={isScrolled ? '10px' : '40px'}
+                left="50%"
+                top={isScrolled ? '20%' : "48%"}
+                transform="translateX(-50%)"
+                transition="bottom 0.3s ease, transform 0.3s ease"
+            >
+                <VStack align="center" cursor="pointer" onClick={() => navigate('/')}>
+                    <Image
+                        src={logo}
+                        alt="Cafelab Logo"
+                        maxHeight={isScrolled ? '50px' : '100px'}
+                        objectFit="contain"
+                        transition="max-height 0.3s ease"
+                    />
+                    <Text
+                        className="cafelab"
+                        fontSize="6xl"
+                        fontWeight="bold"
+                        color={useColorModeValue('gray.800', 'white')}
+                        whiteSpace="nowrap"
+                        transition="opacity 0.3s ease"
+                        opacity={isScrolled ? 0 : 1}
+                    >
+                        CAFELAB
+                    </Text>
+                </VStack>
+            </Box>
+
+            <HStack spacing={{base: 1, md: 3}} alignSelf="flex-start" mt="20px">
+                <Select w={useBreakpointValue({base: '50px', md: '100px'})} size="sm" value={selectedValue}
+                        onChange={handleChange}>
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="pt">🇵🇹 PT</option>
+                </Select>
+                <Box position="relative">
+                    <IconButton size="md" variant="ghost" aria-label="cart" icon={<FaShoppingCart/>}
+                                onClick={openCart}/>
+                    {cartQuantity > 0 && <Badge>{cartQuantity}</Badge>}
+                </Box>
+            </HStack>
+        </Flex>
+    );
+};
 
 const SidebarContent = ({onClose}) => {
     const navigate = useNavigate();
     const {customer, logOut, getUserRole} = useAuth();
     const {t} = useTranslation();
-
     const role = getUserRole();
 
     const LinkItems = [
         {name: t('sideBar.home'), route: '/', icon: FiHome},
         {name: t('sideBar.subscription'), route: '/subscricao', icon: FiPackage},
         {name: t('sideBar.boutique'), route: '/boutique', icon: TbPaperBag},
-        // {name: t('sideBar.giftCard'), route: '/giftcard', icon: TbPaperBag},
         {name: t('sideBar.agenda'), route: '/agenda', icon: FiCalendar},
     ];
 
     const AdminLinkItems = [
         {name: 'Dashboard', route: '/dashboard', icon: MdDashboard},
-        //{name: 'Fidelidade', route: '/dashboard/fidelidade', icon: TbPaperBag},
     ];
 
     return (
-        <>
-            <Flex h="100%" flexDirection="column" justifyContent="space-between">
+        <Flex h="100%" flexDirection="column" justifyContent="space-between"
+              bg={useColorModeValue('white', 'gray.800')}>
+            <Box>
                 <Flex direction="column" alignItems="center" mx={6}>
-                    <CloseButton my={8} onClick={onClose}/>
-                    <Image
-                        maxHeight={"70px"}
-                        src={logo}
-                        alt='Cafelab'
-                        onClick={() => navigate('/')}
-                    />
-                    <Text className={"cafelab"} mb={4} fontSize="3xl">
-                        CAFELAB
-                    </Text>
+                    <CloseButton alignSelf="flex-end" display={{base: 'flex', md: 'none'}} my={4} onClick={onClose}/>
+                    <Image maxHeight="70px" mt={8} src={logo} alt='Cafelab' cursor="pointer"
+                           onClick={() => navigate('/')}/>
+                    <Text className="cafelab" mb={4} fontSize="3xl">CAFELAB</Text>
                     {LinkItems.map((link) => (
-                        <NavItem key={link.name} route={link.route} icon={link.icon}>
-                            {link.name}
-                        </NavItem>
+                        <NavItem key={link.name} route={link.route} icon={link.icon}>{link.name}</NavItem>
                     ))}
                     <br/>
-                    {Array.isArray(role) && role.includes('admin') ? AdminLinkItems.map((link) => (
-                        <NavItem key={link.name} route={link.route} icon={link.icon}>
-                            {link.name}
-                        </NavItem>
-                    )) : null}
-                </Flex>
-                <Flex direction="column" justifyContent="end" margin={"auto"} mx="8">
-
-                    {customer ?
-                        <HStack width="100%">
-                            <HStack overflow={"hidden"} onClick={() => navigate('/profile')}>
-                                <Avatar
-                                    name={customer.name}
-                                    size={'sm'}
-                                />
-                                <Text>{customer.name}</Text>
-                            </HStack>
-                            <Spacer/> {/* Add Spacer here */}
-                            <HStack onClick={logOut}>
-                                <Text>
-                                    {t('sideBar.signOut')}</Text>
-                                <IconButton
-                                    icon={<FaSignOutAlt/>}
-                                    aria-label={"logout"}>
-                                    alt={"logout"}
-                                </IconButton>
-                            </HStack>
-                        </HStack>
-                        :
-                        <Stack direction={"horizontal"} alignSelf={"center"} mb={8}
-                               onClick={() => navigate('/login')}>
-                            {t('sideBar.login')}
-                            <IconButton
-                                size="lg"
-                                variant="ghost"
-                                aria-label="log in"
-                                icon={<FaSignInAlt/>}
-                            />
-                        </Stack>
+                    {Array.isArray(role) && role.includes('admin') &&
+                        AdminLinkItems.map((link) => (
+                            <NavItem key={link.name} route={link.route} icon={link.icon}>{link.name}</NavItem>
+                        ))
                     }
                 </Flex>
-            </Flex>
-        </>
-    )
-        ;
-};
-const NavItem = ({icon, route, children, ...rest}) => {
-    return (
-        <Link href={route} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
-            <Flex
-                align="center"
-                p="4"
-                mx="4"
-                borderRadius="lg"
-                role="group"
-                cursor="pointer"
-                _hover={{
-                    bg: 'blue.400',
-                    color: 'white',
-                }}
-                {...rest}>
-                {icon && (
-                    <Icon
-                        mr="4"
-                        fontSize="16"
-                        _groupHover={{
-                            color: 'white',
-                        }}
-                        as={icon}
-                    />
+            </Box>
+
+            <Flex direction="column" p="4" borderTopWidth="1px" borderColor={useColorModeValue('gray.200', 'gray.700')}>
+                {customer ? (
+                    <HStack width="100%" justifyContent="space-between">
+                        <HStack spacing={3} overflow="hidden" cursor="pointer" onClick={() => {
+                            navigate('/profile');
+                            onClose();
+                        }}>
+                            <Avatar name={customer.name} size='sm'/>
+                            <Text noOfLines={1}>{customer.name}</Text>
+                        </HStack>
+                        <IconButton onClick={() => {
+                            logOut();
+                            onClose();
+                        }} icon={<FaSignOutAlt/>} variant="ghost" aria-label={t('sideBar.signOut')}
+                                    title={t('sideBar.signOut')}/>
+                    </HStack>
+                ) : (
+                    <HStack width="100%" justifyContent="center" cursor="pointer" onClick={() => {
+                        navigate('/login');
+                        onClose();
+                    }}>
+                        <Icon as={FaSignInAlt} mr={2}/>
+                        <Text>{t('sideBar.login')}</Text>
+                    </HStack>
                 )}
-                {children}
             </Flex>
-        </Link>
+        </Flex>
     );
 };
 
-const MobileNav = ({ onOpenMenu, onOpenShare, ...rest }) => {
+const NavItem = ({icon, route, children, ...rest}) => {
     const navigate = useNavigate();
-    const { cartQuantity, openCart } = useShoppingCart();
-    const { i18n } = useTranslation();
-    const [selectedValue, setSelectedValue] = useState(localStorage.getItem('language') || i18n.language);
-    const [ isScrolled, setIsScrolled ] = useState(false);
-
-    const handleChange = (event) => {
-        const newLanguage = event.target.value;
-        setSelectedValue(newLanguage);
-        i18n.changeLanguage(newLanguage);
-        localStorage.setItem('language', newLanguage);
-    };
-
     return (
-        <>
-            <Flex
-                height="150"
-                pt={"20px"}
-                alignItems="start"
-                bg={useColorModeValue('white', 'gray.900')}
-                borderBottomWidth="1px"
-                borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-                justifyContent={{ base: 'space-between', md: 'space-between' }}
-                transition="all 0.4s ease"
-                {...rest}>
-                <HStack alignContent={"flex-start"}>
-                    <IconButton
-                        ml={{ base: 4, lg: 60 }}
-                        onClick={onOpenMenu}
-                        variant="ghost"
-                        aria-label="open menu"
-                        icon={<FiMenu />}
-                    />
-                    <IconButton
-                        onClick={onOpenShare } // Call onOpenShare when share icon is clicked
-                        variant="ghost"
-                        aria-label="open share modal"
-                        icon={<FiShare2 />}
-                    />
-                </HStack>
-                <AbsoluteCenter axis='horizontal'>
-                    <Image
-                        height={"20"}
-                        margin='auto'
-                        src={logo}
-                        alt='CafeLab'
-                        onClick={() => navigate('/')}
-                    />
-
-                    <Stack py={{base: "20px", lg: "30px"}} align="center" maxWidth="100%" spacing="30px">
-                            <Stack justify="flex-start" align="center" spacing="-20px">
-                                <Text className="cafelab" fontSize={"4xl"} color={"Black"}>
-                                    CAFELAB
-                                </Text>
-                            </Stack>
-                        </Stack>
-                </AbsoluteCenter>
-                <Flex justifyContent="flex-end" alignItems="center" mr={{ base: 4, lg: 60 }}>
-                    <Select w={useBreakpointValue({ base: "64px", md: "100px" })} value={selectedValue} onChange={handleChange}>
-                        <option value='en'>{useBreakpointValue({ base: "🇺🇸", md: "🇺🇸 EN" })}</option>
-                        <option value='pt'>{useBreakpointValue({ base: "🇵🇹", md: "🇵🇹 PT" })}</option>
-                    </Select>
-                    <IconButton
-                        size="lg"
-                        variant="ghost"
-                        aria-label="shopping cart"
-                        icon={<FaShoppingCart />}
-                        onClick={openCart}
-                    >
-                    </IconButton>
-                    <Badge ml={-3} bgColor={"red.400"} color={"white"}>
-                        {cartQuantity}
-                    </Badge>
-                </Flex>
-            </Flex>
-        </>
+        <Flex
+            align="center"
+            p="4"
+            mx="4"
+            my="1"
+            width="90%"
+            borderRadius="lg"
+            role="group"
+            cursor="pointer"
+            onClick={() => navigate(route)}
+            _hover={{bg: 'blue.400', color: 'white'}}
+            {...rest}
+        >
+            {icon && <Icon mr="4" fontSize="16" _groupHover={{color: 'white'}} as={icon}/>}
+            {children}
+        </Flex>
     );
 };

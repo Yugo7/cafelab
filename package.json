@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@aws-amplify/datastore": "^5.0.28",
+    "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.4.6",
     "@chakra-ui/toast": "^7.0.2",
     "@emotion/react": "^11.10.5",
@@ -53,6 +54,7 @@
     "react-icons": "^4.12.0",
     "react-lottie": "^1.2.4",
     "react-multi-carousel": "^2.8.5",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.0",
     "react-share": "^5.2.0",
     "react-snowfall": "^2.1.1",

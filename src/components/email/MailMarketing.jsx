@@ -57,7 +57,7 @@ const MailMarketing = () => {
     };
 
     return (
-        <Box backgroundColor="blackAlpha.800" m={8} boxShadow="md">
+        <Box backgroundColor="#092607" m={8} boxShadow="md">
             <Grid p={8} m={6} textAlign={"center"} templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6} alignItems="center">
                 <GridItem m={6} maxW={"500px"}>
                     <Stack spacing={4}>

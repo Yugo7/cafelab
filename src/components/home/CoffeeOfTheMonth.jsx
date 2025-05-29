@@ -1,39 +1,115 @@
-import {Box, Button, Grid, Image, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
+import { Box, Button, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
+import { Carousel } from "react-responsive-carousel"; // Install this package using `npm install react-responsive-carousel`
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Add the default styles
 
-export const CoffeeOfTheMonth = ({t, navigate, fontHl}) => {
-        return (
-            <Stack spacing={0} width="100%" justify="center" alignItems={"center"}>
-                <Text className={"cafelab"} py={8} px={useBreakpointValue({base: 4, md: 8})} fontWeight="Bold"
-                      align="center"
-                      fontSize={fontHl}
-                      lineHeight={"80%"} letterSpacing="-0.04em"
-                      color="black">
-                    {t('monthCoffee.coffeeOfTheMonth').toUpperCase()}
-                </Text>
-                <Grid templateColumns={{base: "1fr", md: "1fr 1fr"}} gap={4} m={8} borderWidth="4px" borderColor={"black"}
-                      borderRadius="lg" overflow="hidden" alignItems={"center"} maxW={"1000px"}>
+export const CoffeeOfTheMonth = ({ t, navigate, fontHl }) => {
+    return (
+        <Box
+            width="100%"  // Ensures the box spans the full width of the screen
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            position="relative" // Allows positioning of text over the images
+            bgSize="cover"
+            bgPosition="center"
+            Height="500px" // Set the maximum height for the image
+        >
+            <Carousel
+                autoPlay
+                infiniteLoop
+                interval={5000} // Adjust the interval between slides
+                showThumbs={false} // Hide the thumbnail previews
+                showStatus={false} // Hide the current slide number
+                dynamicHeight={false} // Disable dynamic height for uniformity
+            >
+                {/* Slide 1 */}
+                <Box position="relative">
                     <Image
-                        objectFit="cover"
-                        width="auto"
-                        height="auto"
-                        src="assets/angola.png" alt="Coffee of the Month"/>
-                    <Box textAlign="center" m={4}>
-                        <Text className="cafelab" fontSize={useBreakpointValue({base: "5vw", md: "3vw"})} color="black"
-                              mt={4}>
-                            ANGOLA
-                        </Text>
-                        <Text className="cafelab" fontWeight="normal" fontSize={useBreakpointValue({base: "xl", md: "3xl"})}
-                              color="black" mt={4}>
-                            {t('monthCoffee.coffeeOfTheMonthDescription')}
-                        </Text>
-                        <Button mt={4} size='lg' variant={"solid"} backgroundColor={"black"} color={"white"}
-                                onClick={() => navigate('/boutique?coffeeId=5')}>
-                            {t('monthCoffee.learnMore')}
-                        </Button>
+                        src="assets/boutiqueHome.jpg"
+                        alt="Coffee of the Month 1"
+                        objectFit="fill"
+                        width="100%"
+                        maxHeight="500px" // Set the maximum height for the image
+                    />
+                    <Box
+                        position="absolute"
+                        bottom="0"
+                        left="50%"
+                        transform="translateX(-50%)"
+                        textAlign="center"
+                        color="white"
+                        px={4}
+                        py={6}
+                        width="100%" // Ensures the text box spans the full width
+                        bg="rgba(0, 0, 0, 0.5)" // Semi-transparent background for text readability
+                    >
                     </Box>
-                </Grid>
-            </Stack>
-        );
-    }
-;
+                </Box>
+
+                {/* Slide 2 */}
+                <Box position="relative">
+                    <Image
+                        src="assets/EcobagHome.jpg"
+                        alt="Coffee of the Month 2"
+                        borderRadius="lg"
+                        objectFit="fill"
+                        width="100%"
+                        maxHeight="500px" // Set the maximum height for the image
+                    />
+                    <Box
+                        position="absolute"
+                        bottom="0"
+                        left="50%"
+                        transform="translateX(-50%)"
+                        textAlign="center"
+                        color="white"
+                        px={4}
+                        py={6}
+                        width="100%" // Ensures the text box spans the full width
+                        bg="rgba(0, 0, 0, 0.5)" // Semi-transparent background for text readability
+                    >
+                    </Box>
+                </Box>
+
+                {/* Slide 3 */}
+                <Box position="relative">
+                    <Image
+                        src="assets/subscricao.jpg"
+                        alt="Coffee of the Month 3"
+                        borderRadius="lg"
+                        objectFit="fill"
+                        width="100%"
+                        height={"100%"}
+                        maxHeight="500px" // Set the maximum height for the image
+                    />
+                    <Box
+                        position="absolute"
+                        bottom="0"
+                        left="50%"
+                        transform="translateX(-50%)"
+                        textAlign="center"
+                        color="white"
+                        px={4}
+                        py={6}
+                        width="100%" // Ensures the text box spans the full width
+                        bg="rgba(0, 0, 0, 0.5)" // Semi-transparent background for text readability
+                    >
+                    </Box>
+                </Box>
+            </Carousel>
+
+            <Button
+                size="lg"
+                bgColor={"#ADDCC8"}
+                onClick={() => navigate('/boutique')}
+                maxW={"md"}
+                alignSelf={"center"}
+                position="absolute"
+                bottom={6} // Adjusts the position of the button at the bottom of the viewport
+            >
+                {t('hero.ctaButton')}
+            </Button>
+        </Box>
+    );
+};

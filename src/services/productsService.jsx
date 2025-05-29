@@ -39,7 +39,8 @@ export const getProductsBySection = async (section) => {
 export const getProductsById = async (id) => {
     try {
         const products = await getProducts();
-        return products.filter(product => product.id === id);
+        const product = products.find(product => product.id === parseInt(id, 10));
+        return product || null;
     } catch (e) {
         throw e;
     }

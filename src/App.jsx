@@ -49,6 +49,8 @@ import Customer from "@/pages/Customer.jsx";
 import PopupAds from "@/components/dashboard/PopupAds.jsx";
 import Special from "@/pages/Special.jsx";
 import GiftCard from "@/components/giftcard/GiftCard.jsx";
+import ProductPage from "@/components/products/ProductPage.jsx";
+import ScrollToTop from "@/components/shared/ScrollToTop.jsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const { ToastContainer } = createStandaloneToast();
@@ -66,6 +68,7 @@ const routes = [
   { path: "/cart", element: <ShoppingCart /> },
   { path: "/privacidade", element: <Consent /> },
   { path: "/boutique", element: <Boutique /> },
+  { path: "/boutique/:id", element: <ProductPage />},
   { path: "/checkout", element: <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}><Checkout /></ErrorBoundary> },
   { path: "/checkout-subscricao", element: <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}><CheckoutSubscricao /></ErrorBoundary> },
   { path: "/cancel", element: <Cancel /> },
@@ -100,6 +103,7 @@ function App() {
               <Elements stripe={stripePromise}>
                 <ShoppingCartProvider>
                   <SubscriptionProvider>
+                    <ScrollToTop />
                     <Routes>
                       {routes.map((route, index) => (
                         <Route key={index} path={route.path} element={route.element} />

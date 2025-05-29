@@ -9,6 +9,11 @@ export default {
         login: "Entrar",
         signOut: "Sair"
     },
+    hero: {
+        headline: "Descubra o Melhor Café",
+        subheadline: "Experimente as melhores misturas de café do mundo.",
+        ctaButton: "Compre Agora"
+    },
     home: {
         headlineText: "TENHA O CAFELAB TODOS OS MESES NA SUA CASA!",
         welcome: "Bem-vindo ao nosso site!",
@@ -134,7 +139,7 @@ export default {
         coldDrinks: "Bebidas Frias",
     },
     boutique: {
-        title: "Boutique Cafelab",
+        title: "Boutique",
         description: "Além dos cafés especiais e acessórios, trazemos agora uma coleção exclusiva de Ecobags, Aventais, Chávenas e muito mais!",
         coffeeButton: "Café",
         boutiqueButton: "Boutique",
@@ -437,4 +442,8 @@ export default {
         inCart: "vouchers no carrinho 💕",
         saleOver: "Vendas encerradas para o Brunch de São Valentim. Obrigado por participar!",
     },
+
+    productPage: {
+        size: "Tamanho"
+    }
 }

@@ -38,13 +38,13 @@ const Menu = () => {
                 <Stack justify="flex-start" align="center" my={6} mx={4} spacing="24px">
 
                     <Stack direction={'row'}>
-                        <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={(event) => {
+                        <Button variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"} onClick={(event) => {
                             setSection(prevSection => prevSection === Sections.QUENTE ? null : Sections.QUENTE);
                             event.currentTarget.blur();
                         }}>
                             {t('menu.hotDrinks')}
                         </Button>
-                        <Button variant={"solid"} backgroundColor={"blackAlpha.800"} color={"antiquewhite"} onClick={(event) => {
+                        <Button variant={"solid"} backgroundColor={"#092607"} color={"antiquewhite"} onClick={(event) => {
                             setSection(prevSection => prevSection === Sections.FRIO ? null : Sections.FRIO);
                             event.currentTarget.blur();
                         }}>
